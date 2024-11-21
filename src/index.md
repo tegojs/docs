@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Tachybase"
-  text: "A flexible and versatile application system, where application developers can create rich application logic based on tachybase, while core developers can focus on the stability of key modules and adaptation to different environments."
+  text: "A flexible application level framework."
   tagline: My great project tagline
   actions:
     - theme: brand
