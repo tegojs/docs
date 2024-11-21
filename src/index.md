@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "Tachybase"
-  text: "A flexible application level framework."
-  tagline: My great project tagline
+  text: "The Flexible Typescript Framework."
+  tagline: The website is under construction.
   actions:
     - theme: brand
       text: Markdown Examples
