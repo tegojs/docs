@@ -31,7 +31,7 @@ export default defineConfig({
       options: {
         appId: '9M8916RCMF',
         apiKey: '88fd926e7381248751b472f24a740004',
-        indexName: '...'
+        indexName: 'tachybase'
       }
     }
   }
