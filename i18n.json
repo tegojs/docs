@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "en": "Home",
+    "zh": "首页"
+  },
+  "Contribution": {
+    "en": "Contribution",
+    "zh": "贡献"
+  },
+  "Config": {
+    "en": "Config",
+    "zh": "配置"
+  },
+  "Guide": {
+    "en": "Guide",
+    "zh": "指南"
+  }
+}

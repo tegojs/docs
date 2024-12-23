@@ -1,0 +1,27 @@
+[
+  {
+    "text": "Home",
+    "link": "/",
+    "activeMatch": "^/$"
+  },
+  {
+    "text": "Guide",
+    "link": "/guides/introduction",
+    "activeMatch": "^/guides/"
+  },
+  {
+    "text": "API",
+    "link": "/api/introduction",
+    "activeMatch": "^/api/"
+  },
+  {
+    "text": "Config",
+    "link": "/config/default",
+    "activeMatch": "^/config/"
+  },
+  {
+    "text": "Contribution",
+    "link": "/contribution/introduction",
+    "activeMatch": "^/contribution/"
+  }
+]
