@@ -12,6 +12,8 @@ hero:
     - theme: alt
       text: Quick Start
       link: /guides/summary
+  image:
+    src: /rspress-icon.png
 
 features:
   - title: Scalable

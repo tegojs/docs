@@ -15,9 +15,9 @@
     "activeMatch": "^/api/"
   },
   {
-    "text": "Config",
-    "link": "/config/default",
-    "activeMatch": "^/config/"
+    "text": "Develop",
+    "link": "/develop/default",
+    "activeMatch": "^/develop/"
   },
   {
     "text": "Contribution",

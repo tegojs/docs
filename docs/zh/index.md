@@ -12,6 +12,8 @@ hero:
     - theme: alt
       text: 快速开始
       link: /guides/summary
+  image:
+    src: /rspress-icon.png
 
 features:
   - title: '可扩展'
