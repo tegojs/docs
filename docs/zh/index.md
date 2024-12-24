@@ -13,7 +13,7 @@ hero:
       text: 快速开始
       link: /guides/summary
   image:
-    src: //tachybase-icon-light.png
+    src: /tachybase-icon-light.png
 
 features:
   - title: '可扩展'
