@@ -6,7 +6,7 @@ export default defineConfig({
   title: 'Tachybase',
   icon: '/tachybase-icon-light.png',
   logo: {
-    light: '/tachybase-light-white.png',
+    light: '/tachybase-light-blue.png',
     dark: '/tachybase-dark-white.png',
   },
   themeConfig: {
