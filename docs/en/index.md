@@ -13,7 +13,7 @@ hero:
       text: Quick Start
       link: /guides/summary
   image:
-    src: /rspress-icon.png
+    src: /tachybase-icon-light.png
 
 features:
   - title: Scalable
