@@ -4,10 +4,10 @@ import { defineConfig } from 'rspress/config';
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Tachybase',
-  icon: '/rspress-icon.png',
+  icon: '/tachybase-icon-light.png',
   logo: {
-    light: '/rspress-light-logo.png',
-    dark: '/rspress-dark-logo.png',
+    light: '/tachybase-light-white.png',
+    dark: '/tachybase-dark-white.png',
   },
   themeConfig: {
     socialLinks: [
