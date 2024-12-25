@@ -1,1 +1,22 @@
-["introduction", "summary"]
+[
+  {
+    "type": "dir",
+    "name": "start",
+    "label": "Getting Started"
+  },
+  {
+    "type": "dir",
+    "name": "basic",
+    "label": "Essentials"
+  },
+  {
+    "type": "dir",
+    "name": "advanced",
+    "label": "Advanced"
+  },
+  {
+    "type": "dir",
+    "name": "practices",
+    "label": "Best Practices"
+  }
+]
