@@ -6,8 +6,8 @@
   },
   {
     "text": "Guide",
-    "link": "/guides/introduction",
-    "activeMatch": "^/guides/"
+    "link": "/guides/start/introduction",
+    "activeMatch": "/guides/"
   },
   {
     "text": "API",

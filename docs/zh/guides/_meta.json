@@ -2,21 +2,21 @@
   {
     "type": "dir",
     "name": "start",
-    "label": "Getting Started"
+    "label": "开始"
   },
   {
     "type": "dir",
     "name": "basic",
-    "label": "Essentials"
+    "label": "基础"
   },
   {
     "type": "dir",
     "name": "advanced",
-    "label": "Advanced"
+    "label": "进阶"
   },
   {
     "type": "dir",
     "name": "practices",
-    "label": "Best Practices"
+    "label": "最佳实践"
   }
 ]
