@@ -1,21 +1,17 @@
 import * as path from "node:path";
 import { defineConfig } from "rspress/config";
 import { pluginPreview } from "@rspress/plugin-preview";
-import { pluginPlayground } from "@rspress/plugin-playground";
 
 export default defineConfig({
   root: path.join(__dirname, "docs"),
   plugins: [
     pluginPreview({
+      iframeOptions: {
+        devPort: 7777,
+        position: 'follow'
+      },
+      previewMode: 'iframe',
       defaultRenderMode: "pure",
-    }),
-    pluginPlayground({
-      defaultRenderMode: "pure",
-      defaultDirection: "vertical",
-      render: '/src/Playground.tsx',
-      monacoOptions: {
-        
-      }
     }),
   ],
   title: "Tachybase",
