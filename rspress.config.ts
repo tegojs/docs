@@ -12,6 +12,10 @@ export default defineConfig({
     pluginPlayground({
       defaultRenderMode: "pure",
       defaultDirection: "vertical",
+      render: '/src/Playground.tsx',
+      monacoOptions: {
+        
+      }
     }),
   ],
   title: "Tachybase",
