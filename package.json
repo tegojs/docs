@@ -10,14 +10,16 @@
     "preview": "rspress preview"
   },
   "dependencies": {
-    "@tachybase/client": "^0.23.17",
-    "@tachybase/schema": "^0.23.17",
+    "@tachybase/client": "^0.23.18",
+    "@tachybase/schema": "^0.23.18",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rspress": "^1.39.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@rspress/plugin-playground": "^1.39.2",
+    "@rspress/plugin-preview": "^1.39.2",
     "@types/node": "^18.19.68",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.1"
