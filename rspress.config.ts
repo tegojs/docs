@@ -43,13 +43,13 @@ export default defineConfig({
   },
   lang: "zh",
   locales: [
-    {
-      lang: "en",
-      // 导航栏切换语言的标签
-      label: "English",
-      title: "Rspress",
-      description: "Static Site Generator",
-    },
+    // {
+    //   lang: "en",
+    //   // 导航栏切换语言的标签
+    //   label: "English",
+    //   title: "Rspress",
+    //   description: "Static Site Generator",
+    // },
     {
       lang: "zh",
       label: "简体中文",

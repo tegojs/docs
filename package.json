@@ -14,6 +14,7 @@
     "@tachybase/schema": "^0.23.18",
     "react": "18.3.1",
     "antd": "5.22.6",
+    "mathjs": "^10.6.4",
     "@formulajs/formulajs": "4.4.9",
     "react-dom": "18.3.1",
     "rspress": "^1.39.2"

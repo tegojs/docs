@@ -41,7 +41,6 @@ const generateFunctionsComponent = (
 
   const CommonFunctions: React.FC = () => {
     const lang = useLang();
-    console.log('🚀 ~ file: generateFunctionsComponent.tsx:44 ~ lang:', lang);
     const zhCN = lang === "zh";
     const jaJP = lang === "ja-JP";
 
@@ -161,75 +160,66 @@ const generateFunctionsComponent = (
 
     return (
       <div>
-        <section
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 999,
-            background: "#fff",
-            padding: "16px 0",
-            borderBottom: "1px solid #f0f0f0",
-          }}
-        >
-          <Card style={{ marginBottom: 0 }}>
-            <Row gutter={[16, 16]} align="middle">
-              <Col xs={24} sm={24} md={16} lg={16} xl={16}>
-                <Row gutter={8} align="middle">
-                  <Col flex="70px">
-                    <Text strong>Formula:</Text>
-                  </Col>
-                  <Col flex="auto">
-                    <Input
-                      placeholder="Enter formula here"
-                      value={formula}
-                      onChange={handleInputChange}
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                <Row gutter={8} align="middle">
-                  <Col flex="60px">
-                    <Text strong>Result:</Text>
-                  </Col>
-                  <Col flex="auto">
-                    <Card
-                      size="small"
-                      style={{
-                        backgroundColor: "#f6ffed",
-                        border: "1px solid #b7eb8f",
-                        borderRadius: 4,
-                      }}
-                    >
-                      <Text style={{ fontWeight: "bold" }}>{result}</Text>
-                    </Card>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-            <div style={{ marginTop: 16 }}>
-              <Text>
-                {zhCN
-                  ? "点击下面表格中某函数的 Example call，可将示例自动填入上方输入框并执行。"
-                  : jaJP
-                  ? "下のテーブルの Example call をクリックすると、上の入力欄に自動的に入力して実行します。"
-                  : "Click an Example call below to populate and execute in the input above."}
-              </Text>
-            </div>
-          </Card>
-        </section>
+        <Card style={{ marginBottom: 0 }}>
+          <Row gutter={[16, 16]} align="middle">
+            <Col xs={24} sm={24} md={16} lg={16} xl={16}>
+              <Row gutter={8} align="middle">
+                <Col flex="70px">
+                  <Text strong>Formula:</Text>
+                </Col>
+                <Col flex="auto">
+                  <Input
+                    placeholder="Enter formula here"
+                    value={formula}
+                    onChange={handleInputChange}
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+              <Row gutter={8} align="middle">
+                <Col flex="60px">
+                  <Text strong>Result:</Text>
+                </Col>
+                <Col flex="auto">
+                  <Card
+                    size="small"
+                    style={{
+                      backgroundColor: "#f6ffed",
+                      border: "1px solid #b7eb8f",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <Text style={{ fontWeight: "bold" }}>{result}</Text>
+                  </Card>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <div style={{ marginTop: 16 }}>
+            <Text>
+              {zhCN
+                ? "点击下面表格中某函数的 Example call，可将示例自动填入上方输入框并执行。"
+                : jaJP
+                ? "下のテーブルの Example call をクリックすると、上の入力欄に自動的に入力して実行します。"
+                : "Click an Example call below to populate and execute in the input above."}
+            </Text>
+          </div>
+        </Card>
 
-        {data.map((category) => (
-          <Card key={category.category} style={{ marginTop: 24 }}>
-            <Title level={3}>{category.category}</Title>
-            <Table
-              dataSource={category.functions}
-              columns={columns}
-              rowKey="title"
-              pagination={false}
-            />
-          </Card>
-        ))}
+        <div style={{ height: '400px', overflow: 'auto', marginTop: 24 }}>
+          {data.map((category) => (
+            <Card key={category.category} style={{ marginTop: 24 }}>
+              <Title level={3}>{category.category}</Title>
+              <Table
+                dataSource={category.functions}
+                columns={columns}
+                rowKey="title"
+                pagination={false}
+              />
+            </Card>
+          ))}
+        </div>
       </div>
     );
   };
