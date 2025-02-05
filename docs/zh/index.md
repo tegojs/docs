@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: 介绍
-      link: /guides/introduction
+      link: /guides/start/introduction
     - theme: alt
       text: 快速开始
-      link: /guides/summary
+      link: /guides/start/quick-started
   image:
     src: /tachybase-icon-light.png
 
