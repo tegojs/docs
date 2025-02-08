@@ -1,0 +1,33 @@
+[
+  "index",
+  "menu",
+  "page",
+  "modal",
+  {
+    "type": "dir",
+    "name": "block",
+    "label": "区块"
+  },
+  {
+    "type": "dir",
+    "name": "field",
+    "label": "字段"
+  },
+  {
+    "type": "dir",
+    "name": "action",
+    "label": "操作"
+  },
+  "variable",
+  {
+    "type": "dir",
+    "name": "template-engine",
+    "label": "模版引擎"
+  },
+  {
+    "type": "dir",
+    "name": "component-engine",
+    "label": "计算引擎"
+  },
+  "mobile"
+]

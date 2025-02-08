@@ -11,6 +11,32 @@
   },
   {
     "type": "dir",
+    "name": "database",
+    "label": "数据建模"
+  },
+  {
+    "type": "dir",
+    "name": "configuration-interface",
+    "label": "配置界面"
+  },
+  {
+    "type": "dir",
+    "name": "core",
+    "label": "核心模块"
+  },
+  {
+    "type": "dir",
+    "name": "workflow",
+    "label": "工作流"
+  },
+  "plug-in",
+  {
+    "type": "dir",
+    "name": "cloudComponent",
+    "label": "云组件"
+  },
+  {
+    "type": "dir",
     "name": "advanced",
     "label": "进阶"
   },
