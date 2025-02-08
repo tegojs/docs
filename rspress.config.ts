@@ -1,10 +1,12 @@
 import * as path from "node:path";
 import { defineConfig } from "rspress/config";
 import { pluginPreview } from "@rspress/plugin-preview";
+import mermaid from 'rspress-plugin-mermaid';
 
 export default defineConfig({
   root: path.join(__dirname, "docs"),
   plugins: [
+    mermaid(),
     pluginPreview({
       iframeOptions: {
         devPort: 7777,
