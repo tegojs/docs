@@ -18,7 +18,7 @@ services:
       - APP_ENV=production
 ```
 
-也可以使用 `env_file`, 即可在 `.env` 文件中设置环境变量。示例：
+也可以使用 `env_file`，即可在 `.env` 文件中设置环境变量。示例：
 
 ```yml
 services:
@@ -56,7 +56,7 @@ https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 APP_ENV=production
 ```
 
-APP_ENV=production 时，如果没有设置LOGGER_FORMAT，默认json格式。如果没有设置LOGGER_LEVEL, 默认info级别。
+APP_ENV=production 时，如果没有设置LOGGER_FORMAT，默认json格式。如果没有设置LOGGER_LEVEL，默认info级别。
 
 
 ### APP_KEY
@@ -87,13 +87,13 @@ tachybase API 地址前缀，默认值 `/api/`
 API_BASE_PATH=/api/
 ```
 
-### API_BASE_URL
+### LOCAL_STORAGE_DEST
 
-<!-- 前端开发代理和打包时的 API 地址前缀，默认值 `/api/`
+本地存储路径，默认值 `storage/uploads`
 
 ```bash
-API_BASE_URL=/api/
-``` -->
+LOCAL_STORAGE_DEST=storage/uploads
+```
 
 ### PLUGIN_PACKAGE_PREFIX
 
@@ -213,7 +213,7 @@ DB_LOGGING=on
 
 ### LOGGER_TRANSPORT
 
-日志输出方式，多个用 `,` 分隔。开发环境默认值 `console`, 生产环境默认值 `console,dailyRotateFile`.
+日志输出方式，多个用 `,` 分隔。开发环境默认值 `console`，生产环境默认值 `console,dailyRotateFile`.
 可选项：
 
 - `console` - `console.log`
@@ -234,7 +234,7 @@ LOGGER_BASE_PATH=storage/logs
 
 ### LOGGER_LEVEL
 
-输出日志级别，开发环境默认值 `debug`, 生产环境默认值 `info`. 可选项：
+输出日志级别，开发环境默认值 `debug`，生产环境默认值 `info`. 可选项：
 
 - `error`
 - `warn`
@@ -246,14 +246,14 @@ LOGGER_BASE_PATH=storage/logs
 LOGGER_LEVEL=info
 ```
 
-数据库日志输出级别为 `debug`, 由 `DB_LOGGING` 控制是否输出，不受 `LOGGER_LEVEL` 影响。
+数据库日志输出级别为 `debug`，由 `DB_LOGGING` 控制是否输出，不受 `LOGGER_LEVEL` 影响。
 
 ### LOGGER_MAX_FILES
 
 最大保留日志文件数。
 
 - `LOGGER_TRANSPORT` 为 `file` 时，默认值为 `10`.
-- `LOGGER_TRANSPORT` 为 `dailyRotateFile`, 使用 `[n]d` 代表天数。默认值为 `14d`.
+- `LOGGER_TRANSPORT` 为 `dailyRotateFile`，使用 `[n]d` 代表天数。默认值为 `14d`.
 
 ```bash
 LOGGER_MAX_FILES=14d
@@ -263,8 +263,8 @@ LOGGER_MAX_FILES=14d
 
 按大小滚动日志。
 
-- `LOGGER_TRANSPORT` 为 `file` 时，单位为 `byte`, 默认值为 `20971520 (20 * 1024 * 1024)`.
-- `LOGGER_TRANSPORT` 为 `dailyRotateFile`, 可以使用 `[n]k`, `[n]m`, `[n]g`. 默认不配置。
+- `LOGGER_TRANSPORT` 为 `file` 时，单位为 `byte`，默认值为 `20971520 (20 * 1024 * 1024)`.
+- `LOGGER_TRANSPORT` 为 `dailyRotateFile`，可以使用 `[n]k`，`[n]m`，`[n]g`. 默认不配置。
 
 ```bash
 LOGGER_MAX_SIZE=20971520
@@ -272,7 +272,7 @@ LOGGER_MAX_SIZE=20971520
 
 ### LOGGER_FORMAT
 
-日志打印格式，开发环境默认 `console`, 生产环境默认 `json`. 可选项:
+日志打印格式，开发环境默认 `console`，生产环境默认 `json`. 可选项:
 
 - `console`
 - `json`
@@ -285,7 +285,7 @@ LOGGER_FORMAT=json
 
 ### CACHE_DEFAULT_STORE
 
-使用缓存方式的唯一标识，指定服务端默认缓存方式，默认值 `memory`, 内置可选项：
+使用缓存方式的唯一标识，指定服务端默认缓存方式，默认值 `memory`，内置可选项：
 
 - `memory`
 - `redis`
@@ -361,7 +361,7 @@ WORKER_COUNT_SUB=0
 
 ### EXPORT_LENGTH_MAX
 
-导出表格最大长度, 默认值 `2000`。
+导出表格最大长度，默认值 `2000`。
 
 ```bash
 EXPORT_LENGTH_MAX=2000
@@ -369,45 +369,49 @@ EXPORT_LENGTH_MAX=2000
 
 ### EXPORT_WORKER_PAGESIZE
 
-使用工作线程导出表格的每页大小, 默认值 `1000`。
+使用工作线程导出表格的每页大小，默认值 `1000`。
 
 ```bash
 EXPORT_WORKER_PAGESIZE=1000
 ```
 
-## 实验性环境变量
+### PRESETS_CORE_PLUGINS
 
-### APPEND_PRESET_LOCAL_PLUGINS
+内置插件的启用关闭，默认值为空。
 
-用于附加预置的未激活插件，值为插件包名（package.json 的 name 参数），多个插件英文逗号分隔。
+名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
 
-:::info
-
-1. 需要确保插件已经下载到本地，并且在 `node_modules` 目录里可以找到，更多内容查看 [插件的组织方式](/development/plugin)。
-2. 添加了环境变量后，需要在初始化安装 `tachybase install` 或升级 `tachybase upgrade` 后才会在插件管理器页面里显示。
-   :::
+推荐通过界面配置，会保存到数据库中,不建议通过环境变量配置。
 
 ```bash
-APPEND_PRESET_LOCAL_PLUGINS=@my-project/plugin-foo,@my-project/plugin-bar
+PRESETS_CORE_PLUGINS=api-doc,api-keys,!messages
 ```
 
-### APPEND_PRESET_BUILT_IN_PLUGINS
+### PRESETS_LOCAL_PLUGINS
 
-用于附加内置并默认安装的插件，值为插件包名（package.json 的 name 参数），多个插件英文逗号分隔。
+本地插件的启用关闭，默认值为空。
 
-:::info
+名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
 
-1. 需要确保插件已经下载到本地，并且在 `node_modules` 目录里可以找到，更多内容查看 [插件的组织方式](/development/plugin)。
-2. 添加了环境变量后，需要在初始化安装 `tachybase install` 或升级 `tachybase upgrade` 时会自动安装或升级插件。
-   :::
+推荐通过界面配置，会保存到数据库中,不建议通过环境变量配置。
 
 ```bash
-APPEND_PRESET_BUILT_IN_PLUGINS=@my-project/plugin-foo,@my-project/plugin-bar
+PRESETS_CORE_PLUGINS=gantt,!iframe-block,|audit-logs
 ```
+
+### FORCE_LOCALE_CACHE
+
+强制使用缓存的语言包，开启后在本地开发环境可以针对getLang接口缓存请求,返回302状态码, 不推荐开启. 默认值 `0`。
+
+```bash
+FORCE_LOCALE_CACHE=1
+```
+
+<!-- TODO: TELEMETRY 遥测有关 -->
 
 ## 临时环境变量
 
-临时环境变量只在特定场合(安装)中生效, 安装后不影响运行
+临时环境变量只在特定场合(安装)中生效，安装后不影响运行
 
 安装 tachybase 时，可以通过设置临时的环境变量来辅助安装，如：
 
