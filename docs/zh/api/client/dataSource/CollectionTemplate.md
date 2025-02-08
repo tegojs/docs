@@ -2,7 +2,6 @@
 
 用于创建数据表的模板。
 
-<!-- ![](./images/collection-template.png) -->
 
 ```ts
 interface AvailableFieldInterfacesInclude {
@@ -70,7 +69,7 @@ class CollectionTemplate {
 }
 ```
 
-其需要结合 [CollectionManager](./collection-template-manager.md) 使用。
+其需要结合 [CollectionTemplateManager](./CollectionTemplateManager) 使用。
 
 ```ts
 import { Plugin, Collection, CollectionTemplate } from '@tachybase/client';
@@ -105,7 +104,7 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 实例属性
+## 1. 实例属性
 
 ### name
 
@@ -116,7 +115,7 @@ class MyPlugin extends Plugin {
 
 模板对应的数据表类。
 
-在创建数据表后，Collection 会有 [template 字段](/core/data-source/collection#collectionoptions)，用于标识该数据表是由哪个模板创建的。
+在创建数据表后，Collection 会有 [template 字段](./Collection)，用于标识该数据表是由哪个模板创建的。
 
 当通过 `collectionManager.addCollections()` 添加数据表对象时，会先读取 `collection.template` 字段，然后通过 `collectionManager.getCollectionTemplate(collection.template)` 获取到 `collectionTemplate`。
 
@@ -203,13 +202,9 @@ class SqlCollectionTemplate extends CollectionTemplate {
 
 
 
-## 实例方法
+## 2. 实例方法
 
-### collectionTemplate.transform(collection)
-
-collection 创建后，会调用该方法，用于对 collection 进行转换。
-
-## Utils
+## 3. Utils
 
 ### getConfigurableProperties()
 

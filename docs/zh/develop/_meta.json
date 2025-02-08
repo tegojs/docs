@@ -1,10 +1,4 @@
 [
-  "overview",
-  {
-    "type": "dir",
-    "name": "dataSource",
-    "label": "数据源"
-  },
   "lifecycle",
   "card",
   "default",

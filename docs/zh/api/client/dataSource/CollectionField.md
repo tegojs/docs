@@ -1,6 +1,6 @@
 # CollectionField
 
-TachyBase 将字段的 schema 分为 2 部分，一部分在 schema 中，一部分在 collection 中。例如：
+字段的 schema 分为 2 部分，一部分在 schema 中，一部分在 collection 中。例如：
 
 ```tsx | pure
 const schema = {
@@ -23,8 +23,8 @@ const collection = {
         type: 'string',
         'x-component': 'Input',
         required: true,
-        description: 'description1',
-      } as ISchema,
+        description: 'description',
+      },
     }
   ],
 }
@@ -36,7 +36,7 @@ const collection = {
 
 <code src="./demos/collection-field/demo1.tsx"></code>
 
-## CollectionFieldOptions
+## 1. CollectionFieldOptions
 
 字段的配置项。
 
@@ -54,7 +54,7 @@ interface CollectionFieldOptions {
 
 ### 普通字段和关系字段
 
-字段有 2 种情况，一种是普通字段，一种是 [关系字段](https://docs-cn.tachybase.com/development/server/collections/association-fields)。
+字段有 2 种情况，一种是普通字段，一种是关系字段。
 
 关系字段是指，字段的值是另一个 collection 的数据，例如 `users` 和 `roles` 两个 collection，`users` 中有一个字段 `roles`，其值是 `roles` collection 的数据，那么 `roles` 就是一个关系字段。
 
@@ -62,7 +62,7 @@ interface CollectionFieldOptions {
 
 ```json
 {
-  "key": "ootprgkoawo",
+  "key": "t09bauwm0wb",
   "name": "email",
   "type": "string",
   "interface": "email",
@@ -73,7 +73,7 @@ interface CollectionFieldOptions {
   "unique": true,
   "uiSchema": {
     "type": "string",
-    "title": "{{t(\"Email\")}}",
+    "title": "{{t('Email')}}",
     "x-component": "Input",
     "x-validator": "email",
     "required": true
@@ -85,7 +85,7 @@ interface CollectionFieldOptions {
 
 ```json
 {
-  "key": "t09bauwm0wb",
+  "key": "fds09bauwm",
   "name": "roles",
   "type": "belongsToMany",
   "interface": "m2m",
@@ -102,7 +102,7 @@ interface CollectionFieldOptions {
   "through": "rolesUsers",
   "uiSchema": {
     "type": "array",
-    "title": "{{t(\"Roles\")}}",
+    "title": "{{t('Roles')}}",
     "x-component": "AssociationField",
     "x-component-props": {
       "multiple": true,
@@ -115,10 +115,6 @@ interface CollectionFieldOptions {
 }
 ```
 
-相对于普通字段，关系字段多了以下属性：
-
-- xx
-- xx
 
 ### 全部字段说明
 
@@ -126,9 +122,7 @@ interface CollectionFieldOptions {
 - `collectionName`：数据表名称
 - `sourceKey`：当字段为关系字段时，对应的关系字段名称。
 
-TODO：补全
-
-## Hooks
+## 2. Hooks
 
 ### useCollectionField()
 
@@ -156,7 +150,7 @@ const { uiSchema } = useCollectionField()
 const required = uiSchema?.required
 ```
 
-其通常在 [SchemaSettings](/core/ui-schema/schema-settings) 中使用，用来获取和修改字段的属性。
+其通常在 SchemaSettings 中使用，用来获取和修改字段的属性。
 
 <code src="./demos/collection-field/demo2.tsx"></code>
 

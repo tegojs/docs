@@ -1,11 +1,13 @@
 [
-  "introduction",
-  "data_proxy",
-  "editor",
-  "element",
-  "row",
-  "sheet",
-  "spreadsheet",
-  "style",
-  "table"
+  "overview",
+  {
+    "type": "dir",
+    "name": "client",
+    "label": "@tachybase/client"
+  },
+  {
+    "type": "dir",
+    "name": "others",
+    "label": "其他"
+  }
 ]

@@ -1,6 +1,6 @@
 # ExtendCollectionsProvider
 
-用于扩展 [Collection](./collection.md) 。
+用于扩展 [Collection](./Collection.md) 。
 
 ## 组件
 

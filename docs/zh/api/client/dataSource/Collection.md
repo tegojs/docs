@@ -1,8 +1,8 @@
 # Collection
 
-Collection 数据表类，其被 [CollectionManager](/core/data-source/collection-manager) 管理。
+Collection 数据表类，其被 [CollectionManager](./CollectionManager) 管理。
 
-## 类型
+## 1. 类型
 
 ```tsx | pure
 interface CollectionOptions {
@@ -49,21 +49,13 @@ const usersCollection = new Collection({
 });
 ```
 
-## CollectionOptions
+## 2. CollectionOptions
 
 ```tsx | pure
 export interface CollectionOptions {
   name: string;
   title?: string;
   dataSource?: string;
-  /**
-   * Used for @tachybase/plugin-duplicator
-   * @see packages/core/database/src/collection-group-manager.tss
-   *
-   * @prop {'required' | 'optional' | 'skip'} dumpable - Determine whether the collection is dumped
-   * @prop {string[] | string} [with] - Collections dumped with this collection
-   * @prop {any} [delayRestore] - A function to execute after all collections are restored
-   */
   duplicator?:
     | dumpable
     | {
@@ -111,11 +103,11 @@ export interface CollectionOptions {
 
 - title: Collection 的标题，用于显示。
 
-- fields: 字段列表，详细说明请查看 [CollectionField](/core/data-source/collection-field)
+- fields: 字段列表，详细说明请查看 [CollectionField](./CollectionField)
 
-- template: 模板标识，用于标识该 Collection 是由哪个模板创建的，详细说明请查看 [CollectionTemplate](/core/data-source/collection-template)
+- template: 模板标识，用于标识该 Collection 是由哪个模板创建的，详细说明请查看 [CollectionTemplate](./CollectionTemplate)
 
-- dataSource: 数据源标识，用于标识该 Collection 是由哪个数据源创建的，详细说明请查看 [CollectionDataSource](/core/data-source/collection-manager#datasource)
+- dataSource: 数据源标识，用于标识该 Collection 是由哪个数据源创建的，详细说明请查看 [DataSource](./DataSource)
 
 - duplicator
 
@@ -134,11 +126,11 @@ export interface CollectionOptions {
 - repository
 
 
-## 实例属性
+## 3. 实例属性
 
 ### collection.collectionManager
 
-[CollectionManager](/core/data-source/collection-manager) 的实例。
+[CollectionManager](./CollectionManager) 的实例。
 
 ### collection.titleFieldName
 
@@ -146,9 +138,9 @@ export interface CollectionOptions {
 
 ### 其他属性
 
-其他属性同 [CollectionOptions](/core/data-source/collection#collectionoptions)。
+其他属性同 [CollectionOptions](#CollectionOptions)。
 
-## 实例方法
+## 4. 实例方法
 
 ### collection.getOptions()
 

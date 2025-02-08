@@ -1,15 +1,15 @@
 # CollectionFieldInterfaceManager
 
-主要是用来管理 [CollectionFieldInterface](./collection-field-interface.md) 和 [CollectionFieldInterfaceGroups](#collectionfieldinterfacegroups)，其被 [DataSourceManager](./data-source-manager) 管理。
+主要是用来管理 [CollectionFieldInterface](./CollectionFieldInterface) 和 [CollectionFieldInterfaceGroups](#CollectionFieldInterfaceGroups)，其被 [DataSourceManager](./DataSourceManager) 管理。
 
 
-## CollectionFieldInterfaceGroups
+## 1. CollectionFieldInterfaceGroups
 
 CollectionFieldInterfaceGroups 是用来对数据表字段进行分组的。
 
 <!-- ![Field Groups](./images/field-groups.png) -->
 
-## 实例方法
+## 2. 实例方法
 
 ### field interface
 
@@ -45,7 +45,7 @@ class MyPlugin extends Plugin {
 }
 ```
 
-#### getFieldInterface()
+#### getFieldInterface(name)
 
 获取 field interface。
 
@@ -89,11 +89,7 @@ class MyPlugin extends Plugin {
 }
 ```
 
-#### addFieldInterfaceComponentOption()
-
 添加 Field interface 组件选项。
-
-![20240725113756](https://static-docs.tachybase.com/20240725113756.png)
 
 - 类型
 
@@ -125,7 +121,7 @@ class MyPlugin extends Plugin {
 
 ### field interface group
 
-#### addFieldInterfaceGroups()
+#### addFieldInterfaceGroups(fieldGroups)
 
 添加 field interface group。
 
@@ -182,7 +178,7 @@ class MyPlugin extends Plugin {
 }
 ```
 
-#### getFieldInterfaceGroup()
+#### getFieldInterfaceGroup(name)
 
 获取 field interface group。
 

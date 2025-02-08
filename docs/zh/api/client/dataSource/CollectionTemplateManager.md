@@ -1,10 +1,10 @@
 # CollectionTemplateManager
 
-用于管理 [CollectionTemplate](./collection-template)，其被 [DataSourceManager](./data-source-manager) 管理。
+用于管理 [CollectionTemplate](./CollectionTemplate)，其被 [DataSourceManager](./DataSourceManager) 管理。
 
 ## 实例方法
 
-### addCollectionTemplates()
+### addCollectionTemplates(templates)
 
 用于添加 collection template。
 
@@ -47,7 +47,7 @@ class MyPlugin extends Plugin {
 }
 ```
 
-### getCollectionTemplate()
+### getCollectionTemplate(name)
 
 用于获取 collection template。
 

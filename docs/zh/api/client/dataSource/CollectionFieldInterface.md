@@ -2,8 +2,6 @@
 
 用于创建数据字段。
 
-<!-- ![](./images/collection-field-interface.png) -->
-
 ```ts
 class CollectionFieldInterface {
   app: Application;
@@ -37,7 +35,7 @@ class CollectionFieldInterface {
 }
 ```
 
-其需要结合 [CollectionManager](./CollectionFieldInterfaceManager.md) 使用。
+其需要结合 [CollectionFieldInterfaceManager](./CollectionFieldInterfaceManager) 使用。
 
 ```ts
 class EmailFieldInterface extends CollectionFieldInterface {
@@ -75,16 +73,5 @@ class MyPlugin extends Plugin {
 
 配置表单默认值字段 schema。
 
-<!-- ![](./images/collection-field-interface-form.png) -->
 
-
-## 实例方法
-
-### collectionFieldInterface.validateSchema(fieldSchema)
-
-
-### collectionFieldInterface.usePathOptions(field: CollectionFieldOptions)
-
-
-### collectionFieldInterface.schemaInitialize(schema: ISchema, data: any)
 
