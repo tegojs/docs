@@ -8,21 +8,18 @@
 
   "CollectionManager",
   "CollectionManagerProvider",
-  
-  "Collection",
-  "CollectionProvider",
-
-  "CollectionField",
 
   "CollectionTemplateManager",
   "CollectionTemplate",
+  
+  "Collection",
+  "CollectionProvider",
+  "CollectionMixins",
+  "CollectionField",
 
   "CollectionFieldInterfaceManager",
   "CollectionFieldInterface",
 
-  "CollectionMixins",
-
   "AssociationProvider",
-
   "ExtendCollectionsProvider"
 ]
