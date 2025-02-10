@@ -93,7 +93,7 @@ class Application {
 }
 ```
 
-详细介绍，请参考：[APIClient](https://docs.tachybase.com/api/sdk)
+详细介绍，请参考：[Request](./Request)
 
 ### app.router
 
@@ -113,7 +113,7 @@ class Application {
 
 ### app.dataSourceManager
 
-详细介绍，请参考：[dataSourceManager](../data-source/DataSourceManager)
+详细介绍，请参考：[DataSourceManager](../data-source/DataSourceManager)
 
 ## 实例方法
 
@@ -307,7 +307,7 @@ app.addComponents({ Demo, Foo, Bar })
 
 添加全局的 scope。
 
-全局组 scope 可以 [UI Schema](../ui-schema/SchemaComponent) 上。
+全局组 scope 可以在[UI Schema](../ui-schema/SchemaComponent) 上使用。
 
 - 类型
 
@@ -343,24 +343,6 @@ class Application {
 ```tsx | pure
 app.getCollectionManager() // 获取默认数据源的 collection manager
 app.getCollectionManager('test') // 获取指定数据源的 collection manager
-```
-
-### app.addFieldInterfaceComponentOption()
-
-Add field interface component option.
-
-添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](../data-source/CollectionFieldInterfaceManager)
-
-
-```tsx | pure
-class MyPlugin extends Plugin {
-  async load() {
-    this.app.addFieldInterfaceComponentOption('url', {
-      label: 'Preview',
-      value: 'Input.Preview',
-    });
-  }
-}
 ```
 
 ## Hooks
