@@ -25,18 +25,18 @@ export interface ApplicationOptions {
 ```
 
 - 详细信息
-  - `apiClient`：API 请求实例，具体说明请参见：[https://docs.tachybase.com/api/sdk](https://docs.tachybase.com/api/sdk)
+  - `apiClient`：API 请求实例
   - `i18n`：国际化，具体请参考：[https://www.i18next.com/overview/api#createinstance](https://www.i18next.com/overview/api#createinstance)
   - `providers`：上下文
   - `components`：全局组件
   - `scopes`：全局 scopes
-  - `router`：配置路由，具体请参考：[RouterManager](/core/application/router-manager)
-  - `pluginSettings`: [PluginSettingsManager](/core/application/plugin-settings-manager)
-  - `schemaSettings`：Schema 设置工具，具体参考：[SchemaSettingsManager](/core/ui-schema/schema-initializer-manager)
-  - `schemaInitializers`：Schema 添加工具，具体参考：[SchemaInitializerManager](/core/ui-schema/schema-initializer-manager)
+  - `router`：配置路由，具体请参考：[RouterManager](./RouterManager)
+  - `pluginSettings`: [PluginSettingsManager](./PluginSettingsManager)
+  - `schemaSettings`：Schema 设置工具，具体参考：[SchemaSettingsManager](./SchemaInitializerManager)
+  - `schemaInitializers`：Schema 添加工具，具体参考：[SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
   - `loadRemotePlugins`：用于控制是否加载远程插件，默认为 `false`，即不加载远程插件（方便单测和 DEMO 环境）。
-  - `dataSourceManager`：数据源管理器，具体参考：[DataSourceManager](/core/data-source/data-source-manager)
-  - `addFieldInterfaceComponentOption`: 添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](/core/data-source/collection-field-interface-manager#addfieldinterfacecomponentoption)
+  - `dataSourceManager`：数据源管理器，具体参考：[DataSourceManager](../data-source/DataSourceManager)
+  - `addFieldInterfaceComponentOption`: 添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](../data-source/CollectionFieldInterfaceManager)
 - 示例
 
 ```tsx
@@ -97,23 +97,23 @@ class Application {
 
 ### app.router
 
-详细介绍，请参考：[RouterManager](/core/application/router-manager)
+详细介绍，请参考：[RouterManager](./RouterManager)
 
 ### app.pluginSettingsManager
 
-详细介绍，请参考：[PluginSettingsManager](/core/application/plugin-settings-manager)
+详细介绍，请参考：[PluginSettingsManager](./PluginSettingsManager)
 
 ### app.schemaSettingsManager
 
-详细介绍，请参考：[SchemaSettingsManager](/core/ui-schema/schema-initializer-manager)
+详细介绍，请参考：[SchemaSettingsManager](../ui-schema/SchemaInitializerManager)
 
 ### app.schemaInitializerManager
 
-详细介绍，请参考：[SchemaInitializerManager](/core/ui-schema/schema-initializer-manager)
+详细介绍，请参考：[SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
 
 ### app.dataSourceManager
 
-详细介绍，请参考：[dataSourceManager](/core/data-source/data-source-manager)
+详细介绍，请参考：[dataSourceManager](../data-source/DataSourceManager)
 
 ## 实例方法
 
@@ -287,7 +287,7 @@ app.addProviders([[MyContext.provider, { value: { color: 'red' } }], [GlobalDemo
 
 添加全局组件。
 
-全局组件可以使用在 [RouterManager](/core/application/router-manager) 和 [UI Schema](/core/ui-schema/schema-component)上。
+全局组件可以使用在 [RouterManager](./RouterManager) 和 [UI Schema](../ui-schema/SchemaComponent)上。
 
 - 类型
 
@@ -307,7 +307,7 @@ app.addComponents({ Demo, Foo, Bar })
 
 添加全局的 scope。
 
-全局组 scope 可以 [UI Schema](/core/ui-schema/schema-component) 上。
+全局组 scope 可以 [UI Schema](../ui-schema/SchemaComponent) 上。
 
 - 类型
 
@@ -328,7 +328,7 @@ app.addScopes({ useSomeThing, anyVar })
 
 ### app.getCollectionManager()
 
-获取指定数据源的 [collection manager](/core/data-source/collection-manager) 实例。
+获取指定数据源的 [collection manager](../data-source/CollectionManager) 实例。
 
 - 类型
 
@@ -349,7 +349,7 @@ app.getCollectionManager('test') // 获取指定数据源的 collection manager
 
 Add field interface component option.
 
-添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](/core/data-source/collection-field-interface-manager#addfieldinterfacecomponentoption)
+添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](../data-source/CollectionFieldInterfaceManager)
 
 
 ```tsx | pure

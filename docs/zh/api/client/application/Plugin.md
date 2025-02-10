@@ -49,7 +49,7 @@ class Plugin<T = any> {
 - 详细信息
 
   - 构造函数
-    - `options`： 插件的添加有两种方式，一种方式从插件列表中远程加载出来，另一种方式是通过 [PluginManager](/core/application/plugin-manager) 添加
+    - `options`： 插件的添加有两种方式，一种方式从插件列表中远程加载出来，另一种方式是通过 [PluginManager](./PluginManager) 添加
       - 远程加载：`options` 会被自动注入 `{ name: 'npm package.name' }`
       - PluginManager `options` 由用户自己传递
     - `app`：此参数是自动注入的，是应用实例
