@@ -1,7 +1,7 @@
 [
     {
     "type": "dir",
-    "name": "user-permission",
+    "name": "user",
     "label": "用户和权限"
     }
 ]

@@ -1,0 +1,25 @@
+[
+  "introduction",
+  "DataSourceManager",
+  "DataSourceManagerProvider",
+
+  "DataSource",
+  "DataSourceProvider",
+
+  "CollectionManager",
+  "CollectionManagerProvider",
+
+  "CollectionTemplateManager",
+  "CollectionTemplate",
+  
+  "Collection",
+  "CollectionProvider",
+  "CollectionMixins",
+  "CollectionField",
+
+  "CollectionFieldInterfaceManager",
+  "CollectionFieldInterface",
+
+  "AssociationProvider",
+  "ExtendCollectionsProvider"
+]

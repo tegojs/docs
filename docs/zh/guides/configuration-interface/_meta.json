@@ -15,18 +15,18 @@
   },
   {
     "type": "dir",
-    "name": "action",
+    "name": "actions",
     "label": "操作"
   },
   "variable",
   {
     "type": "dir",
-    "name": "template-engine",
+    "name": "template-json",
     "label": "模版引擎"
   },
   {
     "type": "dir",
-    "name": "component-engine",
+    "name": "calculation-engines",
     "label": "计算引擎"
   },
   "mobile"

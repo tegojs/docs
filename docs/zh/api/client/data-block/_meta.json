@@ -1,0 +1,7 @@
+[
+  "CollectionRecord",
+  "CollectionRecordProvider",
+  "DataBlockProvider",
+  "DataBlockResourceProvider",
+  "DataBlockRequestProvider"
+]

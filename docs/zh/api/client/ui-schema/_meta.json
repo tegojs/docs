@@ -1,0 +1,9 @@
+[
+  "SchemaComponent",
+  "Designable",
+  "SchemaInitializer",
+  "SchemaInitializerManager",
+  "SchemaSettings",
+  "SchemaSettingsManager",
+  "SchemaToolbar"
+]
