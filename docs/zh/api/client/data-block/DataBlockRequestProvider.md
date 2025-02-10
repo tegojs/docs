@@ -1,6 +1,6 @@
 # DataBlockRequestProvider
 
-其内部获取到 [BlockResourceProvider](/core/data-block/data-block-resource-provider) 提供的 `resource`，根据 [BlockProvider](/core/data-block/data-block-provider) 提供的参数，自动调用 `resource.get()` 或者 `resource.list()` 获取的区块的数据，并通过 context 传递下去。
+其内部获取到 [BlockResourceProvider](./DataBlockResourceProvider) 提供的 `resource`，根据 [BlockProvider](./DataBlockProvider) 提供的参数，自动调用 `resource.get()` 或者 `resource.list()` 获取的区块的数据，并通过 context 传递下去。
 
 ## 请求参数
 

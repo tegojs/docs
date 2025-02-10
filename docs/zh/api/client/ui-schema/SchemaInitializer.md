@@ -56,11 +56,11 @@ class SchemaInitializer<P1 = ButtonProps, P2 = {}> {
   - popoverProps：popover 的属性
 - Schema 操作相关
 
-  - insertPosition：插入位置，参考：[useDesignable()](/core/ui-schema/designable#usedesignable)
-  - designable：是否显示设计模式，参考：[useDesignable()](/core/ui-schema/designable#usedesignable)
-  - wrap：对 Schema 的二次处理，参考：[useDesignable()](/core/ui-schema/designable#usedesignable)
-  - onSuccess：Schema 更新到服务端后的回调，参考：[useDesignable()](/core/ui-schema/designable#usedesignable)
-  - insert：自定义 Schema 插入逻辑，默认为 [useDesignable()](/core/ui-schema/designable#usedesignable) 的 `insertAdjacent`
+  - insertPosition：插入位置，参考：[useDesignable()](./Designable)
+  - designable：是否显示设计模式，参考：[useDesignable()](./Designable)
+  - wrap：对 Schema 的二次处理，参考：[useDesignable()](./Designable)
+  - onSuccess：Schema 更新到服务端后的回调，参考：[useDesignable()](./Designable)
+  - insert：自定义 Schema 插入逻辑，默认为 [useDesignable()](./Designable) 的 `insertAdjacent`
   - useInsert：当自定义插入 Schema 的逻辑需要用到 Hooks 时，可以使用此参数
 
 ### 示例
@@ -112,7 +112,7 @@ const myInitializer = new SchemaInitializer({
 
 #### 不使用 Popover
 
-关于 `useDesignable()` 的说明请参考 [useDesignable](/core/ui-schema/designable#usedesignable)。
+关于 `useDesignable()` 的说明请参考 [useDesignable](./Designable)。
 
 ```tsx | pure
 const schema = {
@@ -225,7 +225,7 @@ const myInitializer = new SchemaInitializer({
 
 Tachybase 内置了一些常用的 `type`，例如 `type: 'item'`，相当于 `Component: SchemaInitializerItem`。
 
-更多内置类型，请参考：[内置组件和类型](/core/ui-schema/schema-initializer#%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6%E5%92%8C%E7%B1%BB%E5%9E%8B)
+更多内置类型，请参考：[内置组件和类型](./SchemaInitializer)
 
 ```tsx | pure
 const myInitializer = new SchemaInitializer({
@@ -282,7 +282,7 @@ const myInitializer = new SchemaInitializer({
 在获取上
 
 - `componentProps` 定义的数据会被传递给组件的 `props`
-- 直接定义在配置项上的数据会则需要通过 [useSchemaInitializerItem()](/core/ui-schema/schema-initializer#useschemainitializeritem) 获取
+- 直接定义在配置项上的数据会则需要通过 [useSchemaInitializerItem()](./SchemaInitializer) 获取
 
 ```tsx | pure
 const Demo = (props) => {
@@ -349,7 +349,7 @@ export default app.getRootComponent();
 
 ### schemaInitializer.add()
 
-用于新增 Item，另一种添加方式参考 [schemaInitializerManager.addItem()](/core/ui-schema/schema-initializer-manager#schemainitializermanageradditem);
+用于新增 Item，另一种添加方式参考 [schemaInitializerManager.addItem()](./SchemaInitializerManager);
 
 - 类型
 
@@ -443,7 +443,7 @@ const itemA1 = myInitializer.add('a.a1')
 
 ### schemaInitializer.remove()
 
-另一种移除方式参考 [schemaInitializerManager.addItem()](/core/ui-schema/schema-initializer-manager#schemainitializermanagerremoveitem);
+另一种移除方式参考 [schemaInitializerManager.addItem()](./SchemaInitializerManager);
 
 - 类型
 
@@ -532,8 +532,6 @@ const Demo = () => {
 }
 ```
 
-<code src="./demos/schema-initializer-render.tsx"></code>
-
 ### useSchemaInitializerItem()
 
 用于获取配置项内容的，配置项是指的 `SchemaInitializer` 中的 `items` 中的一项。
@@ -574,9 +572,6 @@ const Demo = () => {
   return <div>{ title } - { foo }</div>
 }
 ```
-
-<code src="./demos/schema-initializer-hooks-item.tsx"></code>
-
 ## 内置组件和类型
 
 | type        | Component                      | 效果                                      |
@@ -588,7 +583,7 @@ const Demo = () => {
 | switch      | SchemaInitializerSwitch      | 开关                                      |
 | actionModal      | SchemaInitializerActionModal      | 弹窗|
 
-以下每个示例都提供了 2 种[定义方式](/core/ui-schema/schema-initializer#两种定义方式component-和-type)，一种是通过 `Component` 定义，另一种是通过 `type` 定义。
+以下每个示例都提供了 2 种[定义方式](./SchemaInitializer)，一种是通过 `Component` 定义，另一种是通过 `type` 定义。
 
 ### `type: 'item'` & `SchemaInitializerItem`
 
@@ -608,8 +603,6 @@ interface SchemaInitializerItemProps {
 
 核心参数是 `title`、`icon`、`onClick`、`items`，其中 `onClick` 用于插入 Schema，`items` 用于渲染子列表项。
 
-<code src="./demos/schema-initializer-components-item.tsx"></code>
-
 ### `type: 'itemGroup'` & SchemaInitializerItemGroup
 
 分组。
@@ -624,8 +617,6 @@ interface SchemaInitializerItemGroupProps {
 ```
 
 核心参数是 `title`、`children`，其中 `children` 用于渲染子列表项，`divider` 用于渲染分割线。
-
-<code src="./demos/schema-initializer-components-group.tsx"></code>
 
 ### `type: 'switch'` & SchemaInitializerSwitch
 

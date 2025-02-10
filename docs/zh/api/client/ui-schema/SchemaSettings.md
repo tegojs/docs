@@ -125,7 +125,7 @@ const mySettings = new SchemaSettings({
 
 Tachybase 内置了一些常用的 `type`，例如 `type: 'item'`，相当于 `Component: SchemaSettingsItem`。
 
-更多内置类型，请参考：[内置组件和类型](/core/ui-schema/schema-settings#%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6%E5%92%8C%E7%B1%BB%E5%9E%8B)
+更多内置类型，请参考：[内置组件和类型](./SchemaSettings)
 
 ```tsx | pure
 const mySettings = new SchemaSettings({

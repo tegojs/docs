@@ -33,9 +33,9 @@ Table 中的字段信息及列表数据，都是存储在数据库中的。
 
 - `DataBlockProvider`：封装了下面的所有组件，并提供了区块属性
   - [CollectionProvider](../data-source/CollectionProvider) / [AssociationProvider](../data-source/AssociationProvider): 根据 `DataBlockProvider` 提供的上下文信息，查询对应数据表数据及关系字段信息并传递
-  - [BlockResourceProvider](/core/data-block/data-block-resource-provider): 根据 `DataBlockProvider` 提供的上下文信息，构建区块 [Resource](/core/request) API，用于区块数据的增删改查
-  - [BlockRequestProvider](/core/data-block/data-block-request-provider): 根据 `DataBlockProvider` 提供的上下文信息，自动调用 `BlockResourceProvider` 提供的 `resource.get()` 或 `resource.list()` 发起请求，得到区块数据，并传递
-    - [CollectionRecordProvider](/core/data-source/record-provider): 对于 `resource.get()` 场景，会自动嵌套 `CollectionRecordProvider` 并将 `resource.get()` 请求结果传递下去，`resource.list()` 场景则需要自行使用 `CollectionRecordProvider` 提供数据记录
+  - [BlockResourceProvider](./DataBlockResourceProvider): 根据 `DataBlockProvider` 提供的上下文信息，构建区块 [Resource](../application/Request) API，用于区块数据的增删改查
+  - [BlockRequestProvider](./DataBlockRequestProvider): 根据 `DataBlockProvider` 提供的上下文信息，自动调用 `BlockResourceProvider` 提供的 `resource.get()` 或 `resource.list()` 发起请求，得到区块数据，并传递
+    - [CollectionRecordProvider](../data-source/RecordProvider): 对于 `resource.get()` 场景，会自动嵌套 `CollectionRecordProvider` 并将 `resource.get()` 请求结果传递下去，`resource.list()` 场景则需要自行使用 `CollectionRecordProvider` 提供数据记录
 
 ```tsx | pure
 const DataBlockProvider = (props) => {
@@ -59,7 +59,7 @@ const DataBlockProvider = (props) => {
 
 ### 使用方式
 
-其主要使用在区块的 schema [x-decorator](https://docs.tachybase.com/development/client/ui-schema/what-is-ui-schema#x-decorator) 中，例如：
+其主要使用在区块的 schema 的 x-decorator 中，例如：
 
 ```js {5}| pure
 {
@@ -110,7 +110,7 @@ interface AllDataBlockProps {
 
 - collection（`x-decorator-props`）：区块的 collection 表名，用于获取区块的字段信息和区块数据
 - association（`x-decorator-props`）：区块的关系字段名，用于获取区块的关系字段信息和关系字段数据
-- dataSource(`x-decorator-props`): 数据源，具体可参考 [Data Modeling](https://docs.tachybase.com/manual/data-modeling)
+- dataSource(`x-decorator-props`): 数据源
 - action（`x-decorator-props`）：区块的请求类型，`list` 或 `get`
 - params（`x-decorator-props` 和 `x-use-decorator-props`）：区块的请求参数，同时存在于
 - filterByTk（`x-use-decorator-props`）：相当于 `params.filterByTk`，可理解为 `id`，用于获取单条数据
@@ -176,7 +176,7 @@ const useDataBlock: <T extends {}>() => Result<T>
 - 详解
 
 `props` 就对应着上面的 `AllDataBlockProps`。
-`dn` 是 `Designable` 对象，可用于修改 `DataBlockProvider` 的 UI schema，详细见 [Designable](/core/ui-schema/designable)。
+`dn` 是 `Designable` 对象，可用于修改 `DataBlockProvider` 的 UI schema，详细见 [Designable](../ui-schema/Designable)。
 
 - 示例
 
@@ -208,35 +208,11 @@ const checked = props.tableProps.bordered;
 
 ## 示例
 
-### collection
-
-#### Table list
-
-<code src="./demos/data-block-provider/collection-table-list.tsx"></code>
-
-#### Form get & update
-
-<code src="./demos/data-block-provider/collection-form-get-and-update.tsx"></code>
-
-#### Form create
-
-<code src="./demos/data-block-provider/collection-form-create.tsx"></code>
-
-#### Form record & update
-
-<code src="./demos/data-block-provider/collection-form-record-and-update.tsx"></code>
-
 ### association
 
 association 与 collection 类似，只是需要提供 `sourceId`，我们以 `Table list` 为例。
 
-#### Table list & sourceId
-
-<code src="./demos/data-block-provider/association-table-list-and-source-id.tsx"></code>
-
 #### Table list & parentRecord
 
 如果不提供 `sourceId`，则需要提供 `parentRecord`，我们以 `Table list` 为例。
-
-<code src="./demos/data-block-provider/association-table-list-and-parent-record.tsx"></code>
 

@@ -53,7 +53,7 @@ interface SchemaComponentProviderProps {
 
 - 详细解释
   - `designable`：`SchemaComponentContext` 中 `designable` 的默认值
-  - `form`：NocoBase 的 Schema 能力是基于 formily 的 `FormProvider` 提供的，form 是其参数，默认为  `createForm()`
+  - `form`：Tachybase 的 Schema 能力是基于 formily 的 `FormProvider` 提供的，form 是其参数，默认为  `createForm()`
   - `scope`：Schema 中所用到的变量，会通过 `SchemaComponentContext` 进行传递
   - `components`：Schema 中所用到的组件，会通过 `SchemaComponentContext` 进行传递
 

@@ -1,24 +1,22 @@
 [
   "introduction",
-  "DataSourceManager",
-  "DataSourceManagerProvider",
 
   "DataSource",
   "DataSourceProvider",
+  "DataSourceManager",
+  "DataSourceManagerProvider",
 
-  "CollectionManager",
-  "CollectionManagerProvider",
-
-  "CollectionTemplateManager",
-  "CollectionTemplate",
-  
   "Collection",
   "CollectionProvider",
+  "CollectionManager",
+  "CollectionManagerProvider",
+  "CollectionTemplate",
+  "CollectionTemplateManager",
   "CollectionMixins",
   "CollectionField",
 
-  "CollectionFieldInterfaceManager",
   "CollectionFieldInterface",
+  "CollectionFieldInterfaceManager",
 
   "AssociationProvider",
   "ExtendCollectionsProvider"

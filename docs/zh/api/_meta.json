@@ -4,10 +4,5 @@
     "type": "dir",
     "name": "client",
     "label": "@tachybase/client"
-  },
-  {
-    "type": "dir",
-    "name": "others",
-    "label": "其他"
   }
 ]

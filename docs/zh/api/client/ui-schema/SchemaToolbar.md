@@ -37,7 +37,7 @@ interface SchemaToolbarProps {
 未指定 `x-toolbar` 时会渲染默认的 `SchemaToolbar` 这个组件。
 
 ```tsx
-import { useFieldSchema } from '@formily/react';
+import { useFieldSchema } from '@tachybase/schema';
 import {
   Application,
   CardItem,
@@ -148,7 +148,7 @@ export default app.getRootComponent();
 
 
 ```tsx
-import { useFieldSchema } from '@formily/react';
+import { useFieldSchema } from '@tachybase/schema';
 import {
   Application,
   CardItem,
@@ -299,7 +299,7 @@ const MyDecorator = () => {
 
 ```tsx
 import { Card } from 'antd';
-import { useFieldSchema } from '@formily/react';
+import { useFieldSchema } from '@tachybase/schema';
 import {
   Application,
   CardItem,
