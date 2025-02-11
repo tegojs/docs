@@ -64,6 +64,107 @@ flowchart LR
     StopProcess --> DestroyProcess
 ```
 
+插件的生命周期包括以下步骤:
+
+```mermaid
+flowchart LR
+    %% Subgraph for Create Process
+    subgraph Column1 [Create Process]
+        direction TB
+        A[pm.create]
+    end
+
+    %% Subgraph for Add Process
+    subgraph Column2 [Add Process]
+        direction TB
+        B[pm.add]
+        B --> C[plugin.afterAdd]
+    end
+
+    %% Subgraph for Load Process
+    subgraph Column3 [Load Process]
+        direction TB
+        D[pm.load]
+        D --> E[Before: plugin.beforeLoad]
+        D --> F{each plugins}
+        subgraph PluginsLoad [Plugins Load]
+            direction TB
+            G[Plugin 1: plugin.beforeLoadPlugin]
+            G --> H[Plugin 1: plugin.afterLoadPlugin]
+            H --> I[...]
+            I --> J[Plugin 2: plugin.beforeLoadPlugin]
+            J --> K[Plugin 2: plugin.afterLoadPlugin]
+        end
+        F --> PluginsLoad
+        PluginsLoad --> L[After: plugin.afterLoad]
+    end
+
+    %% Subgraph for Install Process
+    subgraph Column4 [Install Process]
+        direction TB
+        M[pm.install]
+        M --> N[Before: plugin.beforeInstall]
+        M --> O{each plugins}
+        subgraph PluginsInstall [Plugins Install]
+            direction TB
+            P[Plugin 1: plugin.beforeInstallPlugin]
+            P --> Q[Plugin 1: plugin.afterInstallPlugin]
+            Q --> R[...]
+            R --> S[Plugin 2: plugin.beforeInstallPlugin]
+            S --> T[Plugin 2: plugin.afterInstallPlugin]
+        end
+        O --> PluginsInstall
+        PluginsInstall --> U[After: plugin.afterInstall]
+    end
+
+    %% Subgraph for Update Process
+    subgraph Column5 [Update Process]
+        direction TB
+        V[pm.update]
+    end
+
+    %% Subgraph for Enable Process
+    subgraph Column6 [Enable Process]
+        direction TB
+        W[pm.enable]
+        W --> X[plugin.beforeEnable]
+        X --> Y[plugin.afterEnable]
+    end
+
+    %% Subgraph for Disable Process
+    subgraph Column7 [Disable Process]
+        direction TB
+        Z[pm.disable]
+        Z --> AA[plugin.beforeDisable]
+        AA --> AB[plugin.afterDisable]
+    end
+
+    %% Subgraph for Remove Process
+    subgraph Column8 [Remove Process]
+        direction TB
+        AC[pm.remove]
+        AC --> AD[plugin.beforeRemove]
+        AD --> AE[plugin.afterRemove]
+    end
+
+    %% Connections between columns
+    Column1 --> Column2
+    Column2 --> Column3
+    Column3 --> Column4
+    Column4 --> Column5
+    Column5 --> Column6
+    Column6 --> Column7
+    Column7 --> Column8
+
+    %% Styles
+    classDef processBox fill:#fff8dc,stroke:#e6c300,stroke-width:2px;
+    classDef pluginBox fill:#f0f9ff,stroke:#007acc,stroke-width:2px;
+
+    class Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8 processBox;
+    class PluginsLoad,PluginsInstall pluginBox;
+
+```
+
 
 upgrade 生命周期包括以下步骤：
 
