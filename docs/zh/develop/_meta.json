@@ -6,5 +6,9 @@
   "resource",
   "migration",
   "test",
-  "middleware"
+  {
+    "type": "dir",
+    "name": "server",
+    "label": "服务端"
+  }
 ]
