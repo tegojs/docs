@@ -1,0 +1,24 @@
+[
+  "index",
+  {
+    "type": "dir",
+    "name": "data-blocks",
+    "label": "数据区块"
+  },
+  {
+    "type": "dir",
+    "name": "filter-blocks",
+    "label": "筛选区块"
+  },
+  {
+    "type": "dir",
+    "name": "other-blocks",
+    "label": "其他区块"
+  },
+  "block-templates",
+  {
+    "type": "dir",
+    "name": "block-settings",
+    "label": "区块设置项"
+  }
+]

@@ -24,10 +24,5 @@
     "name": "template-json",
     "label": "模版引擎"
   },
-  {
-    "type": "dir",
-    "name": "calculation-engines",
-    "label": "计算引擎"
-  },
   "mobile"
 ]

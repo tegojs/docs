@@ -1,7 +1,22 @@
 [
-    {
+  {
     "type": "dir",
-    "name": "user",
+    "name": "users",
     "label": "用户和权限"
-    }
+  },
+  {
+    "type": "dir",
+    "name": "file-manager",
+    "lable": "文件管理器"
+  },
+  {
+    "type":"dir",
+    "name":"logger",
+    "label":"日志与监控"
+  },
+  {
+    "type":"dir",
+    "name":"data-visualization",
+    "label":"数据可视化"
+  }
 ]

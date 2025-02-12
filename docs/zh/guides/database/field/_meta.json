@@ -1,1 +1,43 @@
-["overview"]
+[
+  "overview",
+  {
+    "type": "dir",
+    "name": "basic",
+    "label": "基本类型"
+  },
+  {
+    "type": "dir",
+    "name": "choices",
+    "label": "选择类型"
+  },
+  {
+    "type": "dir",
+    "name": "media",
+    "label": "多媒体"
+  },
+  {
+    "type": "dir",
+    "name": "datetime",
+    "label": "日期 & 时间"
+  },
+  {
+    "type": "dir",
+    "name": "geometric",
+    "label": "几何图形"
+  },
+  {
+    "type": "dir",
+    "name": "advanced",
+    "label": "高级类型"
+  },
+  {
+    "type": "dir",
+    "name": "system-info",
+    "label": "系统信息"
+  },
+  {
+    "type": "dir",
+    "name": "associations",
+    "label": "关系类型"
+  }
+]
