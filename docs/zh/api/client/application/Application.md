@@ -31,7 +31,7 @@ export interface ApplicationOptions {
   - `components`：全局组件
   - `scopes`：全局 scopes
   - `router`：配置路由，具体请参考：[RouterManager](./RouterManager)
-  - `pluginSettings`: [PluginSettingsManager](./PluginSettingsManager)
+  - `pluginSettings`: [SystemSettingsManager](./SystemSettingsManager)
   - `schemaSettings`：Schema 设置工具，具体参考：[SchemaSettingsManager](./SchemaInitializerManager)
   - `schemaInitializers`：Schema 添加工具，具体参考：[SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
   - `loadRemotePlugins`：用于控制是否加载远程插件，默认为 `false`，即不加载远程插件（方便单测和 DEMO 环境）。
@@ -99,9 +99,9 @@ class Application {
 
 详细介绍，请参考：[RouterManager](./RouterManager)
 
-### app.pluginSettingsManager
+### app.systemSettingsManager
 
-详细介绍，请参考：[PluginSettingsManager](./PluginSettingsManager)
+详细介绍，请参考：[SystemSettingsManager](./SystemSettingsManager)
 
 ### app.schemaSettingsManager
 

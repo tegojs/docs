@@ -22,8 +22,8 @@ class Plugin<T = any> {
     return this.app.router;
   }
 
-  get pluginSettingsManager() {
-    return this.app.pluginSettingsManager;
+  get systemSettingsManager() {
+    return this.app.systemSettingsManager;
   }
 
   get schemaInitializerManager() {
@@ -56,7 +56,7 @@ class Plugin<T = any> {
   - 快捷访问：基类提供了对 `app` 部分方法和属性的快捷访问
     - `pluginManager`
     - `router`
-    - `pluginSettingsManager`
+    - `systemSettingsManager`
     - `schemaSettingsManager`
     - `schemaInitializerManager`
   - 声明周期
