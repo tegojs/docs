@@ -1,0 +1,19 @@
+[
+  "index",
+  {
+    "type": "dir",
+    "name": "generic",
+    "label": "通用配置项"
+  },
+  {
+    "type": "dir",
+    "name": "specific",
+    "label": "特有配置项"
+  },
+  {
+    "type": "dir",
+    "name": "field-settings",
+    "label": "字段配置项"
+  },
+  "association-field"
+]
