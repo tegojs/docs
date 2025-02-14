@@ -1,6 +1,6 @@
 # DataBlockRequestProvider
 
-其内部获取到 [BlockResourceProvider](./DataBlockResourceProvider) 提供的 `resource`，根据 [BlockProvider](./DataBlockProvider) 提供的参数，自动调用 `resource.get()` 或者 `resource.list()` 获取的区块的数据，并通过 context 传递下去。
+其内部获取到 [BlockResourceProvider](./DataBlockResourceProvider) 提供的 `resource`，根据 [BlockProvider](./DataBlockProvider) 提供的参数，自动调用 `resource.get()` 或者 `resource.list()` 获取的卡片的数据，并通过 context 传递下去。
 
 ## 请求参数
 
@@ -36,7 +36,7 @@ const useDynamicDataBlockProps: UseDataBlockProps<'CollectionList'>  = () => {
 
 ### useDataBlockRequest()
 
-用于获取请求对象，一般用区块组件中。
+用于获取请求对象，一般用卡片组件中。
 
 ```tsx | pure
 const MyTable = () => {
@@ -60,7 +60,7 @@ const MyTable = () => {
 
 ### Get 请求
 
-对于 `get` 请求，当获取到 `data` 数据后，会通过 `CollectionRecordProvider` 提供 `record` 对象，用于获取当前区块的数据。
+对于 `get` 请求，当获取到 `data` 数据后，会通过 `CollectionRecordProvider` 提供 `record` 对象，用于获取当前卡片的数据。
 
 ```ts | pure
 const schema = {

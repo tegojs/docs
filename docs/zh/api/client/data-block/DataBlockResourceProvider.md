@@ -1,6 +1,6 @@
 # DataBlockResourceProvider
 
-根据 `DataBlockProvider` 中的 `collection`、`association`、`sourceId` 等属性，构建好 [resource](../application/Request) 对象，方便子组件对区块数据的增删改查操作，其内置在 [DataBlockProvider](./DataBlockProvider) 中
+根据 `DataBlockProvider` 中的 `collection`、`association`、`sourceId` 等属性，构建好 [resource](../application/Request) 对象，方便子组件对卡片数据的增删改查操作，其内置在 [DataBlockProvider](./DataBlockProvider) 中
 
 
 ## useDataBlockResource

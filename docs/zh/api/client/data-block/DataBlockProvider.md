@@ -1,12 +1,12 @@
 # DataBlockProvider
 
-## 区块类型
+## 卡片类型
 
-区块分为简单区块和包含各种数据的区块。
+卡片分为简单卡片和包含各种数据的卡片。
 
-### 简单区块
+### 简单卡片
 
-简单区块例如 Markdown 区块。
+简单卡片例如 Markdown 卡片。
 
 它只有文本内容，没有其他更多复杂数据，且文本内容是存储在 `schema` 中的，没有存储在数据库中。
 
@@ -20,21 +20,21 @@
 }
 ```
 
-### 数据区块
+### 数据卡片
 
-数据区块是指区块的数据存储在服务端的数据表中，例如 Table 组件。
+数据卡片是指卡片的数据存储在服务端的数据表中，例如 Table 组件。
 
 Table 中的字段信息及列表数据，都是存储在数据库中的。
 
 
 ## DataBlockProvider 介绍
 
-为了方便对数据区块的数据进行管理，我们提供了 `DataBlockProvider` 组件，其内部封装了：
+为了方便对数据卡片的数据进行管理，我们提供了 `DataBlockProvider` 组件，其内部封装了：
 
-- `DataBlockProvider`：封装了下面的所有组件，并提供了区块属性
+- `DataBlockProvider`：封装了下面的所有组件，并提供了卡片属性
   - [CollectionProvider](../data-source/CollectionProvider) / [AssociationProvider](../data-source/AssociationProvider): 根据 `DataBlockProvider` 提供的上下文信息，查询对应数据表数据及关系字段信息并传递
-  - [BlockResourceProvider](./DataBlockResourceProvider): 根据 `DataBlockProvider` 提供的上下文信息，构建区块 [Resource](../application/Request) API，用于区块数据的增删改查
-  - [BlockRequestProvider](./DataBlockRequestProvider): 根据 `DataBlockProvider` 提供的上下文信息，自动调用 `BlockResourceProvider` 提供的 `resource.get()` 或 `resource.list()` 发起请求，得到区块数据，并传递
+  - [BlockResourceProvider](./DataBlockResourceProvider): 根据 `DataBlockProvider` 提供的上下文信息，构建卡片 [Resource](../application/Request) API，用于卡片数据的增删改查
+  - [BlockRequestProvider](./DataBlockRequestProvider): 根据 `DataBlockProvider` 提供的上下文信息，自动调用 `BlockResourceProvider` 提供的 `resource.get()` 或 `resource.list()` 发起请求，得到卡片数据，并传递
     - [CollectionRecordProvider](../data-source/RecordProvider): 对于 `resource.get()` 场景，会自动嵌套 `CollectionRecordProvider` 并将 `resource.get()` 请求结果传递下去，`resource.list()` 场景则需要自行使用 `CollectionRecordProvider` 提供数据记录
 
 ```tsx | pure
@@ -59,7 +59,7 @@ const DataBlockProvider = (props) => {
 
 ### 使用方式
 
-其主要使用在区块的 schema 的 x-decorator 中，例如：
+其主要使用在卡片的 schema 的 x-decorator 中，例如：
 
 ```js {5}| pure
 {
@@ -87,7 +87,7 @@ const DataBlockProvider = (props) => {
 
 ### 静态属性和动态属性
 
-- schema 中的 `x-decorator-props` 称为静态属性，它是一个普通对象，记录区块的配置信息
+- schema 中的 `x-decorator-props` 称为静态属性，它是一个普通对象，记录卡片的配置信息
 - schema 中的 `x-use-decorator-props` 中的属性称为动态属性，它是一个 React hook，可用于获取例如 URL 上的 ID，或者父级的 context 数据
 
 当两者都存在时，会进行深度合并，作为 `DataBlockProvider` 的属性。
@@ -108,14 +108,14 @@ interface AllDataBlockProps {
 }
 ```
 
-- collection（`x-decorator-props`）：区块的 collection 表名，用于获取区块的字段信息和区块数据
-- association（`x-decorator-props`）：区块的关系字段名，用于获取区块的关系字段信息和关系字段数据
+- collection（`x-decorator-props`）：卡片的 collection 表名，用于获取卡片的字段信息和卡片数据
+- association（`x-decorator-props`）：卡片的关系字段名，用于获取卡片的关系字段信息和关系字段数据
 - dataSource(`x-decorator-props`): 数据源
-- action（`x-decorator-props`）：区块的请求类型，`list` 或 `get`
-- params（`x-decorator-props` 和 `x-use-decorator-props`）：区块的请求参数，同时存在于
+- action（`x-decorator-props`）：卡片的请求类型，`list` 或 `get`
+- params（`x-decorator-props` 和 `x-use-decorator-props`）：卡片的请求参数，同时存在于
 - filterByTk（`x-use-decorator-props`）：相当于 `params.filterByTk`，可理解为 `id`，用于获取单条数据
-- sourceId（`x-use-decorator-props`）：区块的 sourceId，配合 `association` 使用，用于获取区块的关系字段数据
-- record（`x-use-decorator-props`）：当提供 `record` 时，会使用 `record` 作为区块的数据，不发起请求
+- sourceId（`x-use-decorator-props`）：卡片的 sourceId，配合 `association` 使用，用于获取卡片的关系字段数据
+- record（`x-use-decorator-props`）：当提供 `record` 时，会使用 `record` 作为卡片的数据，不发起请求
 - parentRecord（`x-use-decorator-props`）：当提供 `parentRecord` 时，会使用 `parentRecord` 作为关系字段的表数据，不发起请求
 
 ```tsx | pure
