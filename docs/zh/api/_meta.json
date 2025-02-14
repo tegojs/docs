@@ -3,6 +3,7 @@
   {
     "type": "dir",
     "name": "client",
+    "collapsed": true,
     "label": "@tachybase/client"
   }
 ]
