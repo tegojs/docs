@@ -23,6 +23,7 @@ export default defineConfig({
     dark: "/tachybase-dark-white.png",
   },
   themeConfig: {
+    lastUpdated: true,
     socialLinks: [
       {
         icon: "github",

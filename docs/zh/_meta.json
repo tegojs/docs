@@ -16,7 +16,7 @@
   },
   {
     "text": "Develop",
-    "link": "/develop/default",
+    "link": "/develop/introduction",
     "activeMatch": "^/develop/"
   },
   {
