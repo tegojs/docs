@@ -1,0 +1,12 @@
+[
+  "summary",
+  "router",
+  "http",
+  "provider",
+  "i18n",
+  {
+    "type": "dir",
+    "name": "ui-schema",
+    "label": "UI Schema"
+  }
+]
