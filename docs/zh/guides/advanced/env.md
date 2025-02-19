@@ -73,10 +73,10 @@ APP_KEY=app-key-test
 
 ### APP_PORT
 
-应用端口，默认值 `13000`
+应用端口，默认值 `3000`
 
 ```bash
-APP_PORT=13000
+APP_PORT=3000
 ```
 
 ### API_BASE_PATH

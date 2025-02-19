@@ -38,7 +38,7 @@ app.use(async (ctx, next) => {
 });
 ```
 
-访问 http://localhost:13000/api/hello 查看，浏览器响应的数据是：
+访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
 
 ```js
 {"data": [1,3,4,2]}
@@ -78,13 +78,13 @@ app.resourcer.use(m5, { after: 'parseToken', before: 'checkRole' });
 3. 最后是 app.use 添加的。
 
 
-访问 http://localhost:13000/api/hello 查看，浏览器响应的数据是：
+访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
 
 ```js
 {"data": [1,2]}
 ```
 
-访问 http://localhost:13000/api/test:list 查看，浏览器响应的数据是：
+访问 http://localhost:3000/api/test:list 查看，浏览器响应的数据是：
 
 ```js
 {"data": [5,3,7,1,2,8,4,6]}
@@ -108,7 +108,7 @@ app.resourcer.use(async (ctx, next) => {
 });
 ```
 
-访问 http://localhost:13000/api/hello 查看，浏览器响应的数据是：
+访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
 
 ```js
 {"data": [1,2]}

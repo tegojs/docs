@@ -40,13 +40,13 @@ await app.db.sync();
 
 ```bash
 # create
-curl -X POST -H "Content-Type: application/json" -d '{"title":"first"}' http://localhost:13000/api/posts:create
+curl -X POST -H "Content-Type: application/json" -d '{"title":"first"}' http://localhost:3000/api/posts:create
 # list
-curl http://localhost:13000/api/posts:list
+curl http://localhost:3000/api/posts:list
 # update
-curl -X PUT -H "Content-Type: application/json" -d '{"title":"second"}' http://localhost:13000/api/posts:update
+curl -X PUT -H "Content-Type: application/json" -d '{"title":"second"}' http://localhost:3000/api/posts:update
 # destroy
-curl -X DELETE http://localhost:13000/api/posts:destroy?filterByTk=1
+curl -X DELETE http://localhost:3000/api/posts:destroy?filterByTk=1
 ```
 
 ### 自定义 Action
@@ -104,7 +104,7 @@ app.actions({
 然后可以按以下 HTTP API 的方式导出 CSV 格式的数据：
 
 ```bash
-curl http://localhost:13000/api/<any_table>:export
+curl http://localhost:3000/api/<any_table>:export
 ```
 
 ### Action 参数
@@ -182,7 +182,7 @@ app.resource({
 则在 HTTP API 中可以这样访问：
 
 ```bash
-curl -X POST -d '{"title": "Hello", "to": "hello@tachybase.com"}' 'http://localhost:13000/api/notifications:send'
+curl -X POST -d '{"title": "Hello", "to": "hello@tachybase.com"}' 'http://localhost:3000/api/notifications:send'
 ```
 
 ## 示例
@@ -358,7 +358,7 @@ export default class ShopPlugin extends Plugin {
 当用户从客户端查询时，也可以在请求的 URL 上加入其他的参数，比如：
 
 ```bash
-curl 'http://localhost:13000/api/orders:list?productId=1&fields=id,status,quantity,totalPrice&appends=product'
+curl 'http://localhost:3000/api/orders:list?productId=1&fields=id,status,quantity,totalPrice&appends=product'
 ```
 
 实际的查询条件会合并为：
