@@ -39,20 +39,20 @@ export default PluginSampleClient
 
 ## 插件类里常用的属性及方法
 
-1. app.i18n	国际化
-2. app.apiClient	API 客户端
-3. app.pluginManager	插件管理器
-4. app.router	路由管理
-5. app.pluginSettingsManager	插件配置页
-6. app.schemaInitializerManager	Schema Initializer 配置
-7. app.schemaSettingsManager	Schema Settings 配置
-8. app.addProviders	Provider 组件
-9. app.addComponents	Schema 渲染
-10. app.addScopes	Schema 渲染
+1. `app.i18n`	国际化
+2. `app.apiClient`	API 客户端
+3. `app.pluginManager`	插件管理器
+4. `app.router`	路由管理
+5. `app.systemSettingsManager`	系统设置页
+6. `app.schemaInitializerManager`	Schema Initializer 配置
+7. `app.schemaSettingsManager`	Schema Settings 配置
+8. `app.addProviders`	Provider 组件
+9. `app.addComponents`	Schema 渲染
+10. `app.addScopes`	Schema 渲染
 
 ## 组件里常用的 React hooks
 
-1. useApp()	useApp() API
-2. usePlugin()	usePlugin() API
-3. useAPIClient()	API 客户端
-4. useRequest()	API 客户端
+1. `useApp()`	useApp() API
+2. `usePlugin()`	usePlugin() API
+3. `useAPIClient()`	API 客户端
+4. `useRequest()`	API 客户端
