@@ -1,6 +1,6 @@
 # 路由
 
-通过 app.router.add()和 app.pluginSettingsManager.add()可分别扩展常规页面和插件设置页，具体实现如下：
+通过 `app.router.add()`和 `app.systemSettingsManager.add()`可分别扩展常规页面和系统设置页，具体实现如下：
 
 ## 一、常规页面扩展（通过 `app.router.add()`）
 
@@ -53,26 +53,26 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 二、插件设置页扩展（通过 app.pluginSettingsManager.add()）
+## 二、系统设置页扩展（通过 app.systemSettingsManager.add()）
 
-通过 app.pluginSettingsManager.add()方法可注册插件专属设置页：
+通过 app.systemSettingsManager.add()方法可注册系统专属设置页：
 
 ```typescript
 class HelloPlugin extends Plugin {
   async load() {
     // 注册顶级设置页
-    this.app.pluginSettingsManager.add('hello', {
+    this.app.systemSettingsManager.add('hello', {
       title: 'Hello',
       icon: 'ApiOutlined',
       Component: HelloSettingPage,
     })
 
     // 注册多级子设置页
-    this.app.pluginSettingsManager.add('hello.demo1', {
+    this.app.systemSettingsManager.add('hello.demo1', {
       title: 'Demo1 Page',
       Component: () => <div>Demo1 Content</div>,
     })
-    this.app.pluginSettingsManager.add('hello.demo2', {
+    this.app.systemSettingsManager.add('hello.demo2', {
       title: 'Demo2 Page',
       Component: () => <div>Demo2 Content</div>,
     })
@@ -80,8 +80,8 @@ class HelloPlugin extends Plugin {
 }
 ```
 
-- 路由路径自动挂载到/admin/settings/*下
-- 支持通过插件管理器统一管理设置页
+- 路由路径自动挂载到/_admin/:name下
+- 支持通过系统设置界面统一管理设置页
 
 ## 三、初始路由说明
 
