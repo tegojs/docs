@@ -1,1 +1,12 @@
-["middleware","command","events","logger","i18n"]
+[
+  {
+    "type": "dir",
+    "name": "collections",
+    "label": "数据表"
+  },
+  "middleware",
+  "command",
+  "events",
+  "logger",
+  "i18n"
+]
