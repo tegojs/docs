@@ -1,14 +1,14 @@
 [
     "workflow",
-    "quickStart",
+    "quick-start",
     {
       "type": "dir",
-      "name": "advancedUnderstanding",
+      "name": "advanced-understanding",
       "label": "进阶理解"
     },
     {
       "type": "dir",
-      "name": "eventSource",
+      "name": "event-source",
       "label": "事件源"
     },
     {

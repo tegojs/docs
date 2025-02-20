@@ -22,8 +22,8 @@
   },
   {
     "type": "dir",
-    "name": "geometric",
-    "label": "几何图形"
+    "name": "associations",
+    "label": "关系类型"
   },
   {
     "type": "dir",
@@ -34,10 +34,5 @@
     "type": "dir",
     "name": "system-info",
     "label": "系统信息"
-  },
-  {
-    "type": "dir",
-    "name": "associations",
-    "label": "关系类型"
   }
 ]

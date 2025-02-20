@@ -1,8 +1,8 @@
 # 路由
 
-通过 `app.router.add()`和 `app.systemSettingsManager.add()`可分别扩展常规页面和系统设置页，具体实现如下：
+通过 `app.router.add()`和 `app.systemSettingsManager.add()`可分别扩展普通页面和系统设置页，具体实现如下：
 
-## 一、常规页面扩展（通过 `app.router.add()`）
+## 一、普通页面扩展
 
 通过`app.router.add()`方法可动态添加常规页面路由，支持多级路由结构：
 
@@ -16,7 +16,7 @@ this.app.router.add('路由名称', {
 })
 ```
 
-- 路由路径支持层级结构（如 root.home）
+- 路由路径支持层级结构（如 `root.home` ）
 - 可通过 `app.router.getRoutes()` 查看所有已注册路由
 
 ### 示例1：创建首页路由
@@ -53,9 +53,9 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 二、系统设置页扩展（通过 app.systemSettingsManager.add()）
+## 二、系统设置页扩展
 
-通过 app.systemSettingsManager.add()方法可注册系统专属设置页：
+通过 `app.systemSettingsManager.add()` 方法可注册系统专属设置页：
 
 ```typescript
 class HelloPlugin extends Plugin {
@@ -72,6 +72,7 @@ class HelloPlugin extends Plugin {
       title: 'Demo1 Page',
       Component: () => <div>Demo1 Content</div>,
     })
+    
     this.app.systemSettingsManager.add('hello.demo2', {
       title: 'Demo2 Page',
       Component: () => <div>Demo2 Content</div>,
@@ -80,7 +81,7 @@ class HelloPlugin extends Plugin {
 }
 ```
 
-- 路由路径自动挂载到/_admin/:name下
+- 路由路径自动挂载到`/_admin/:name`下
 - 支持通过系统设置界面统一管理设置页
 
 ## 三、初始路由说明
@@ -98,4 +99,4 @@ class HelloPlugin extends Plugin {
 2. 组件复用：可通过`Outlet`组件实现多级页面嵌套
 3. 图标配置：支持使用`Ant Design`图标库（如`ApiOutlined`）
 
-通过上述方法，可灵活实现页面扩展与插件功能集成。
+**通过上述方法，可灵活实现页面扩展与插件功能集成。**
