@@ -12,11 +12,12 @@
 
 - 对话框
 
-![modal](/actions/popup-mode-modal.png)
+![dialog](/actions/popup-mode-dialog.png)
 
 - 上弹框
 
 ![sheet](/actions/popup-mode-sheet.png)
 
+<!-- 页面功能尚未完善 -->
 - 页面
 
