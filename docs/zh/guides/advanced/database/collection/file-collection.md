@@ -12,7 +12,7 @@
 ![](../../../../../public/file_collection.png)
 文件表预置字段
 ![](../../../../../public/file_collection1.png)
-在区块中使用
+在卡片中使用
 ![](../../../../../public/file_collection2.png)
 关系字段
 ![](../../../../../public/file_collection3.png)
