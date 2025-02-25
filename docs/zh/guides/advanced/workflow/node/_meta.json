@@ -1,0 +1,22 @@
+["index",{
+    "type":"dir",
+    "name":"process-control",
+    "label":"流程控制"
+},{
+    "type":"dir",
+    "name":"calculation",
+    "label":"计算"
+},{
+    "type":"dir",
+    "name":"collection",
+    "label":"数据表操作"
+},{
+    "type":"dir",
+    "name":"manual",
+    "label":"人工处理"
+},{
+    "type":"dir",
+    "name":"extension-type",
+    "label":"扩展类型"
+}
+]
