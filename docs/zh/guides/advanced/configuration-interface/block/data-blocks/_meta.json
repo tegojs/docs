@@ -1,1 +1,7 @@
-["table","form","details","list","grid-card","calendar","gantt","kanban","block-map","data-visualization","block-multi-step-from"]
+[
+  "table",
+  "form",
+  "details",
+  "list",
+  "grid-card"
+]

@@ -38,7 +38,7 @@ const SampleComponent = () => {
   const fetchData = async () => {
     const response = await apiClient.request({
       url: '/search',
-      params: { q: 'noco' },
+      params: { q: 'value' },
     })
     console.log('搜索结果:', response.data)
   }
@@ -72,5 +72,5 @@ const { params, run } = useRequest({
 })
 
 // 手动触发查询
-run({ q: 'noco', page: 3 })
+run({ q: 'value', page: 3 })
 ```
