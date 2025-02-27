@@ -43,7 +43,7 @@ interface ISchema {
   ['x-initializer']?: string;
   ['x-initializer-props']?: any;
 
-  // 区块设置，决定当前 schema 可以配置哪些参数
+  // 卡片设置，决定当前 schema 可以配置哪些参数
   ['x-settings']?: string;
   ['x-settings-props']?: any;
 

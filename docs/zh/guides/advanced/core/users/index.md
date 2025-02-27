@@ -16,7 +16,7 @@
 
 ![](/docs/public/core/tachybase-core-user-1.png)
 
-除此之外，也可以在页面中使用用户表添加各种不同的区块来管理用户，比如表格区块：
+除此之外，也可以在页面中使用用户表添加各种不同的卡片来管理用户，比如表格卡片：
 
 ![](/docs/public/core/tachybase-core-user-2.png)
 

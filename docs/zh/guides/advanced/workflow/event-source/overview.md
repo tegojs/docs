@@ -2,8 +2,8 @@
 
 事件源是工作流的触发入口，当应用运行过程中满足事件源条件的事件产生时，工作流将会被触发执行。目前已支持的事件源类型如下：
 
-- [数据库事件](./application.md)
-- [应用事件](./schedule.md)
+- [数据库事件](./set.md)
+- [应用事件](./application.md)
 - [资源操作前事件](./beforeOperation.md)
 - [资源操作后事件](./afterOperation.md)
 - [自定义资源操作](./customize.md)

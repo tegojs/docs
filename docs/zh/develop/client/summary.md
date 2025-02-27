@@ -32,7 +32,7 @@ export default PluginSampleClient
 
 ## 插件的生命周期
 
-![](../../../public/plugin-lifecycle.jpeg)
+![](/plugin-lifecycle.jpeg)
 1. 在插件初始化之后，触发 `afterAdd`。需要注意的是，插件的添加是无序的，所以不要在 `afterAdd` 里获取其他插件的实例，如果需要获取其他插件的实例，可以在 `beforeLoad` 或者 `load` 里获取 
 2. 在 `beforeLoad` 里所有已激活的插件都实例化了，此时可以通过 `app.pluginManager.get()` 获取到实例
 3. 在 `load` 里，所有插件的 `beforeLoad` 方法都已执行完毕，此时可以进行插件的初始化工作，比如注册路由
