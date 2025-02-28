@@ -1,1 +1,8 @@
-["index","o2o","o2m","m2o","m2m","field-m2m-array"]
+[
+  "index",
+  "o2o(hasOne)",
+  "o2o(belongTo)",
+  "o2m",
+  "m2o",
+  "m2m"
+]

@@ -1,1 +1,6 @@
-["markdown","field-markdown-vditor","rich-text","field-attachment","field-attachment-url"]
+[
+  "markdown",
+  "field-markdown-vditor",
+  "rich-text",
+  "field-attachment"
+]
