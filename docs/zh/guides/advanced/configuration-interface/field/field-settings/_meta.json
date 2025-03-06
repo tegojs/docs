@@ -1,1 +1,15 @@
-["required","default-value","validation-rules","number-format","data-scope","title-field","pattern","edit-title","display-title","edit-description","edit-tooltip","field-component","style"]
+[
+  "required",
+  "default-value",
+  "validation-rules",
+  "number-format",
+  "data-scope",
+  "title-field",
+  "pattern",
+  "edit-title",
+  "display-title",
+  "edit-description",
+  "edit-tooltip",
+  "field-component",
+  "style"
+]

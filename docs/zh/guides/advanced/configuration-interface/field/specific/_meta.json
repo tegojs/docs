@@ -1,1 +1,14 @@
-["select","cascade-select","nester","popover-nester","select","picker","sub-table","sub-detail","title","tag","file-manager","field-component-mask"]
+[
+  "date-picker",
+  "cascade-select",
+  "nester",
+  "popover-nester",
+  "select",
+  "picker",
+  "sub-table",
+  "sub-detail",
+  "title",
+  "tag",
+  "file-manager",
+  "field-component-mask"
+]
