@@ -1,1 +1,8 @@
-["summary", "schema-protocol", "schema-render", "schema-initializer", "schema-settings"]
+[
+  "summary",
+  "schema-protocol",
+  "schema-render",
+  "schema-toolbar",
+  "schema-initializer",
+  "schema-settings"
+]
