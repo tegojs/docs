@@ -1,11 +1,11 @@
 # SchemaSettings 设置器
 
-激活 UI 配置之后，鼠标移动到指定区块、字段、操作上方时，会显示对应的 Schema 工具栏，工具栏的设置按钮就是当前 Schema 的设置器。
+激活 UI 配置之后，鼠标移动到指定卡片、字段、操作上方时，会显示对应的 Schema 工具栏，工具栏的设置按钮就是当前 Schema 的设置器。
 ![](/schemas/schema-settings.png)
 
 ## SchemaSettings 的作用
 
-SchemaSettings 通过修改 FieldSchema 或者 Field 的属性，组件读取这些属性来实现对区块、字段、操作等的配置。
+SchemaSettings 通过修改 FieldSchema 或者 Field 的属性，组件读取这些属性来实现对卡片、字段、操作等的配置。
 
 Field 是 FieldSchema 的实例，如果是修改 Field 不会将 Schema 结构保存到数据库，只是修改当前实例的属性，刷新页面后会丢失。如果你需要保存到数据库，需要修改 FieldSchema。
 

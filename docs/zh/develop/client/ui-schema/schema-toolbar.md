@@ -1,6 +1,6 @@
 # SchemaToolbar 工具栏
 
-激活 UI 配置之后，鼠标移动到指定区块、字段、操作上方时，会显示对应的 Schema 的工具栏。
+激活 UI 配置之后，鼠标移动到指定卡片、字段、操作上方时，会显示对应的 Schema 的工具栏。
 
 ![](/schemas/schema-toolbar.png)
 
