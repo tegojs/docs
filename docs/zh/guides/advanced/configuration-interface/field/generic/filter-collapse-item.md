@@ -2,18 +2,26 @@
 
 ### 概述
 
-Collapse 筛选区块仅支持选择关系字段和选项字段作为筛选字段。
+折叠筛选区块仅支持选择关系字段和选项字段作为筛选字段。
 
 ### 字段配置项
+
+![](../../../../../../public/filter-collapse-item1.png)
 
 #### 设置数据范围
 为关系字段配置数据范围，以限定可筛选的内容。
 
-示例：筛选非促销商品。
+![](../../../../../../public/filter-collapse-item2.png)
+
+示例：筛选用户名包含a。
+
+![](../../../../../../public/filter-collapse-item3.png)
 
 更多内容请参考 [设置数据范围](../field-settings/data-scope.md)。
 
 #### 标题字段
+
+![](../../../../../../public/filter-collapse-item4.png)
 配置筛选区块的标题字段。
 更多内容请参考 [标题字段](../field-settings/title-field.md)。
 

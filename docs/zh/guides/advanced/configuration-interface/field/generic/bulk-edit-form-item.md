@@ -1,5 +1,5 @@
 # 批量编辑表单字段
-
+<!-- 
 ### 概述
 
 批量编辑表单是专为批量编辑操作设计的表单区块。
@@ -21,4 +21,4 @@
 - [编辑字段描述](../field-settings/edit-description.md)
 - [编辑字段提示信息](../field-settings/edit-tooltip.md)
 - [设置验证规则](../field-settings/validation-rules.md)
-
+ -->

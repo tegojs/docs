@@ -4,9 +4,12 @@
 
 文件管理器是用于处理关系目标表为文件表的关系字段组件，便于管理和关联文件数据。
 
+![](../../../../../../public/fieldSetting-file-manager2.png)
+![](../../../../../../public/fieldSetting-file-manager1.png)
+
 ### 字段配置项
 
-- **字段组件**
+- **[字段组件](../field-settings/field-component.md)**
 
 支持切换为其他关系字段组件，如下拉选择、数据选择器等。
 
