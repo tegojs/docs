@@ -20,8 +20,7 @@
 
 ![20240422163640](/field/field-settings/data-scope-3.png)
 
-<!-- TODO: 需要后续链接 -->
-<!-- 更多关于变量内容参考 [变量](/handbook/ui/variables) -->
+更多关于变量内容参考 [变量](../../variable.md)
 
 ### 关系字段联动
 
