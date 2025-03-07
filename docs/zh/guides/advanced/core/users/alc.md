@@ -17,7 +17,7 @@ Tachybase 的 ACL 模块主要由两部分组成：
 
 下面以“移动端菜单”配置项为例，演示如何扩展一个新的权限配置栏。效果如下图所示：
 
-![](/docs/public/core/tachybase-core-alc-1.png)
+![](/core/tachybase-core-alc-1.png)
 
 代码如下：
 
