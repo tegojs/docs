@@ -25,7 +25,7 @@
 #### 字段组件
 支持切换为其他关系[字段组件](../field-settings/field-component.md)，例如下拉选择、数据选择器等。
 
-#### 联动规则
+<!-- #### 联动规则 -->
 <!-- TODO: 插入视频 -->
 
-可以配置[联动规则](../../block/block-settings/linkage-rule.md)，以便根据条件触发其他字段的变动。
+<!-- 可以配置[联动规则](../../block/block-settings/linkage-rule.md)，以便根据条件触发其他字段的变动。 -->

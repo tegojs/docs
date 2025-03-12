@@ -10,17 +10,17 @@ SQL collection 通过 SQL 语句提取数据，并在配置字段元数据后，
 ### 使用手册
 
 #### 新建
-![](../../../../../public/SQL_collection.png)
+![](/datasource/datasource-17.png)
 1. 在 SQL 输入框输入 SQL 语句并点击执行 (Execute) 后，系统会解析 SQL 语句，识别其中使用的表和字段，并从来源表中提取字段元数据。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-18.png)
 2. 如果系统自动解析的来源表和字段不正确，可以手动指定对应的表和字段，以确保使用正确的字段元数据。在操作时，需要先选择来源表，随后才能在字段来源中选择该表的字段。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-19.png)
 3. 如果字段没有对应的来源字段，系统会根据数据类型自动推断字段类型。若推断结果不准确，用户可以手动调整字段类型，以确保数据正确解析和使用。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-20.png)
 4. 在配置字段时，预览区域会同步显示相应的展示效果，方便用户直观检查和调整字段设置。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-21.png)
 5. 配置完成并确认无误后，需要点击 SQL 输入框下方的 确认 (Confirm) 按钮，以完成最终提交。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-22.png)
 #### 编辑
 
 1. 当 SQL 语句发生变化时，可以点击“修改” (Edit) 按钮直接编辑 SQL 语句并重新配置字段。
@@ -30,7 +30,7 @@ SQL collection 通过 SQL 语句提取数据，并在配置字段元数据后，
 #### 同步
 
 1. 当 SQL 语句未发生变化但数据库表结构有变更时，可以通过点击“配置字段” (Configure fields) - “从数据库同步” (Sync from database) 来同步和配置字段。
-<!-- TODO: 插入图片 -->
+![](/datasource/datasource-23.png)
 
 #### SQL数据表对比连接数据库试图
 

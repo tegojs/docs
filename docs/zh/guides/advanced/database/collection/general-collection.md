@@ -8,4 +8,4 @@
 适用于大部分场景的标准情况。非特殊情况都可以使用。
 
 ### 使用手册
-![](../../../../../public/general_field.png)
+![](/datasource/datasource-5.png)

@@ -11,7 +11,7 @@
 内置插件， 无需单独安装
 
 ### 数据表管理
-![](../../../../../public/datasource_table.png)
+![](/datasource/data-source-2.png)
 
 #### 支持各类数据表
 - [普通表](./collection/general-collection.md): 标准的常用字段设置;
@@ -26,9 +26,9 @@
 - [连接数据库视图](./collection/collection-view.md): 用于提供不同数据模型间的数据视图和整合;
 
 #### 支持数据表分类管理
-![](../../../../../public/datasource_tablefilter.png)
+![](/datasource/data-source-3.png)
 
 #### 支持各种字段类型
-![](../../../../../public/datasouce_tablefields.png)
+![](/datasource/data-source-4.png)
 更多内容查看「[数据表字段 / 概述](./field/overview.md)」章节
 
