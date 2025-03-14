@@ -20,4 +20,4 @@
 虽然继承表能优化数据组织，但可能增加查询复杂度，尤其是跨层次数据查询时。因此，在使用时需结合数据库特性，权衡性能与可维护性。
 
 ### 使用手册
-![](../../../../../public/inheritance_collection.png)
+![](/datasource/datasource-6.png)

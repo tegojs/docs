@@ -20,6 +20,4 @@
 
 ### 使用说明
 应用初始化安装时，会默认提供一个用于存储灵矶数据的数据源，称为[主数据源](./data-source-main.md)。
-
-另外，灵矶也支持外部数据库作为数据源。
-![](../../../../../public/datasource_other.png)
+![](/datasource/data-source-1.png)

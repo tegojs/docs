@@ -6,7 +6,7 @@
 ### 支持多源数据接入
 灵矶平台的数据源支持各种类型的数据库、文件或外部数据源。
 
-![](../../../../public/datasource.png)
+![](/datasource.png)
 
 灵矶提供了一个[数据源管理插件](./datasource/data-source-management.md)，用于管理不同数据源及其数据表。该插件仅提供统一的管理界面，而不具备直接接入数据源的功能，因此需要与相应的数据源插件配合使用。目前支持的数据源包括：
 
@@ -16,11 +16,11 @@
   - **MariaDB**：数据源可使用外部 MariaDB 数据库。
   - **PostgreSQL**：数据源可使用外部 PostgreSQL 数据库。
 
-![](../../../../public/REST_API.png)
+![](/REST_API.png)
 
 ### 支持多样的数据建模
 支持简洁的数据表管理界面: 用于创建各类数据表或连接已有数据表。
-![](../../../../public/datasource_table.png)
+![](/datasource_table.png)
 支持[类ER图](./datasource/tool.md)的可视化界面: 帮助用户从业务需求中提取出相关的实体以及相互关系。这种方式可以更直观的体现出数据模型的实体和业务关系。
 
 <!-- TODO: 插入图片 -->

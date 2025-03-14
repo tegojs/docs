@@ -8,5 +8,5 @@
 树结构表是一种用于存储层次化数据的设计模式，其表结构类似于树状层级关系。在这种模式下，每条数据记录都可以关联一个或多个子记录，而这些子记录同样能够拥有自己的下级数据。
 
 ### 使用手册
-![](../../../../../public/tree_collection.png)
-![](../../../../../public/tree_collection1.png)
+![](/datasource/datasource-11.png)
+![](/datasource/datasource-12.png)
