@@ -1,1 +1,7 @@
-["production-deployment"]
+[
+  {
+    "type": "dir",
+    "name": "deployment",
+    "label": "部署"
+  }
+]
