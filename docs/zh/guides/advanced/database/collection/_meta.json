@@ -1,1 +1,11 @@
-["overview","general-collection","inheritance-collection","file-collection","collection-tree","calendar-collection","workflow-dynamic-calculation","sql","collection-view","collection-fdw"]
+[
+  "overview",
+  "general-collection",
+  "inheritance-collection",
+  "file-collection",
+  "collection-tree",
+  "calendar-collection",
+  "workflow-dynamic-calculation",
+  "sql",
+  "collection-view"
+]
