@@ -1,48 +1,21 @@
-# 快速开始
+# 快速开始（源码）
 
 ## 安装
 
 ### 0.先决条件
  请确保你已经：
 
-- 安装了 Node.js 20 + pnpm 9.15.x
+- 安装了 Node.js 20.18.0 + pnpm 10.12.1 
 - 配置并启动了所需数据库 MySQL 8.0.17+、MariaDB 10.9+、PostgreSQL 10+ 任选其一
-
-如果你没有安装 Node.js 可以从官网下载并安装最新的 LTS 版本。如果你打算长期与 Node.js 打交道，推荐使用 nvm（Win 系统可以使用 nvm-windows ）来管理 Node.js 版本。
 
  ```bash
 $ node -v 
-
+10.12.1
+$ pnpm -v
 v20.18.0
  ```
 
- 推荐使用 pnpm 包管理器。
-
- ```bash
-$ npm install --global pnpm
-
-$ pnpm -v
-
-9.15.1
-```
- 
-由于国内网络环境的原因，强烈建议你更换国内镜像。
-
-```bash
-$ pnpm config set disable-self-update-check true
-$ pnpm config set registry https://registry.npmmirror.com/
-$ pnpm config set sqlite3_binary_host_mirror https://npmmirror.com/mirrors/sqlite3/
-```
-
 ## 1.安装项目
-
-### - create-tachybase-app安装
-
-```bash
-pnpm create tachybase-app  my-tachybase-app
-```
-
-### - Git 源码安装
 
 ```bash
 git clone https://github.com/tachybase/tachybase.git -b main --depth=1 my-tachybase
@@ -51,7 +24,7 @@ git clone https://github.com/tachybase/tachybase.git -b main --depth=1 my-tachyb
 ## 2. 切换目录
 
 ```bash
-cd my-tachybase-app
+cd my-tachybase
 ```
 
 ## 3. 安装依赖
@@ -60,8 +33,6 @@ cd my-tachybase-app
 
 ```bash
 pnpm install
-# 生产环境部署时，为了减少体积，可以只安装必要的依赖
-pnpm install --production
 ```
 
 ## 4. 设置环境变量
@@ -86,31 +57,28 @@ DB_PASSWORD=tachybase
 
 ::: 
 
-
-
-
-## 5. 安装 Tachybase
+## 5. 初始化 Tachybase
 
 ```bash
 pnpm tachybase install --lang=zh-CN
 ```
 ## 6. 启动 Tachybase
 
-开发环境
-
 ```bash
 pnpm dev
 ```
 
-生产环境
-
-```bash
-pnpm start
-```
-
-注：生产环境，如果代码有修改，需要执行 `pnpm build`，再重新启动 Tachybase
-
-## 7. 登录 Tachybase
+## 7. 访问 Tachybase
 
 使用浏览器打开 [http://localhost:3000](http://localhost:3000) 初始化账号和密码是 `admin@tachybase.com` 和 `!Admin123.`。
 
+
+## 其他说明
+
+由于国内网络环境的原因，强烈建议你更换国内镜像。
+
+```bash
+$ pnpm config set disable-self-update-check true
+$ pnpm config set registry https://registry.npmmirror.com/
+$ pnpm config set sqlite3_binary_host_mirror https://npmmirror.com/mirrors/sqlite3/
+```

@@ -11,7 +11,7 @@ hero:
       link: /guides/start/introduction
     - theme: alt
       text: 快速开始
-      link: /guides/start/quick-started
+      link: /guides/start/quick-started-from-engine
   image:
     src: /tachybase-icon-light.png
 
