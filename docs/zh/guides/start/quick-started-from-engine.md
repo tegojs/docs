@@ -5,8 +5,7 @@
 ### 0.先决条件
  请确保你已经：
 
-- 安装了 Node.js 20.18.0
-- 配置并启动了所需数据库 MySQL 8.0.17+、MariaDB 10.9+、PostgreSQL 10+ 任选其一
+- 安装了 Node.js 20.18.0 及以上版本
 
  ```bash
 $ node -v 
@@ -46,13 +45,13 @@ DB_PASSWORD=tachybase
 
 ::: 
 
-## 3. 启动 Tachybase
+## 3. 启动灵矶
 
 ```bash
 npx @tachybase/engine start --quickstart
 ```
 
-## 4. 访问 Tachybase
+## 4. 访问灵矶
 
 使用浏览器打开 [http://localhost:3000](http://localhost:3000) 初始化账号和密码是 `admin@tachybase.com` 和 `!Admin123.`。
 
