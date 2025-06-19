@@ -381,8 +381,6 @@ EXPORT_WORKER_PAGESIZE=1000
 
 名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
 
-推荐通过界面配置，会保存到数据库中,不建议通过环境变量配置。
-
 ```bash
 PRESETS_CORE_PLUGINS=api-doc,api-keys,!messages
 ```
@@ -392,8 +390,6 @@ PRESETS_CORE_PLUGINS=api-doc,api-keys,!messages
 本地插件的启用关闭，默认值为空。
 
 名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
-
-推荐通过界面配置，会保存到数据库中,不建议通过环境变量配置。
 
 ```bash
 PRESETS_CORE_PLUGINS=gantt,!iframe-block,|audit-logs

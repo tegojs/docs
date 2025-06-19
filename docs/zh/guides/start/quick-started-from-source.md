@@ -39,6 +39,7 @@ Tachybase 所需的环境变量储存在根目录 `.env` 文件里，根据实�
 ```bash
 TZ=Asia/Shanghai
 APP_KEY=your-secret-key
+DB_DIALECT=postgres
 DB_HOST=localhost
 DB_PORT=5432
 DB_DATABASE=postgres
