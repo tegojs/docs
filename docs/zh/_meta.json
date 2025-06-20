@@ -20,6 +20,11 @@
     "activeMatch": "^/develop/"
   },
   {
+    "text": "Plugins",
+    "link": "/plugins/plugin-list",
+    "activeMatch": "^/plugins/"
+  },
+  {
     "text": "Contribution",
     "link": "/contribution/introduction",
     "activeMatch": "^/contribution/"

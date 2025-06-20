@@ -14,5 +14,9 @@
   "Guide": {
     "en": "Guide",
     "zh": "指南"
+  },
+  "Plugins": {
+    "en": "Plugins",
+    "zh": "插件"
   }
 }
