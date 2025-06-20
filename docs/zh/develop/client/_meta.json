@@ -4,10 +4,10 @@
   "http",
   "provider",
   "i18n",
+  "extends-field",
   {
     "type": "dir",
     "name": "ui-schema",
     "label": "UI Schema"
-  },
-  "extends-field"
+  }
 ]
