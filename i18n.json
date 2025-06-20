@@ -18,5 +18,9 @@
   "Plugins": {
     "en": "Plugins",
     "zh": "插件"
+  },
+  "Roadmap": {
+    "en": "Roadmap",
+    "zh": "路线图"
   }
 }

@@ -25,6 +25,11 @@
     "activeMatch": "^/plugins/"
   },
   {
+    "text": "Roadmap",
+    "link": "/roadmap/roadmap",
+    "activeMatch": "^/roadmap/"
+  },
+  {
     "text": "Contribution",
     "link": "/contribution/introduction",
     "activeMatch": "^/contribution/"
