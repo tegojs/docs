@@ -57,13 +57,18 @@ interface CollectionFieldInterfaceComponentOption {
 }
 
 class CollectionFieldInterfaceManager {
-  addFieldInterfaceComponentOption(interfaceName: string, componentOption: CollectionFieldInterfaceComponentOption): void
+  addFieldInterfaceComponentOption(
+    interfaceName: string, 
+    componentOption:CollectionFieldInterfaceComponentOption
+  ): void
 }
 
 // 用法
 class MyPlugin extends Plugin {
   async load() {
-    this.app.dataSourceManager.collectionFieldInterfaceManager.addFieldInterfaceComponentOption('url', {
+    this.app.dataSourceManager.
+    collectionFieldInterfaceManager.
+    addFieldInterfaceComponentOption('url', {
       label: 'Preview',
       value: 'Input.Preview',
     });
