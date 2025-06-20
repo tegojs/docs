@@ -8,5 +8,6 @@
     "type": "dir",
     "name": "ui-schema",
     "label": "UI Schema"
-  }
+  },
+  "extends-field"
 ]

@@ -1,1 +1,8 @@
-["Application", "Plugin", "PluginManager", "RouterManager", "SystemSettingsManager", "Request"]
+[
+  "Application",
+  "Plugin",
+  "PluginManager",
+  "RouterManager",
+  "SystemSettingsManager",
+  "Request"
+]

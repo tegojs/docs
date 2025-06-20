@@ -1,19 +1,19 @@
 [
-    "workflow",
-    "quick-start",
-    {
-      "type": "dir",
-      "name": "advanced-understanding",
-      "label": "进阶理解"
-    },
-    {
-      "type": "dir",
-      "name": "event-source",
-      "label": "事件源"
-    },
-    {
-      "type": "dir",
-      "name": "node",
-      "label": "节点"
-    }
+  "workflow",
+  "quick-start",
+  {
+    "type": "dir",
+    "name": "advanced-understanding",
+    "label": "进阶理解"
+  },
+  {
+    "type": "dir",
+    "name": "event-source",
+    "label": "事件源"
+  },
+  {
+    "type": "dir",
+    "name": "node",
+    "label": "节点"
+  }
 ]

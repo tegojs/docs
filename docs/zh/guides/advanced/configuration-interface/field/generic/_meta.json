@@ -1,1 +1,8 @@
-["table-column","form-item","detail-form-item","bulk-edit-form-item","filter-form-item","filter-collapse-item"]
+[
+  "table-column",
+  "form-item",
+  "detail-form-item",
+  "bulk-edit-form-item",
+  "filter-form-item",
+  "filter-collapse-item"
+]

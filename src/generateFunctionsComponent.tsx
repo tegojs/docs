@@ -1,7 +1,7 @@
 // generateFunctionsComponent.tsx
-import React, { useState } from "react";
-import { useLang } from "rspress/runtime";
-import { Card, Col, Input, Row, Table, Typography } from "antd";
+import React, { useState } from 'react';
+import { useLang } from 'rspress/runtime';
+import { Card, Col, Input, Row, Table, Typography } from 'antd';
 
 const { Title, Text } = Typography;
 
@@ -35,17 +35,17 @@ interface IGenerateFunctionsComponentProps {
  * 只负责将用户输入的公式执行，并将结果显示出来。
  */
 const generateFunctionsComponent = (
-  props: IGenerateFunctionsComponentProps
+  props: IGenerateFunctionsComponentProps,
 ) => {
   const { data } = props;
 
   const CommonFunctions: React.FC = () => {
     const lang = useLang();
-    const zhCN = lang === "zh";
-    const jaJP = lang === "ja-JP";
+    const zhCN = lang === 'zh';
+    const jaJP = lang === 'ja-JP';
 
-    const [formula, setFormula] = useState("");
-    const [result, setResult] = useState("");
+    const [formula, setFormula] = useState('');
+    const [result, setResult] = useState('');
 
     /**
      * 执行公式
@@ -54,19 +54,19 @@ const generateFunctionsComponent = (
     const executeFormula = (formulaStr: string) => {
       try {
         if (!formulaStr.trim()) {
-          setResult("");
+          setResult('');
           return;
         }
         // 注意：此处调用 Function(...) 时，若公式用到了特定库函数（如 math.sqrt），
         //       需要你事先把 math.sqrt 挂载到 window 上，否则会报错“未定义”。
         let evaluatedResult = Function(
-          '"use strict"; return (' + formulaStr + ")"
+          '"use strict"; return (' + formulaStr + ')',
         )();
 
         if (evaluatedResult instanceof Date) {
           evaluatedResult = evaluatedResult.toString();
         } else if (
-          typeof evaluatedResult === "object" &&
+          typeof evaluatedResult === 'object' &&
           evaluatedResult !== null
         ) {
           evaluatedResult = JSON.stringify(evaluatedResult);
@@ -100,11 +100,11 @@ const generateFunctionsComponent = (
      * 获取本地化文案的小工具
      */
     const getLocalizedText = (obj?: IFunctionDefinition): string => {
-      if (!obj) return "";
+      if (!obj) return '';
       if (zhCN && obj.cn) return obj.cn;
       if (jaJP && obj.ja) return obj.ja;
       // 默认英文
-      return obj.en || "";
+      return obj.en || '';
     };
 
     /**
@@ -112,29 +112,29 @@ const generateFunctionsComponent = (
      */
     const columns = [
       {
-        title: "Function",
-        dataIndex: "title",
-        key: "title",
-        width: "10%",
+        title: 'Function',
+        dataIndex: 'title',
+        key: 'title',
+        width: '10%',
         render: (text: string) => <Text strong>{text}</Text>,
       },
       {
-        title: "Definition",
-        dataIndex: "definition",
-        key: "definition",
-        width: "25%",
+        title: 'Definition',
+        dataIndex: 'definition',
+        key: 'definition',
+        width: '25%',
         render: (definition: IFunctionDefinition) => {
           return getLocalizedText(definition);
         },
       },
       {
-        title: "Example call",
-        dataIndex: "call",
-        key: "call",
-        width: "20%",
+        title: 'Example call',
+        dataIndex: 'call',
+        key: 'call',
+        width: '20%',
         render: (call: string) => (
           <Text
-            style={{ color: "#1677ff", cursor: "pointer" }}
+            style={{ color: '#1677ff', cursor: 'pointer' }}
             onClick={() => handleFunctionClick(call)}
           >
             {call}
@@ -142,19 +142,19 @@ const generateFunctionsComponent = (
         ),
       },
       {
-        title: "Parameters",
-        dataIndex: "parameterDefinitions",
-        key: "parameterDefinitions",
-        width: "20%",
+        title: 'Parameters',
+        dataIndex: 'parameterDefinitions',
+        key: 'parameterDefinitions',
+        width: '20%',
         render: (params: IFunctionDefinition) => {
           return getLocalizedText(params);
         },
       },
       {
-        title: "Expected result",
-        dataIndex: "result",
-        key: "result",
-        width: "25%",
+        title: 'Expected result',
+        dataIndex: 'result',
+        key: 'result',
+        width: '25%',
       },
     ];
 
@@ -185,12 +185,12 @@ const generateFunctionsComponent = (
                   <Card
                     size="small"
                     style={{
-                      backgroundColor: "#f6ffed",
-                      border: "1px solid #b7eb8f",
+                      backgroundColor: '#f6ffed',
+                      border: '1px solid #b7eb8f',
                       borderRadius: 4,
                     }}
                   >
-                    <Text style={{ fontWeight: "bold" }}>{result}</Text>
+                    <Text style={{ fontWeight: 'bold' }}>{result}</Text>
                   </Card>
                 </Col>
               </Row>
@@ -199,10 +199,10 @@ const generateFunctionsComponent = (
           <div style={{ marginTop: 16 }}>
             <Text>
               {zhCN
-                ? "点击下面表格中某函数的 Example call，可将示例自动填入上方输入框并执行。"
+                ? '点击下面表格中某函数的 Example call，可将示例自动填入上方输入框并执行。'
                 : jaJP
-                ? "下のテーブルの Example call をクリックすると、上の入力欄に自動的に入力して実行します。"
-                : "Click an Example call below to populate and execute in the input above."}
+                  ? '下のテーブルの Example call をクリックすると、上の入力欄に自動的に入力して実行します。'
+                  : 'Click an Example call below to populate and execute in the input above.'}
             </Text>
           </div>
         </Card>

@@ -3,27 +3,27 @@ import React, {
   type ReactNode,
   useCallback,
   useState,
-} from "react";
-import { usePageData } from "@rspress/core/runtime";
-import getImport from "_rspress_playground_imports";
-import { Runner, Editor  } from "@rspress/plugin-playground/web";
+} from 'react';
+import { usePageData } from '@rspress/core/runtime';
+import getImport from '_rspress_playground_imports';
+import { Runner, Editor } from '@rspress/plugin-playground/web';
 
 // inject by builder in cli/index.ts
 declare global {
   const __PLAYGROUND_DIRECTION__: any;
 }
 
-type Direction = "horizontal" | "vertical";
+type Direction = 'horizontal' | 'vertical';
 
 export interface PlaygroundProps extends HTMLAttributes<HTMLDivElement> {
   code: string;
   language: string;
   direction?: Direction;
-  editorPosition?: "left" | "right";
+  editorPosition?: 'left' | 'right';
   renderChildren?: (
     props: PlaygroundProps,
     code: string,
-    direction: Direction
+    direction: Direction,
   ) => ReactNode;
 }
 
@@ -49,14 +49,14 @@ function useDirection(props: PlaygroundProps): Direction {
     // ignore
   }
 
-  return "horizontal";
+  return 'horizontal';
 }
 
 export default function Playground(props: PlaygroundProps) {
   const {
     code: codeProp,
     language,
-    className = "",
+    className = '',
     direction: directionProp,
     editorPosition,
     renderChildren,
@@ -68,21 +68,21 @@ export default function Playground(props: PlaygroundProps) {
   const [code, setCode] = useState(codeProp);
 
   const handleCodeChange = useCallback((e?: string) => {
-    setCode(e || "");
+    setCode(e || '');
   }, []);
 
   const useReverseLayout =
-    direction === "horizontal" && editorPosition === "left";
+    direction === 'horizontal' && editorPosition === 'left';
 
   const monacoLanguage =
-    language === "tsx" || language === "ts" ? "typescript" : "javascript";
+    language === 'tsx' || language === 'ts' ? 'typescript' : 'javascript';
 
   const classNames = [
-    "rspress-playground",
+    'rspress-playground',
     `rspress-playground-${direction}`,
-    `rspress-playground-reverse-${useReverseLayout ? "y" : "n"}`,
+    `rspress-playground-reverse-${useReverseLayout ? 'y' : 'n'}`,
     className,
-  ].join(" ");
+  ].join(' ');
 
   return (
     <div className={classNames} {...rest}>

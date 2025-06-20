@@ -2,8 +2,8 @@ import {
   SchemaComponent,
   SchemaComponentProvider,
   useDesignable,
-} from "@tachybase/client";
-import React from "react";
+} from '@tachybase/client';
+import React from 'react';
 
 const Hello = () => <h1>Hello, world!</h1>;
 
@@ -14,8 +14,8 @@ const Page = ({ children }: { children: React.ReactElement }) => {
       <button
         onClick={() => {
           dn.insertAfterBegin({
-            type: "void",
-            "x-component": "Hello",
+            type: 'void',
+            'x-component': 'Hello',
           });
         }}
       >
@@ -27,9 +27,9 @@ const Page = ({ children }: { children: React.ReactElement }) => {
 };
 
 const schema = {
-  type: "void",
-  name: "page",
-  "x-component": "Page",
+  type: 'void',
+  name: 'page',
+  'x-component': 'Page',
 };
 
 export const DesignerDemo1 = () => {

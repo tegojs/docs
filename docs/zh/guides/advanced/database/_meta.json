@@ -10,7 +10,7 @@
     "name": "collection",
     "label": "数据表"
   },
-   {
+  {
     "type": "dir",
     "name": "field",
     "label": "数据表字段"

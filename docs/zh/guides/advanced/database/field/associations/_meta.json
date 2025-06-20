@@ -1,8 +1,1 @@
-[
-  "index",
-  "o2o(hasOne)",
-  "o2o(belongTo)",
-  "o2m",
-  "m2o",
-  "m2m"
-]
+["index", "o2o(hasOne)", "o2o(belongTo)", "o2m", "m2o", "m2m"]
