@@ -1,0 +1,22 @@
+[
+  {
+    "type": "dir",
+    "name": "application",
+    "label": "Application"
+  },
+  {
+    "type": "dir",
+    "name": "ui-schema",
+    "label": "UI Schema"
+  },
+  {
+    "type": "dir",
+    "name": "data-source",
+    "label": "Data Source"
+  },
+  {
+    "type": "dir",
+    "name": "data-block",
+    "label": "Data Block"
+  }
+]

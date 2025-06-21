@@ -1,0 +1,8 @@
+[
+  "Application",
+  "Plugin",
+  "PluginManager",
+  "RouterManager",
+  "SystemSettingsManager",
+  "Request"
+]

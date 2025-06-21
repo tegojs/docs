@@ -1,1 +1,25 @@
-["introduction", "summary"]
+[
+  {
+    "type": "dir",
+    "name": "start",
+    "label": "开始"
+  },
+  {
+    "type": "dir",
+    "name": "basic",
+    "collapsed": true,
+    "label": "基础"
+  },
+  {
+    "type": "dir",
+    "collapsed": true,
+    "name": "advanced",
+    "label": "进阶"
+  },
+  {
+    "type": "dir",
+    "collapsed": true,
+    "name": "practices",
+    "label": "最佳实践"
+  }
+]

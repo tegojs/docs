@@ -6,18 +6,28 @@
   },
   {
     "text": "Guide",
-    "link": "/guides/introduction",
+    "link": "/guides/start/introduction",
     "activeMatch": "^/guides/"
   },
   {
     "text": "API",
-    "link": "/api/introduction",
+    "link": "/api/overview",
     "activeMatch": "^/api/"
   },
   {
     "text": "Develop",
-    "link": "/develop/default",
+    "link": "/develop/introduction",
     "activeMatch": "^/develop/"
+  },
+  {
+    "text": "Plugins",
+    "link": "/plugins/plugin-list",
+    "activeMatch": "^/plugins/"
+  },
+  {
+    "text": "Roadmap",
+    "link": "/roadmap/roadmap",
+    "activeMatch": "^/roadmap/"
   },
   {
     "text": "Contribution",

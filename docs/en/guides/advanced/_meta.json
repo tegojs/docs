@@ -1,0 +1,34 @@
+[
+  "env",
+
+  {
+    "type": "dir",
+    "name": "database",
+    "collapsed": true,
+    "label": "数据建模"
+  },
+  {
+    "type": "dir",
+    "name": "configuration-interface",
+    "collapsed": true,
+    "label": "配置界面"
+  },
+  {
+    "type": "dir",
+    "name": "core",
+    "collapsed": true,
+    "label": "核心模块"
+  },
+  {
+    "type": "dir",
+    "name": "workflow",
+    "collapsed": true,
+    "label": "工作流"
+  },
+  {
+    "type": "dir",
+    "collapsed": true,
+    "name": "cloud-component",
+    "label": "云组件"
+  }
+]

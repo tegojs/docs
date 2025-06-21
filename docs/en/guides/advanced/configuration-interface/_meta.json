@@ -1,0 +1,28 @@
+[
+  "index",
+  "menu",
+  "page",
+  "modal",
+  {
+    "type": "dir",
+    "name": "block",
+    "label": "卡片"
+  },
+  {
+    "type": "dir",
+    "name": "field",
+    "label": "字段"
+  },
+  {
+    "type": "dir",
+    "name": "actions",
+    "label": "操作"
+  },
+  "variable",
+  {
+    "type": "dir",
+    "name": "template-json",
+    "label": "模版引擎"
+  },
+  "mobile"
+]

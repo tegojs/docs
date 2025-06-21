@@ -1,0 +1,11 @@
+[
+  "index",
+  "file-collection",
+  "field-attachment",
+  {
+    "type": "dir",
+    "name": "storage",
+    "label": "文件存储引擎"
+  },
+  "development"
+]

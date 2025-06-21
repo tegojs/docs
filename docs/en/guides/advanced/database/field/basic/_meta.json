@@ -1,0 +1,13 @@
+[
+  "input",
+  "textarea",
+  "phone",
+  "email",
+  "URL",
+  "integer",
+  "number",
+  "percent",
+  "password",
+  "color",
+  "icon"
+]

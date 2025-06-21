@@ -1,0 +1,9 @@
+[
+  "index",
+  "alc",
+  {
+    "type": "dir",
+    "name": "departments",
+    "label": "部门"
+  }
+]

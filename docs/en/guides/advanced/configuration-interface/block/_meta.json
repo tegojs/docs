@@ -1,0 +1,24 @@
+[
+  "index",
+  {
+    "type": "dir",
+    "name": "data-blocks",
+    "label": "数据卡片"
+  },
+  {
+    "type": "dir",
+    "name": "filter-blocks",
+    "label": "筛选卡片"
+  },
+  {
+    "type": "dir",
+    "name": "other-blocks",
+    "label": "自定义卡片"
+  },
+  "block-templates",
+  {
+    "type": "dir",
+    "name": "block-settings",
+    "label": "卡片设置项"
+  }
+]
