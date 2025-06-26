@@ -20,6 +20,7 @@
     "rspress": "1.44.0",
     "rspress-plugin-mermaid": "0.3.0"
   },
+  "packageManager": "pnpm@10.12.3",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@rspress/plugin-playground": "1.44.0",
