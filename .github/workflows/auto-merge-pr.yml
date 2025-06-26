@@ -7,7 +7,9 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
+    if: |
+      github.event.pull_request.draft == false && 
+      startsWith(github.event.pull_request.head.ref, 'sync/plugins-list-')
     
     steps:
       - name: Check required labels
@@ -59,6 +61,26 @@ jobs:
             } catch (error) {
               console.error('❌ Merge failed:', error.message);
               core.setFailed(error.message);
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete source branch
+        if: steps.check-labels.outputs.should_merge == 'true' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${context.payload.pull_request.head.ref}`
+              });
+              console.log(`✅ Source branch '${context.payload.pull_request.head.ref}' has been deleted`);
+            } catch (error) {
+              console.error(`❌ Failed to delete source branch: ${error.message}`);
+              // Don't fail the workflow if branch deletion fails
+              console.log('⚠️ Continuing workflow execution...');
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
