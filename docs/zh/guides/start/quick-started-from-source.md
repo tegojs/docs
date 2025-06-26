@@ -15,13 +15,13 @@ $ pnpm -v
 ## 1.安装项目
 
 ```bash
-git clone https://github.com/tachybase/tachybase.git -b main --depth=1 my-tachybase
+git clone https://github.com/tachybase/tachybase.git
 ```
 
 ## 2. 切换目录
 
 ```bash
-cd my-tachybase
+cd tachybase
 ```
 
 ## 3. 安装依赖
@@ -47,13 +47,11 @@ DB_USER=tachybase
 DB_PASSWORD=tachybase
 ```
 
-:::warning
 
-  - `TZ` 用于设置应用的时区，默认为操作系统时区；
-  - `APP_KEY` 是应用的密钥，用于生成用户 token 等（如果 APP_KEY 修改了，旧的 token 也会随之失效）。它可以是任意随机字符串。请修改为自己的秘钥，并确保不对外泄露；
-  - `DB_*` 为数据库相关，如果不是例子默认的数据库服务，请根据实际情况修改。
+>  - `TZ` 用于设置应用的时区，默认为操作系统时区；
+>  - `APP_KEY` 是应用的密钥，用于生成用户 token 等（如果 APP_KEY 修改了，旧的 token 也会随之失效）。它可以是任意随机字符串。请修改为自己的秘钥，并确保不对外泄露；
+>  - `DB_*` 为数据库相关，如果不是例子默认的数据库服务，请根据实际情况修改。
 
-::: 
 
 ## 5. 初始化灵矶
 
