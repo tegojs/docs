@@ -135,22 +135,8 @@ export default defineConfig({
             async: true
           },
         },
-        {
-          tag: 'script',
-          attrs: {
-            src: 'https://utteranc.es/client.js',
-            repo: 'tachybase/docs',
-            "issue-term": "pathname",
-            theme: "github-light",
-
-            crossorigin: "anonymous",
-
-            async: true
-
-          },
-        },
       ],
     },
   },
-  globalUIComponents: [path.join(__dirname, 'src', 'MyComponent.tsx')],
+  globalUIComponents: [path.join(__dirname, 'src', 'Footer.tsx')],
 });
