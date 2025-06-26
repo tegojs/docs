@@ -125,4 +125,17 @@ export default defineConfig({
       description: '静态网站生成器',
     },
   ],
+  builderConfig: {
+    html: {
+      tags: [
+        {
+          tag: 'script',
+          attrs: {
+            src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
+          },
+        },
+      ],
+    },
+  },
+  globalUIComponents: [path.join(__dirname, 'src', 'MyComponent.tsx')],
 });
