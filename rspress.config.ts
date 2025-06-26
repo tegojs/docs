@@ -132,6 +132,21 @@ export default defineConfig({
           tag: 'script',
           attrs: {
             src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
+            async: true
+          },
+        },
+        {
+          tag: 'script',
+          attrs: {
+            src: 'https://utteranc.es/client.js',
+            repo: 'tachybase/docs',
+            "issue-term": "pathname",
+            theme: "github-light",
+
+            crossorigin: "anonymous",
+
+            async: true
+
           },
         },
       ],

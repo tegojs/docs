@@ -18,6 +18,7 @@ export default function PluginUI() {
         本文总阅读量
         <span id="busuanzi_value_page_pv" />次
       </span>
+      <div id="utterances"  />
     </div>
-  );
+  )
 }
