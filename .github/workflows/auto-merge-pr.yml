@@ -1,0 +1,91 @@
+name: Auto Merge PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled, unlabeled]
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.pull_request.draft == false && 
+      startsWith(github.event.pull_request.head.ref, 'sync/plugins-list-')
+    
+    steps:
+      - name: Check required labels
+        id: check-labels
+        run: |
+          # Get all labels of the PR
+          echo "PR labels: ${{ toJSON(github.event.pull_request.labels) }}"
+          
+          # Check if it contains the required three labels
+          has_automated=false
+          has_documentation=false
+          has_sync=false
+          
+          # Check for automated label
+          if echo '${{ toJSON(github.event.pull_request.labels) }}' | jq -e '.[] | select(.name == "automated")' > /dev/null; then
+            has_automated=true
+          fi
+          
+          # Check for documentation label
+          if echo '${{ toJSON(github.event.pull_request.labels) }}' | jq -e '.[] | select(.name == "documentation")' > /dev/null; then
+            has_documentation=true
+          fi
+          
+          # Check for sync label
+          if echo '${{ toJSON(github.event.pull_request.labels) }}' | jq -e '.[] | select(.name == "sync")' > /dev/null; then
+            has_sync=true
+          fi
+          
+          # If all three labels are present, set output to true
+          if [ "$has_automated" = "true" ] && [ "$has_documentation" = "true" ] && [ "$has_sync" = "true" ]; then
+            echo "should_merge=true" >> $GITHUB_OUTPUT
+            echo "✅ PR contains all required labels: automated, documentation, sync"
+          else
+            echo "should_merge=false" >> $GITHUB_OUTPUT
+            echo "❌ PR missing required labels:"
+            echo "  - automated: $has_automated"
+            echo "  - documentation: $has_documentation"
+            echo "  - sync: $has_sync"
+          fi
+
+      - name: Auto merge PR
+        if: steps.check-labels.outputs.should_merge == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+                merge_method: 'squash'
+              });
+              console.log('✅ PR has been auto-merged');
+            } catch (error) {
+              console.error('❌ Merge failed:', error.message);
+              core.setFailed(error.message);
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete source branch
+        if: steps.check-labels.outputs.should_merge == 'true' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${context.payload.pull_request.head.ref}`
+              });
+              console.log(`✅ Source branch '${context.payload.pull_request.head.ref}' has been deleted`);
+            } catch (error) {
+              console.error(`❌ Failed to delete source branch: ${error.message}`);
+              // Don't fail the workflow if branch deletion fails
+              console.log('⚠️ Continuing workflow execution...');
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
