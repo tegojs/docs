@@ -16,14 +16,14 @@ jobs:
         id: check-labels
         run: |
           # Get all labels of the PR
-          labels="${{ github.event.pull_request.labels.*.name }}"
+          labels=$(echo '${{ toJSON(github.event.pull_request.labels) }}' | jq -r '.[].name')
           
           # Check if it contains the required three labels
           has_automated=false
           has_documentation=false
           has_sync=false
           
-          for label in $labels; do
+          while IFS= read -r label; do
             if [ "$label" = "automated" ]; then
               has_automated=true
             elif [ "$label" = "documentation" ]; then
@@ -31,7 +31,7 @@ jobs:
             elif [ "$label" = "sync" ]; then
               has_sync=true
             fi
-          done
+          done <<< "$labels"
           
           # If all three labels are present, set output to true
           if [ "$has_automated" = "true" ] && [ "$has_documentation" = "true" ] && [ "$has_sync" = "true" ]; then
