@@ -35,23 +35,20 @@ export default defineConfig({
         lang: "en",
         label: "dd",
         outlineTitle: "ON THIS Page",
-      editLink: {
-        docRepoBaseUrl:
-          "https://github.com/tegojs/docs/tree/main/docs",
-        text: "📝 Edit this page on GitHub",
-      },
+        editLink: {
+          docRepoBaseUrl: "https://github.com/tegojs/docs/tree/main/docs",
+          text: "📝 Edit this page on GitHub",
+        },
       },
       {
         lang: "zh",
         label: "dd",
         outlineTitle: "大纲",
-      editLink: {
-        docRepoBaseUrl:
-          "https://github.com/tegojs/docs/tree/main/docs",
-        text: "📝 在 GitHub 上编辑此页",
+        editLink: {
+          docRepoBaseUrl: "https://github.com/tegojs/docs/tree/main/docs",
+          text: "📝 在 GitHub 上编辑此页",
+        },
       },
-      },
-
     ],
   },
   lang: "zh",
@@ -83,5 +80,4 @@ export default defineConfig({
       ],
     },
   },
-  globalUIComponents: [path.join(__dirname, "src", "Footer.tsx")],
 });
