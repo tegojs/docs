@@ -1,5 +1,6 @@
-import { Layout } from "@rspress/theme-default";
+import { HomeLayout } from "./HomeLayout";
+import { Layout } from "./Layout";
 
-export { Layout };
+export { Layout, HomeLayout };
 
 export * from "rspress/theme";
