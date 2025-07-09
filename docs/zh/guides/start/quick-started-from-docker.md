@@ -8,7 +8,7 @@
 ## 1.运行项目
 
 ```bash
-docker run -p 3000:3000  tachybase/tachybase-all:latest
+docker run -p 3000:3000  tegojs/tego-all:latest
 ```
 
 ## 2. 访问灵矶

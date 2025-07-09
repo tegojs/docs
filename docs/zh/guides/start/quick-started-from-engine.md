@@ -3,18 +3,18 @@
 ## 0.先决条件
  请确保你已经：
 
-- 安装了 Node.js 20.18.0 及以上版本
+- 安装了 Node.js 20.19.0 及以上版本
 
  ```bash
 $ node -v 
-v20.18.0
+v20.19.0
  ```
 
 ## 1.安装项目
 
 ```bash
 # 初始化环境
-npx @tachybase/engine init my-app
+npx tego init my-app
 
 # 切换到对应目录
 cd my-app
@@ -47,7 +47,7 @@ DB_PASSWORD=tachybase
 ## 3. 启动灵矶
 
 ```bash
-npx @tachybase/engine start --quickstart
+npx tego start --quickstart
 ```
 
 ## 4. 访问灵矶

@@ -3,25 +3,25 @@
 ## 0.先决条件
  请确保你已经：
 
-- 安装了 Node.js 20.18.0 及以上版本 + pnpm 10.12.1 
+- 安装了 Node.js 20.19.0 及以上版本 + pnpm 10.12.4 
 
  ```bash
 $ node -v 
-v20.18.0
+v20.19.0
 $ pnpm -v
-10.12.1
+10.12.4
  ```
 
 ## 1.安装项目
 
 ```bash
-git clone https://github.com/tachybase/tachybase.git
+git clone https://github.com/tegojs/tego.git
 ```
 
 ## 2. 切换目录
 
 ```bash
-cd tachybase
+cd tego
 ```
 
 ## 3. 安装依赖
@@ -34,7 +34,7 @@ pnpm install
 
 ## 4. 设置环境变量
 
-Tachybase 所需的环境变量储存在根目录 `.env` 文件里，根据实际情况修改环境变量，如果你不知道怎么改，[点此查看环境变量说明](../env.md)，也可以保持默认。
+Tego 所需的环境变量储存在根目录 `.env` 文件里，根据实际情况修改环境变量，如果你不知道怎么改，[点此查看环境变量说明](../env.md)，也可以保持默认。
 
 ```bash
 TZ=Asia/Shanghai
