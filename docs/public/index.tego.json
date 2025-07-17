@@ -1,0 +1,20 @@
+{
+  "$schema": "./index.tego.schema.json",
+  "plugins": [
+    {
+      "name": "tego-plugin-logger",
+      "source": "npm",
+      "required": true
+    }
+  ],
+  "collections": {
+    "core": [
+      "tego-plugin-logger",
+      {
+        "name": "tego-plugin-config",
+        "source": "url",
+        "url": "https://cdn.example.com/plugins/config.tar.gz"
+      }
+    ]
+  }
+}

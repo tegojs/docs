@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tego Plugin Index Schema",
+  "type": "object",
+  "properties": {
+    "plugins": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/plugin"
+      }
+    },
+    "collections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "#/definitions/plugin" }
+          ]
+        }
+      }
+    }
+  },
+  "required": ["plugins"],
+  "definitions": {
+    "plugin": {
+      "type": "object",
+      "required": ["name", "source"],
+      "properties": {
+        "name": { "type": "string" },
+        "source": {
+          "type": "string",
+          "enum": ["npm", "url"]
+        },
+        "registry": {
+          "type": "string",
+          "format": "uri"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "source": { "const": "npm" } }
+          },
+          "then": {
+            "required": []
+          }
+        },
+        {
+          "if": {
+            "properties": { "source": { "const": "url" } }
+          },
+          "then": {
+            "required": ["url"]
+          }
+        }
+      ]
+    }
+  }
+}
