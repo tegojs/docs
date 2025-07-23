@@ -40,34 +40,35 @@
 | 36 | `@tachybase/plugin-department` | 部门 | 将用户划分在树状的部门里,也可以给部门分配角色 | 1.3.19 |
 | 37 | `@tachybase/plugin-devkit` | plugin-devkit |  | 1.3.19 |
 | 38 | `@tachybase/plugin-devtools` | 开发工具 | 开发工具,用于查看Api文档,中间件,环境变量,事件等信息 | 1.3.19 |
-| 39 | `@tachybase/plugin-field-china-region` | 字段：中国行政区划 | 提供中国行政区划数据和字段类型。 | 1.3.19 |
-| 40 | `@tachybase/plugin-field-encryption` | 数据表字段：加密字段 | 加密字段 | 1.3.19 |
-| 41 | `@tachybase/plugin-field-formula` | 数据表字段：公式 | 可以配置并存储同一条记录的多字段值之间的计算结果，支持 Math.js 和 Excel formula functions 两种引擎 | 1.3.19 |
-| 42 | `@tachybase/plugin-field-markdown-vditor` | 数据表字段：Markdown(Vditor) | 用于存储 Markdown，并使用 Vditor 编辑器渲染，支持常见 Markdown 语法，如列表，代码，引用等，并支持上传图片，录音等。同时可以做到即时渲染，所见即所得。 | 1.3.19 |
-| 43 | `@tachybase/plugin-field-sequence` | 数据表字段：自动编码 | 根据配置的规则自动生成编码，支持日期、数字、文本的组合。 | 1.3.19 |
-| 44 | `@tachybase/plugin-field-snapshot` | 数据表字段：关系快照 | 在添加数据时，为它的关系数据创建快照，并保存在当前的数据中。关系数据更新时，快照不会更新。 | 1.3.19 |
-| 45 | `@tachybase/plugin-full-text-search` | 全文搜索 | 提供全字段搜索能力 | 1.3.19 |
-| 46 | `@tachybase/plugin-i18n-editor` | 本地化 | 支持管理应用程序的本地化资源。 | 1.3.19 |
-| 47 | `@tachybase/plugin-log-viewer` | 日志 | 服务端日志，主要包括接口请求日志和系统运行日志，并支持打包和下载日志文件。 | 1.3.19 |
-| 48 | `@tachybase/plugin-manual-notification` | 广播通知 | 用于给所有在线人员发送通知，包括系统更新，重要事件 | 1.3.19 |
-| 49 | `@tachybase/plugin-mock-collections` | mock-collections | mock-collections | 1.3.19 |
-| 50 | `@tachybase/plugin-multi-app-share-collection` | 多应用数据共享 | 多应用数据共享 | 1.3.19 |
-| 51 | `@tachybase/plugin-ocr-convert` | OCR 转换 | OCR 转换插件 | 1.3.19 |
-| 52 | `@tachybase/plugin-online-user` | 在线用户管理（建设中） | 在线用户管理（建设中） | 1.3.19 |
-| 53 | `@tachybase/plugin-otp` | 验证码 | 验证码配置。 | 1.3.19 |
-| 54 | `@tachybase/plugin-password-policy` | 密码策略 | 密码策略, 包含密码强度、密码尝试次数限制、密码锁定时间、ip黑白名单等 | 1.3.19 |
-| 55 | `@tachybase/plugin-print-template` | plugin-prototype-print-template |  | 1.3.19 |
-| 56 | `@tachybase/plugin-simple-cms` | 内容管理 | 内容管理 | 1.3.19 |
-| 57 | `@tachybase/plugin-sub-accounts` | 子账户和合成角色 | 生成合成角色,每个用户可以生成自己的子账户(未完成) | 1.3.19 |
-| 58 | `@tachybase/plugin-text-copy` | 文本复制 | 为文本字段添加复制按钮 | 1.3.19 |
-| 59 | `@tachybase/plugin-theme-editor` | 主题编辑器 | 自定义 UI 的颜色、尺寸等，并将结果保存为主题，可在多个主题间切换。 | 1.3.19 |
-| 60 | `@tachybase/plugin-wechat-official-account` | plugin-prototype-wechat-official-account |  | 1.3.19 |
-| 61 | `@tachybase/plugin-workflow-analysis` | 工作流分析工具 | 工作流分析工具：用于时间消耗和错误分析 | 1.3.19 |
-| 62 | `@tachybase/plugin-workflow-approval` | 审批 | 审批系统是一个强大的BPM工具，为业务流程自动化提供基础支持，同时具备高度灵活性和可扩展性，确保审批流程的效率和合规性，助力企业释放创新潜力。 | 1.3.19 |
-| 63 | `@tachybase/plugin-workflow-test` | 工作流：测试工具包 | 工作流测试工具包 | 1.3.19 |
+| 39 | `@tachybase/plugin-evaluator-mathjs` | MathJS 表达式评估器 | MathJS 表达式评估器, 提供数学表达式评估功能 | 1.3.19 |
+| 40 | `@tachybase/plugin-field-china-region` | 字段：中国行政区划 | 提供中国行政区划数据和字段类型。 | 1.3.19 |
+| 41 | `@tachybase/plugin-field-encryption` | 数据表字段：加密字段 | 加密字段 | 1.3.19 |
+| 42 | `@tachybase/plugin-field-formula` | 数据表字段：公式 | 可以配置并存储同一条记录的多字段值之间的计算结果，支持 Math.js 和 Excel formula functions 两种引擎 | 1.3.19 |
+| 43 | `@tachybase/plugin-field-markdown-vditor` | 数据表字段：Markdown(Vditor) | 用于存储 Markdown，并使用 Vditor 编辑器渲染，支持常见 Markdown 语法，如列表，代码，引用等，并支持上传图片，录音等。同时可以做到即时渲染，所见即所得。 | 1.3.19 |
+| 44 | `@tachybase/plugin-field-sequence` | 数据表字段：自动编码 | 根据配置的规则自动生成编码，支持日期、数字、文本的组合。 | 1.3.19 |
+| 45 | `@tachybase/plugin-field-snapshot` | 数据表字段：关系快照 | 在添加数据时，为它的关系数据创建快照，并保存在当前的数据中。关系数据更新时，快照不会更新。 | 1.3.19 |
+| 46 | `@tachybase/plugin-full-text-search` | 全文搜索 | 提供全字段搜索能力 | 1.3.19 |
+| 47 | `@tachybase/plugin-i18n-editor` | 本地化 | 支持管理应用程序的本地化资源。 | 1.3.19 |
+| 48 | `@tachybase/plugin-log-viewer` | 日志 | 服务端日志，主要包括接口请求日志和系统运行日志，并支持打包和下载日志文件。 | 1.3.19 |
+| 49 | `@tachybase/plugin-manual-notification` | 广播通知 | 用于给所有在线人员发送通知，包括系统更新，重要事件 | 1.3.19 |
+| 50 | `@tachybase/plugin-mock-collections` | mock-collections | mock-collections | 1.3.19 |
+| 51 | `@tachybase/plugin-multi-app-share-collection` | 多应用数据共享 | 多应用数据共享 | 1.3.19 |
+| 52 | `@tachybase/plugin-ocr-convert` | OCR 转换 | OCR 转换插件 | 1.3.19 |
+| 53 | `@tachybase/plugin-online-user` | 在线用户管理（建设中） | 在线用户管理（建设中） | 1.3.19 |
+| 54 | `@tachybase/plugin-otp` | 验证码 | 验证码配置。 | 1.3.19 |
+| 55 | `@tachybase/plugin-password-policy` | 密码策略 | 密码策略, 包含密码强度、密码尝试次数限制、密码锁定时间、ip黑白名单等 | 1.3.19 |
+| 56 | `@tachybase/plugin-print-template` | plugin-prototype-print-template |  | 1.3.19 |
+| 57 | `@tachybase/plugin-simple-cms` | 内容管理 | 内容管理 | 1.3.19 |
+| 58 | `@tachybase/plugin-sub-accounts` | 子账户和合成角色 | 生成合成角色,每个用户可以生成自己的子账户(未完成) | 1.3.19 |
+| 59 | `@tachybase/plugin-text-copy` | 文本复制 | 为文本字段添加复制按钮 | 1.3.19 |
+| 60 | `@tachybase/plugin-theme-editor` | 主题编辑器 | 自定义 UI 的颜色、尺寸等，并将结果保存为主题，可在多个主题间切换。 | 1.3.19 |
+| 61 | `@tachybase/plugin-wechat-official-account` | plugin-prototype-wechat-official-account |  | 1.3.19 |
+| 62 | `@tachybase/plugin-workflow-analysis` | 工作流分析工具 | 工作流分析工具：用于时间消耗和错误分析 | 1.3.19 |
+| 63 | `@tachybase/plugin-workflow-approval` | 审批 | 审批系统是一个强大的BPM工具，为业务流程自动化提供基础支持，同时具备高度灵活性和可扩展性，确保审批流程的效率和合规性，助力企业释放创新潜力。 | 1.3.19 |
+| 64 | `@tachybase/plugin-workflow-test` | 工作流：测试工具包 | 工作流测试工具包 | 1.3.19 |
 
 ## 统计信息
 
-- **总插件数量**: 63
-- **最后更新时间**: 2025/7/23 14:12:34
+- **总插件数量**: 64
+- **最后更新时间**: 2025/7/23 17:42:25
 - **生成来源**: tachybase/tachybase 仓库
