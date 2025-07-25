@@ -62,13 +62,14 @@
 | 58 | `@tachybase/plugin-sub-accounts` | 子账户和合成角色 | 生成合成角色,每个用户可以生成自己的子账户(未完成) | 1.3.21 |
 | 59 | `@tachybase/plugin-text-copy` | 文本复制 | 为文本字段添加复制按钮 | 1.3.21 |
 | 60 | `@tachybase/plugin-theme-editor` | 主题编辑器 | 自定义 UI 的颜色、尺寸等，并将结果保存为主题，可在多个主题间切换。 | 1.3.21 |
-| 61 | `@tachybase/plugin-wechat-official-account` | plugin-prototype-wechat-official-account |  | 1.3.21 |
-| 62 | `@tachybase/plugin-workflow-analysis` | 工作流分析工具 | 工作流分析工具：用于时间消耗和错误分析 | 1.3.21 |
-| 63 | `@tachybase/plugin-workflow-approval` | 审批 | 审批系统是一个强大的BPM工具，为业务流程自动化提供基础支持，同时具备高度灵活性和可扩展性，确保审批流程的效率和合规性，助力企业释放创新潜力。 | 1.3.21 |
-| 64 | `@tachybase/plugin-workflow-test` | 工作流：测试工具包 | 工作流测试工具包 | 1.3.21 |
+| 61 | `@tachybase/plugin-user-manual-feishu` | 飞书使用手册 | 飞书使用手册 | 1.3.21 |
+| 62 | `@tachybase/plugin-wechat-official-account` | plugin-prototype-wechat-official-account |  | 1.3.21 |
+| 63 | `@tachybase/plugin-workflow-analysis` | 工作流分析工具 | 工作流分析工具：用于时间消耗和错误分析 | 1.3.21 |
+| 64 | `@tachybase/plugin-workflow-approval` | 审批 | 审批系统是一个强大的BPM工具，为业务流程自动化提供基础支持，同时具备高度灵活性和可扩展性，确保审批流程的效率和合规性，助力企业释放创新潜力。 | 1.3.21 |
+| 65 | `@tachybase/plugin-workflow-test` | 工作流：测试工具包 | 工作流测试工具包 | 1.3.21 |
 
 ## 统计信息
 
-- **总插件数量**: 64
-- **最后更新时间**: 2025/7/25 17:28:18
+- **总插件数量**: 65
+- **最后更新时间**: 2025/7/25 17:51:14
 - **生成来源**: tachybase/tachybase 仓库
