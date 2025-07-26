@@ -15,7 +15,7 @@ $ pnpm -v
 ## 1.安装项目
 
 ```bash
-git clone https://github.com/tegojs/tego.git
+git clone https://github.com/tegojs/tego-standard.git
 ```
 
 ## 2. 切换目录
