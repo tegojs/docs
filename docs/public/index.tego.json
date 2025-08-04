@@ -2,19 +2,536 @@
   "$schema": "./index.tego.schema.json",
   "plugins": [
     {
-      "name": "tego-plugin-logger",
+      "name": "@tachybase/module-acl",
       "source": "npm",
       "required": true
+    },
+    {
+      "name": "@tachybase/module-app-info",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-auth",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-backup",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-cloud-component",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-collection",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-cron",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-data-source",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-env-secrets",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-error-handler",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-event-source",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-file",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-hera",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-instrumentation",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-message",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-multi-app",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-pdf",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-ui-schema",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-user",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-web",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-worker-thread",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/module-workflow",
+      "source": "npm",
+      "required": true
+    },
+    {
+      "name": "@tachybase/plugin-action-bulk-edit",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-bulk-update",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-custom-request",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-duplicate",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-export",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-import",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-print",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-action-share",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-adapter-bullmq",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-adapter-red-node",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-adapter-remix",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-ai-chat",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-api-keys",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-api-logs",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-audit-logs",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-cas",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-dingtalk",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-main-app",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-oidc",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-pages",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-lark",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-saml",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-sms",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-wechat",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-auth-wecom",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-calendar",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-charts",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-comments",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-gantt",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-kanban",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-map",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-presentation",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-block-step-form",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-data-source-common",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-department",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-devkit",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-devtools",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-evaluator-mathjs",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-china-region",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-encryption",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-formula",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-markdown-vditor",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-sequence",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-field-snapshot",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-form-design",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-full-text-search",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-i18n-editor",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-log-viewer",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-manual-notification",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-mock-collections",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-multi-app-share-collection",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-ocr-convert",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-otp",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-password-policy",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-demos-game-runesweeper",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-online-user",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-print-template",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-simple-cms",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-wechat-official-account",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-sub-accounts",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-text-copy",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-theme-editor",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-user-manual-feishu",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-workflow-analysis",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-workflow-approval",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-workflow-test",
+      "source": "npm",
+      "required": false
     }
   ],
   "collections": {
-    "core": [
-      "tego-plugin-logger",
-      {
-        "name": "tego-plugin-config",
-        "source": "url",
-        "url": "https://cdn.example.com/plugins/config.tar.gz"
-      }
+    "standard": [
+      "@tachybase/module-acl",
+      "@tachybase/module-app-info",
+      "@tachybase/module-auth",
+      "@tachybase/module-backup",
+      "@tachybase/module-cloud-component",
+      "@tachybase/module-collection",
+      "@tachybase/module-cron",
+      "@tachybase/module-data-source",
+      "@tachybase/module-env-secrets",
+      "@tachybase/module-error-handler",
+      "@tachybase/module-event-source",
+      "@tachybase/module-file",
+      "@tachybase/module-hera",
+      "@tachybase/module-instrumentation",
+      "@tachybase/module-message",
+      "@tachybase/module-multi-app",
+      "@tachybase/module-pdf",
+      "@tachybase/module-ui-schema",
+      "@tachybase/module-user",
+      "@tachybase/module-web",
+      "@tachybase/module-worker-thread",
+      "@tachybase/module-workflow",
+      "@tachybase/plugin-action-bulk-edit",
+      "@tachybase/plugin-action-bulk-update",
+      "@tachybase/plugin-action-custom-request",
+      "@tachybase/plugin-action-duplicate",
+      "@tachybase/plugin-action-export",
+      "@tachybase/plugin-action-import",
+      "@tachybase/plugin-action-print",
+      "@tachybase/plugin-action-share",
+      "@tachybase/plugin-adapter-bullmq",
+      "@tachybase/plugin-adapter-red-node",
+      "@tachybase/plugin-adapter-remix",
+      "@tachybase/plugin-ai-chat",
+      "@tachybase/plugin-api-keys",
+      "@tachybase/plugin-api-logs",
+      "@tachybase/plugin-audit-logs",
+      "@tachybase/plugin-auth-cas",
+      "@tachybase/plugin-auth-dingtalk",
+      "@tachybase/plugin-auth-main-app",
+      "@tachybase/plugin-auth-oidc",
+      "@tachybase/plugin-auth-pages",
+      "@tachybase/plugin-auth-lark",
+      "@tachybase/plugin-auth-saml",
+      "@tachybase/plugin-auth-sms",
+      "@tachybase/plugin-auth-wechat",
+      "@tachybase/plugin-auth-wecom",
+      "@tachybase/plugin-block-calendar",
+      "@tachybase/plugin-block-charts",
+      "@tachybase/plugin-block-comments",
+      "@tachybase/plugin-block-gantt",
+      "@tachybase/plugin-block-kanban",
+      "@tachybase/plugin-block-map",
+      "@tachybase/plugin-block-presentation",
+      "@tachybase/plugin-block-step-form",
+      "@tachybase/plugin-data-source-common",
+      "@tachybase/plugin-department",
+      "@tachybase/plugin-devkit",
+      "@tachybase/plugin-devtools",
+      "@tachybase/plugin-evaluator-mathjs",
+      "@tachybase/plugin-field-china-region",
+      "@tachybase/plugin-field-encryption",
+      "@tachybase/plugin-field-formula",
+      "@tachybase/plugin-field-markdown-vditor",
+      "@tachybase/plugin-field-sequence",
+      "@tachybase/plugin-field-snapshot",
+      "@tachybase/plugin-form-design",
+      "@tachybase/plugin-full-text-search",
+      "@tachybase/plugin-i18n-editor",
+      "@tachybase/plugin-log-viewer",
+      "@tachybase/plugin-manual-notification",
+      "@tachybase/plugin-mock-collections",
+      "@tachybase/plugin-multi-app-share-collection",
+      "@tachybase/plugin-ocr-convert",
+      "@tachybase/plugin-otp",
+      "@tachybase/plugin-password-policy",
+      "@tachybase/plugin-demos-game-runesweeper",
+      "@tachybase/plugin-online-user",
+      "@tachybase/plugin-print-template",
+      "@tachybase/plugin-simple-cms",
+      "@tachybase/plugin-wechat-official-account",
+      "@tachybase/plugin-sub-accounts",
+      "@tachybase/plugin-text-copy",
+      "@tachybase/plugin-theme-editor",
+      "@tachybase/plugin-user-manual-feishu",
+      "@tachybase/plugin-workflow-analysis",
+      "@tachybase/plugin-workflow-approval",
+      "@tachybase/plugin-workflow-test"
     ]
   }
 }
