@@ -140,7 +140,7 @@ export const BusinessSection = () => {
             style={{
               display: 'inline-block',
               padding: '16px 32px',
-              background: '#d8dfff50', // 稍加不透明感
+              background: '#d8dfff50',
               color: isDark ? '#FFFFFFDB' : '#444444FF',
               textDecoration: 'none',
               borderRadius: '8px',
