@@ -67,6 +67,7 @@ export default defineConfig({
       description: "静态网站生成器",
     },
   ],
+  globalStyles: '/styles/index.css',
   builderConfig: {
     html: {
       tags: [

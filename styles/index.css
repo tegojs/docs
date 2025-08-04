@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+:root {
+    --rp-c-brand: #f00;
+}
