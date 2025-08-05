@@ -1,5 +1,7 @@
 export const bussinessLink = 'https://tachybase.com'
 
+export const USER_MANUAL_URL_FEISHU = 'https://fwi6d8nomva.feishu.cn/wiki/space/7423955220489175042'
+
 export const chineseContent = {
   title: '企业级服务',
   subtitle: '需要专业的技术支持和定制化解决方案？',
