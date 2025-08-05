@@ -21,7 +21,7 @@ export const UseCase = () => {
     return (
         <div
             className={clsx(
-                "relative text-center pb-[200px] px-4 sm:px-6 lg:px-8 pt-10",
+                "relative text-center pb-[200px] px-4 sm:px-6 lg:px-8 pt-30",
                 isDark ? "bg-[#1C1D38]" : "bg-white"
             )}
         >
@@ -30,12 +30,12 @@ export const UseCase = () => {
                     style={{
                         fontSize: '2rem',
                         fontWeight: 500,
-                        marginBottom: '3rem',
+                        marginBottom: '3.5rem',
                         color: isDark ? '#FFFFFFDB' : '#444444'
                     }}>
                     {isEnglish ? "Use Cases" : "应用场景"}
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 justify-items-center">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 justify-items-center">
                     {scenarios.map((item, idx) => (
                         <div
                             key={idx}

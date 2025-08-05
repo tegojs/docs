@@ -11,7 +11,7 @@ export const DescriptionCard: React.FC<DescriptionCardProps> = ({ title, desc, i
     const isDark = useDark();
     return (
         <div style={{
-            position: 'relative',
+            // position: 'relative',
             background: isDark ? 'none' : 'rgba(255, 255, 255, 0.1)',
             padding: '2rem',
             borderRadius: '12px',
@@ -21,7 +21,7 @@ export const DescriptionCard: React.FC<DescriptionCardProps> = ({ title, desc, i
             justifyItems: 'center',
         }}>
             {icon && (
-                <img src={icon} alt={title} style={{ width: 80, height: 80, marginBottom: 12 }} />
+                <img src={icon} alt={title} style={{ width: 80, height: 80, margin: '0 auto 12px', }} />
             )}
             <h3 style={{
                 fontSize: '1.3rem',
