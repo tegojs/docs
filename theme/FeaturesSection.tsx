@@ -8,15 +8,18 @@ export const FeaturesSection = () => {
         title: 'Features',
         flexibility: {
             title: 'Flexibility',
-            desc: 'Flexible and extensible features that empower developers to maximize their potential.'
+            desc: 'Flexible and extensible features that empower developers to maximize their potential.',
+            icon: 'homepage/flexibility.png'
         },
         openness: {
             title: 'Openness & Transparency',
-            desc: 'Open-source frontend renderer, traditional database backend, no middle layer or cloud vendor lock-in, deployable in any environment!'
+            desc: 'Open-source frontend renderer, traditional database backend, no middle layer or cloud vendor lock-in, deployable in any environment!',
+            icon: 'homepage/openness.png'
         },
         looseCoupling: {
             title: 'Loose Coupling',
-            desc: 'Offers diverse options for developers: pure frontend usage, visual editor reliance, or backend-focused development — easily integrates with existing workflows.'
+            desc: 'Offers diverse options for developers: pure frontend usage, visual editor reliance, or backend-focused development — easily integrates with existing workflows.',
+            icon: 'homepage/looseCoupling.png'
         },
     } : {
         title: '功能特点',
@@ -33,7 +36,7 @@ export const FeaturesSection = () => {
         looseCoupling: {
             title: '松耦合',
             desc: '为开发者提供多元选择；可纯用前端、仅依托可视化编辑器，或专注后端开发，轻松无缝衔接现有开发体系',
-            icon: 'homepage/flexibility.png'
+            icon: 'homepage/looseCoupling.png'
         },
     };
 
