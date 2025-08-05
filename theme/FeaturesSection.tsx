@@ -42,7 +42,7 @@ export const FeaturesSection = () => {
 
     return (
         <div style={{
-            padding: '60px 0',
+            padding: '30px 0',
             textAlign: 'center' as const,
             backgroundColor: isDark ? '#1C1D38' : 'white'
         }}>

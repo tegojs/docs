@@ -44,7 +44,7 @@ export const TechHighlights = () => {
 
     return (
         <div style={{
-            padding: '60px 0',
+            padding: '80px 0',
             textAlign: 'center' as const,
             backgroundColor: isDark ? '#06042C' : '#F8FAFF',
         }}>
@@ -55,7 +55,7 @@ export const TechHighlights = () => {
             }}>
                 <h2 style={{
                     fontSize: '2rem',
-                    marginBottom: '2rem',
+                    marginBottom: '3rem',
                     fontWeight: 500,
                     color: isDark ? '#FFFFFFDB' : '#444444'
                 }}>
@@ -65,7 +65,7 @@ export const TechHighlights = () => {
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                     gap: '2rem',
-                    marginBottom: '3rem'
+                    marginBottom: '2rem'
                 }}>
                     <DescriptionCard
                         title={content.highScalability.title}

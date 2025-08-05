@@ -60,7 +60,7 @@ export const CoreFeature = () => {
 
     return (
         <div
-            className={`relative pb-[200px] px-4 sm:px-8  pt-10 text-center ${isDark ? 'bg-[#06042C]' : 'bg-[#F8FAFF]'}`}
+            className={`relative pb-[100px] md:pb-[250px] px-4 sm:px-8  pt-30 text-center ${isDark ? 'bg-[#06042C]' : 'bg-[#F8FAFF]'}`}
         >
             <div className="max-w-screen-xl mx-auto">
                 <p
