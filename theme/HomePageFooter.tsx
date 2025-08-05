@@ -1,5 +1,5 @@
 import { useDark, usePageData } from '@rspress/core/runtime'
-import { USER_MANUAL_URL_FEISHU } from './constants'
+import { EMAIL, PHONE, USER_MANUAL_URL_FEISHU, WECHAT } from './constants'
 
 export const HomePageFooter = () => {
   const { page } = usePageData()
@@ -60,9 +60,15 @@ export const HomePageFooter = () => {
         </div>
         <div className="min-w-[200px]">
           <h4 className={`mb-3 text-base font-medium ${linkStyle}`}>{content.contact}</h4>
-          <p className={`my-1 ${linkStyle}`}>{content.phone}：021-57617570</p>
-          <p className={`my-1 ${linkStyle}`}>{content.email}：hallo@daoyoucloud.com</p>
-          <p className={`my-1 ${linkStyle}`}>{content.wechat}：18366116016</p>
+          <p className={`my-1 ${linkStyle}`}>
+            {content.phone}：{PHONE}
+          </p>
+          <p className={`my-1 ${linkStyle}`}>
+            {content.email}：{EMAIL}
+          </p>
+          <p className={`my-1 ${linkStyle}`}>
+            {content.wechat}：{WECHAT}
+          </p>
 
           <div className="flex flex-2 mt-3 gap-3">
             <div className="flex flex-col items-center">
