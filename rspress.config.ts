@@ -20,6 +20,10 @@ export default defineConfig({
     light: '/tachybase-light-blue.png',
     dark: '/tachybase-dark-white.png',
   },
+  favicon: {
+    light: '/tachybase-icon-light.png',
+    dark: '/tachybase-icon-dark.png',
+  },
   themeConfig: {
     lastUpdated: true,
     socialLinks: [
@@ -77,6 +81,14 @@ export default defineConfig({
   builderConfig: {
     html: {
       tags: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/tachybase-icon-light.png',
+          },
+        },
         {
           tag: 'script',
           attrs: {
