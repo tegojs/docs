@@ -1,5 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-    --rp-c-brand: #f00;
+  --rp-c-brand: #10b981;
 }
