@@ -21,14 +21,16 @@ pnpm pdf
 
 ### 子脚本（用于调试）
 
-- **`merge-guides.js <taskId>`** - 步骤1：合并 Markdown
+- **`merge-guides.js <taskId>`** - 步骤1：合并 Markdown ✅
   - 按 `_meta.json` 顺序合并文件
   - 调整标题层级
   - 处理相对路径
   - 处理 MDX 文件
   
-- **`process-links.js <taskId>`** - 步骤2：处理内部链接（待实现）
-  - 转换内部链接为 Pandoc 锚点
+- **`process-links.js <taskId>`** - 步骤2：处理内部链接 ✅
+  - 支持4种规则：手动映射、锚点、源文件标题、链接文本
+  - 智能查找源文件
+  - 转换为 Pandoc 锚点
   
 - **`process-images.js <taskId>`** - 步骤3：处理图片路径（待实现）
   - 转换图片路径为本地绝对路径
@@ -42,8 +44,8 @@ pnpm pdf
 ```
 
 输出位置：
-- `dist/pdf/{taskId}/guides-zh.pdf` - 带时间戳的版本
-- `dist/pdf/latest/guides-zh.pdf` - 最新版本（快捷访问）
+- `dist/pdf/{taskId}/6-1-guides-zh.pdf` - 带时间戳的版本
+- `dist/pdf/latest/6-1-guides-zh.pdf` - 最新版本（快捷访问）
 
 ### 调试单个步骤
 
@@ -66,17 +68,19 @@ pnpm pdf:images 1728825025
 
 ```
 dist/pdf/1728825025/
-├── 1-merged.md              # 合并后的 Markdown
-├── 1-skipped-files.json     # 跳过的文件日志
-├── 1-mdx-processed.json     # MDX 处理日志
-├── 2-links-processed.md     # 处理链接后
-├── 2-links.json             # 链接处理日志
-├── 2-links-skipped.json     # 跳过的链接
-├── 3-images-processed.md    # 处理图片后
-├── 3-images.json            # 图片处理日志
-├── 3-images-missing.json    # 缺失的图片
-├── 4-cleaned.md             # 清理特殊字符后
-└── guides-zh.pdf            # 最终 PDF ⭐
+├── 1-1-merged.md                # 步骤1：合并后的 Markdown
+├── 1-2-skipped-files.json       # 步骤1：跳过的文件日志
+├── 1-3-mdx-processed.json       # 步骤1：MDX 处理日志
+├── 1-4-relative-links.json      # 步骤1：相对路径链接转换
+├── 1-5-relative-images.json     # 步骤1：相对路径图片转换
+├── 2-1-links-processed.md       # 步骤2：处理链接后
+├── 2-2-links.json               # 步骤2：链接处理详情
+├── 2-3-links-skipped.json       # 步骤2：跳过的链接
+├── 3-1-images-processed.md      # 步骤3：处理图片后
+├── 3-2-images.json              # 步骤3：图片处理详情
+├── 3-3-images-missing.json      # 步骤3：缺失的图片
+├── 4-1-cleaned.md               # 步骤4：清理特殊字符后
+└── 6-1-guides-zh.pdf            # 步骤6：最终 PDF ⭐
 ```
 
 ## 依赖工具
@@ -107,7 +111,11 @@ dist/pdf/1728825025/
 
 ### 图片显示不正常？
 
-检查 `dist/pdf/{taskId}/3-images-missing.json`，查看哪些图片缺失。
+检查 `dist/pdf/{taskId}/3-3-images-missing.json`，查看哪些图片缺失。
+
+### 内部链接跳转失败？
+
+查看 `dist/pdf/{taskId}/2-2-links.json`，检查链接转换规则。如需手动配置，编辑根目录的 `link-mapping.json`。
 
 ## 详细文档
 
