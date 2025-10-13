@@ -7,7 +7,11 @@
     "check": "biome check --write",
     "dev": "rspress dev",
     "format": "biome format --write",
-    "preview": "rspress preview"
+    "preview": "rspress preview",
+    "pdf": "node scripts/generate-pdf.js",
+    "pdf:merge": "node scripts/merge-guides.js",
+    "pdf:links": "node scripts/process-links.js",
+    "pdf:images": "node scripts/process-images.js"
   },
   "dependencies": {
     "@formulajs/formulajs": "4.4.9",
