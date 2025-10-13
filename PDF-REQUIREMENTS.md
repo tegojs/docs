@@ -299,25 +299,27 @@ docs/public/path/to/image.png
 
 #### 3.3 输出日志
 
-**成功处理的图片** (`images-processed.json`):
+**成功处理的图片** (`3-2-images.json`):
 ```json
 [
   {
+    "alt": "",
     "originalPath": "/homepage/screenshot.png",
     "absolutePath": "D:/Dev/TegoJS/docs/docs/public/homepage/screenshot.png",
     "exists": true,
-    "fileSize": "245 KB"
+    "fileSize": "245.67 KB"
   }
 ]
 ```
 
-**缺失的图片** (`images-missing.json`):
+**缺失的图片** (`3-3-images-missing.json`):
 ```json
 [
   {
+    "alt": "缺失图片",
     "originalPath": "/missing/image.png",
     "expectedPath": "docs/public/missing/image.png",
-    "sourceFile": "可能的来源文件（如果能追踪）"
+    "reason": "file_not_found"
   }
 ]
 ```
@@ -325,27 +327,19 @@ docs/public/path/to/image.png
 #### 3.4 控制台输出
 
 ```
-🖼️  处理图片路径...
-
-📁 扫描图片链接...
-   找到 89 个图片引用
-
-📊 图片处理统计:
-  ✓ 成功转换: 85 个
+🖼️  扫描图片链接...
+  ✓ 找到 89 个图片引用
+  ✓ 转换为绝对路径: 85 个
   ⚠️  找不到文件: 4 个
-
-✓ 已保存处理日志: dist/pdf/images-processed.json
-⚠️  已保存缺失图片: dist/pdf/images-missing.json
-
-⚠️  以下图片文件不存在:
-  1. /missing/screenshot.png
-     期望位置: docs/public/missing/screenshot.png
-  2. /another/image.png
-     期望位置: docs/public/another/image.png
-  ...
-
-💡 提示: 请检查这些图片是否存在或路径是否正确
+  ✓ 输出: dist/pdf/{taskId}/3-1-images-processed.md
+  ✓ 日志: 3-2-images.json, 3-3-images-missing.json
 ```
+
+**说明**：
+- 自动扫描所有图片引用
+- 转换 URL 路径为本地绝对路径
+- 记录文件大小信息
+- 缺失的图片保留原样，并记录到日志
 
 ---
 
@@ -833,12 +827,12 @@ try {
   ✓ 日志: 2-2-links.json, 2-3-links-skipped.json
 
 [步骤 3/6] 处理图片路径...
-  🖼️  扫描图片: 89 个
+  🖼️  扫描图片链接...
+  ✓ 找到 89 个图片引用
   ✓ 转换为绝对路径: 85 个
   ⚠️  找不到文件: 4 个
   ✓ 输出: 3-1-images-processed.md
-  ✓ 日志: 3-2-images.json
-  ⚠️  缺失: 3-3-images-missing.json
+  ✓ 日志: 3-2-images.json, 3-3-images-missing.json
 
 [步骤 4/6] 清理特殊字符...
   ✓ 移除 23 个 emoji

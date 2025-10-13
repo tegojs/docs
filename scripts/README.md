@@ -32,8 +32,10 @@ pnpm pdf
   - 智能查找源文件
   - 转换为 Pandoc 锚点
   
-- **`process-images.js <taskId>`** - 步骤3：处理图片路径（待实现）
-  - 转换图片路径为本地绝对路径
+- **`process-images.js <taskId>`** - 步骤3：处理图片路径 ✅
+  - 转换 URL 路径为本地绝对路径
+  - 检查文件是否存在
+  - 记录缺失的图片
 
 ## 使用示例
 
