@@ -4,7 +4,7 @@
 
 ### 字段配置
 
-![](../../../../../../public/markdown(vditor)1.png)
+![](../../../../../../public/markdown-vditor-1.png)
 
 ### 界面配置
 
