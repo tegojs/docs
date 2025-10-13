@@ -14,10 +14,10 @@ if (!TASK_ID) {
 
 const ROOT_DIR = path.join(__dirname, '..');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const INPUT_FILE = path.join(OUTPUT_DIR, '1-merged.md');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '2-links-processed.md');
-const LINKS_LOG = path.join(OUTPUT_DIR, '2-links.json');
-const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-links-skipped.json');
+const INPUT_FILE = path.join(OUTPUT_DIR, '1-1-merged.md');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '2-1-links-processed.md');
+const LINKS_LOG = path.join(OUTPUT_DIR, '2-2-links.json');
+const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-3-links-skipped.json');
 
 // ==================== 主函数 ====================
 function main() {

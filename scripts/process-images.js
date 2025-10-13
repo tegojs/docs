@@ -15,10 +15,10 @@ if (!TASK_ID) {
 const ROOT_DIR = path.join(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'docs/public');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const INPUT_FILE = path.join(OUTPUT_DIR, '2-links-processed.md');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '3-images-processed.md');
-const IMAGES_LOG = path.join(OUTPUT_DIR, '3-images.json');
-const IMAGES_MISSING_LOG = path.join(OUTPUT_DIR, '3-images-missing.json');
+const INPUT_FILE = path.join(OUTPUT_DIR, '2-1-links-processed.md');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '3-1-images-processed.md');
+const IMAGES_LOG = path.join(OUTPUT_DIR, '3-2-images.json');
+const IMAGES_MISSING_LOG = path.join(OUTPUT_DIR, '3-3-images-missing.json');
 
 // ==================== 主函数 ====================
 function main() {

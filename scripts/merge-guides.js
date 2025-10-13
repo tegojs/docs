@@ -15,13 +15,18 @@ if (!TASK_ID) {
 const ROOT_DIR = path.join(__dirname, '..');
 const GUIDES_DIR = path.join(ROOT_DIR, 'docs/zh/guides');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-merged.md');
-const SKIPPED_FILES_LOG = path.join(OUTPUT_DIR, '1-skipped-files.json');
-const MDX_PROCESSED_LOG = path.join(OUTPUT_DIR, '1-mdx-processed.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-1-merged.md');
+const SKIPPED_FILES_LOG = path.join(OUTPUT_DIR, '1-2-skipped-files.json');
+const MDX_PROCESSED_LOG = path.join(OUTPUT_DIR, '1-3-mdx-processed.json');
+const RELATIVE_LINKS_LOG = path.join(OUTPUT_DIR, '1-4-relative-links.json');
+const RELATIVE_IMAGES_LOG = path.join(OUTPUT_DIR, '1-5-relative-images.json');
 
 // ==================== 日志记录 ====================
 const skippedFiles = [];
 const mdxProcessed = [];
+const relativeLinksProcessed = [];
+const relativeImagesProcessed = [];
+const processedInMeta = new Set(); // 记录在 meta 中处理过的文件
 const stats = {
   totalFiles: 0,
   mdxFiles: 0,
@@ -41,12 +46,17 @@ function main() {
   // 处理 guides 目录（从 depth = 1 开始）
   output += processDirectory(GUIDES_DIR, 1);
 
+  // 扫描所有未在 meta 中的文件
+  scanUnprocessedFiles(GUIDES_DIR);
+
   // 保存输出
   fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
 
   // 保存日志
   fs.writeFileSync(SKIPPED_FILES_LOG, JSON.stringify(skippedFiles, null, 2), 'utf-8');
   fs.writeFileSync(MDX_PROCESSED_LOG, JSON.stringify(mdxProcessed, null, 2), 'utf-8');
+  fs.writeFileSync(RELATIVE_LINKS_LOG, JSON.stringify(relativeLinksProcessed, null, 2), 'utf-8');
+  fs.writeFileSync(RELATIVE_IMAGES_LOG, JSON.stringify(relativeImagesProcessed, null, 2), 'utf-8');
 
   // 输出统计
   console.log(`  ${c.success('✓')} 处理 ${c.number(stats.totalFiles)} 个文件`);
@@ -57,6 +67,7 @@ function main() {
   
   const fileSizeMB = (fs.statSync(OUTPUT_FILE).size / 1024 / 1024).toFixed(1);
   console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))} ${c.dim('(' + fileSizeMB + ' MB)')}`);
+  console.log(`  ${c.success('✓')} 日志: ${c.dim('1-2~1-5.json (4个日志文件)')}`);
 }
 
 // ==================== 处理目录 ====================
@@ -98,6 +109,9 @@ function processDirectory(dirPath, depth) {
         continue;
       }
 
+      // 记录已处理的文件
+      processedInMeta.add(path.relative(GUIDES_DIR, filePath));
+
       // 检查是否是备份文件
       if (filePath.endsWith('.bak')) {
         skippedFiles.push({
@@ -123,7 +137,7 @@ function processDirectory(dirPath, depth) {
       content = adjustHeadings(content, depth);
 
       // 处理相对路径（链接和图片）
-      content = processRelativePaths(content, dirPath);
+      content = processRelativePaths(content, dirPath, filePath);
 
       result += content + '\n\n';
     }
@@ -193,7 +207,7 @@ function adjustHeadings(content, depth) {
 }
 
 // ==================== 处理相对路径 ====================
-function processRelativePaths(content, currentDir) {
+function processRelativePaths(content, currentDir, sourceFile) {
   // 提取代码块位置
   const codeBlocks = extractCodeBlocks(content);
 
@@ -206,6 +220,15 @@ function processRelativePaths(content, currentDir) {
     if (url.startsWith('./') || url.startsWith('../')) {
       stats.relativeLinks++;
       const absolutePath = resolveRelativePath(currentDir, url);
+      
+      // 记录转换详情
+      relativeLinksProcessed.push({
+        sourceFile: path.relative(ROOT_DIR, sourceFile),
+        linkText: text,
+        originalPath: url,
+        convertedPath: absolutePath,
+      });
+      
       return `[${text}](${absolutePath})`;
     }
     return match;
@@ -220,6 +243,15 @@ function processRelativePaths(content, currentDir) {
     if (url.startsWith('./') || url.startsWith('../')) {
       stats.relativeImages++;
       const absolutePath = resolveRelativePath(currentDir, url);
+      
+      // 记录转换详情
+      relativeImagesProcessed.push({
+        sourceFile: path.relative(ROOT_DIR, sourceFile),
+        imageAlt: alt,
+        originalPath: url,
+        convertedPath: absolutePath,
+      });
+      
       return `![${alt}](${absolutePath})`;
     }
     return match;
@@ -269,6 +301,46 @@ function extractCodeBlocks(content) {
 // ==================== 检查是否在代码块内 ====================
 function isInCodeBlock(offset, codeBlocks) {
   return codeBlocks.some(block => offset >= block.start && offset <= block.end);
+}
+
+// ==================== 扫描未处理的文件 ====================
+function scanUnprocessedFiles(dirPath) {
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    const relativePath = path.relative(GUIDES_DIR, fullPath);
+    
+    if (entry.isDirectory()) {
+      // 跳过隐藏目录
+      if (entry.name.startsWith('.')) {
+        continue;
+      }
+      // 递归扫描子目录
+      scanUnprocessedFiles(fullPath);
+    } else if (entry.isFile()) {
+      // 跳过非 markdown 文件
+      if (!entry.name.endsWith('.md') && !entry.name.endsWith('.mdx')) {
+        continue;
+      }
+      
+      // 跳过 _meta.json
+      if (entry.name === '_meta.json') {
+        continue;
+      }
+      
+      // 检查是否已处理
+      if (!processedInMeta.has(relativePath)) {
+        // 未在 meta 中的文件
+        skippedFiles.push({
+          reason: 'not_in_meta',
+          path: path.relative(ROOT_DIR, fullPath),
+          directory: path.relative(ROOT_DIR, dirPath),
+        });
+        stats.skippedCount++;
+      }
+    }
+  }
 }
 
 // ==================== 执行 ====================

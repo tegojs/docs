@@ -42,8 +42,8 @@ async function main() {
 
     // ==================== 步骤 4: 清理特殊字符 ====================
     console.log(c.step('[步骤 4/6] 清理特殊字符...'));
-    const inputFile4 = path.join(OUTPUT_DIR, '3-images-processed.md');
-    const outputFile4 = path.join(OUTPUT_DIR, '4-cleaned.md');
+    const inputFile4 = path.join(OUTPUT_DIR, '3-1-images-processed.md');
+    const outputFile4 = path.join(OUTPUT_DIR, '4-1-cleaned.md');
     
     let content = fs.readFileSync(inputFile4, 'utf-8');
     
@@ -74,8 +74,8 @@ async function main() {
 
     // ==================== 步骤 6: 生成 PDF ====================
     console.log(c.step('[步骤 6/6] 生成 PDF...'));
-    const inputMd = path.join(OUTPUT_DIR, '4-cleaned.md');
-    const outputPdf = path.join(OUTPUT_DIR, 'guides-zh.pdf');
+    const inputMd = path.join(OUTPUT_DIR, '4-1-cleaned.md');
+    const outputPdf = path.join(OUTPUT_DIR, '6-1-guides-zh.pdf');
 
     const pandocCmd = `pandoc "${inputMd}" -o "${outputPdf}" --pdf-engine=xelatex --toc --toc-depth=3 --number-sections -V CJKmainfont="Microsoft YaHei" -V geometry:margin=2cm -V papersize=a4`;
     
@@ -106,7 +106,7 @@ async function main() {
     console.log('');
     console.log(`📁 ${c.gray('输出目录:')} ${c.path(path.relative(ROOT_DIR, OUTPUT_DIR) + '/')}`);
     console.log(`📄 ${c.gray('最终 PDF:')} ${c.highlight(path.relative(ROOT_DIR, outputPdf))}`);
-    console.log(`🔗 ${c.gray('快捷访问:')} ${c.info('dist/pdf/latest/guides-zh.pdf')}`);
+    console.log(`🔗 ${c.gray('快捷访问:')} ${c.info('dist/pdf/latest/6-1-guides-zh.pdf')}`);
     console.log('');
 
   } catch (error) {

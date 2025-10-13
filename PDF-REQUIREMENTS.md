@@ -34,13 +34,15 @@
 
 **输入**: `docs/zh/guides/**/*.md` 和 `*.mdx`
 
-**输出**: `dist/pdf/{taskId}/1-merged.md`
+**输出**: `dist/pdf/{taskId}/1-1-merged.md`
 - `{taskId}`: 任务ID，使用10位数时间戳（在脚本开始时生成，全程使用）
 - 保留每次运行的结果
 
 **额外日志输出**:
-- `dist/pdf/{taskId}/1-skipped-files.json` - 跳过的文件
-- `dist/pdf/{taskId}/1-mdx-processed.json` - MDX 处理记录
+- `dist/pdf/{taskId}/1-2-skipped-files.json` - 跳过的文件
+- `dist/pdf/{taskId}/1-3-mdx-processed.json` - MDX 处理记录
+- `dist/pdf/{taskId}/1-4-relative-links.json` - 相对路径链接转换详情
+- `dist/pdf/{taskId}/1-5-relative-images.json` - 相对路径图片转换详情
 
 **功能要求**:
 
@@ -179,12 +181,12 @@ docs/zh/guides/
 
 **脚本**: `scripts/process-links.js`
 
-**输入**: `dist/pdf/{taskId}/1-merged.md`
+**输入**: `dist/pdf/{taskId}/1-1-merged.md`
 
 **输出**: 
-- `dist/pdf/{taskId}/2-links-processed.md`
-- `dist/pdf/{taskId}/2-links.json`（日志）
-- `dist/pdf/{taskId}/2-links-skipped.json`（跳过的，应该没有）
+- `dist/pdf/{taskId}/2-1-links-processed.md`
+- `dist/pdf/{taskId}/2-2-links.json`（日志）
+- `dist/pdf/{taskId}/2-3-links-skipped.json`（跳过的，应该没有）
 
 **处理规则**（按优先级从高到低）:
 
@@ -250,12 +252,12 @@ docs/zh/guides/
 
 **脚本**: `scripts/process-images.js`
 
-**输入**: `dist/pdf/{taskId}/2-links-processed.md`
+**输入**: `dist/pdf/{taskId}/2-1-links-processed.md`
 
 **输出**: 
-- `dist/pdf/{taskId}/3-images-processed.md`（处理后的文档）
-- `dist/pdf/{taskId}/3-images.json`（处理日志）
-- `dist/pdf/{taskId}/3-images-missing.json`（缺失的图片）
+- `dist/pdf/{taskId}/3-1-images-processed.md`（处理后的文档）
+- `dist/pdf/{taskId}/3-2-images.json`（处理日志）
+- `dist/pdf/{taskId}/3-3-images-missing.json`（缺失的图片）
 
 **功能要求**:
 
@@ -351,9 +353,9 @@ docs/public/path/to/image.png
 
 **在主脚本中执行**（不单独成脚本）
 
-**输入**: `dist/pdf/{taskId}/3-images-processed.md`
+**输入**: `dist/pdf/{taskId}/3-1-images-processed.md`
 
-**输出**: `dist/pdf/{taskId}/4-cleaned.md`
+**输出**: `dist/pdf/{taskId}/4-1-cleaned.md`
 
 **功能**:
 - 移除 emoji 字符（避免字体不支持）
@@ -423,9 +425,9 @@ fs.writeFileSync('dist/pdf/{taskId}/4-cleaned.md', content, 'utf-8');
 
 **在主脚本中执行**
 
-**输入**: `dist/pdf/{taskId}/4-cleaned.md`
+**输入**: `dist/pdf/{taskId}/4-1-cleaned.md`
 
-**输出**: `dist/pdf/{taskId}/guides-zh.pdf`
+**输出**: `dist/pdf/{taskId}/6-1-guides-zh.pdf`
 
 **整合所有步骤**:
 
@@ -444,31 +446,33 @@ fs.mkdirSync(outputDir, { recursive: true });
           - 调整标题层级
           - 处理相对路径
           - 处理 MDX 文件
-        输出 → {outputDir}/1-merged.md
-              {outputDir}/1-skipped-files.json
-              {outputDir}/1-mdx-processed.json
+        输出 → {outputDir}/1-1-merged.md
+              {outputDir}/1-2-skipped-files.json
+              {outputDir}/1-3-mdx-processed.json
+              {outputDir}/1-4-relative-links.json
+              {outputDir}/1-5-relative-images.json
    ↓
 步骤 2: 调用 process-links.js ${taskId}
-        输入: {outputDir}/1-merged.md
-        输出 → {outputDir}/2-links-processed.md
-              {outputDir}/2-links.json
-              {outputDir}/2-links-skipped.json
+        输入: {outputDir}/1-1-merged.md
+        输出 → {outputDir}/2-1-links-processed.md
+              {outputDir}/2-2-links.json
+              {outputDir}/2-3-links-skipped.json
    ↓
 步骤 3: 调用 process-images.js ${taskId}
-        输入: {outputDir}/2-links-processed.md
-        输出 → {outputDir}/3-images-processed.md
-              {outputDir}/3-images.json
-              {outputDir}/3-images-missing.json
+        输入: {outputDir}/2-1-links-processed.md
+        输出 → {outputDir}/3-1-images-processed.md
+              {outputDir}/3-2-images.json
+              {outputDir}/3-3-images-missing.json
    ↓
 步骤 4: 清理特殊字符
-        输入: {outputDir}/3-images-processed.md
-        输出 → {outputDir}/4-cleaned.md
+        输入: {outputDir}/3-1-images-processed.md
+        输出 → {outputDir}/4-1-cleaned.md
    ↓
 步骤 5: 检查工具（pandoc、xelatex）
    ↓
 步骤 6: 调用 Pandoc
-        输入: {outputDir}/4-cleaned.md
-        输出 → {outputDir}/guides-zh.pdf
+        输入: {outputDir}/4-1-cleaned.md
+        输出 → {outputDir}/6-1-guides-zh.pdf
    ↓
 步骤 7: 创建 latest 快捷访问
         复制到 dist/pdf/latest/
@@ -479,8 +483,8 @@ fs.mkdirSync(outputDir, { recursive: true });
 **Pandoc 命令**:
 
 ```bash
-pandoc dist/pdf/{taskId}/4-cleaned.md \
-  -o dist/pdf/{taskId}/guides-zh.pdf \
+pandoc dist/pdf/{taskId}/4-1-cleaned.md \
+  -o dist/pdf/{taskId}/6-1-guides-zh.pdf \
   --pdf-engine=xelatex \
   --toc \                    # 生成目录
   --toc-depth=3 \            # 目录深度
@@ -519,29 +523,31 @@ link-mapping.json          # 手动链接映射（可选）
 ```
 dist/pdf/
 ├── 1728825025/                        # 第一次运行（任务ID = 10位时间戳）
-│   ├── 1-merged.md                   # 步骤1输出：合并后（含PDF总标题）
-│   ├── 1-skipped-files.json          # 步骤1日志：跳过的文件
-│   ├── 1-mdx-processed.json          # 步骤1日志：MDX 处理
-│   ├── 2-links-processed.md          # 步骤2输出：处理链接后
-│   ├── 2-links.json                  # 步骤2日志：链接处理详情
-│   ├── 2-links-skipped.json          # 步骤2日志：跳过的链接
-│   ├── 3-images-processed.md         # 步骤3输出：处理图片后
-│   ├── 3-images.json                 # 步骤3日志：图片处理详情
-│   ├── 3-images-missing.json         # 步骤3日志：缺失的图片
-│   ├── 4-cleaned.md                  # 步骤4输出：清理后
-│   └── guides-zh.pdf                 # 步骤6输出：最终 PDF ⭐
+│   ├── 1-1-merged.md                 # 步骤1输出：合并后（含PDF总标题）
+│   ├── 1-2-skipped-files.json        # 步骤1日志：跳过的文件
+│   ├── 1-3-mdx-processed.json        # 步骤1日志：MDX 处理
+│   ├── 1-4-relative-links.json       # 步骤1日志：相对路径链接转换
+│   ├── 1-5-relative-images.json      # 步骤1日志：相对路径图片转换
+│   ├── 2-1-links-processed.md        # 步骤2输出：处理链接后
+│   ├── 2-2-links.json                # 步骤2日志：链接处理详情
+│   ├── 2-3-links-skipped.json        # 步骤2日志：跳过的链接
+│   ├── 3-1-images-processed.md       # 步骤3输出：处理图片后
+│   ├── 3-2-images.json               # 步骤3日志：图片处理详情
+│   ├── 3-3-images-missing.json       # 步骤3日志：缺失的图片
+│   ├── 4-1-cleaned.md                # 步骤4输出：清理后
+│   └── 6-1-guides-zh.pdf             # 步骤6输出：最终 PDF ⭐
 ├── 1728825610/                        # 第二次运行（新的任务ID）
-│   ├── 1-merged.md
-│   ├── 2-links-processed.md
+│   ├── 1-1-merged.md
+│   ├── 2-1-links-processed.md
 │   ├── ...
-│   └── guides-zh.pdf
+│   └── 6-1-guides-zh.pdf
 ├── 1728830733/                        # 第三次运行（新的任务ID）
 │   └── ...
 └── latest/                            # 副本，指向最新运行的结果
-    ├── 1-merged.md
-    ├── 2-links-processed.md
+    ├── 1-1-merged.md
+    ├── 2-1-links-processed.md
     ├── ...
-    └── guides-zh.pdf                 # 最新的 PDF（方便访问）
+    └── 6-1-guides-zh.pdf             # 最新的 PDF（方便访问）
 ```
 
 **优点**:
