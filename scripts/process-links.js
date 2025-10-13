@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const { c } = require('./colors');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
-  console.error('❌ 错误: 缺少任务ID参数');
-  console.error('用法: node process-links.js <taskId>');
+  console.error(c.error('❌ 错误:'), '缺少任务ID参数');
+  console.error(c.gray('用法:'), 'node process-links.js <taskId>');
   process.exit(1);
 }
 
@@ -20,7 +21,7 @@ const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-links-skipped.json');
 
 // ==================== 主函数 ====================
 function main() {
-  console.log('  📁 扫描内部链接...');
+  console.log(`  ${c.info('📁')} 扫描内部链接...`);
 
   // 读取输入
   const content = fs.readFileSync(INPUT_FILE, 'utf-8');
@@ -45,8 +46,8 @@ function main() {
   fs.writeFileSync(LINKS_LOG, JSON.stringify([], null, 2), 'utf-8');
   fs.writeFileSync(LINKS_SKIPPED_LOG, JSON.stringify([], null, 2), 'utf-8');
 
-  console.log('  ✓ 转换 0 个链接（待实现）');
-  console.log(`  ✓ 输出: ${path.relative(ROOT_DIR, OUTPUT_FILE)}`);
+  console.log(`  ${c.success('✓')} 转换 ${c.number(0)} 个链接 ${c.dim('（待实现）')}`);
+  console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
 }
 
 // ==================== 执行 ====================

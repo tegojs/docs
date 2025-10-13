@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const { c } = require('./colors');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
-  console.error('❌ 错误: 缺少任务ID参数');
-  console.error('用法: node merge-guides.js <taskId>');
+  console.error(c.error('❌ 错误:'), '缺少任务ID参数');
+  console.error(c.gray('用法:'), 'node merge-guides.js <taskId>');
   process.exit(1);
 }
 
@@ -48,14 +49,14 @@ function main() {
   fs.writeFileSync(MDX_PROCESSED_LOG, JSON.stringify(mdxProcessed, null, 2), 'utf-8');
 
   // 输出统计
-  console.log(`  ✓ 处理 ${stats.totalFiles} 个文件`);
-  console.log(`  ✓ 处理 ${stats.mdxFiles} 个 MDX 文件`);
-  console.log(`  ✓ 跳过 ${stats.skippedCount} 个文件（未在 meta 中或备份文件）`);
-  console.log(`  ✓ 转换 ${stats.relativeLinks} 个相对路径链接`);
-  console.log(`  ✓ 转换 ${stats.relativeImages} 个相对路径图片`);
+  console.log(`  ${c.success('✓')} 处理 ${c.number(stats.totalFiles)} 个文件`);
+  console.log(`  ${c.success('✓')} 处理 ${c.number(stats.mdxFiles)} 个 MDX 文件`);
+  console.log(`  ${c.success('✓')} 跳过 ${c.number(stats.skippedCount)} 个文件 ${c.dim('（未在 meta 中或备份文件）')}`);
+  console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeLinks)} 个相对路径链接`);
+  console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeImages)} 个相对路径图片`);
   
   const fileSizeMB = (fs.statSync(OUTPUT_FILE).size / 1024 / 1024).toFixed(1);
-  console.log(`  ✓ 输出: ${path.relative(ROOT_DIR, OUTPUT_FILE)} (${fileSizeMB} MB)`);
+  console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))} ${c.dim('(' + fileSizeMB + ' MB)')}`);
 }
 
 // ==================== 处理目录 ====================
@@ -65,7 +66,7 @@ function processDirectory(dirPath, depth) {
   // 读取 _meta.json
   const metaPath = path.join(dirPath, '_meta.json');
   if (!fs.existsSync(metaPath)) {
-    console.warn(`⚠️  警告: 未找到 ${path.relative(ROOT_DIR, metaPath)}`);
+    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path(path.relative(ROOT_DIR, metaPath))}`);
     return result;
   }
 
