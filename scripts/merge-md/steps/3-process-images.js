@@ -31,8 +31,21 @@ const imagesMissing = [];
 function main() {
   console.log(`  ${chalk.cyan('🖼️')}  扫描图片链接...`);
 
+  // 修复：验证输入文件是否存在
+  if (!fs.existsSync(INPUT_FILE)) {
+    console.error(`  ${chalk.red('❌ 错误:')} 输入文件不存在: ${chalk.magenta(path.relative(ROOT_DIR, INPUT_FILE))}`);
+    console.error(`  ${chalk.gray('提示:')} 请先运行步骤2（处理内部链接）`);
+    process.exit(1);
+  }
+
   // 1. 读取输入
-  let content = fs.readFileSync(INPUT_FILE, 'utf-8');
+  let content;
+  try {
+    content = fs.readFileSync(INPUT_FILE, 'utf-8');
+  } catch (error) {
+    console.error(`  ${chalk.red('❌ 错误:')} 无法读取输入文件: ${error.message}`);
+    process.exit(1);
+  }
 
   // 2. 处理所有图片路径
   content = processImages(content);
@@ -99,9 +112,9 @@ function processImages(content) {
 function processUrlPath(alt, url, originalMatch) {
   // 拼接路径：PUBLIC_DIR + url
   // /guides/start/xxx.png → docs/public/guides/start/xxx.png
-  // 将 URL 路径转换为系统路径（处理 Windows 反斜杠）
-  const normalizedUrl = url.split('/').filter(Boolean).join(path.sep);
-  const imagePath = path.join(PUBLIC_DIR, normalizedUrl);
+  // 修复：统一使用 path.sep 处理文件系统路径
+  const urlParts = url.split('/').filter(Boolean);
+  const imagePath = path.join(PUBLIC_DIR, ...urlParts);
   
   // 检查文件是否存在
   const exists = fs.existsSync(imagePath);

@@ -37,12 +37,25 @@ const usedIds = new Map(); // 记录已使用的ID及其使用次数
 function main() {
   console.log(`  ${chalk.cyan('📁')} 扫描内部链接...`);
 
+  // 修复：验证输入文件是否存在
+  if (!fs.existsSync(INPUT_FILE)) {
+    console.error(`  ${chalk.red('❌ 错误:')} 输入文件不存在: ${chalk.magenta(path.relative(ROOT_DIR, INPUT_FILE))}`);
+    console.error(`  ${chalk.gray('提示:')} 请先运行步骤1（合并 Markdown）`);
+    process.exit(1);
+  }
+
   // 1. 读取 link-mapping.json（如果存在）
   const manualMappings = loadManualMappings();
   console.log(`  ${chalk.cyan('📚')} 手动映射: ${chalk.cyan(Object.keys(manualMappings).length)} 个`);
 
   // 2. 读取输入
-  let content = fs.readFileSync(INPUT_FILE, 'utf-8');
+  let content;
+  try {
+    content = fs.readFileSync(INPUT_FILE, 'utf-8');
+  } catch (error) {
+    console.error(`  ${chalk.red('❌ 错误:')} 无法读取输入文件: ${error.message}`);
+    process.exit(1);
+  }
 
   // 3. 扫描并处理所有内部链接
   content = processInternalLinks(content, manualMappings);
@@ -214,10 +227,9 @@ function urlToSourcePath(url) {
   // /guides/advanced/env -> advanced/env
   const relativePath = cleanUrl.replace(/^\/guides\//, '');
   
-  // 将 URL 路径转换为系统路径（处理 Windows 反斜杠）
-  const normalizedPath = relativePath.split('/').join(path.sep);
-  
-  const basePath = path.join(ROOT_DIR, 'docs', 'zh', 'guides', normalizedPath);
+  // 修复：统一使用 path.join 处理文件系统路径
+  const pathParts = relativePath.split('/').filter(Boolean);
+  const basePath = path.join(ROOT_DIR, 'docs', 'zh', 'guides', ...pathParts);
   
   // 尝试的文件路径（按优先级）
   const candidates = [

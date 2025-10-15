@@ -54,7 +54,7 @@ docs/zh/guides/**/*.md
          ↓
 [步骤1] 合并 Markdown
          ↓
-  1-6-merged.md
+  1-7-merged.md
          ↓
 [步骤2] 处理内部链接
          ↓
@@ -206,7 +206,7 @@ MDX（Markdown + JSX）文件处理：
 
 ### 步骤 2：处理内部链接 (`2-process-links.js`)
 
-**输入**: `dist/pdf/{taskId}/1-6-merged.md`
+**输入**: `dist/pdf/{taskId}/1-7-merged.md`
 
 **输出**: `dist/pdf/{taskId}/2-3-links-processed.md`
 

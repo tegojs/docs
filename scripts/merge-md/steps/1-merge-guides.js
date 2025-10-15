@@ -52,6 +52,9 @@ function main() {
   // 确保输出目录存在
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+  // 修复：添加进度提示
+  console.log(`  ${chalk.cyan('📝')} 读取文档头部模板...`);
+
   // 读取 header.md 作为文档开头
   const headerPath = path.join(__dirname, '../assets/header.md');
   let output = '';
@@ -75,14 +78,26 @@ function main() {
     output = `<br>\n<br>\n<br>\n\n<div align="center">\n  <h1 style="font-size: 3em;">灵矶使用指南</h1>\n  <p style="font-size: 1.2em; color: #999;">${dateString}</p>\n</div>\n\n<br>\n<br>\n<br>\n\n---\n\n`;
   }
 
+  console.log(`  ${chalk.cyan('📂')} 扫描并合并 Markdown 文件...`);
+  
   // 处理 guides 目录（从 depth = 0 开始，标题层级整体向上）
   output += processDirectory(GUIDES_DIR, 0);
+  console.log(``);
 
+  console.log(`  ${chalk.cyan('🔍')} 扫描未处理的文件...`);
+  
   // 扫描所有未在 meta 中的文件
   scanUnprocessedFiles(GUIDES_DIR);
 
+  console.log(`  ${chalk.cyan('💾')} 保存输出文件...`);
+  
   // 先保存主文件（最重要）
   fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
+  
+  // 清除进度提示行
+  if (stats.totalFiles >= 10) {
+    process.stdout.write('\r' + ' '.repeat(50) + '\r');
+  }
   
   // 然后保存日志文件
   fs.writeFileSync(SKIPPED_FILES_LOG, JSON.stringify(skippedFiles, null, 2), 'utf-8');
@@ -159,7 +174,24 @@ function processDirectory(dirPath, depth) {
     return result;
   }
 
-  const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+  // 修复：添加 JSON 解析错误处理
+  let meta;
+  try {
+    meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
+  } catch (error) {
+    const errorMsg = `无法解析 _meta.json: ${path.relative(ROOT_DIR, metaPath)} - ${error.message}`;
+    console.error(`  ${chalk.red('❌ 错误:')} ${errorMsg}`);
+    if (STRICT_MODE) {
+      throw new Error(errorMsg);
+    }
+    skippedFiles.push({
+      reason: 'invalid_meta_json',
+      path: path.relative(ROOT_DIR, metaPath).replace(/\\/g, '/'),
+      error: error.message,
+    });
+    stats.skippedCount++;
+    return result;
+  }
 
   // 按 meta 中的顺序处理每一项
   for (const item of meta) {
@@ -201,11 +233,16 @@ function processDirectory(dirPath, depth) {
       }
 
       stats.totalFiles++;
+      
+      // 修复：每处理10个文件显示一次进度
+      if (stats.totalFiles % 10 === 0) {
+        process.stdout.write(`\r     ${chalk.dim(`处理中... ${stats.totalFiles} 个文件`)}`);
+      }
 
       // 检查文件大小
-      const fileStats = fs.statSync(filePath);
-      if (fileStats.size > MAX_FILE_SIZE) {
-        const sizeMB = (fileStats.size / 1024 / 1024).toFixed(2);
+      const fileStat = fs.statSync(filePath);
+      if (fileStat.size > MAX_FILE_SIZE) {
+        const sizeMB = (fileStat.size / 1024 / 1024).toFixed(2);
         console.warn(`  ${chalk.yellow('⚠️  警告:')} 文件过大 ${chalk.magenta(path.relative(ROOT_DIR, filePath))} (${sizeMB} MB)`);
         if (STRICT_MODE) {
           throw new Error(`文件超过大小限制 (${sizeMB} MB > 10 MB)`);
@@ -294,6 +331,7 @@ function processMDX(content, filePath) {
   let prevContent;
   let iterations = 0;
   const maxIterations = 20; // 增加迭代次数
+  // NOTE：深度嵌套的 JSX 组件（>20层）可能无法完全删除
   
   do {
     prevContent = content;
@@ -455,7 +493,7 @@ function adjustHeadings(content, depth, sourceFile) {
         });
       }
       
-      return '\n' + formattedText + '\n';
+      return formattedText;
     }
     
     // 正常范围内的标题
@@ -521,13 +559,24 @@ function processRelativePaths(content, currentDir, sourceFile) {
 
 // ==================== 解析相对路径 ====================
 function resolveRelativePath(currentDir, relativePath) {
+  // 修复：处理边界情况（URL编码、空格、特殊字符等）
+  
+  // 0. 预处理：解码 URL 编码（如 %20 -> 空格）
+  let decodedPath = relativePath;
+  try {
+    decodedPath = decodeURIComponent(relativePath);
+  } catch (e) {
+    // 如果解码失败，使用原始路径
+    decodedPath = relativePath;
+  }
+  
   // 1. 分离锚点
   let anchor = '';
-  let pathWithoutAnchor = relativePath;
-  const hashIndex = relativePath.indexOf('#');
+  let pathWithoutAnchor = decodedPath;
+  const hashIndex = decodedPath.indexOf('#');
   if (hashIndex !== -1) {
-    anchor = relativePath.substring(hashIndex); // 保留 #xxx
-    pathWithoutAnchor = relativePath.substring(0, hashIndex);
+    anchor = decodedPath.substring(hashIndex); // 保留 #xxx
+    pathWithoutAnchor = decodedPath.substring(0, hashIndex);
   }
   
   // 2. 分离扩展名
@@ -543,16 +592,16 @@ function resolveRelativePath(currentDir, relativePath) {
     pathWithoutAnchor = pathWithoutAnchor.substring(0, pathWithoutAnchor.length - 4);
   }
   
-  // 3. 解析路径
-  const absolutePath = path.join(currentDir, pathWithoutAnchor);
+  // 3. 解析路径（使用 path.normalize 处理 .. 和 . 等）
+  const absolutePath = path.normalize(path.join(currentDir, pathWithoutAnchor));
   
   // 4. 转换为相对于 docs/zh 的 URL 路径
   const relative = path.relative(path.join(ROOT_DIR, 'docs/zh'), absolutePath);
   
-  // 5. 转换为 URL 格式（使用正斜杠）
-  const urlPath = '/' + relative.replace(/\\/g, '/');
+  // 5. 转换为 URL 格式（统一使用正斜杠，处理 Windows 反斜杠）
+  const urlPath = '/' + relative.split(path.sep).join('/');
   
-  // 6. 重新组合：路径 + 扩展名 + 锚点
+  // 6. 重新组合：路径 + 扩展名 + 锚点（锚点可能需要重新编码空格）
   return urlPath + extension + anchor;
 }
 
@@ -607,7 +656,7 @@ function extractCodeBlocks(content) {
   }
   
   // 3. 行内代码 (`)
-  regex = /`[^`\n]+`/g;
+  regex = /`+[^`]*`+/g;
   while ((match = regex.exec(content)) !== null) {
     blocks.push({
       start: match.index,
