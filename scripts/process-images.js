@@ -15,10 +15,10 @@ if (!TASK_ID) {
 const ROOT_DIR = path.join(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'docs/public');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const INPUT_FILE = path.join(OUTPUT_DIR, '2-1-links-processed.md');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '3-1-images-processed.md');
-const IMAGES_LOG = path.join(OUTPUT_DIR, '3-2-images.json');
-const IMAGES_MISSING_LOG = path.join(OUTPUT_DIR, '3-3-images-missing.json');
+const INPUT_FILE = path.join(OUTPUT_DIR, '2-3-links-processed.md');
+const IMAGES_LOG = path.join(OUTPUT_DIR, '3-1-images.json');
+const IMAGES_MISSING_LOG = path.join(OUTPUT_DIR, '3-2-images-missing.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '3-3-images-processed.md');
 
 // ==================== 日志记录 ====================
 const imagesProcessed = [];
@@ -34,25 +34,34 @@ function main() {
   // 2. 处理所有图片路径
   content = processImages(content);
 
-  // 3. 保存输出
-  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+  // 3. 先保存日志
   fs.writeFileSync(IMAGES_LOG, JSON.stringify(imagesProcessed, null, 2), 'utf-8');
   fs.writeFileSync(IMAGES_MISSING_LOG, JSON.stringify(imagesMissing, null, 2), 'utf-8');
+  
+  // 4. 最后保存处理后的文档
+  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
 
-  // 4. 输出统计
+  // 5. 输出统计
   const totalImages = imagesProcessed.length;
   const successCount = imagesProcessed.filter(img => img.exists).length;
   const missingCount = imagesMissing.length;
 
   console.log(`  ${c.success('✓')} 找到 ${c.number(totalImages)} 个图片引用`);
-  console.log(`  ${c.success('✓')} 转换为绝对路径: ${c.number(successCount)} 个`);
+  console.log(`  ${c.success('✓')} 转换为绝对路径: ${c.number(successCount)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, IMAGES_LOG))}`);
   
   if (missingCount > 0) {
-    console.log(`  ${c.warning('⚠️')}  找不到文件: ${c.number(missingCount)} 个`);
+    console.log(`  ${c.warning('⚠️')}  找不到文件: ${c.number(missingCount)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, IMAGES_MISSING_LOG))}`);
+    // 显示前几个找不到的图片
+    const displayCount = Math.min(5, imagesMissing.length);
+    for (let i = 0; i < displayCount; i++) {
+      console.log(`     ${c.dim('- ' + imagesMissing[i].originalPath)}`);
+    }
+    if (imagesMissing.length > displayCount) {
+      console.log(`     ${c.dim('... 以及 ' + (imagesMissing.length - displayCount) + ' 个其他图片')}`);
+    }
   }
   
   console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
-  console.log(`  ${c.success('✓')} 日志: ${c.dim('3-2-images.json, 3-3-images-missing.json')}`);
 }
 
 // ==================== 处理图片 ====================

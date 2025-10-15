@@ -15,17 +15,19 @@ if (!TASK_ID) {
 const ROOT_DIR = path.join(__dirname, '..');
 const GUIDES_DIR = path.join(ROOT_DIR, 'docs/zh/guides');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-1-merged.md');
-const SKIPPED_FILES_LOG = path.join(OUTPUT_DIR, '1-2-skipped-files.json');
-const MDX_PROCESSED_LOG = path.join(OUTPUT_DIR, '1-3-mdx-processed.json');
-const RELATIVE_LINKS_LOG = path.join(OUTPUT_DIR, '1-4-relative-links.json');
-const RELATIVE_IMAGES_LOG = path.join(OUTPUT_DIR, '1-5-relative-images.json');
+const SKIPPED_FILES_LOG = path.join(OUTPUT_DIR, '1-1-skipped-files.json');
+const MDX_PROCESSED_LOG = path.join(OUTPUT_DIR, '1-2-mdx-processed.json');
+const RELATIVE_LINKS_LOG = path.join(OUTPUT_DIR, '1-3-relative-links.json');
+const RELATIVE_IMAGES_LOG = path.join(OUTPUT_DIR, '1-4-relative-images.json');
+const MISSING_META_LOG = path.join(OUTPUT_DIR, '1-5-missing-meta.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-6-merged.md');
 
 // ==================== 日志记录 ====================
 const skippedFiles = [];
 const mdxProcessed = [];
 const relativeLinksProcessed = [];
 const relativeImagesProcessed = [];
+const missingMetaFiles = []; // 记录缺失的 _meta.json 文件
 const processedInMeta = new Set(); // 记录在 meta 中处理过的文件
 const stats = {
   totalFiles: 0,
@@ -40,34 +42,78 @@ function main() {
   // 确保输出目录存在
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  // 首先添加 PDF 总标题
-  let output = '# 灵矶使用指南\n\n';
+  // 读取 header.md 作为文档开头
+  const headerPath = path.join(__dirname, 'header.md');
+  let output = '';
+  if (fs.existsSync(headerPath)) {
+    output = fs.readFileSync(headerPath, 'utf-8');
+    
+    // 替换日期占位符
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const dateString = `${year}.${month}.${day}`;
+    output = output.replace(/\{\{GENERATION_DATE\}\}/g, dateString);
+    
+    output += '\n\n';
+  } else {
+    // 如果 header.md 不存在，使用默认HTML标题
+    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path('scripts/header.md')}，使用默认标题`);
+    const now = new Date();
+    const dateString = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+    output = `<br>\n<br>\n<br>\n\n<div align="center">\n  <h1 style="font-size: 3em;">灵矶使用指南</h1>\n  <p style="font-size: 1.2em; color: #999;">${dateString}</p>\n</div>\n\n<br>\n<br>\n<br>\n\n---\n\n`;
+  }
 
-  // 处理 guides 目录（从 depth = 1 开始）
-  output += processDirectory(GUIDES_DIR, 1);
+  // 处理 guides 目录（从 depth = 0 开始，标题层级整体向上）
+  output += processDirectory(GUIDES_DIR, 0);
 
   // 扫描所有未在 meta 中的文件
   scanUnprocessedFiles(GUIDES_DIR);
 
-  // 保存输出
-  fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
-
-  // 保存日志
+  // 先保存日志
   fs.writeFileSync(SKIPPED_FILES_LOG, JSON.stringify(skippedFiles, null, 2), 'utf-8');
   fs.writeFileSync(MDX_PROCESSED_LOG, JSON.stringify(mdxProcessed, null, 2), 'utf-8');
   fs.writeFileSync(RELATIVE_LINKS_LOG, JSON.stringify(relativeLinksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(RELATIVE_IMAGES_LOG, JSON.stringify(relativeImagesProcessed, null, 2), 'utf-8');
+  fs.writeFileSync(MISSING_META_LOG, JSON.stringify(missingMetaFiles, null, 2), 'utf-8');
+  
+  // 最后保存处理后的文档
+  fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
 
   // 输出统计
   console.log(`  ${c.success('✓')} 处理 ${c.number(stats.totalFiles)} 个文件`);
-  console.log(`  ${c.success('✓')} 处理 ${c.number(stats.mdxFiles)} 个 MDX 文件`);
-  console.log(`  ${c.success('✓')} 跳过 ${c.number(stats.skippedCount)} 个文件 ${c.dim('（未在 meta 中或备份文件）')}`);
-  console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeLinks)} 个相对路径链接`);
-  console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeImages)} 个相对路径图片`);
+  
+  if (stats.mdxFiles > 0) {
+    console.log(`  ${c.success('✓')} 处理 ${c.number(stats.mdxFiles)} 个 MDX 文件 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, MDX_PROCESSED_LOG))}`);
+  }
+  
+  if (stats.skippedCount > 0) {
+    console.log(`  ${c.warning('⚠️')}  跳过 ${c.number(stats.skippedCount)} 个文件 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, SKIPPED_FILES_LOG))}`);
+  }
+  
+  if (stats.relativeLinks > 0) {
+    console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeLinks)} 个相对路径链接 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, RELATIVE_LINKS_LOG))}`);
+  }
+  
+  if (stats.relativeImages > 0) {
+    console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeImages)} 个相对路径图片 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, RELATIVE_IMAGES_LOG))}`);
+  }
+  
+  // 显示缺失的 _meta.json 警告
+  if (missingMetaFiles.length > 0) {
+    console.log(`  ${c.warning('⚠️')}  缺失 _meta.json: ${c.number(missingMetaFiles.length)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, MISSING_META_LOG))}`);
+    const displayCount = Math.min(5, missingMetaFiles.length);
+    for (let i = 0; i < displayCount; i++) {
+      console.log(`     ${c.dim('- ' + missingMetaFiles[i])}`);
+    }
+    if (missingMetaFiles.length > displayCount) {
+      console.log(`     ${c.dim('... 以及 ' + (missingMetaFiles.length - displayCount) + ' 个其他文件')}`);
+    }
+  }
   
   const fileSizeMB = (fs.statSync(OUTPUT_FILE).size / 1024 / 1024).toFixed(1);
   console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))} ${c.dim('(' + fileSizeMB + ' MB)')}`);
-  console.log(`  ${c.success('✓')} 日志: ${c.dim('1-2~1-5.json (4个日志文件)')}`);
 }
 
 // ==================== 处理目录 ====================
@@ -77,7 +123,8 @@ function processDirectory(dirPath, depth) {
   // 读取 _meta.json
   const metaPath = path.join(dirPath, '_meta.json');
   if (!fs.existsSync(metaPath)) {
-    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path(path.relative(ROOT_DIR, metaPath))}`);
+    // 记录缺失的 _meta.json 文件
+    missingMetaFiles.push(path.relative(ROOT_DIR, metaPath));
     return result;
   }
 
@@ -87,7 +134,7 @@ function processDirectory(dirPath, depth) {
   for (const item of meta) {
     if (typeof item === 'object' && item.type === 'dir') {
       // ========== 对象 → 目录 ==========
-      // 添加目录标题
+      // 添加目录标题：depth从0开始，第一级目录是H1（提一级）
       const dirTitle = '#'.repeat(depth + 1) + ' ' + item.label;
       result += dirTitle + '\n\n';
 
@@ -174,9 +221,22 @@ function processMDX(content, filePath) {
   content = content.replace(/<[A-Z][a-zA-Z0-9]*[^>]*\/>/g, '');
   content = content.replace(/<[A-Z][a-zA-Z0-9]*[^>]*>[\s\S]*?<\/[A-Z][a-zA-Z0-9]*>/g, '');
 
-  // 添加提示信息
-  const notice = '\n> **注意**: 此部分包含交互式内容，在 PDF 版本中不可用。请访问在线文档查看完整内容。\n\n';
-  content = notice + content;
+  // 提取标题
+  const titleMatch = content.match(/^#\s+(.+)$/m);
+  const title = titleMatch ? titleMatch[1] : '';
+  
+  // 检查除了标题和空白外是否还有实质内容
+  const contentWithoutTitle = content.replace(/^#\s+.+$/m, '').trim();
+  const hasSubstantialContent = contentWithoutTitle.length > 50; // 如果剩余内容少于50字符，认为是纯组件页面
+  
+  if (!hasSubstantialContent && title) {
+    // 纯组件页面，替换为友好的提示信息
+    content = `# ${title}\n\n> **📌 交互式内容**\n>\n> 本页面包含交互式组件（${title}），仅在在线文档中可用。\n>\n> 💡 **提示**：请访问在线文档查看完整的交互式内容和功能演示。\n`;
+  } else {
+    // 有一定内容，添加标准提示
+    const notice = '\n> **注意**: 此部分包含交互式内容，在 PDF 版本中部分功能不可用。请访问在线文档查看完整内容。\n\n';
+    content = notice + content;
+  }
 
   // 记录处理详情
   mdxProcessed.push({
@@ -184,6 +244,8 @@ function processMDX(content, filePath) {
     originalLength: original.length,
     processedLength: content.length,
     removedCharacters: original.length - content.length,
+    hasSubstantialContent: hasSubstantialContent,
+    title: title || '(无标题)',
   });
 
   return content;
@@ -201,6 +263,9 @@ function adjustHeadings(content, depth) {
     }
 
     const currentLevel = hashes.length;
+    // 调整层级：header用HTML，markdown从H1开始，depth从0开始
+    // - depth=0 的文件：H1→H2, H2→H3 (在一级目录H1下)
+    // - depth=1 的文件：H1→H3, H2→H4 (在二级目录H2下)
     const newLevel = Math.min(currentLevel + depth + 1, 6); // 最多 H6
     return '#'.repeat(newLevel) + ' ' + text;
   });

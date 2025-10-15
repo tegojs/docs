@@ -14,10 +14,10 @@ if (!TASK_ID) {
 
 const ROOT_DIR = path.join(__dirname, '..');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const INPUT_FILE = path.join(OUTPUT_DIR, '1-1-merged.md');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '2-1-links-processed.md');
-const LINKS_LOG = path.join(OUTPUT_DIR, '2-2-links.json');
-const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-3-links-skipped.json');
+const INPUT_FILE = path.join(OUTPUT_DIR, '1-6-merged.md');
+const LINKS_LOG = path.join(OUTPUT_DIR, '2-1-links.json');
+const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-2-links-skipped.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '2-3-links-processed.md');
 
 // ==================== 日志记录 ====================
 const linksProcessed = [];
@@ -43,25 +43,34 @@ function main() {
   // 3. 扫描并处理所有内部链接
   content = processInternalLinks(content, manualMappings);
 
-  // 4. 保存输出
-  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+  // 4. 先保存日志
   fs.writeFileSync(LINKS_LOG, JSON.stringify(linksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(LINKS_SKIPPED_LOG, JSON.stringify(linksSkipped, null, 2), 'utf-8');
+  
+  // 5. 最后保存处理后的文档
+  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
 
-  // 5. 输出统计
+  // 6. 输出统计
   const totalLinks = linksProcessed.length;
-  console.log(`  ${c.success('✓')} 转换 ${c.number(totalLinks)} 个链接`);
+  console.log(`  ${c.success('✓')} 转换 ${c.number(totalLinks)} 个链接 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, LINKS_LOG))}`);
   console.log(`    ${c.dim('- [规则1] 手动映射:')} ${c.number(ruleStats.rule1_manual)}`);
   console.log(`    ${c.dim('- [规则2] 锚点:')} ${c.number(ruleStats.rule2_anchor)}`);
   console.log(`    ${c.dim('- [规则3] 源文件:')} ${c.number(ruleStats.rule3_sourceFile)}`);
   console.log(`    ${c.dim('- [规则4] 文本:')} ${c.number(ruleStats.rule4_linkText)}`);
   
   if (linksSkipped.length > 0) {
-    console.log(`  ${c.warning('⚠️')}  找不到源文件: ${c.number(linksSkipped.length)} 个`);
+    console.log(`  ${c.warning('⚠️')}  找不到源文件: ${c.number(linksSkipped.length)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, LINKS_SKIPPED_LOG))}`);
+    // 显示前几个找不到的链接
+    const displayCount = Math.min(5, linksSkipped.length);
+    for (let i = 0; i < displayCount; i++) {
+      console.log(`     ${c.dim('- ' + linksSkipped[i].url + ' (' + linksSkipped[i].linkText + ')')}`);
+    }
+    if (linksSkipped.length > displayCount) {
+      console.log(`     ${c.dim('... 以及 ' + (linksSkipped.length - displayCount) + ' 个其他链接')}`);
+    }
   }
   
   console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
-  console.log(`  ${c.success('✓')} 日志: ${c.dim('2-2-links.json, 2-3-links-skipped.json')}`);
 }
 
 // ==================== 读取手动映射 ====================

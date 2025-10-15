@@ -8,10 +8,7 @@
     "dev": "rspress dev",
     "format": "biome format --write",
     "preview": "rspress preview",
-    "pdf": "node scripts/generate-pdf.js",
-    "pdf:merge": "node scripts/merge-guides.js",
-    "pdf:links": "node scripts/process-links.js",
-    "pdf:images": "node scripts/process-images.js"
+    "merge-md": "node scripts/process-markdown.js"
   },
   "dependencies": {
     "@formulajs/formulajs": "4.4.9",
@@ -35,6 +32,11 @@
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "clsx": "^2.1.1",
+    "cross-env": "^10.1.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "puppeteer": "^24.24.0",
     "tailwindcss": "^4.1.11"
   }
 }

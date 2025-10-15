@@ -27,3 +27,22 @@ Preview the production build locally:
 ```bash
 npm run preview
 ```
+
+## Generate PDF
+
+Generate PDF from `docs/zh/guides/`:
+
+```bash
+# Pandoc (推荐 - 支持 PDF 书签)
+pnpm pdf:pandoc
+
+# Puppeteer (备选 - 无需安装工具)
+pnpm pdf:puppeteer
+
+# 检查系统字体
+pnpm pdf:check-fonts
+```
+
+**Output**: `dist/pdf/latest/6-1-guides-zh.pdf`
+
+**详细文档**: 查看 `scripts/QUICK-START.md`
