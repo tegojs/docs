@@ -44,6 +44,7 @@ const stats = {
   relativeLinks: 0,
   relativeImages: 0,
   headingOverflow: 0,
+  admonitions: 0, // 提示框转换数量
 };
 
 // ==================== 主函数 ====================
@@ -96,6 +97,10 @@ function main() {
   
   if (stats.mdxFiles > 0) {
     console.log(`  ${chalk.green('✓')} 处理 ${chalk.cyan(stats.mdxFiles)} 个 MDX 文件 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, MDX_PROCESSED_LOG))}`);
+  }
+  
+  if (stats.admonitions > 0) {
+    console.log(`  ${chalk.green('✓')} 转换 ${chalk.cyan(stats.admonitions)} 个提示框为引用块`);
   }
   
   if (stats.skippedCount > 0) {
@@ -238,6 +243,9 @@ function processDirectory(dirPath, depth) {
         content = processMDX(content, filePath);
       }
 
+      // 处理特殊语法（提示框等）
+      content = processSpecialSyntax(content);
+
       // 调整标题层级（传入文件路径用于日志记录）
       content = adjustHeadings(content, depth, filePath);
 
@@ -368,6 +376,38 @@ function replaceOutsideCodeBlocks(content, codeBlocks, pattern, replacement) {
   for (const m of matches) {
     content = content.substring(0, m.index) + m.replacement + content.substring(m.index + m.length);
   }
+  
+  return content;
+}
+
+// ==================== 处理特殊语法 ====================
+function processSpecialSyntax(content) {
+  // 处理 ::: 提示框语法（如 :::info, :::warning, :::tip 等）
+  // 格式：:::type{title=标题} 或 :::type
+  content = content.replace(/:::(\w+)(?:\{title=([^}]+)\})?\s*\n([\s\S]*?):::/g, (match, type, title, innerContent) => {
+    stats.admonitions++;
+    
+    // 类型映射到中文标签和emoji
+    const typeMap = {
+      'info': { label: '提示', emoji: 'ℹ️' },
+      'tip': { label: '技巧', emoji: '💡' },
+      'warning': { label: '警告', emoji: '⚠️' },
+      'danger': { label: '危险', emoji: '🚫' },
+      'note': { label: '注意', emoji: '📝' },
+      'caution': { label: '小心', emoji: '⚡' },
+      'important': { label: '重要', emoji: '❗' },
+      'success': { label: '成功', emoji: '✅' },
+    };
+    
+    const typeInfo = typeMap[type.toLowerCase()] || { label: type, emoji: '📌' };
+    const displayTitle = title || typeInfo.label;
+    
+    // 转换为引用块格式
+    const lines = innerContent.trim().split('\n');
+    const quotedLines = lines.map(line => `> ${line}`).join('\n');
+    
+    return `> **${typeInfo.emoji} ${displayTitle}**\n>\n${quotedLines}\n`;
+  });
   
   return content;
 }

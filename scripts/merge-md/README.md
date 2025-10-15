@@ -73,13 +73,18 @@ docs/zh/guides/**/*.md
 
 **输入**: `docs/zh/guides/**/*.md` 和 `*.mdx`
 
-**输出**: `dist/pdf/{taskId}/1-6-merged.md`
+**输出**: `dist/pdf/{taskId}/1-7-merged.md`
 
 **限制**:
 - 单个文件大小限制：10 MB
 - 超过限制的文件会被跳过（容错模式）或导致失败（严格模式）
 
 **功能**:
+1. 按顺序合并文件
+2. 调整标题层级
+3. 处理相对路径
+4. 转换提示框语法
+5. 处理 MDX 文件
 
 #### 1.1 按顺序合并文件
 
@@ -151,7 +156,35 @@ docs/zh/guides/
 ![图](../assets/logo.png)      → ![图](/guides/assets/logo.png)
 ```
 
-#### 1.4 处理 MDX 文件
+#### 1.4 处理特殊语法
+
+**提示框转换**：
+
+将 VuePress/Docusaurus 风格的提示框转换为标准 Markdown 引用块：
+
+```markdown
+# 原格式
+:::info{title=提示}
+可以在控制台中查看配置信息
+:::
+
+# 转换后
+> **ℹ️ 提示**
+>
+> 可以在控制台中查看配置信息
+```
+
+**支持的提示框类型**：
+- `info` → ℹ️ 提示
+- `tip` → 💡 技巧
+- `warning` → ⚠️ 警告
+- `danger` → 🚫 危险
+- `note` → 📝 注意
+- `caution` → ⚡ 小心
+- `important` → ❗ 重要
+- `success` → ✅ 成功
+
+#### 1.5 处理 MDX 文件
 
 MDX（Markdown + JSX）文件处理：
 - 删除 `import` 语句
