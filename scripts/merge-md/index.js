@@ -40,6 +40,17 @@ async function main() {
     execSync(`node ${path.join(__dirname, 'steps/3-process-images.js')} ${TASK_ID}`, { stdio: 'inherit' });
     console.log('');
 
+    // ==================== 创建带日期的副本 ====================
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const dateString = `${year}.${month}.${day}`;
+    
+    const finalMdFile = path.join(OUTPUT_DIR, '3-3-images-processed.md');
+    const datedMdFile = path.join(OUTPUT_DIR, `Tego-Guides-zh-${dateString}.md`);
+    fs.copyFileSync(finalMdFile, datedMdFile);
+
     // ==================== 创建 latest 快捷访问 ====================
     const latestDir = path.join(ROOT_DIR, 'dist/pdf/latest');
     fs.mkdirSync(latestDir, { recursive: true });
@@ -58,8 +69,8 @@ async function main() {
     console.log(chalk.green('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'));
     console.log('');
     console.log(`📁 ${chalk.gray('输出目录:')} ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_DIR) + '/')}`);
-    console.log(`📄 ${chalk.gray('处理后的文件:')} ${chalk.bold(chalk.yellow(path.relative(ROOT_DIR, OUTPUT_DIR + '/3-3-images-processed.md')))}`);
-    console.log(`🔗 ${chalk.gray('快捷访问:')} ${chalk.cyan('dist/pdf/latest/3-3-images-processed.md')}`);
+    console.log(`📄 ${chalk.gray('处理后的文件:')} ${chalk.bold(chalk.yellow(path.relative(ROOT_DIR, datedMdFile)))}`);
+    console.log(`🔗 ${chalk.gray('快捷访问:')} ${chalk.cyan('dist/pdf/latest/' + path.basename(datedMdFile))}`);
     console.log('');
     console.log(chalk.yellow('💡 提示: 可以使用 Typora 或其他工具将处理后的 markdown 转换为 PDF 以发布'));
     console.log('');

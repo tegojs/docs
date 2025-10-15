@@ -10,8 +10,9 @@ pnpm merge-md
 ```
 
 **输出位置**:
-- `dist/pdf/{taskId}/3-3-images-processed.md` - 带时间戳的版本
-- `dist/pdf/latest/3-3-images-processed.md` - 最新版本（快捷访问）⭐
+- `dist/pdf/{taskId}/Tego-Guides-zh-YYYY.MM.DD.md` - 带日期的最终文件 ⭐
+- `dist/pdf/{taskId}/3-3-images-processed.md` - 处理后的文件
+- `dist/pdf/latest/Tego-Guides-zh-YYYY.MM.DD.md` - 最新版本（快捷访问）⭐
 
 ---
 
@@ -286,15 +287,21 @@ dist/pdf/1728825025/              # 任务ID = 10位时间戳
 ├── 2-3-links-processed.md        # 步骤2：处理链接后
 ├── 3-1-images.json               # 步骤3：图片处理详情
 ├── 3-2-images-missing.json       # 步骤3：缺失的图片
-└── 3-3-images-processed.md       # 步骤3：最终输出 ⭐
+├── 3-3-images-processed.md       # 步骤3：处理图片后
+└── Tego-Guides-zh-2025.10.15.md  # 带日期的最终文件 ⭐
 ```
 
 同时会创建 `dist/pdf/latest/` 副本（指向最新运行结果）。
+
+**文件说明**:
+- `3-3-images-processed.md` - 原始处理文件
+- `Tego-Guides-zh-YYYY.MM.DD.md` - 带日期的副本，方便识别版本和分发
 
 **优点**:
 - ✅ 每步输出独立保留，方便调试
 - ✅ 不会覆盖历史记录
 - ✅ 可以对比不同运行的差异
+- ✅ 带日期的文件名，方便版本管理
 - ✅ `latest/` 提供快捷访问
 
 ---
