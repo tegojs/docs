@@ -22,7 +22,7 @@ async function main() {
   console.log(chalk.cyan('╚════════════════════════════════════════╝'));
   console.log('');
   console.log(`${chalk.gray('任务 ID:')} ${chalk.bold(chalk.yellow(TASK_ID))}`);
-  console.log(`${chalk.gray('输出目录:')} ${chalk.magenta(OUTPUT_DIR + '/')}`);
+  console.log(`${chalk.gray('输出目录:')} ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_DIR) + path.sep)}`);
   console.log(`${chalk.gray('运行模式:')} ${STRICT_MODE ? chalk.red('严格模式 (--strict)') : chalk.green('容错模式')}`);
   console.log('');
 
@@ -85,9 +85,9 @@ async function main() {
     console.log(chalk.bold(chalk.green('✅ 全部完成！')));
     console.log(chalk.green('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'));
     console.log('');
-    console.log(`📁 ${chalk.gray('输出目录:')} ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_DIR) + '/')}`);
+    console.log(`📁 ${chalk.gray('输出目录:')} ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_DIR) + path.sep)}`);
     console.log(`📄 ${chalk.gray('处理后的文件:')} ${chalk.bold(chalk.yellow(path.relative(ROOT_DIR, datedMdFile)))}`);
-    console.log(`🔗 ${chalk.gray('快捷访问:')} ${chalk.cyan('dist/pdf/latest/' + path.basename(datedMdFile))}`);
+    console.log(`🔗 ${chalk.gray('快捷访问:')} ${chalk.cyan(path.join('dist', 'pdf', 'latest', path.basename(datedMdFile)))}`);
     console.log('');
     console.log(chalk.yellow('💡 提示: 可以使用 Typora 将处理后的 markdown 转换为 PDF 以发布'));
     console.log('');

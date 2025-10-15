@@ -23,7 +23,8 @@ const MDX_PROCESSED_LOG = path.join(OUTPUT_DIR, '1-2-mdx-processed.json');
 const RELATIVE_LINKS_LOG = path.join(OUTPUT_DIR, '1-3-relative-links.json');
 const RELATIVE_IMAGES_LOG = path.join(OUTPUT_DIR, '1-4-relative-images.json');
 const MISSING_META_LOG = path.join(OUTPUT_DIR, '1-5-missing-meta.json');
-const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-6-merged.md');
+const HEADING_OVERFLOW_LOG = path.join(OUTPUT_DIR, '1-6-heading-overflow.json');
+const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-7-merged.md');
 
 // 文件大小限制（10MB）
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
@@ -34,6 +35,7 @@ const mdxProcessed = [];
 const relativeLinksProcessed = [];
 const relativeImagesProcessed = [];
 const missingMetaFiles = []; // 记录缺失的 _meta.json 文件
+const headingOverflows = []; // 记录标题层级溢出的详情
 const processedInMeta = new Set(); // 记录在 meta 中处理过的文件
 const stats = {
   totalFiles: 0,
@@ -41,6 +43,7 @@ const stats = {
   skippedCount: 0,
   relativeLinks: 0,
   relativeImages: 0,
+  headingOverflow: 0,
 };
 
 // ==================== 主函数 ====================
@@ -86,6 +89,7 @@ function main() {
   fs.writeFileSync(RELATIVE_LINKS_LOG, JSON.stringify(relativeLinksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(RELATIVE_IMAGES_LOG, JSON.stringify(relativeImagesProcessed, null, 2), 'utf-8');
   fs.writeFileSync(MISSING_META_LOG, JSON.stringify(missingMetaFiles, null, 2), 'utf-8');
+  fs.writeFileSync(HEADING_OVERFLOW_LOG, JSON.stringify(headingOverflows, null, 2), 'utf-8');
 
   // 输出统计
   console.log(`  ${chalk.green('✓')} 处理 ${chalk.cyan(stats.totalFiles)} 个文件`);
@@ -115,6 +119,22 @@ function main() {
     }
     if (missingMetaFiles.length > displayCount) {
       console.log(`     ${chalk.dim('... 以及 ' + (missingMetaFiles.length - displayCount) + ' 个其他文件')}`);
+    }
+  }
+  
+  // 显示标题层级溢出警告（H9+）
+  if (headingOverflows.length > 0) {
+    console.log(`  ${chalk.yellow('⚠️')}  深层标题 (H9+): ${chalk.cyan(headingOverflows.length)} 个 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, HEADING_OVERFLOW_LOG))}`);
+    console.log(`     ${chalk.dim('已转换为加粗斜体文本，建议简化文档结构')}`);
+    
+    const displayCount = Math.min(3, headingOverflows.length);
+    console.log(`     ${chalk.dim('示例:')}`);
+    for (let i = 0; i < displayCount; i++) {
+      const item = headingOverflows[i];
+      console.log(`     ${chalk.dim(`  · H${item.targetLevel} "${item.title.substring(0, 40)}${item.title.length > 40 ? '...' : ''}"`)}`);
+    }
+    if (headingOverflows.length > displayCount) {
+      console.log(`     ${chalk.dim('  ... 以及 ' + (headingOverflows.length - displayCount) + ' 个其他标题')}`);
     }
   }
   
@@ -218,8 +238,8 @@ function processDirectory(dirPath, depth) {
         content = processMDX(content, filePath);
       }
 
-      // 调整标题层级
-      content = adjustHeadings(content, depth);
+      // 调整标题层级（传入文件路径用于日志记录）
+      content = adjustHeadings(content, depth, filePath);
 
       // 处理相对路径（链接和图片）
       content = processRelativePaths(content, dirPath, filePath);
@@ -353,11 +373,9 @@ function replaceOutsideCodeBlocks(content, codeBlocks, pattern, replacement) {
 }
 
 // ==================== 调整标题层级 ====================
-function adjustHeadings(content, depth) {
+function adjustHeadings(content, depth, sourceFile) {
   // 提取代码块位置（避免处理代码块内的内容）
   const codeBlocks = extractCodeBlocks(content);
-  
-  let hasLevelOverflow = false;
 
   const result = content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text, offset) => {
     // 检查是否在代码块内
@@ -370,15 +388,38 @@ function adjustHeadings(content, depth) {
     // - depth=0 的文件：H1→H2, H2→H3 (在一级目录H1下)
     // - depth=1 的文件：H1→H3, H2→H4 (在二级目录H2下)
     const targetLevel = currentLevel + depth + 1;
-    const newLevel = Math.min(targetLevel, 6); // 最多 H6
     
-    // 检测层级溢出
-    if (targetLevel > 6 && !hasLevelOverflow) {
-      hasLevelOverflow = true;
-      console.warn(`  ${chalk.yellow('⚠️  警告:')} 标题层级超出 H6，已压缩至 H6 (depth=${depth}, 原始=${currentLevel}), 标题: `);
+    // 处理超出 H6 的情况
+    if (targetLevel > 6) {
+      // 根据超出程度选择不同的格式
+      let formattedText;
+      
+      if (targetLevel === 7) {
+        // H7 → 加粗文本（不记录）
+        formattedText = `**${text.trim()}**`;
+      } else if (targetLevel === 8) {
+        // H8 → 加粗斜体文本（不记录）
+        formattedText = `**_${text.trim()}_**`;
+      } else {
+        // H9+ → 加粗斜体文本（记录到日志）
+        formattedText = `**_${text.trim()}_**`;
+        
+        stats.headingOverflow++;
+        headingOverflows.push({
+          file: path.relative(ROOT_DIR, sourceFile).replace(/\\/g, '/'),
+          depth: depth,
+          originalLevel: currentLevel,
+          targetLevel: targetLevel,
+          convertedTo: 'bold-italic',
+          title: text.trim(),
+        });
+      }
+      
+      return '\n' + formattedText + '\n';
     }
     
-    return '#'.repeat(newLevel) + ' ' + text;
+    // 正常范围内的标题
+    return '#'.repeat(targetLevel) + ' ' + text;
   });
   
   return result;

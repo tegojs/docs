@@ -17,7 +17,7 @@ const STRICT_MODE = process.argv.includes('--strict');
 
 const ROOT_DIR = path.join(__dirname, '../../..');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
-const INPUT_FILE = path.join(OUTPUT_DIR, '1-6-merged.md');
+const INPUT_FILE = path.join(OUTPUT_DIR, '1-7-merged.md');
 const LINKS_LOG = path.join(OUTPUT_DIR, '2-1-links.json');
 const LINKS_SKIPPED_LOG = path.join(OUTPUT_DIR, '2-2-links-skipped.json');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, '2-3-links-processed.md');
