@@ -1,8 +1,0 @@
-{
-  "mappings": {
-    "_comment": "手动映射内部链接到 Pandoc 锚点",
-    "_example": "/guides/advanced/env.html#db_dialect -> 数据库配置",
-    "_usage": "左侧是原始链接，右侧是目标标题文本（Pandoc会自动生成锚点）"
-  }
-}
-

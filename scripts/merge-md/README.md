@@ -22,12 +22,11 @@ pnpm merge-md
 ```
 scripts/merge-md/
 ├── index.js                   # 主入口，协调三个处理步骤
+├── README.md                  # 本文档
 ├── steps/                     # 处理步骤（按顺序执行）
 │   ├── 1-merge-guides.js     # 步骤1：合并 Markdown
 │   ├── 2-process-links.js    # 步骤2：处理内部链接
 │   └── 3-process-images.js   # 步骤3：处理图片路径
-├── utils/                     # 工具函数
-│   └── colors.js             # 终端颜色工具（无依赖）
 └── assets/                    # 资源文件
     ├── header.md             # PDF 头部模板
     └── tegodocs.css          # Typora 样式文件
@@ -544,10 +543,10 @@ MDX 文件中的 JSX 组件会被移除（因为无法在 PDF 中展示）。查
 
 **必需**:
 - Node.js >= 16.0
-- 无外部 npm 依赖（仅使用 Node.js 内置模块）
+- `chalk@4` - 终端颜色库（最流行、最广泛使用）
 
 **可选**:
-- `link-mapping.json` - 手动链接映射
+- `link-mapping.json` - 手动链接映射（项目根目录）
 
 ### 修改脚本
 

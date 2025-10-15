@@ -2,13 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const { c } = require('../utils/colors');
+const chalk = require('chalk');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
-  console.error(c.error('❌ 错误:'), '缺少任务ID参数');
-  console.error(c.gray('用法:'), 'node 1-merge-guides.js <taskId>');
+  console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
+  console.error(chalk.gray('用法:'), 'node 1-merge-guides.js <taskId>');
   process.exit(1);
 }
 
@@ -59,7 +59,7 @@ function main() {
     output += '\n\n';
   } else {
     // 如果 header.md 不存在，使用默认HTML标题
-    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path('scripts/merge-md/assets/header.md')}，使用默认标题`);
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} 未找到 ${chalk.magenta('scripts/merge-md/assets/header.md')}，使用默认标题`);
     const now = new Date();
     const dateString = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
     output = `<br>\n<br>\n<br>\n\n<div align="center">\n  <h1 style="font-size: 3em;">灵矶使用指南</h1>\n  <p style="font-size: 1.2em; color: #999;">${dateString}</p>\n</div>\n\n<br>\n<br>\n<br>\n\n---\n\n`;
@@ -82,38 +82,38 @@ function main() {
   fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
 
   // 输出统计
-  console.log(`  ${c.success('✓')} 处理 ${c.number(stats.totalFiles)} 个文件`);
+  console.log(`  ${chalk.green('✓')} 处理 ${chalk.cyan(stats.totalFiles)} 个文件`);
   
   if (stats.mdxFiles > 0) {
-    console.log(`  ${c.success('✓')} 处理 ${c.number(stats.mdxFiles)} 个 MDX 文件 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, MDX_PROCESSED_LOG))}`);
+    console.log(`  ${chalk.green('✓')} 处理 ${chalk.cyan(stats.mdxFiles)} 个 MDX 文件 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, MDX_PROCESSED_LOG))}`);
   }
   
   if (stats.skippedCount > 0) {
-    console.log(`  ${c.warning('⚠️')}  跳过 ${c.number(stats.skippedCount)} 个文件 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, SKIPPED_FILES_LOG))}`);
+    console.log(`  ${chalk.yellow('⚠️')}  跳过 ${chalk.cyan(stats.skippedCount)} 个文件 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, SKIPPED_FILES_LOG))}`);
   }
   
   if (stats.relativeLinks > 0) {
-    console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeLinks)} 个相对路径链接 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, RELATIVE_LINKS_LOG))}`);
+    console.log(`  ${chalk.green('✓')} 转换 ${chalk.cyan(stats.relativeLinks)} 个相对路径链接 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, RELATIVE_LINKS_LOG))}`);
   }
   
   if (stats.relativeImages > 0) {
-    console.log(`  ${c.success('✓')} 转换 ${c.number(stats.relativeImages)} 个相对路径图片 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, RELATIVE_IMAGES_LOG))}`);
+    console.log(`  ${chalk.green('✓')} 转换 ${chalk.cyan(stats.relativeImages)} 个相对路径图片 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, RELATIVE_IMAGES_LOG))}`);
   }
   
   // 显示缺失的 _meta.json 警告
   if (missingMetaFiles.length > 0) {
-    console.log(`  ${c.warning('⚠️')}  缺失 _meta.json: ${c.number(missingMetaFiles.length)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, MISSING_META_LOG))}`);
+    console.log(`  ${chalk.yellow('⚠️')}  缺失 _meta.json: ${chalk.cyan(missingMetaFiles.length)} 个 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, MISSING_META_LOG))}`);
     const displayCount = Math.min(5, missingMetaFiles.length);
     for (let i = 0; i < displayCount; i++) {
-      console.log(`     ${c.dim('- ' + missingMetaFiles[i])}`);
+      console.log(`     ${chalk.dim('- ' + missingMetaFiles[i])}`);
     }
     if (missingMetaFiles.length > displayCount) {
-      console.log(`     ${c.dim('... 以及 ' + (missingMetaFiles.length - displayCount) + ' 个其他文件')}`);
+      console.log(`     ${chalk.dim('... 以及 ' + (missingMetaFiles.length - displayCount) + ' 个其他文件')}`);
     }
   }
   
   const fileSizeMB = (fs.statSync(OUTPUT_FILE).size / 1024 / 1024).toFixed(1);
-  console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))} ${c.dim('(' + fileSizeMB + ' MB)')}`);
+  console.log(`  ${chalk.green('✓')} 输出: ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_FILE))} ${chalk.dim('(' + fileSizeMB + ' MB)')}`);
 }
 
 // ==================== 处理目录 ====================

@@ -2,13 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const { c } = require('../utils/colors');
+const chalk = require('chalk');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
-  console.error(c.error('❌ 错误:'), '缺少任务ID参数');
-  console.error(c.gray('用法:'), 'node 2-process-links.js <taskId>');
+  console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
+  console.error(chalk.gray('用法:'), 'node 2-process-links.js <taskId>');
   process.exit(1);
 }
 
@@ -31,11 +31,11 @@ const ruleStats = {
 
 // ==================== 主函数 ====================
 function main() {
-  console.log(`  ${c.info('📁')} 扫描内部链接...`);
+  console.log(`  ${chalk.cyan('📁')} 扫描内部链接...`);
 
   // 1. 读取 link-mapping.json（如果存在）
   const manualMappings = loadManualMappings();
-  console.log(`  ${c.info('📚')} 手动映射: ${c.number(Object.keys(manualMappings).length)} 个`);
+  console.log(`  ${chalk.cyan('📚')} 手动映射: ${chalk.cyan(Object.keys(manualMappings).length)} 个`);
 
   // 2. 读取输入
   let content = fs.readFileSync(INPUT_FILE, 'utf-8');
@@ -52,25 +52,25 @@ function main() {
 
   // 6. 输出统计
   const totalLinks = linksProcessed.length;
-  console.log(`  ${c.success('✓')} 转换 ${c.number(totalLinks)} 个链接 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, LINKS_LOG))}`);
-  console.log(`    ${c.dim('- [规则1] 手动映射:')} ${c.number(ruleStats.rule1_manual)}`);
-  console.log(`    ${c.dim('- [规则2] 锚点:')} ${c.number(ruleStats.rule2_anchor)}`);
-  console.log(`    ${c.dim('- [规则3] 源文件:')} ${c.number(ruleStats.rule3_sourceFile)}`);
-  console.log(`    ${c.dim('- [规则4] 文本:')} ${c.number(ruleStats.rule4_linkText)}`);
+  console.log(`  ${chalk.green('✓')} 转换 ${chalk.cyan(totalLinks)} 个链接 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, LINKS_LOG))}`);
+  console.log(`    ${chalk.dim('- [规则1] 手动映射:')} ${chalk.cyan(ruleStats.rule1_manual)}`);
+  console.log(`    ${chalk.dim('- [规则2] 锚点:')} ${chalk.cyan(ruleStats.rule2_anchor)}`);
+  console.log(`    ${chalk.dim('- [规则3] 源文件:')} ${chalk.cyan(ruleStats.rule3_sourceFile)}`);
+  console.log(`    ${chalk.dim('- [规则4] 文本:')} ${chalk.cyan(ruleStats.rule4_linkText)}`);
   
   if (linksSkipped.length > 0) {
-    console.log(`  ${c.warning('⚠️')}  找不到源文件: ${c.number(linksSkipped.length)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, LINKS_SKIPPED_LOG))}`);
+    console.log(`  ${chalk.yellow('⚠️')}  找不到源文件: ${chalk.cyan(linksSkipped.length)} 个 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, LINKS_SKIPPED_LOG))}`);
     // 显示前几个找不到的链接
     const displayCount = Math.min(5, linksSkipped.length);
     for (let i = 0; i < displayCount; i++) {
-      console.log(`     ${c.dim('- ' + linksSkipped[i].url + ' (' + linksSkipped[i].linkText + ')')}`);
+      console.log(`     ${chalk.dim('- ' + linksSkipped[i].url + ' (' + linksSkipped[i].linkText + ')')}`);
     }
     if (linksSkipped.length > displayCount) {
-      console.log(`     ${c.dim('... 以及 ' + (linksSkipped.length - displayCount) + ' 个其他链接')}`);
+      console.log(`     ${chalk.dim('... 以及 ' + (linksSkipped.length - displayCount) + ' 个其他链接')}`);
     }
   }
   
-  console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
+  console.log(`  ${chalk.green('✓')} 输出: ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
 }
 
 // ==================== 读取手动映射 ====================
@@ -95,7 +95,7 @@ function loadManualMappings() {
     
     return filteredMappings;
   } catch (error) {
-    console.warn(`  ${c.warning('⚠️  警告:')} 无法读取 link-mapping.json: ${error.message}`);
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} 无法读取 link-mapping.json: ${error.message}`);
     return {};
   }
 }

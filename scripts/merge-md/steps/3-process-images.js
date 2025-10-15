@@ -2,13 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const { c } = require('../utils/colors');
+const chalk = require('chalk');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
-  console.error(c.error('❌ 错误:'), '缺少任务ID参数');
-  console.error(c.gray('用法:'), 'node 3-process-images.js <taskId>');
+  console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
+  console.error(chalk.gray('用法:'), 'node 3-process-images.js <taskId>');
   process.exit(1);
 }
 
@@ -26,7 +26,7 @@ const imagesMissing = [];
 
 // ==================== 主函数 ====================
 function main() {
-  console.log(`  ${c.info('🖼️')}  扫描图片链接...`);
+  console.log(`  ${chalk.cyan('🖼️')}  扫描图片链接...`);
 
   // 1. 读取输入
   let content = fs.readFileSync(INPUT_FILE, 'utf-8');
@@ -46,22 +46,22 @@ function main() {
   const successCount = imagesProcessed.filter(img => img.exists).length;
   const missingCount = imagesMissing.length;
 
-  console.log(`  ${c.success('✓')} 找到 ${c.number(totalImages)} 个图片引用`);
-  console.log(`  ${c.success('✓')} 转换为绝对路径: ${c.number(successCount)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, IMAGES_LOG))}`);
+  console.log(`  ${chalk.green('✓')} 找到 ${chalk.cyan(totalImages)} 个图片引用`);
+  console.log(`  ${chalk.green('✓')} 转换为绝对路径: ${chalk.cyan(successCount)} 个 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, IMAGES_LOG))}`);
   
   if (missingCount > 0) {
-    console.log(`  ${c.warning('⚠️')}  找不到文件: ${c.number(missingCount)} 个 ${c.dim('→ 详见')} ${c.path(path.relative(ROOT_DIR, IMAGES_MISSING_LOG))}`);
+    console.log(`  ${chalk.yellow('⚠️')}  找不到文件: ${chalk.cyan(missingCount)} 个 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, IMAGES_MISSING_LOG))}`);
     // 显示前几个找不到的图片
     const displayCount = Math.min(5, imagesMissing.length);
     for (let i = 0; i < displayCount; i++) {
-      console.log(`     ${c.dim('- ' + imagesMissing[i].originalPath)}`);
+      console.log(`     ${chalk.dim('- ' + imagesMissing[i].originalPath)}`);
     }
     if (imagesMissing.length > displayCount) {
-      console.log(`     ${c.dim('... 以及 ' + (imagesMissing.length - displayCount) + ' 个其他图片')}`);
+      console.log(`     ${chalk.dim('... 以及 ' + (imagesMissing.length - displayCount) + ' 个其他图片')}`);
     }
   }
   
-  console.log(`  ${c.success('✓')} 输出: ${c.path(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
+  console.log(`  ${chalk.green('✓')} 输出: ${chalk.magenta(path.relative(ROOT_DIR, OUTPUT_FILE))}`);
 }
 
 // ==================== 处理图片 ====================
