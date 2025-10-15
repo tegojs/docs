@@ -36,8 +36,8 @@ npm run preview
 # 1. 合并并处理 Markdown（必须）
 pnpm merge-md
 
-# 2. 使用 Typora 或其他工具将生成的 MD 转为 PDF
-# 处理后的文件位于: dist/pdf/latest/3-3-images-processed.md
+# 2. 使用 Typora 将生成的 MD 转为 PDF
+# 处理后的文件位于: dist/pdf/latest/Tego-Guides-zh-{date}.md
 ```
 
-**详细说明**: 查看 `scripts/merge-md/README.md`
+**详细说明**: 查看 [scripts/merge-md/README.md](scripts/merge-md/README.md)

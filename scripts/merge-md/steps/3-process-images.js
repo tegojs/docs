@@ -8,9 +8,12 @@ const chalk = require('chalk');
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
   console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
-  console.error(chalk.gray('用法:'), 'node 3-process-images.js <taskId>');
+  console.error(chalk.gray('用法:'), 'node 3-process-images.js <taskId> [--strict]');
   process.exit(1);
 }
+
+// 检查是否启用严格模式
+const STRICT_MODE = process.argv.includes('--strict');
 
 const ROOT_DIR = path.join(__dirname, '../../..');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'docs/public');
@@ -34,12 +37,12 @@ function main() {
   // 2. 处理所有图片路径
   content = processImages(content);
 
-  // 3. 先保存日志
+  // 3. 先保存主文件（最重要）
+  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+  
+  // 4. 然后保存日志文件
   fs.writeFileSync(IMAGES_LOG, JSON.stringify(imagesProcessed, null, 2), 'utf-8');
   fs.writeFileSync(IMAGES_MISSING_LOG, JSON.stringify(imagesMissing, null, 2), 'utf-8');
-  
-  // 4. 最后保存处理后的文档
-  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
 
   // 5. 输出统计
   const totalImages = imagesProcessed.length;
@@ -96,7 +99,9 @@ function processImages(content) {
 function processUrlPath(alt, url, originalMatch) {
   // 拼接路径：PUBLIC_DIR + url
   // /guides/start/xxx.png → docs/public/guides/start/xxx.png
-  const imagePath = path.join(PUBLIC_DIR, url);
+  // 将 URL 路径转换为系统路径（处理 Windows 反斜杠）
+  const normalizedUrl = url.split('/').filter(Boolean).join(path.sep);
+  const imagePath = path.join(PUBLIC_DIR, normalizedUrl);
   
   // 检查文件是否存在
   const exists = fs.existsSync(imagePath);

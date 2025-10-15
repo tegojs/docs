@@ -8,9 +8,12 @@ const chalk = require('chalk');
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
   console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
-  console.error(chalk.gray('用法:'), 'node 1-merge-guides.js <taskId>');
+  console.error(chalk.gray('用法:'), 'node 1-merge-guides.js <taskId> [--strict]');
   process.exit(1);
 }
+
+// 检查是否启用严格模式
+const STRICT_MODE = process.argv.includes('--strict');
 
 const ROOT_DIR = path.join(__dirname, '../../..');
 const GUIDES_DIR = path.join(ROOT_DIR, 'docs/zh/guides');
@@ -21,6 +24,9 @@ const RELATIVE_LINKS_LOG = path.join(OUTPUT_DIR, '1-3-relative-links.json');
 const RELATIVE_IMAGES_LOG = path.join(OUTPUT_DIR, '1-4-relative-images.json');
 const MISSING_META_LOG = path.join(OUTPUT_DIR, '1-5-missing-meta.json');
 const OUTPUT_FILE = path.join(OUTPUT_DIR, '1-6-merged.md');
+
+// 文件大小限制（10MB）
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 // ==================== 日志记录 ====================
 const skippedFiles = [];
@@ -71,15 +77,15 @@ function main() {
   // 扫描所有未在 meta 中的文件
   scanUnprocessedFiles(GUIDES_DIR);
 
-  // 先保存日志
+  // 先保存主文件（最重要）
+  fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
+  
+  // 然后保存日志文件
   fs.writeFileSync(SKIPPED_FILES_LOG, JSON.stringify(skippedFiles, null, 2), 'utf-8');
   fs.writeFileSync(MDX_PROCESSED_LOG, JSON.stringify(mdxProcessed, null, 2), 'utf-8');
   fs.writeFileSync(RELATIVE_LINKS_LOG, JSON.stringify(relativeLinksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(RELATIVE_IMAGES_LOG, JSON.stringify(relativeImagesProcessed, null, 2), 'utf-8');
   fs.writeFileSync(MISSING_META_LOG, JSON.stringify(missingMetaFiles, null, 2), 'utf-8');
-  
-  // 最后保存处理后的文档
-  fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
 
   // 输出统计
   console.log(`  ${chalk.green('✓')} 处理 ${chalk.cyan(stats.totalFiles)} 个文件`);
@@ -124,7 +130,7 @@ function processDirectory(dirPath, depth) {
   const metaPath = path.join(dirPath, '_meta.json');
   if (!fs.existsSync(metaPath)) {
     // 记录缺失的 _meta.json 文件
-    missingMetaFiles.push(path.relative(ROOT_DIR, metaPath));
+    missingMetaFiles.push(path.relative(ROOT_DIR, metaPath).replace(/\\/g, '/'));
     return result;
   }
 
@@ -150,20 +156,20 @@ function processDirectory(dirPath, depth) {
         skippedFiles.push({
           reason: 'file_not_found',
           name: item,
-          directory: path.relative(ROOT_DIR, dirPath),
+          directory: path.relative(ROOT_DIR, dirPath).replace(/\\/g, '/'),
         });
         stats.skippedCount++;
         continue;
       }
 
-      // 记录已处理的文件
-      processedInMeta.add(path.relative(GUIDES_DIR, filePath));
+      // 记录已处理的文件（统一使用 Unix 风格路径）
+      processedInMeta.add(path.relative(GUIDES_DIR, filePath).replace(/\\/g, '/'));
 
       // 检查是否是备份文件
       if (filePath.endsWith('.bak')) {
         skippedFiles.push({
           reason: 'backup_file',
-          path: path.relative(ROOT_DIR, filePath),
+          path: path.relative(ROOT_DIR, filePath).replace(/\\/g, '/'),
         });
         stats.skippedCount++;
         continue;
@@ -171,8 +177,40 @@ function processDirectory(dirPath, depth) {
 
       stats.totalFiles++;
 
+      // 检查文件大小
+      const fileStats = fs.statSync(filePath);
+      if (fileStats.size > MAX_FILE_SIZE) {
+        const sizeMB = (fileStats.size / 1024 / 1024).toFixed(2);
+        console.warn(`  ${chalk.yellow('⚠️  警告:')} 文件过大 ${chalk.magenta(path.relative(ROOT_DIR, filePath))} (${sizeMB} MB)`);
+        if (STRICT_MODE) {
+          throw new Error(`文件超过大小限制 (${sizeMB} MB > 10 MB)`);
+        }
+        skippedFiles.push({
+          reason: 'file_too_large',
+          path: path.relative(ROOT_DIR, filePath).replace(/\\/g, '/'),
+          size: `${sizeMB} MB`,
+        });
+        stats.skippedCount++;
+        continue;
+      }
+
       // 读取文件内容
-      let content = fs.readFileSync(filePath, 'utf-8');
+      let content;
+      try {
+        content = fs.readFileSync(filePath, 'utf-8');
+      } catch (error) {
+        if (STRICT_MODE) {
+          throw error;
+        }
+        console.warn(`  ${chalk.yellow('⚠️  警告:')} 无法读取文件 ${chalk.magenta(path.relative(ROOT_DIR, filePath))}: ${error.message}`);
+        skippedFiles.push({
+          reason: 'read_error',
+          path: path.relative(ROOT_DIR, filePath).replace(/\\/g, '/'),
+          error: error.message,
+        });
+        stats.skippedCount++;
+        continue;
+      }
 
       // 处理 MDX 文件
       if (filePath.endsWith('.mdx')) {
@@ -214,12 +252,40 @@ function findFile(dirPath, fileName) {
 function processMDX(content, filePath) {
   const original = content;
 
-  // 删除 import 语句
+  // 1. 提取代码块位置，避免处理代码块内的内容
+  const codeBlocks = extractCodeBlocks(content);
+  
+  // 2. 删除 import/export 语句（整行删除）
   content = content.replace(/^import\s+.*?from\s+['"].*?['"];?\s*$/gm, '');
+  content = content.replace(/^export\s+(default\s+)?.*?$/gm, '');
 
-  // 删除 JSX 组件（简单处理：<Component ...> 或 <Component />）
-  content = content.replace(/<[A-Z][a-zA-Z0-9]*[^>]*\/>/g, '');
-  content = content.replace(/<[A-Z][a-zA-Z0-9]*[^>]*>[\s\S]*?<\/[A-Z][a-zA-Z0-9]*>/g, '');
+  // 3. 删除 JSX 注释（只在非代码块区域）
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /\{\/\*[\s\S]*?\*\/\}/g, '');
+  
+  // 4. 删除 JSX 组件（多次迭代处理嵌套）
+  let prevContent;
+  let iterations = 0;
+  const maxIterations = 20; // 增加迭代次数
+  
+  do {
+    prevContent = content;
+    // 自闭合组件
+    content = replaceOutsideCodeBlocks(content, codeBlocks, /<[A-Z][a-zA-Z0-9.]*[^>]*\/>/gs, '');
+    // 成对组件（非贪婪，捕获组件名）
+    content = replaceOutsideCodeBlocks(content, codeBlocks, /<([A-Z][a-zA-Z0-9.]*)[^>]*>([\s\S]*?)<\/\1>/g, '$2');
+    // Fragment
+    content = replaceOutsideCodeBlocks(content, codeBlocks, /<>([\s\S]*?)<\/>/g, '$1');
+    iterations++;
+  } while (prevContent !== content && iterations < maxIterations);
+  
+  // 检查是否还有未处理的组件
+  const remainingJSX = content.match(/<[A-Z][a-zA-Z0-9.]+/);
+  if (remainingJSX && iterations >= maxIterations) {
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} MDX 文件可能有未完全处理的 JSX 组件: ${chalk.magenta(path.relative(ROOT_DIR, filePath))}`);
+  }
+
+  // 5. 删除 JSX 表达式（只删除简单的变量引用，保留代码示例）
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /\{[a-zA-Z_$][a-zA-Z0-9_$]*\}/g, '');
 
   // 提取标题
   const titleMatch = content.match(/^#\s+(.+)$/m);
@@ -240,14 +306,49 @@ function processMDX(content, filePath) {
 
   // 记录处理详情
   mdxProcessed.push({
-    file: path.relative(ROOT_DIR, filePath),
+    file: path.relative(ROOT_DIR, filePath).replace(/\\/g, '/'),
     originalLength: original.length,
     processedLength: content.length,
     removedCharacters: original.length - content.length,
     hasSubstantialContent: hasSubstantialContent,
     title: title || '(无标题)',
+    jsxIterations: iterations,
   });
 
+  return content;
+}
+
+// ==================== 在代码块外替换内容 ====================
+function replaceOutsideCodeBlocks(content, codeBlocks, pattern, replacement) {
+  // 如果没有代码块，直接替换
+  if (codeBlocks.length === 0) {
+    return content.replace(pattern, replacement);
+  }
+  
+  // 收集所有匹配项
+  const matches = [];
+  let match;
+  const regex = new RegExp(pattern.source, pattern.flags);
+  
+  while ((match = regex.exec(content)) !== null) {
+    // 检查是否在代码块内
+    if (!isInCodeBlock(match.index, codeBlocks)) {
+      matches.push({
+        index: match.index,
+        length: match[0].length,
+        replacement: typeof replacement === 'string' 
+          ? replacement 
+          : match[0].replace(pattern, replacement),
+      });
+    }
+  }
+  
+  // 从后向前替换（避免索引变化）
+  matches.reverse();
+  for (const m of matches) {
+    content = content.substring(0, m.index) + m.replacement + content.substring(m.index + m.length);
+  }
+  
   return content;
 }
 
@@ -255,8 +356,10 @@ function processMDX(content, filePath) {
 function adjustHeadings(content, depth) {
   // 提取代码块位置（避免处理代码块内的内容）
   const codeBlocks = extractCodeBlocks(content);
+  
+  let hasLevelOverflow = false;
 
-  return content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text, offset) => {
+  const result = content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text, offset) => {
     // 检查是否在代码块内
     if (isInCodeBlock(offset, codeBlocks)) {
       return match;
@@ -266,9 +369,19 @@ function adjustHeadings(content, depth) {
     // 调整层级：header用HTML，markdown从H1开始，depth从0开始
     // - depth=0 的文件：H1→H2, H2→H3 (在一级目录H1下)
     // - depth=1 的文件：H1→H3, H2→H4 (在二级目录H2下)
-    const newLevel = Math.min(currentLevel + depth + 1, 6); // 最多 H6
+    const targetLevel = currentLevel + depth + 1;
+    const newLevel = Math.min(targetLevel, 6); // 最多 H6
+    
+    // 检测层级溢出
+    if (targetLevel > 6 && !hasLevelOverflow) {
+      hasLevelOverflow = true;
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} 标题层级超出 H6，已压缩至 H6 (depth=${depth}, 原始=${currentLevel}), 标题: `);
+    }
+    
     return '#'.repeat(newLevel) + ' ' + text;
   });
+  
+  return result;
 }
 
 // ==================== 处理相对路径 ====================
@@ -288,7 +401,7 @@ function processRelativePaths(content, currentDir, sourceFile) {
       
       // 记录转换详情
       relativeLinksProcessed.push({
-        sourceFile: path.relative(ROOT_DIR, sourceFile),
+        sourceFile: path.relative(ROOT_DIR, sourceFile).replace(/\\/g, '/'),
         linkText: text,
         originalPath: url,
         convertedPath: absolutePath,
@@ -311,7 +424,7 @@ function processRelativePaths(content, currentDir, sourceFile) {
       
       // 记录转换详情
       relativeImagesProcessed.push({
-        sourceFile: path.relative(ROOT_DIR, sourceFile),
+        sourceFile: path.relative(ROOT_DIR, sourceFile).replace(/\\/g, '/'),
         imageAlt: alt,
         originalPath: url,
         convertedPath: absolutePath,
@@ -327,39 +440,100 @@ function processRelativePaths(content, currentDir, sourceFile) {
 
 // ==================== 解析相对路径 ====================
 function resolveRelativePath(currentDir, relativePath) {
-  // 去除可能的 .html 后缀或锚点
-  const cleanPath = relativePath.replace(/\.html(#.*)?$/, '$1');
-  
-  // 解析路径
-  const absolutePath = path.join(currentDir, cleanPath);
-  
-  // 转换为相对于 docs/zh 的 URL 路径
-  const relative = path.relative(path.join(ROOT_DIR, 'docs/zh'), absolutePath);
-  
-  // 转换为 URL 格式（使用正斜杠）
-  const urlPath = '/' + relative.replace(/\\/g, '/');
-  
-  // 恢复 .html 后缀（如果有）
-  if (relativePath.includes('.html')) {
-    return urlPath + '.html';
+  // 1. 分离锚点
+  let anchor = '';
+  let pathWithoutAnchor = relativePath;
+  const hashIndex = relativePath.indexOf('#');
+  if (hashIndex !== -1) {
+    anchor = relativePath.substring(hashIndex); // 保留 #xxx
+    pathWithoutAnchor = relativePath.substring(0, hashIndex);
   }
   
-  return urlPath;
+  // 2. 分离扩展名
+  let extension = '';
+  if (pathWithoutAnchor.endsWith('.html')) {
+    extension = '.html';
+    pathWithoutAnchor = pathWithoutAnchor.substring(0, pathWithoutAnchor.length - 5);
+  } else if (pathWithoutAnchor.endsWith('.md')) {
+    extension = '.html'; // .md 转换为 .html
+    pathWithoutAnchor = pathWithoutAnchor.substring(0, pathWithoutAnchor.length - 3);
+  } else if (pathWithoutAnchor.endsWith('.mdx')) {
+    extension = '.html'; // .mdx 转换为 .html
+    pathWithoutAnchor = pathWithoutAnchor.substring(0, pathWithoutAnchor.length - 4);
+  }
+  
+  // 3. 解析路径
+  const absolutePath = path.join(currentDir, pathWithoutAnchor);
+  
+  // 4. 转换为相对于 docs/zh 的 URL 路径
+  const relative = path.relative(path.join(ROOT_DIR, 'docs/zh'), absolutePath);
+  
+  // 5. 转换为 URL 格式（使用正斜杠）
+  const urlPath = '/' + relative.replace(/\\/g, '/');
+  
+  // 6. 重新组合：路径 + 扩展名 + 锚点
+  return urlPath + extension + anchor;
 }
 
 // ==================== 提取代码块位置 ====================
 function extractCodeBlocks(content) {
   const blocks = [];
-  const regex = /```[\s\S]*?```/g;
+  
+  // 1. 围栏代码块 (```)
+  let regex = /```[\s\S]*?```/g;
   let match;
-
   while ((match = regex.exec(content)) !== null) {
     blocks.push({
       start: match.index,
       end: match.index + match[0].length,
     });
   }
-
+  
+  // 2. 缩进代码块（每行至少4个空格或1个tab）
+  // 按行分析，连续的缩进行视为一个代码块
+  const lines = content.split('\n');
+  let inIndentedBlock = false;
+  let blockStart = 0;
+  let currentPos = 0;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const isIndented = /^( {4,}|\t)/.test(line);
+    const isEmpty = /^\s*$/.test(line);
+    
+    if (isIndented && !inIndentedBlock) {
+      // 开始新的缩进代码块
+      inIndentedBlock = true;
+      blockStart = currentPos;
+    } else if (!isIndented && !isEmpty && inIndentedBlock) {
+      // 结束缩进代码块（非空且非缩进行）
+      blocks.push({
+        start: blockStart,
+        end: currentPos,
+      });
+      inIndentedBlock = false;
+    }
+    
+    currentPos += line.length + 1; // +1 for newline
+  }
+  
+  // 处理文件末尾的缩进代码块
+  if (inIndentedBlock) {
+    blocks.push({
+      start: blockStart,
+      end: content.length,
+    });
+  }
+  
+  // 3. 行内代码 (`)
+  regex = /`[^`\n]+`/g;
+  while ((match = regex.exec(content)) !== null) {
+    blocks.push({
+      start: match.index,
+      end: match.index + match[0].length,
+    });
+  }
+  
   return blocks;
 }
 
@@ -395,12 +569,12 @@ function scanUnprocessedFiles(dirPath) {
       }
       
       // 检查是否已处理
-      if (!processedInMeta.has(relativePath)) {
+      if (!processedInMeta.has(relativePath) && !processedInMeta.has(relativePath.replace(/\\/g, '/'))) {
         // 未在 meta 中的文件
         skippedFiles.push({
           reason: 'not_in_meta',
-          path: path.relative(ROOT_DIR, fullPath),
-          directory: path.relative(ROOT_DIR, dirPath),
+          path: path.relative(ROOT_DIR, fullPath).replace(/\\/g, '/'),
+          directory: path.relative(ROOT_DIR, dirPath).replace(/\\/g, '/'),
         });
         stats.skippedCount++;
       }

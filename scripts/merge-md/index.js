@@ -10,6 +10,10 @@ const ROOT_DIR = path.join(__dirname, '../..');
 const TASK_ID = Math.floor(Date.now() / 1000).toString(); // 10位时间戳
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
 
+// 检查是否启用严格模式
+const STRICT_MODE = process.argv.includes('--strict');
+const strictFlag = STRICT_MODE ? '--strict' : '';
+
 // ==================== 主函数 ====================
 async function main() {
   console.log(chalk.cyan('╔════════════════════════════════════════╗'));
@@ -19,6 +23,7 @@ async function main() {
   console.log('');
   console.log(`${chalk.gray('任务 ID:')} ${chalk.bold(chalk.yellow(TASK_ID))}`);
   console.log(`${chalk.gray('输出目录:')} ${chalk.magenta(OUTPUT_DIR + '/')}`);
+  console.log(`${chalk.gray('运行模式:')} ${STRICT_MODE ? chalk.red('严格模式 (--strict)') : chalk.green('容错模式')}`);
   console.log('');
 
   // 创建输出目录
@@ -27,17 +32,29 @@ async function main() {
   try {
     // ==================== 步骤 1: 合并 Markdown ====================
     console.log(chalk.bold(chalk.cyan('[步骤 1/3] 合并 markdown...')));
-    execSync(`node ${path.join(__dirname, 'steps/1-merge-guides.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    try {
+      execSync(`node ${path.join(__dirname, 'steps/1-merge-guides.js')} ${TASK_ID} ${strictFlag}`, { stdio: 'inherit' });
+    } catch (error) {
+      throw new Error(`步骤 1 失败: ${error.message}`);
+    }
     console.log('');
 
     // ==================== 步骤 2: 处理内部链接 ====================
     console.log(chalk.bold(chalk.cyan('[步骤 2/3] 处理内部链接...')));
-    execSync(`node ${path.join(__dirname, 'steps/2-process-links.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    try {
+      execSync(`node ${path.join(__dirname, 'steps/2-process-links.js')} ${TASK_ID} ${strictFlag}`, { stdio: 'inherit' });
+    } catch (error) {
+      throw new Error(`步骤 2 失败: ${error.message}`);
+    }
     console.log('');
 
     // ==================== 步骤 3: 处理图片路径 ====================
     console.log(chalk.bold(chalk.cyan('[步骤 3/3] 处理图片路径...')));
-    execSync(`node ${path.join(__dirname, 'steps/3-process-images.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    try {
+      execSync(`node ${path.join(__dirname, 'steps/3-process-images.js')} ${TASK_ID} ${strictFlag}`, { stdio: 'inherit' });
+    } catch (error) {
+      throw new Error(`步骤 3 失败: ${error.message}`);
+    }
     console.log('');
 
     // ==================== 创建带日期的副本 ====================
@@ -72,8 +89,12 @@ async function main() {
     console.log(`📄 ${chalk.gray('处理后的文件:')} ${chalk.bold(chalk.yellow(path.relative(ROOT_DIR, datedMdFile)))}`);
     console.log(`🔗 ${chalk.gray('快捷访问:')} ${chalk.cyan('dist/pdf/latest/' + path.basename(datedMdFile))}`);
     console.log('');
-    console.log(chalk.yellow('💡 提示: 可以使用 Typora 或其他工具将处理后的 markdown 转换为 PDF 以发布'));
+    console.log(chalk.yellow('💡 提示: 可以使用 Typora 将处理后的 markdown 转换为 PDF 以发布'));
     console.log('');
+    if (!STRICT_MODE) {
+      console.log(chalk.dim('ℹ️  当前为容错模式，遇到错误会记录但继续处理。使用 --strict 参数启用严格模式。'));
+      console.log('');
+    }
 
   } catch (error) {
     console.error('');

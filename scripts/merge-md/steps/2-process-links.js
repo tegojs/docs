@@ -8,9 +8,12 @@ const chalk = require('chalk');
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
   console.error(chalk.red('❌ 错误:'), '缺少任务ID参数');
-  console.error(chalk.gray('用法:'), 'node 2-process-links.js <taskId>');
+  console.error(chalk.gray('用法:'), 'node 2-process-links.js <taskId> [--strict]');
   process.exit(1);
 }
+
+// 检查是否启用严格模式
+const STRICT_MODE = process.argv.includes('--strict');
 
 const ROOT_DIR = path.join(__dirname, '../../..');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
@@ -28,6 +31,7 @@ const ruleStats = {
   rule3_sourceFile: 0,
   rule4_linkText: 0,
 };
+const usedIds = new Map(); // 记录已使用的ID及其使用次数
 
 // ==================== 主函数 ====================
 function main() {
@@ -43,12 +47,12 @@ function main() {
   // 3. 扫描并处理所有内部链接
   content = processInternalLinks(content, manualMappings);
 
-  // 4. 先保存日志
+  // 4. 先保存主文件（最重要）
+  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+  
+  // 5. 然后保存日志文件
   fs.writeFileSync(LINKS_LOG, JSON.stringify(linksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(LINKS_SKIPPED_LOG, JSON.stringify(linksSkipped, null, 2), 'utf-8');
-  
-  // 5. 最后保存处理后的文档
-  fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
 
   // 6. 输出统计
   const totalLinks = linksProcessed.length;
@@ -210,28 +214,22 @@ function urlToSourcePath(url) {
   // /guides/advanced/env -> advanced/env
   const relativePath = cleanUrl.replace(/^\/guides\//, '');
   
-  // 尝试 .md
-  let mdPath = path.join(ROOT_DIR, 'docs/zh/guides', relativePath + '.md');
-  if (fs.existsSync(mdPath)) {
-    return mdPath;
-  }
+  // 将 URL 路径转换为系统路径（处理 Windows 反斜杠）
+  const normalizedPath = relativePath.split('/').join(path.sep);
   
-  // 尝试 .mdx
-  let mdxPath = path.join(ROOT_DIR, 'docs/zh/guides', relativePath + '.mdx');
-  if (fs.existsSync(mdxPath)) {
-    return mdxPath;
-  }
+  const basePath = path.join(ROOT_DIR, 'docs', 'zh', 'guides', normalizedPath);
   
-  // 尝试 index.md
-  let indexPath = path.join(ROOT_DIR, 'docs/zh/guides', relativePath, 'index.md');
-  if (fs.existsSync(indexPath)) {
-    return indexPath;
-  }
+  // 尝试的文件路径（按优先级）
+  const candidates = [
+    basePath + '.md',           // xxx.md
+    basePath + '.mdx',          // xxx.mdx
+    path.join(basePath, 'index.md'),  // xxx/index.md
+  ];
   
-  // 尝试 /index.md
-  indexPath = path.join(ROOT_DIR, 'docs/zh/guides', relativePath + '/index.md');
-  if (fs.existsSync(indexPath)) {
-    return indexPath;
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
   }
   
   return null;
@@ -256,13 +254,31 @@ function getFirstHeading(filePath) {
 
 // ==================== 转换为 Pandoc ID ====================
 // Pandoc 规则：小写、空格转-、移除特殊符号、保留中文/字母/数字/下划线/短横线
-function toPandocId(text) {
-  return text
+// 支持ID去重：如果ID已存在，添加 -1, -2 等后缀
+function toPandocId(text, enableDuplication = true) {
+  let baseId = text
     .toLowerCase()                                    // 小写
     .replace(/\s+/g, '-')                             // 空格转 -
     .replace(/[^\u4e00-\u9fa5a-z0-9_\-]/g, '')       // 只保留中文、字母、数字、下划线、短横线
     .replace(/-+/g, '-')                              // 多个 - 合并为一个
     .replace(/^-+|-+$/g, '');                         // 移除首尾的 -
+  
+  // 如果不需要去重，直接返回
+  if (!enableDuplication) {
+    return baseId;
+  }
+  
+  // 检查ID是否已使用
+  if (!usedIds.has(baseId)) {
+    // 首次使用，记录并返回
+    usedIds.set(baseId, 1);
+    return baseId;
+  } else {
+    // ID已存在，添加数字后缀
+    const count = usedIds.get(baseId);
+    usedIds.set(baseId, count + 1);
+    return `${baseId}-${count}`;
+  }
 }
 
 // ==================== 执行 ====================

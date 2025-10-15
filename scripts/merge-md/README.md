@@ -4,10 +4,24 @@
 
 ## 📋 快速开始
 
+### 环境要求
+
+- Node.js >= 14.x
+- pnpm (或 npm / yarn)
+
+### 基本用法
+
 ```bash
-# 运行完整处理流程
+# 运行完整处理流程（容错模式）
 pnpm merge-md
+
+# 运行严格模式（遇到错误立即停止）
+pnpm merge-md --strict
 ```
+
+**运行模式**：
+- **容错模式**（默认）：遇到错误（如文件读取失败、文件过大）会记录警告但继续处理
+- **严格模式** (`--strict`)：遇到任何错误立即停止，适合调试或要求零错误的场景
 
 **输出位置**:
 - `dist/pdf/{taskId}/Tego-Guides-zh-YYYY.MM.DD.md` - 带日期的最终文件 ⭐
@@ -30,7 +44,7 @@ scripts/merge-md/
 │   └── 3-process-images.js   # 步骤3：处理图片路径
 └── assets/                    # 资源文件
     ├── header.md             # PDF 头部模板
-    └── tegodocs.css          # Typora 样式文件
+    └── tegodocs.css          # Typora 主题文件
 ```
 
 ### 处理流程
@@ -60,6 +74,10 @@ docs/zh/guides/**/*.md
 **输入**: `docs/zh/guides/**/*.md` 和 `*.mdx`
 
 **输出**: `dist/pdf/{taskId}/1-6-merged.md`
+
+**限制**:
+- 单个文件大小限制：10 MB
+- 超过限制的文件会被跳过（容错模式）或导致失败（严格模式）
 
 **功能**:
 
@@ -435,88 +453,181 @@ function processUrlPath(url) {
 
 ## 🎨 自定义配置
 
-### 1. 手动链接映射
+### 配置文件说明
 
-创建 `link-mapping.json`（项目根目录）：
+所有配置文件都是**可选的**，不创建则使用默认行为。
+
+### 1. 手动链接映射（可选）
+
+**文件位置**: `link-mapping.json`（项目根目录）
+
+**用途**: 自定义特定链接的转换规则，将内部链接映射到指定的锚点文本
+
+**示例配置**:
 
 ```json
 {
+  "_comment": "手动链接映射配置文件（可选）",
+  "_description": "用于处理特殊的链接转换需求，将内部链接映射到特定的锚点文本",
   "mappings": {
+    "_example1": "映射格式：完整URL路径 -> 目标标题文本",
+    "_example2": "/guides/advanced/env.html#db_dialect -> 数据库配置",
+    "_note": "以下是实际映射，以 _ 开头的键会被忽略",
     "/guides/advanced/env.html#db_dialect": "数据库配置",
     "/guides/ui/form.html": "表单字段"
   }
 }
 ```
 
+**配置说明**:
+- 以 `_` 开头的键会被忽略，可用于添加注释
+- 映射优先级最高，会覆盖自动生成的锚点
+- 键格式：完整的 URL 路径（可包含锚点）
+- 值格式：目标标题的文本内容
+
+**何时使用**:
+- 链接转换后跳转不正确
+- 需要将多个链接指向同一个标题
+- 源文件标题与期望的锚点不一致
+
+**注意**: 当前版本**不需要**创建此文件，所有链接都会自动处理
+
 ### 2. PDF 头部模板
 
-编辑 `scripts/merge-md/assets/header.md`：
+**文件位置**: `scripts/merge-md/assets/header.md`
+
+**用途**: 定义生成 PDF 的封面页和元数据
+
+**编辑方法**: 直接修改该文件
 
 ```markdown
+---
+title: 灵矶使用指南
+author: TegoJS
+creator: TegoJS
+subject: 灵矶使用指南
+keywords: [灵矶使用指南, Tego, 灵矶]
+header: 灵矶使用指南 {{GENERATION_DATE}}
+footer: ${pageNo} / ${totalPages}
+---
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
 
 <div align="center">
-  <h1 style="font-size: 3em;">灵矶使用指南</h1>
-  <p style="font-size: 1.2em; color: #999;">{{GENERATION_DATE}}</p>
+  <h1 style="font-size: 3em; margin: 2em 0 1em 0;">灵矶使用指南</h1>
 </div>
 
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
----
+<div align="center">
+  <p style="font-size: 1.2em; color: #999;">{{GENERATION_DATE}}</p>
+</div>
+
 ```
 
-`{{GENERATION_DATE}}` 会被自动替换为生成日期。
+**模板变量**:
+- `{{GENERATION_DATE}}` - 自动替换为生成日期（格式：YYYY.MM.DD）
 
-### 3. Typora 样式
+**YAML Front Matter 说明**:
+- `title`, `author`, `creator`, `subject`, `keywords` - PDF 元数据
+- `header`, `footer` - 页眉页脚格式
+  - `${pageNo}` - 当前页码
+  - `${totalPages}` - 总页数
 
-使用 `scripts/merge-md/assets/tegodocs.css` 自定义 Typora 主题样式（用于本地预览和导出 PDF）。
+### 3. Typora 主题
+
+**文件位置**: `scripts/merge-md/assets/tegodocs.css`
+
+**用途**: 定义导出 PDF 时的样式
+
+`scripts/merge-md/assets/tegodocs.css` 为本项目自定义的 Typora 主题文件，基于 [Typora 默认主题](https://github.com/typora/typora-default-themes) 中的 Github 主题，移除了标题下划线。
 
 ---
 
-## 🚀 后续转换为 PDF
+## 🚀 转换为 PDF
 
-处理后的 `3-3-images-processed.md` 可以使用多种工具转换为 PDF：
+### 使用 Typora 导出（唯一推荐方式）
 
-### 方式 1: Typora（推荐）
+处理后的 Markdown 文件需要使用 Typora 导出为 PDF。
 
-1. 用 Typora 打开 `dist/pdf/latest/3-3-images-processed.md`
+#### 1. 安装主题
+
+文档推荐使用的主题为 `scripts/merge-md/assets/tegodocs.css`
+
+主题基于 Typora 默认的 GitHub 主题修改，安装前请确认 Typora 自带的 GitHub 主题存在，即主题目录下有 `github/` 文件夹
+
+然后将主题文件复制到 Typora 主题目录即可完成安装
+
+#### 2. 配置 Typora 导出设置
+
+打开 Typora → 文件 → 偏好设置 → 导出 → PDF：
+
+**必需配置**:
+
+- ✅ **勾选**: 按一级标题分页
+- ✅ **勾选**: 允许 YAML front matters 覆盖当前设置
+- 📌 **其他选项**: 保持默认设置
+
+**主题选择**:
+
+- 在 偏好设置 → 外观 → 主题 中选择 `TegoDocs`
+
+#### 3. 导出 PDF
+
+1. 用 Typora 打开最终输出文件：
+   - `dist/pdf/latest/Tego-Guides-zh-YYYY.MM.DD.md` 
 2. 文件 → 导出 → PDF
-3. 自定义样式（可选）：
-   - 将 `scripts/merge-md/assets/tegodocs.css` 复制到 Typora 主题目录
-   - 偏好设置 → 主题 → 选择 TegoDocs
+3. 选择保存位置和文件名
+4. 等待导出完成
 
-### 方式 2: Pandoc
+#### 4. 验证输出
 
-```bash
-pandoc dist/pdf/latest/3-3-images-processed.md \
-  -o output.pdf \
-  --pdf-engine=xelatex \
-  --toc \
-  --toc-depth=3 \
-  --number-sections \
-  -V CJKmainfont="Microsoft YaHei" \
-  -V geometry:margin=2cm \
-  -V papersize=a4
-```
+检查生成的 PDF：
+- ✅ 封面页显示正确（标题、日期）
+- ✅ 每个一级标题开始新页
+- ✅ 目录结构清晰
+- ✅ 图片正常显示
+- ✅ 代码块格式正确
+- ✅ 页眉页脚显示正确（已经在头部的 YAML front matter 中配置）
 
-### 方式 3: VS Code 插件
+---
 
-安装 [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) 插件：
-1. 打开 `dist/pdf/latest/3-3-images-processed.md`
-2. 右键 → Markdown PDF: Export (pdf)
-
-### 方式 4: 在线工具
-
-- [Typora](https://typora.io/)
-- [Markdown PDF](https://www.markdowntopdf.com/)
+**提示**:
+- 不支持其他 PDF 生成工具（如 Pandoc、VS Code 插件等）
+- TegoDocs 主题样式已针对灵矶文档优化
+- 如需自定义样式，可编辑 `scripts/merge-md/assets/tegodocs.css`
 
 ---
 
 ## ❓ 常见问题
+
+### Q: 运行时遇到错误怎么办？
+
+**容错模式**（默认）会记录错误但继续处理。如需调试，使用 `pnpm merge-md --strict` 启用严格模式，这样遇到第一个错误就会停止。
+
+### Q: 文件过大怎么办？
+
+单个文件限制为 10 MB。如果文件过大：
+1. 检查是否包含大量重复内容或图片（应使用链接）
+2. 考虑拆分为多个文件
+3. 在容错模式下，过大的文件会被自动跳过
 
 ### Q: 如何跳过某个文件？
 
@@ -542,58 +653,11 @@ pandoc dist/pdf/latest/3-3-images-processed.md \
 
 MDX 文件中的 JSX 组件会被移除（因为无法在 PDF 中展示）。查看 `1-2-mdx-processed.json` 了解处理详情。
 
----
+### Q: 如何创建 link-mapping.json 配置文件？
 
-## 🔧 开发说明
+当前版本**不需要**创建此文件。只有在发现链接跳转不正确时，才需要手动创建并配置。参见"自定义配置 > 手动链接映射"章节。
 
-### 依赖
+### Q: 支持哪些操作系统？
 
-**必需**:
-- Node.js >= 16.0
-- `chalk@4` - 终端颜色库（最流行、最广泛使用）
-
-**可选**:
-- `link-mapping.json` - 手动链接映射（项目根目录）
-
-### 修改脚本
-
-修改后运行测试：
-
-```bash
-# 运行完整流程
-pnpm merge-md
-
-# 检查输出
-ls dist/pdf/latest/
-
-# 查看日志
-cat dist/pdf/latest/1-1-skipped-files.json
-cat dist/pdf/latest/2-1-links.json
-cat dist/pdf/latest/3-1-images.json
-```
-
-### 添加新功能
-
-建议流程：
-1. 在对应的步骤脚本中添加功能
-2. 添加日志输出（JSON 格式）
-3. 在控制台输出中添加统计信息
-4. 更新本 README
-
----
-
-## 📝 更新日志
-
-- **v1.0** - 初始版本
-  - 支持按 `_meta.json` 顺序合并
-  - 自动调整标题层级
-  - 处理内部链接和图片路径
-  - 支持 MDX 文件
-  - 完整的日志记录
-
----
-
-## 📄 许可证
-
-MIT License
+支持 Windows、macOS 和 Linux。脚本会自动处理不同系统的路径分隔符差异。
 
