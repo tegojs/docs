@@ -3,10 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const { c } = require('./colors');
+const { c } = require('./utils/colors');
 
 // ==================== 配置 ====================
-const ROOT_DIR = path.join(__dirname, '..');
+const ROOT_DIR = path.join(__dirname, '../..');
 const TASK_ID = Math.floor(Date.now() / 1000).toString(); // 10位时间戳
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
 
@@ -27,17 +27,17 @@ async function main() {
   try {
     // ==================== 步骤 1: 合并 Markdown ====================
     console.log(c.step('[步骤 1/3] 合并 markdown...'));
-    execSync(`node ${path.join(__dirname, 'merge-guides.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    execSync(`node ${path.join(__dirname, 'steps/1-merge-guides.js')} ${TASK_ID}`, { stdio: 'inherit' });
     console.log('');
 
     // ==================== 步骤 2: 处理内部链接 ====================
     console.log(c.step('[步骤 2/3] 处理内部链接...'));
-    execSync(`node ${path.join(__dirname, 'process-links.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    execSync(`node ${path.join(__dirname, 'steps/2-process-links.js')} ${TASK_ID}`, { stdio: 'inherit' });
     console.log('');
 
     // ==================== 步骤 3: 处理图片路径 ====================
     console.log(c.step('[步骤 3/3] 处理图片路径...'));
-    execSync(`node ${path.join(__dirname, 'process-images.js')} ${TASK_ID}`, { stdio: 'inherit' });
+    execSync(`node ${path.join(__dirname, 'steps/3-process-images.js')} ${TASK_ID}`, { stdio: 'inherit' });
     console.log('');
 
     // ==================== 创建 latest 快捷访问 ====================

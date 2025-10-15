@@ -28,21 +28,16 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Generate PDF
+## 生成 PDF
 
-Generate PDF from `docs/zh/guides/`:
+从 `docs/zh/guides/` 生成 PDF 文档：
 
 ```bash
-# Pandoc (推荐 - 支持 PDF 书签)
-pnpm pdf:pandoc
+# 1. 合并并处理 Markdown（必须）
+pnpm merge-md
 
-# Puppeteer (备选 - 无需安装工具)
-pnpm pdf:puppeteer
-
-# 检查系统字体
-pnpm pdf:check-fonts
+# 2. 使用 Typora 或其他工具将生成的 MD 转为 PDF
+# 处理后的文件位于: dist/pdf/latest/3-3-images-processed.md
 ```
 
-**Output**: `dist/pdf/latest/6-1-guides-zh.pdf`
-
-**详细文档**: 查看 `scripts/QUICK-START.md`
+**详细说明**: 查看 `scripts/merge-md/README.md`

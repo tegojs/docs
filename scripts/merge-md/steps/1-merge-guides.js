@@ -2,17 +2,17 @@
 
 const fs = require('fs');
 const path = require('path');
-const { c } = require('./colors');
+const { c } = require('../utils/colors');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
 if (!TASK_ID) {
   console.error(c.error('❌ 错误:'), '缺少任务ID参数');
-  console.error(c.gray('用法:'), 'node merge-guides.js <taskId>');
+  console.error(c.gray('用法:'), 'node 1-merge-guides.js <taskId>');
   process.exit(1);
 }
 
-const ROOT_DIR = path.join(__dirname, '..');
+const ROOT_DIR = path.join(__dirname, '../../..');
 const GUIDES_DIR = path.join(ROOT_DIR, 'docs/zh/guides');
 const OUTPUT_DIR = path.join(ROOT_DIR, 'dist/pdf', TASK_ID);
 const SKIPPED_FILES_LOG = path.join(OUTPUT_DIR, '1-1-skipped-files.json');
@@ -43,7 +43,7 @@ function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   // 读取 header.md 作为文档开头
-  const headerPath = path.join(__dirname, 'header.md');
+  const headerPath = path.join(__dirname, '../assets/header.md');
   let output = '';
   if (fs.existsSync(headerPath)) {
     output = fs.readFileSync(headerPath, 'utf-8');
@@ -59,7 +59,7 @@ function main() {
     output += '\n\n';
   } else {
     // 如果 header.md 不存在，使用默认HTML标题
-    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path('scripts/header.md')}，使用默认标题`);
+    console.warn(`  ${c.warning('⚠️  警告:')} 未找到 ${c.path('scripts/merge-md/assets/header.md')}，使用默认标题`);
     const now = new Date();
     const dateString = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
     output = `<br>\n<br>\n<br>\n\n<div align="center">\n  <h1 style="font-size: 3em;">灵矶使用指南</h1>\n  <p style="font-size: 1.2em; color: #999;">${dateString}</p>\n</div>\n\n<br>\n<br>\n<br>\n\n---\n\n`;

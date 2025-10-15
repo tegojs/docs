@@ -8,7 +8,7 @@
     "dev": "rspress dev",
     "format": "biome format --write",
     "preview": "rspress preview",
-    "merge-md": "node scripts/process-markdown.js"
+    "merge-md": "node scripts/merge-md/index.js"
   },
   "dependencies": {
     "@formulajs/formulajs": "4.4.9",
