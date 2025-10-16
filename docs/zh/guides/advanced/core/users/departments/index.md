@@ -4,7 +4,7 @@
 
 部门插件支持在 TachyBase 中以部门的形式来组织用户，设定上下级关系。可以通过给部门绑定角色来控制一组用户的权限。支持将部门信息作为变量用于工作流和表达式等支持设置变量的地方。
 
-![](/core/tachybase-core-departments-1.png)
+![](/core/departments-1.png)
 
 <!-- TODO: 插入图片 -->
 <!-- TODO: ##安装 -->
