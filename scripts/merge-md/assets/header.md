@@ -18,6 +18,14 @@ footer: ${pageNo} / ${totalPages}
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div align="center">
   <h1 style="font-size: 3em; margin: 2em 0 1em 0;">灵矶使用指南</h1>
@@ -32,7 +40,16 @@ footer: ${pageNo} / ${totalPages}
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div align="center">
-  <p style="font-size: 1.2em; color: #999;">{{GENERATION_DATE}}</p>
+  <p style="font-size: 1.2em; color: #666;">2025.10.16</p>
 </div>
