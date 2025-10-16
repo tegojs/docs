@@ -1,8 +1,8 @@
 ---
-title: 灵矶使用指南
+title: 灵矶使用指南 V{{GENERATION_DATE}}
 author: TegoJS
 creator: TegoJS
-subject: 灵矶使用指南
+subject: 灵矶使用指南 V{{GENERATION_DATE}}
 keywords: [灵矶使用指南, Tego, 灵矶]
 header: 灵矶使用指南 {{GENERATION_DATE}}
 footer: ${pageNo} / ${totalPages}
