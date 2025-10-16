@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const { fileSystemPathToUrl, urlPathToFileSystem } = require('../tools/path-utils');
+const { extractCodeBlocks, isInCodeBlock, replaceOutsideCodeBlocks } = require('../tools/code-block-utils');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
@@ -51,6 +53,13 @@ const stats = {
 function main() {
   // 确保输出目录存在
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+  // 验证源目录是否存在
+  if (!fs.existsSync(GUIDES_DIR)) {
+    console.error(`  ${chalk.red('❌ 错误:')} 源目录不存在: ${chalk.magenta(path.relative(ROOT_DIR, GUIDES_DIR))}`);
+    console.error(`  ${chalk.gray('提示:')} 请确保 docs/zh/guides 目录存在`);
+    process.exit(1);
+  }
 
   // 修复：添加进度提示
   console.log(`  ${chalk.cyan('📝')} 读取文档头部模板...`);
@@ -274,14 +283,29 @@ function processDirectory(dirPath, depth) {
         continue;
       }
 
+      // 检查文件是否为空
+      if (content.trim().length === 0) {
+        const warningMsg = `文件为空: ${path.relative(ROOT_DIR, filePath)}`;
+        console.warn(`  ${chalk.yellow('⚠️  警告:')} ${warningMsg}`);
+        if (STRICT_MODE) {
+          throw new Error(warningMsg);
+        }
+        skippedFiles.push({
+          reason: 'empty_file',
+          path: path.relative(ROOT_DIR, filePath).replace(/\\/g, '/'),
+        });
+        stats.skippedCount++;
+        continue;
+      }
+
       // 处理 MDX 文件
       if (filePath.endsWith('.mdx')) {
         stats.mdxFiles++;
         content = processMDX(content, filePath);
       }
 
-      // 处理特殊语法（提示框等）
-      content = processSpecialSyntax(content);
+      // 处理特殊语法（提示框等），传入文件路径用于生成在线文档链接
+      content = processSpecialSyntax(content, filePath);
 
       // 调整标题层级（传入文件路径用于日志记录）
       content = adjustHeadings(content, depth, filePath);
@@ -347,7 +371,13 @@ function processMDX(content, filePath) {
   // 检查是否还有未处理的组件
   const remainingJSX = content.match(/<[A-Z][a-zA-Z0-9.]+/);
   if (remainingJSX && iterations >= maxIterations) {
-    console.warn(`  ${chalk.yellow('⚠️  警告:')} MDX 文件可能有未完全处理的 JSX 组件: ${chalk.magenta(path.relative(ROOT_DIR, filePath))}`);
+    const errorMsg = `MDX 文件可能有未完全处理的 JSX 组件: ${path.relative(ROOT_DIR, filePath)} (达到最大迭代次数 ${maxIterations})`;
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} ${errorMsg}`);
+    
+    // 严格模式下，未完全处理的 JSX 组件应该报错
+    if (STRICT_MODE) {
+      throw new Error(errorMsg);
+    }
   }
 
   // 5. 删除 JSX 表达式（只删除简单的变量引用，保留代码示例）
@@ -361,13 +391,16 @@ function processMDX(content, filePath) {
   const contentWithoutTitle = content.replace(/^#\s+.+$/m, '').trim();
   const hasSubstantialContent = contentWithoutTitle.length > 50; // 如果剩余内容少于50字符，认为是纯组件页面
   
+  // 生成在线文档链接
+  const onlineDocUrl = generateOnlineDocUrl(filePath);
+  const interactiveNoticeWithLink = `\n> **📌 交互式内容**\n>\n> 此处包含交互式内容，仅在在线文档中可用。\n>\n> 💡 **查看完整内容**：[${onlineDocUrl}](${onlineDocUrl})\n\n`;
+  
   if (!hasSubstantialContent && title) {
-    // 纯组件页面，替换为友好的提示信息
-    content = `# ${title}\n\n> **📌 交互式内容**\n>\n> 本页面包含交互式组件（${title}），仅在在线文档中可用。\n>\n> 💡 **提示**：请访问在线文档查看完整的交互式内容和功能演示。\n`;
+    // 纯组件页面，使用统一提示
+    content = `# ${title}\n${interactiveNoticeWithLink}`;
   } else {
-    // 有一定内容，添加标准提示
-    const notice = '\n> **注意**: 此部分包含交互式内容，在 PDF 版本中部分功能不可用。请访问在线文档查看完整内容。\n\n';
-    content = notice + content;
+    // 有一定内容，添加统一提示
+    content = interactiveNoticeWithLink + content;
   }
 
   // 记录处理详情
@@ -384,45 +417,34 @@ function processMDX(content, filePath) {
   return content;
 }
 
-// ==================== 在代码块外替换内容 ====================
-function replaceOutsideCodeBlocks(content, codeBlocks, pattern, replacement) {
-  // 如果没有代码块，直接替换
-  if (codeBlocks.length === 0) {
-    return content.replace(pattern, replacement);
-  }
-  
-  // 收集所有匹配项
-  const matches = [];
-  let match;
-  const regex = new RegExp(pattern.source, pattern.flags);
-  
-  while ((match = regex.exec(content)) !== null) {
-    // 检查是否在代码块内
-    if (!isInCodeBlock(match.index, codeBlocks)) {
-      matches.push({
-        index: match.index,
-        length: match[0].length,
-        replacement: typeof replacement === 'string' 
-          ? replacement 
-          : match[0].replace(pattern, replacement),
-      });
-    }
-  }
-  
-  // 从后向前替换（避免索引变化）
-  matches.reverse();
-  for (const m of matches) {
-    content = content.substring(0, m.index) + m.replacement + content.substring(m.index + m.length);
-  }
-  
-  return content;
-}
-
 // ==================== 处理特殊语法 ====================
-function processSpecialSyntax(content) {
-  // 处理 ::: 提示框语法（如 :::info, :::warning, :::tip 等）
-  // 格式：:::type{title=标题} 或 :::type
-  content = content.replace(/:::(\w+)(?:\{title=([^}]+)\})?\s*\n([\s\S]*?):::/g, (match, type, title, innerContent) => {
+function processSpecialSyntax(content, filePath) {
+  // 提取代码块位置（避免处理代码块内的内容）
+  const codeBlocks = extractCodeBlocks(content);
+  
+  // 生成在线文档链接
+  const onlineDocUrl = generateOnlineDocUrl(filePath);
+  const interactiveNoticeWithLink = `\n> **📌 交互式内容**\n>\n> 此处包含交互式内容，仅在在线文档中可用。\n>\n> 💡 **查看完整内容**：[${onlineDocUrl}](${onlineDocUrl})\n\n`;
+  
+  // 1. 删除普通 MD 文件中的 JSX 组件并添加提示
+  // 自闭合组件：<PluginInfo name="xxx" />
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /<[A-Z][a-zA-Z0-9.]*[^>]*\/>/g, interactiveNoticeWithLink);
+  
+  // 成对组件：<PluginInfo name="xxx"></PluginInfo>
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /<([A-Z][a-zA-Z0-9.]*)[^>]*><\/\1>/g, interactiveNoticeWithLink);
+  
+  // 2. 删除 HTML 特殊标签并添加提示（如 <embed>）
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /<embed[^>]*>[\s\S]*?<\/embed>/g, interactiveNoticeWithLink);
+  
+  // 处理单标签 embed（自闭合）
+  content = replaceOutsideCodeBlocks(content, codeBlocks, /<embed[^>]*>/g, interactiveNoticeWithLink);
+  
+  // 3. 处理 ::: 提示框语法（如 :::info, :::warning, :::tip 等）
+  // 支持格式：
+  // - :::type{title=标题}
+  // - ::: type 标题文本（冒号和类型之间可以有空格）
+  // - :::type 或 ::: type
+  content = content.replace(/:::\s*(\w+)(?:\{title=([^}]+)\}|\s+([^\n]+))?\s*\n([\s\S]*?):::/g, (match, type, titleInBraces, titleInline, innerContent) => {
     stats.admonitions++;
     
     // 类型映射到中文标签和emoji
@@ -438,7 +460,8 @@ function processSpecialSyntax(content) {
     };
     
     const typeInfo = typeMap[type.toLowerCase()] || { label: type, emoji: '📌' };
-    const displayTitle = title || typeInfo.label;
+    // 优先使用 {title=xxx} 格式，其次使用行内标题，最后使用类型默认标签
+    const displayTitle = titleInBraces || (titleInline ? titleInline.trim() : typeInfo.label);
     
     // 转换为引用块格式
     const lines = innerContent.trim().split('\n');
@@ -557,6 +580,30 @@ function processRelativePaths(content, currentDir, sourceFile) {
   return content;
 }
 
+// ==================== 生成在线文档 URL ====================
+/**
+ * 将文件路径转换为在线文档 URL
+ * @param {string} filePath - 文件系统路径
+ * @returns {string} 在线文档 URL
+ * 
+ * 示例：
+ * - 输入：docs/zh/guides/advanced/core/users/departments/manual.md
+ * - 输出：https://tachybase.org/guides/advanced/core/users/departments/manual.html
+ */
+function generateOnlineDocUrl(filePath) {
+  // 获取相对于 docs/zh 的路径
+  const relativePath = path.relative(path.join(ROOT_DIR, 'docs/zh'), filePath);
+  
+  // 转换为 URL 路径格式（统一使用 /）
+  const urlPath = fileSystemPathToUrl(relativePath);
+  
+  // 移除扩展名并添加 .html
+  const cleanPath = urlPath.replace(/\.(md|mdx)$/, '.html');
+  
+  // 拼接完整 URL
+  return `https://tachybase.org/${cleanPath}`;
+}
+
 // ==================== 解析相对路径 ====================
 function resolveRelativePath(currentDir, relativePath) {
   // 修复：处理边界情况（URL编码、空格、特殊字符等）
@@ -598,78 +645,11 @@ function resolveRelativePath(currentDir, relativePath) {
   // 4. 转换为相对于 docs/zh 的 URL 路径
   const relative = path.relative(path.join(ROOT_DIR, 'docs/zh'), absolutePath);
   
-  // 5. 转换为 URL 格式（统一使用正斜杠，处理 Windows 反斜杠）
-  const urlPath = '/' + relative.split(path.sep).join('/');
+  // 5. 转换为 URL 格式（使用工具函数统一处理）
+  const urlPath = '/' + fileSystemPathToUrl(relative);
   
-  // 6. 重新组合：路径 + 扩展名 + 锚点（锚点可能需要重新编码空格）
+  // 6. 重新组合：路径 + 扩展名 + 锚点
   return urlPath + extension + anchor;
-}
-
-// ==================== 提取代码块位置 ====================
-function extractCodeBlocks(content) {
-  const blocks = [];
-  
-  // 1. 围栏代码块 (```)
-  let regex = /```[\s\S]*?```/g;
-  let match;
-  while ((match = regex.exec(content)) !== null) {
-    blocks.push({
-      start: match.index,
-      end: match.index + match[0].length,
-    });
-  }
-  
-  // 2. 缩进代码块（每行至少4个空格或1个tab）
-  // 按行分析，连续的缩进行视为一个代码块
-  const lines = content.split('\n');
-  let inIndentedBlock = false;
-  let blockStart = 0;
-  let currentPos = 0;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const isIndented = /^( {4,}|\t)/.test(line);
-    const isEmpty = /^\s*$/.test(line);
-    
-    if (isIndented && !inIndentedBlock) {
-      // 开始新的缩进代码块
-      inIndentedBlock = true;
-      blockStart = currentPos;
-    } else if (!isIndented && !isEmpty && inIndentedBlock) {
-      // 结束缩进代码块（非空且非缩进行）
-      blocks.push({
-        start: blockStart,
-        end: currentPos,
-      });
-      inIndentedBlock = false;
-    }
-    
-    currentPos += line.length + 1; // +1 for newline
-  }
-  
-  // 处理文件末尾的缩进代码块
-  if (inIndentedBlock) {
-    blocks.push({
-      start: blockStart,
-      end: content.length,
-    });
-  }
-  
-  // 3. 行内代码 (`)
-  regex = /`+[^`]*`+/g;
-  while ((match = regex.exec(content)) !== null) {
-    blocks.push({
-      start: match.index,
-      end: match.index + match[0].length,
-    });
-  }
-  
-  return blocks;
-}
-
-// ==================== 检查是否在代码块内 ====================
-function isInCodeBlock(offset, codeBlocks) {
-  return codeBlocks.some(block => offset >= block.start && offset <= block.end);
 }
 
 // ==================== 扫描未处理的文件 ====================

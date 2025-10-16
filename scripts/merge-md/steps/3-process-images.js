@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const { fileSystemPathToUrl, urlPathToFileSystem } = require('../tools/path-utils');
+const { extractCodeBlocks, isInCodeBlock } = require('../tools/code-block-utils');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
@@ -38,6 +40,16 @@ function main() {
     process.exit(1);
   }
 
+  // 验证 public 目录是否存在
+  if (!fs.existsSync(PUBLIC_DIR)) {
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} public 目录不存在: ${chalk.magenta(path.relative(ROOT_DIR, PUBLIC_DIR))}`);
+    console.warn(`  ${chalk.gray('提示:')} 所有图片路径转换可能会失败`);
+    if (STRICT_MODE) {
+      console.error(`  ${chalk.red('❌ 错误:')} 严格模式下，public 目录必须存在`);
+      process.exit(1);
+    }
+  }
+
   // 1. 读取输入
   let content;
   try {
@@ -47,17 +59,33 @@ function main() {
     process.exit(1);
   }
 
-  // 2. 处理所有图片路径
+  // 2. 验证输入内容
+  if (content.trim().length === 0) {
+    const errorMsg = '输入文件为空';
+    console.error(`  ${chalk.red('❌ 错误:')} ${errorMsg}: ${chalk.magenta(path.relative(ROOT_DIR, INPUT_FILE))}`);
+    if (STRICT_MODE) {
+      process.exit(1);
+    } else {
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} 跳过空文件处理`);
+      // 仍然创建输出文件（即使是空的）
+      fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+      fs.writeFileSync(IMAGES_LOG, '[]', 'utf-8');
+      fs.writeFileSync(IMAGES_MISSING_LOG, '[]', 'utf-8');
+      return;
+    }
+  }
+
+  // 3. 处理所有图片路径
   content = processImages(content);
 
-  // 3. 先保存主文件（最重要）
+  // 4. 先保存主文件（最重要）
   fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
   
-  // 4. 然后保存日志文件
+  // 5. 然后保存日志文件
   fs.writeFileSync(IMAGES_LOG, JSON.stringify(imagesProcessed, null, 2), 'utf-8');
   fs.writeFileSync(IMAGES_MISSING_LOG, JSON.stringify(imagesMissing, null, 2), 'utf-8');
 
-  // 5. 输出统计
+  // 6. 输出统计
   const totalImages = imagesProcessed.length;
   const successCount = imagesProcessed.filter(img => img.exists).length;
   const missingCount = imagesMissing.length;
@@ -82,10 +110,18 @@ function main() {
 
 // ==================== 处理图片 ====================
 function processImages(content) {
+  // 提取代码块位置（避免处理代码块内的图片引用）
+  const codeBlocks = extractCodeBlocks(content);
+  
   // 匹配所有 Markdown 图片：![alt](url)
   const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
   
-  return content.replace(imageRegex, (match, alt, url) => {
+  return content.replace(imageRegex, (match, alt, url, offset) => {
+    // 检查是否在代码块内
+    if (isInCodeBlock(offset, codeBlocks)) {
+      return match;
+    }
+    
     // 场景1: 外部链接（http/https）- 保持不变
     if (url.startsWith('http://') || url.startsWith('https://')) {
       return match;
@@ -94,7 +130,16 @@ function processImages(content) {
     // 场景2: 相对路径 - 应该已在步骤1处理，但以防万一
     if (url.startsWith('./') || url.startsWith('../')) {
       // 相对路径应该在步骤1已经转换为绝对路径了
-      // 如果这里还有，说明有遗漏，保持不变并记录
+      // 如果这里还有（且不在代码块内），说明有遗漏，记录到日志
+      imagesMissing.push({
+        alt,
+        originalPath: url,
+        expectedPath: '(相对路径)',
+        reason: 'relative_path_not_converted',
+        description: '相对路径应该在步骤1转换，但此处仍为相对路径，可能是处理遗漏',
+      });
+      
+      // 保持不变（避免破坏文档）
       return match;
     }
     
@@ -112,9 +157,8 @@ function processImages(content) {
 function processUrlPath(alt, url, originalMatch) {
   // 拼接路径：PUBLIC_DIR + url
   // /guides/start/xxx.png → docs/public/guides/start/xxx.png
-  // 修复：统一使用 path.sep 处理文件系统路径
-  const urlParts = url.split('/').filter(Boolean);
-  const imagePath = path.join(PUBLIC_DIR, ...urlParts);
+  // 使用工具函数处理 URL 路径到文件系统路径的转换
+  const imagePath = urlPathToFileSystem(url, PUBLIC_DIR);
   
   // 检查文件是否存在
   const exists = fs.existsSync(imagePath);

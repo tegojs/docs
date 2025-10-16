@@ -26,6 +26,24 @@ async function main() {
   console.log(`${chalk.gray('运行模式:')} ${STRICT_MODE ? chalk.red('严格模式 (--strict)') : chalk.green('容错模式')}`);
   console.log('');
 
+  // ==================== 输入验证 ====================
+  // 验证必要的目录是否存在
+  const GUIDES_DIR = path.join(ROOT_DIR, 'docs/zh/guides');
+  if (!fs.existsSync(GUIDES_DIR)) {
+    console.error('');
+    console.error(chalk.red('❌ 错误:'), `源目录不存在: ${chalk.magenta('docs/zh/guides')}`);
+    console.error(chalk.gray('提示:'), '请确保在正确的项目根目录下运行此脚本');
+    process.exit(1);
+  }
+
+  const PUBLIC_DIR = path.join(ROOT_DIR, 'docs/public');
+  if (!fs.existsSync(PUBLIC_DIR)) {
+    console.warn('');
+    console.warn(chalk.yellow('⚠️  警告:'), `public 目录不存在: ${chalk.magenta('docs/public')}`);
+    console.warn(chalk.gray('提示:'), '图片处理可能会失败，如果文档中没有图片可以忽略');
+    console.log('');
+  }
+
   // 创建输出目录
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 

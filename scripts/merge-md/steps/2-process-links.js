@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const { fileSystemPathToUrl, urlPathToFileSystem } = require('../tools/path-utils');
 
 // ==================== 配置 ====================
 const TASK_ID = process.argv[2];
@@ -31,7 +32,6 @@ const ruleStats = {
   rule3_sourceFile: 0,
   rule4_linkText: 0,
 };
-const usedIds = new Map(); // 记录已使用的ID及其使用次数
 
 // ==================== 主函数 ====================
 function main() {
@@ -57,17 +57,33 @@ function main() {
     process.exit(1);
   }
 
-  // 3. 扫描并处理所有内部链接
+  // 3. 验证输入内容
+  if (content.trim().length === 0) {
+    const errorMsg = '输入文件为空';
+    console.error(`  ${chalk.red('❌ 错误:')} ${errorMsg}: ${chalk.magenta(path.relative(ROOT_DIR, INPUT_FILE))}`);
+    if (STRICT_MODE) {
+      process.exit(1);
+    } else {
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} 跳过空文件处理`);
+      // 仍然创建输出文件（即使是空的）
+      fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+      fs.writeFileSync(LINKS_LOG, '[]', 'utf-8');
+      fs.writeFileSync(LINKS_SKIPPED_LOG, '[]', 'utf-8');
+      return;
+    }
+  }
+
+  // 4. 扫描并处理所有内部链接
   content = processInternalLinks(content, manualMappings);
 
-  // 4. 先保存主文件（最重要）
+  // 5. 先保存主文件（最重要）
   fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
   
-  // 5. 然后保存日志文件
+  // 6. 然后保存日志文件
   fs.writeFileSync(LINKS_LOG, JSON.stringify(linksProcessed, null, 2), 'utf-8');
   fs.writeFileSync(LINKS_SKIPPED_LOG, JSON.stringify(linksSkipped, null, 2), 'utf-8');
 
-  // 6. 输出统计
+  // 7. 输出统计
   const totalLinks = linksProcessed.length;
   console.log(`  ${chalk.green('✓')} 转换 ${chalk.cyan(totalLinks)} 个链接 ${chalk.dim('→ 详见')} ${chalk.magenta(path.relative(ROOT_DIR, LINKS_LOG))}`);
   console.log(`    ${chalk.dim('- [规则1] 手动映射:')} ${chalk.cyan(ruleStats.rule1_manual)}`);
@@ -99,20 +115,73 @@ function loadManualMappings() {
   }
   
   try {
-    const data = JSON.parse(fs.readFileSync(mappingFile, 'utf-8'));
+    const content = fs.readFileSync(mappingFile, 'utf-8');
+    
+    // 验证文件不为空
+    if (content.trim().length === 0) {
+      const errorMsg = 'link-mapping.json 文件为空';
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} ${errorMsg}`);
+      if (STRICT_MODE) {
+        throw new Error(errorMsg);
+      }
+      return {};
+    }
+    
+    // 解析 JSON
+    let data;
+    try {
+      data = JSON.parse(content);
+    } catch (parseError) {
+      const errorMsg = `无法解析 link-mapping.json: ${parseError.message}`;
+      console.error(`  ${chalk.red('❌ 错误:')} ${errorMsg}`);
+      if (STRICT_MODE) {
+        throw new Error(errorMsg);
+      }
+      return {};
+    }
+    
+    // 验证数据结构
+    if (typeof data !== 'object' || data === null) {
+      const errorMsg = 'link-mapping.json 根对象必须是一个对象';
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} ${errorMsg}`);
+      if (STRICT_MODE) {
+        throw new Error(errorMsg);
+      }
+      return {};
+    }
+    
     const mappings = data.mappings || {};
     
-    // 过滤掉以 _ 开头的注释项
+    // 验证 mappings 是对象
+    if (typeof mappings !== 'object' || mappings === null) {
+      const errorMsg = 'link-mapping.json 中的 "mappings" 必须是一个对象';
+      console.warn(`  ${chalk.yellow('⚠️  警告:')} ${errorMsg}`);
+      if (STRICT_MODE) {
+        throw new Error(errorMsg);
+      }
+      return {};
+    }
+    
+    // 过滤掉以 _ 开头的注释项，并验证值类型
     const filteredMappings = {};
     for (const [key, value] of Object.entries(mappings)) {
       if (!key.startsWith('_')) {
+        // 验证值是字符串
+        if (typeof value !== 'string') {
+          console.warn(`  ${chalk.yellow('⚠️  警告:')} link-mapping.json 中的映射值必须是字符串，跳过: ${key}`);
+          continue;
+        }
         filteredMappings[key] = value;
       }
     }
     
     return filteredMappings;
   } catch (error) {
-    console.warn(`  ${chalk.yellow('⚠️  警告:')} 无法读取 link-mapping.json: ${error.message}`);
+    // 这里捕获的是 STRICT_MODE 抛出的错误或其他未预期的错误
+    if (STRICT_MODE) {
+      throw error;
+    }
+    console.warn(`  ${chalk.yellow('⚠️  警告:')} 读取 link-mapping.json 时发生错误: ${error.message}`);
     return {};
   }
 }
@@ -227,9 +296,8 @@ function urlToSourcePath(url) {
   // /guides/advanced/env -> advanced/env
   const relativePath = cleanUrl.replace(/^\/guides\//, '');
   
-  // 修复：统一使用 path.join 处理文件系统路径
-  const pathParts = relativePath.split('/').filter(Boolean);
-  const basePath = path.join(ROOT_DIR, 'docs', 'zh', 'guides', ...pathParts);
+  // 使用工具函数处理 URL 路径到文件系统路径的转换
+  const basePath = urlPathToFileSystem(relativePath, path.join(ROOT_DIR, 'docs', 'zh', 'guides'));
   
   // 尝试的文件路径（按优先级）
   const candidates = [
@@ -266,31 +334,17 @@ function getFirstHeading(filePath) {
 
 // ==================== 转换为 Pandoc ID ====================
 // Pandoc 规则：小写、空格转-、移除特殊符号、保留中文/字母/数字/下划线/短横线
-// 支持ID去重：如果ID已存在，添加 -1, -2 等后缀
-function toPandocId(text, enableDuplication = true) {
-  let baseId = text
+// NOTE: 不进行ID去重处理，因为：
+// 1. 文档中的重复标题会由 Typora/Pandoc 自动处理（添加 -1, -2 后缀）
+// 2. 我们无法在链接处理阶段准确预测最终的ID（需要完整扫描所有标题）
+// 3. 如果需要精确控制链接目标，应使用 link-mapping.json 手动映射
+function toPandocId(text) {
+  return text
     .toLowerCase()                                    // 小写
     .replace(/\s+/g, '-')                             // 空格转 -
     .replace(/[^\u4e00-\u9fa5a-z0-9_\-]/g, '')       // 只保留中文、字母、数字、下划线、短横线
     .replace(/-+/g, '-')                              // 多个 - 合并为一个
     .replace(/^-+|-+$/g, '');                         // 移除首尾的 -
-  
-  // 如果不需要去重，直接返回
-  if (!enableDuplication) {
-    return baseId;
-  }
-  
-  // 检查ID是否已使用
-  if (!usedIds.has(baseId)) {
-    // 首次使用，记录并返回
-    usedIds.set(baseId, 1);
-    return baseId;
-  } else {
-    // ID已存在，添加数字后缀
-    const count = usedIds.get(baseId);
-    usedIds.set(baseId, count + 1);
-    return `${baseId}-${count}`;
-  }
 }
 
 // ==================== 执行 ====================

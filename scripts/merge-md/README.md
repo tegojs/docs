@@ -44,7 +44,7 @@ scripts/merge-md/
 │   └── 3-process-images.js   # 步骤3：处理图片路径
 └── assets/                    # 资源文件
     ├── header.md             # PDF 头部模板
-    └── tegodocs.css          # Typora 主题文件
+    └── tegodocs.css          # Typora 主题文件（基于 GitHub 主题）
 ```
 
 ### 处理流程
@@ -89,16 +89,16 @@ docs/zh/guides/**/*.md
 #### 1.1 按顺序合并文件
 
 - 读取每个目录的 `_meta.json` 确定处理顺序
-- 支持三种配置格式：
+- 配置格式为**数组**，数组元素可以是：
+  - **字符串**：表示文件名（不含扩展名），如 `"introduction"`
+  - **对象**：表示子目录，需包含 `type: "dir"`、`name` 和 `label` 属性
+  
   ```json
-  // 格式1: 对象数组（目录）
-  [{"name": "start", "label": "开始", "type": "dir"}]
-  
-  // 格式2: 字符串数组（文件）
-  ["introduction", "quick-start"]
-  
-  // 格式3: 混合数组
-  ["env", {"type": "dir", "name": "database", "label": "数据建模"}]
+  [
+    "env",
+    {"type": "dir", "name": "database", "label": "数据建模"},
+    "quick-start"
+  ]
   ```
 - **只处理** `_meta.json` 中明确列出的文件和目录
 - 跳过规则：
@@ -133,10 +133,21 @@ docs/zh/guides/
 - 目录（对象类型）：添加标题，层级 = `depth + 1`
 - 文件（字符串类型）：不添加额外标题，只调整内部标题层级 = `原层级 + depth + 1`
 - 标题层级处理：
-  - H1-H6：正常标题
-  - H7：转换为**加粗文本**（自动处理，不记录）
-  - H8：转换为**_加粗斜体_**（自动处理，不记录）
+  - H1-H6：正常标题，保留语义和锚点功能
+  - H7：转换为**加粗文本**（自动处理，不记录日志）
+  - H8：转换为**_加粗斜体_**（自动处理，不记录日志）
   - H9+：转换为**_加粗斜体_**（记录到日志，需要优化）
+
+**⚠️ 注意**：H7 及以上标题转换为加粗文本后会**失去标题语义和锚点功能**，这意味着：
+- 无法被 Typora/Pandoc 识别为标题
+- 不会出现在目录中
+- 不会生成锚点 ID
+- **内部链接无法跳转到这些位置**
+
+强烈建议避免出现 H7+ 的情况。如果出现，请优化文档结构：
+1. 减少 `_meta.json` 中的目录嵌套深度
+2. 降低源 Markdown 文件中的标题层级
+3. 考虑拆分复杂文档为多个独立文件
 
 #### 1.3 处理相对路径
 
@@ -160,19 +171,51 @@ docs/zh/guides/
 
 **提示框转换**：
 
-将 VuePress/Docusaurus 风格的提示框转换为标准 Markdown 引用块：
+将 VuePress/Docusaurus 风格的提示框转换为标准 Markdown 引用块，支持以下格式：
 
 ```markdown
-# 原格式
+# 格式1: {title=xxx}
 :::info{title=提示}
-可以在控制台中查看配置信息
+内容
 :::
 
-# 转换后
+# 格式2: 冒号后有空格 + 类型 + 标题
+::: warning &#9888; 警告
+内容
+:::
+
+# 格式3: 冒号后无空格 + 类型 + 标题
+:::tip 小技巧
+内容
+:::
+
+# 格式4: 仅类型（使用默认标题）
+:::note
+内容
+:::
+
+# 转换后（统一格式）
 > **ℹ️ 提示**
 >
-> 可以在控制台中查看配置信息
+> 内容
+
+> **⚠️ &#9888; 警告**
+>
+> 内容
+
+> **💡 小技巧**
+>
+> 内容
+
+> **📝 注意**
+>
+> 内容
 ```
+
+**说明**：
+- 支持 `:::` 和类型之间有或没有空格
+- 支持类型后跟标题文本（可包含 HTML 实体如 `&#9432;`）
+- 如果没有指定标题，使用类型的默认标题
 
 **支持的提示框类型**：
 - `info` → ℹ️ 提示
@@ -184,15 +227,42 @@ docs/zh/guides/
 - `important` → ❗ 重要
 - `success` → ✅ 成功
 
+**JSX 组件和特殊标签清理**：
+
+脚本会自动删除普通 `.md` 文件中的 JSX 组件和特殊 HTML 标签，并添加统一的友好提示（包含在线文档链接）：
+
+```markdown
+# 原格式
+<PluginInfo name="file-manager"></PluginInfo>
+<embed src="./env-note.md"></embed>
+
+# 转换后（统一提示，包含在线文档链接）
+> **📌 交互式内容**
+>
+> 此处包含交互式内容，仅在在线文档中可用。
+>
+> 💡 **查看完整内容**：[https://tachybase.org/guides/advanced/...](https://tachybase.org/guides/advanced/...)
+```
+
+链接会自动根据当前文件路径生成，指向对应的在线文档页面。
+
 #### 1.5 处理 MDX 文件
 
 MDX（Markdown + JSX）文件处理：
 - 删除 `import` 语句
 - 删除 JSX 组件标签
 - 保留标题和普通文本
-- 添加提示信息：
-  - 纯组件页面：`> **📌 交互式内容** ...`
-  - 混合内容：`> **注意**: 此部分包含交互式内容...`
+- 添加统一的提示信息（与普通 MD 文件的特殊标签处理一致，包含在线文档链接）：
+
+```markdown
+> **📌 交互式内容**
+>
+> 此处包含交互式内容，仅在在线文档中可用。
+>
+> 💡 **查看完整内容**：[https://tachybase.org/guides/basic/...](https://tachybase.org/guides/basic/...)
+```
+
+链接会根据源文件路径自动生成。
 
 **日志输出**:
 - `1-1-skipped-files.json` - 跳过的文件
@@ -250,6 +320,11 @@ MDX（Markdown + JSX）文件处理：
 - 空格转 `-`
 - 移除特殊符号
 - 保留中文、字母、数字、下划线、短横线
+
+**关于重复标题的锚点**：
+- 脚本**不会**对重复的标题 ID 进行去重处理
+- Typora/Pandoc 在生成 PDF 时会自动处理重复标题（添加 `-1`, `-2` 等后缀）
+- 如果有链接指向重复标题，可能需要使用 `link-mapping.json` 手动映射到正确的标题
 
 #### 规则 4：使用链接文本（兜底）
 
@@ -422,17 +497,55 @@ function processDirectory(dirPath, depth = 0) {
 处理链接和图片时，自动跳过代码块内的内容：
 
 ```javascript
-// 提取代码块位置
+// 提取代码块位置（保护所有类型的代码块）
 function extractCodeBlocks(content) {
   const blocks = [];
+  
+  // 1. 围栏代码块 (```) - 最高优先级
   const regex = /```[\s\S]*?```/g;
   let match;
   while ((match = regex.exec(content)) !== null) {
     blocks.push({
       start: match.index,
       end: match.index + match[0].length,
+      type: 'fenced',
     });
   }
+  
+  // 2. 缩进代码块（连续的4空格或tab缩进行）
+  // 检测时排除已在围栏代码块内的区域，避免重复检测
+  // ... 详见源码
+  
+  // 3. 行内代码（单个或多个反引号）
+  // 先匹配单反引号 `code`
+  regex = /`[^`\n]+`/g;
+  while ((match = regex.exec(content)) !== null) {
+    // 检查是否在已有的代码块内
+    const inExistingBlock = blocks.some(
+      block => match.index >= block.start && match.index < block.end
+    );
+    if (!inExistingBlock) {
+      blocks.push({
+        start: match.index,
+        end: match.index + match[0].length,
+      });
+    }
+  }
+  
+  // 再匹配多反引号 ``code with ` backtick``
+  regex = /``+[^\n]*?``+/g;
+  while ((match = regex.exec(content)) !== null) {
+    const inExistingBlock = blocks.some(
+      block => match.index >= block.start && match.index < block.end
+    );
+    if (!inExistingBlock) {
+      blocks.push({
+        start: match.index,
+        end: match.index + match[0].length,
+      });
+    }
+  }
+  
   return blocks;
 }
 
@@ -444,15 +557,32 @@ function isInCodeBlock(offset, codeBlocks) {
 
 ### 路径解析
 
+**路径处理工具函数**（所有步骤）:
+
+为了统一处理跨平台路径（Windows `\` vs Unix `/`），提供了两个工具函数：
+
+```javascript
+// 文件系统路径 → URL 路径
+function fileSystemPathToUrl(fsPath) {
+  return fsPath.split(path.sep).join('/');
+}
+
+// URL 路径 → 文件系统路径
+function urlPathToFileSystem(urlPath, basePath) {
+  const parts = urlPath.split('/').filter(Boolean);
+  return path.join(basePath, ...parts);
+}
+```
+
 **相对路径转绝对路径**（步骤1）:
 ```javascript
 function resolveRelativePath(currentDir, relativePath) {
   // docs/zh/guides/start/introduction.md + ./quick-start.html
   const absolutePath = path.join(currentDir, relativePath);
   
-  // 转换为 URL 路径
+  // 转换为 URL 路径（使用工具函数）
   const relative = path.relative(path.join(ROOT_DIR, 'docs/zh'), absolutePath);
-  return '/' + relative.replace(/\\/g, '/'); // /guides/start/quick-start.html
+  return '/' + fileSystemPathToUrl(relative); // /guides/start/quick-start.html
 }
 ```
 
@@ -462,11 +592,14 @@ function urlToSourcePath(url) {
   // /guides/advanced/env.html → docs/zh/guides/advanced/env.md
   let cleanUrl = url.replace(/\.html$/, '').replace(/^\/guides\//, '');
   
+  // 使用工具函数转换为文件系统路径
+  const basePath = urlPathToFileSystem(cleanUrl, path.join(ROOT_DIR, 'docs', 'zh', 'guides'));
+  
   // 尝试多种文件扩展名
   const candidates = [
-    path.join(ROOT_DIR, 'docs/zh/guides', cleanUrl + '.md'),
-    path.join(ROOT_DIR, 'docs/zh/guides', cleanUrl + '.mdx'),
-    path.join(ROOT_DIR, 'docs/zh/guides', cleanUrl, 'index.md'),
+    basePath + '.md',
+    basePath + '.mdx',
+    path.join(basePath, 'index.md'),
   ];
   
   return candidates.find(p => fs.existsSync(p)) || null;
@@ -477,7 +610,8 @@ function urlToSourcePath(url) {
 ```javascript
 function processUrlPath(url) {
   // /homepage/screenshot.png → docs/public/homepage/screenshot.png
-  const imagePath = path.join(PUBLIC_DIR, url);
+  // 使用工具函数处理 URL 路径到文件系统路径的转换
+  const imagePath = urlPathToFileSystem(url, PUBLIC_DIR);
   
   if (fs.existsSync(imagePath)) {
     // 转换为绝对路径
@@ -522,14 +656,23 @@ function processUrlPath(url) {
 - 以 `_` 开头的键会被忽略，可用于添加注释
 - 映射优先级最高，会覆盖自动生成的锚点
 - 键格式：完整的 URL 路径（可包含锚点）
-- 值格式：目标标题的文本内容
+- 值格式：目标标题的文本内容（将转换为锚点 ID）
 
 **何时使用**:
-- 链接转换后跳转不正确
-- 需要将多个链接指向同一个标题
-- 源文件标题与期望的锚点不一致
+- **重复标题**：文档中有多个同名标题，需要明确指定链接目标
+- **链接跳转不正确**：自动转换的锚点无法正确跳转
+- **自定义跳转**：需要将多个链接指向同一个标题
+- **H7+ 标题**：指向被转换为加粗文本的深层标题（已失去锚点功能）
 
-**注意**: 当前版本**不需要**创建此文件，所有链接都会自动处理
+**工作原理**:
+1. 脚本读取 `link-mapping.json` 中的映射关系
+2. 对于配置中的链接，直接使用映射的标题文本生成锚点
+3. 例如：`"/guides/advanced/env.html": "数据库配置"` → 链接转换为 `#数据库配置`
+
+**注意**: 
+- 大多数情况下**不需要**创建此文件，链接会自动处理
+- 只有在遇到上述特殊情况时才需要手动配置
+- 重复标题的锚点由 Typora/Pandoc 自动生成（如 `#配置`, `#配置-1`），脚本无法预测
 
 ### 2. PDF 头部模板
 
@@ -682,7 +825,16 @@ footer: ${pageNo} / ${totalPages}
 
 ### Q: 内部链接跳转失败？
 
-查看 `dist/pdf/{taskId}/2-1-links.json`，检查链接转换规则。如需手动配置，编辑根目录的 `link-mapping.json`。
+查看 `dist/pdf/{taskId}/2-1-links.json`，检查链接转换规则。
+
+**常见原因**：
+1. **重复标题**：文档中有多个同名标题，Typora/Pandoc 会自动添加 `-1`, `-2` 后缀，但脚本无法预测
+2. **H7+ 标题**：链接指向被转换为加粗文本的标题（已失去锚点功能）
+3. **源文件找不到**：检查 `2-2-links-skipped.json` 查看找不到的文件
+
+**解决方案**：
+- 对于重复标题或 H7+ 标题：在根目录创建 `link-mapping.json`，手动映射链接到正确的标题
+- 对于找不到的源文件：检查文件路径是否正确，是否在 `_meta.json` 中配置
 
 ### Q: 标题层级不对？
 
@@ -699,10 +851,17 @@ footer: ${pageNo} / ${totalPages}
 
 H7 和 H8 是合理的层级扩展，会自动处理。只有 H9 及以上才会记录到日志，表示文档结构可能过于复杂。
 
+**⚠️ 重要说明**：
+- **标题转换为加粗文本后，将失去 Markdown 标题的语义**
+- **Typora/Pandoc 不会为加粗文本生成锚点**
+- **如果有内部链接指向这些"标题"，跳转将会失败**
+- 建议避免出现 H7+ 的情况，以确保文档内链接的完整性
+
 **建议**：
 1. 简化目录层级（减少嵌套深度）
 2. 降低源文件中的标题层级（使用 H1-H3）
 3. 重新组织文档结构，避免过深嵌套
+4. 如果必须保留深层结构，考虑拆分为多个独立文档
 
 ### Q: MDX 文件内容丢失？
 
@@ -710,7 +869,13 @@ MDX 文件中的 JSX 组件会被移除（因为无法在 PDF 中展示）。查
 
 ### Q: 如何创建 link-mapping.json 配置文件？
 
-当前版本**不需要**创建此文件。只有在发现链接跳转不正确时，才需要手动创建并配置。参见"自定义配置 > 手动链接映射"章节。
+大多数情况下**不需要**创建此文件，链接会自动处理。需要创建的情况：
+
+1. **遇到重复标题**：文档中有多个同名标题，链接跳转到了错误的位置
+2. **H7+ 深层标题**：链接指向被转换为加粗文本的标题（已失去锚点）
+3. **自定义跳转需求**：需要特殊的链接映射逻辑
+
+参见"自定义配置 > 手动链接映射"章节了解详细配置方法。
 
 ### Q: 支持哪些操作系统？
 
