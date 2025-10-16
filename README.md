@@ -27,3 +27,17 @@ Preview the production build locally:
 ```bash
 npm run preview
 ```
+
+## 生成 PDF
+
+从 `docs/zh/guides/` 生成 PDF 文档：
+
+```bash
+# 1. 合并并处理 Markdown（必须）
+pnpm merge-md
+
+# 2. 使用 Typora 将生成的 MD 转为 PDF
+# 处理后的文件位于: dist/pdf/latest/Tego-Guides-zh-{date}.md
+```
+
+**详细说明**: 查看 [scripts/merge-md/README.md](scripts/merge-md/README.md)

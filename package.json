@@ -7,7 +7,8 @@
     "check": "biome check --write",
     "dev": "rspress dev",
     "format": "biome format --write",
-    "preview": "rspress preview"
+    "preview": "rspress preview",
+    "merge-md": "node scripts/merge-md/index.js"
   },
   "dependencies": {
     "@formulajs/formulajs": "4.4.9",
@@ -30,6 +31,7 @@
     "@types/node": "^22.13.4",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "chalk": "^4.1.2",
     "clsx": "^2.1.1",
     "tailwindcss": "^4.1.11"
   }
