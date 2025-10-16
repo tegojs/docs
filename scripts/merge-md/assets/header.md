@@ -51,5 +51,5 @@ footer: ${pageNo} / ${totalPages}
 <br>
 
 <div align="center">
-  <p style="font-size: 1.2em; color: #666;">2025.10.16</p>
+  <p style="font-size: 1.2em; color: #666;">{{GENERATION_DATE}}</p>
 </div>
