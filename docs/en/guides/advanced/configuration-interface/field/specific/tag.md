@@ -1,32 +1,32 @@
-# 标签
+# Tag
 
-### 概述
+### Overview
 
-标签是一种用于关系字段阅读模式的展示组件，需配置标题字段和颜色字段，以便清晰地标识和区分不同标签。
+Tag is a display component for read mode of relationship fields. Needs to configure title field and color field for clear identification and differentiation of different tags.
 
-### 使用说明
+### Usage Instructions
 
-#### 在表格中使用
+#### Use in Table
 
-例如：订单表中有一个多对一的关系字段「标签」。
-标签表包含「标签名称」和「标签颜色」两个字段，标签组件可根据这两个字段展示相应颜色的标签。
+Example: The order table has a many-to-one relationship field "Tags".
+The tags table contains two fields: "Tag Name" and "Tag Color". The tag component can display tags with corresponding colors based on these two fields.
 ![](/field/field-15.png)
 
-#### 在详情中使用
+#### Use in Details
 ![](/field/field-16.png)
 
-适用于在详情页中以标签形式展示关联数据。
+Suitable for displaying associated data in tag form on details page.
 
-### 字段配置项
-#### 标题字段
+### Field Configuration Items
+#### Title Field
 ![](/field/field-17.png)
 
-用于显示标签的主要信息，如标签名称。
-更多内容请参考 [标题字段](../field-settings/title-field.md)。
+Used to display the main information of the tag, such as tag name.
+For more content, refer to [Title Field](../field-settings/title-field.md).
 
-#### 启用链接（默认开启）
+#### Enable Link (enabled by default)
 
-允许点击标签，弹出详情或编辑表单，以便查看和修改关联记录。
+Allows clicking on the tag to pop up details or edit form for viewing and modifying associated records.
 ![](/field/field-18.png)
-可根据需求自定义弹窗内容。
-更多内容请参考 [字段组件](../field-settings/field-component.md)。
+Can customize popup content according to needs.
+For more content, refer to [Field Component](../field-settings/field-component.md).

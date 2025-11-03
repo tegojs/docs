@@ -1,37 +1,37 @@
-# 操作的联动规则
+# Operation Linkage Rules
 
-## 介绍
+## Introduction
 
-操作的联动规则基于上下文数据配置条件和执行结果。通过配置操作的联动规则，控制操作的状态（显示、隐藏、启用、禁用）。
+Operation linkage rules configure conditions and execution results based on context data. By configuring operation linkage rules, control the operation's status (display, hide, enable, disable).
 
 ![20240423113057](/actions/linkage-rule.png)
 
-## 使用说明
+## Usage Instructions
 
 ![20240413102150](/actions/linkage-rule-1.png)
 
-满足条件时（无条件默认通过），触发执行，支持在条件判断中使用常量/变量。
+When conditions are met (no conditions default to pass), trigger execution. Supports using constants/variables in condition judgment.
 
-### 哪些按钮可以配置联动规则
+### Which buttons can configure linkage rules
 
-目前仅支持有数据上下文的的按钮配置联动规则。
+Currently only buttons with data context support configuring linkage rules.
 
-表格、甘特图等卡片的行按钮；
+Row buttons of blocks like tables, Gantt charts, etc.;
 
-详情卡片的按钮；
+Buttons of details blocks;
 
 
-### 常量
+### Constants
 
-示例：已禁用的用户隐藏查看按钮
+Example: Hide view button for disabled users
 
 ![20240423113212](/actions/linkage-rule-2.png)
 
-### 变量
+### Variables
 
-示例：收货日期晚于今天的订单删除按钮禁用。
+Example: Disable delete button for orders with delivery date later than today.
 
 ![20240423113504](/actions/linkage-rule-3.png)
 
-<!-- TODO: 插入变量链接 -->
-更多关于变量内容参考 [变量]
+<!-- TODO: Insert variable link -->
+For more about variables, refer to [Variables]

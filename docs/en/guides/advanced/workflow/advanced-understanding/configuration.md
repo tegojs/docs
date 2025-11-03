@@ -1,29 +1,29 @@
-# 高级配置
+# Advanced Configuration
 
-## 执行模式
+## Execution Mode
 
-工作流基于创建时所选择的触发类型，会以“异步”或“同步”的方式执行。异步模式代表在特定事件触发后会进入工作流的队列，被后台调度逐个执行，而同步模式在触发后不会进入调度队列，而是直接开始执行，并且会在执行完后立即反馈。
+Based on the trigger type selected at creation, workflows will execute in either "asynchronous" or "synchronous" mode. Asynchronous mode means that after a specific event is triggered, it will enter the workflow queue and be executed one by one by background scheduling. Synchronous mode does not enter the scheduling queue after being triggered but starts executing directly and provides immediate feedback after execution is complete.
 
-数据表事件、操作后事件、自定义操作事件、定时任务事件和审批事件将默认以异步的方式执行，操作前事件则默认以同步的方式执行。其中数据表事件和表单事件两种模式都支持，在创建工作流时可以进行选择：
+Data table events, post-operation events, custom operation events, scheduled task events, and approval events will execute asynchronously by default. Pre-operation events execute synchronously by default. Both modes are supported for data table events and form events, which can be selected when creating a workflow:
 
 ![](/workflow/workflow-20.png)
 
-:::info{title=提示}
-同步模式的工作流受限于其模式，内部不能使用会产生“等待”状态的节点，例如“人工处理”等。
+:::info{title=Note}
+Workflows in synchronous mode are limited by their mode and cannot use nodes internally that would produce a "waiting" status, such as "Manual Processing", etc.
 :::
 
-## 自动删除历史记录
+## Auto Delete History Records
 
-当工作流的触发较为频繁时，可以通过配置自动删除历史记录来减少干扰，同时也将降低数据库的存储压力。
+When workflows are triggered frequently, you can configure automatic deletion of history records to reduce interference and also reduce database storage pressure.
 
-同样在工作流的新建和编辑弹窗中可以配置对应流程是否自动删除历史记录：
+Also in the workflow create and edit popup, you can configure whether the corresponding process automatically deletes history records:
 
 ![](/workflow/workflow-21.png)
 
-自动删除可以根据执行结果的状态来进行配置，大部分情况下，建议仅勾选“完成”状态，这样可以保留执行失败的记录，以便后续排查问题。
+Automatic deletion can be configured according to the status of execution results. In most cases, it is recommended to only check the "Completed" status, so that failed execution records can be retained for subsequent troubleshooting.
 
-建议在调试工作流时不要开启自动删除历史记录，以便通过历史记录来检查工作流的执行逻辑是否符合预期。
+It is recommended not to enable automatic deletion of history records when debugging workflows, so that you can check whether the workflow's execution logic meets expectations through history records.
 
-:::info{title=提示}
-删除工作流的历史并不会减少工作流已执行过的计数。
+:::info{title=Note}
+Deleting workflow history will not reduce the count of workflows already executed.
 :::

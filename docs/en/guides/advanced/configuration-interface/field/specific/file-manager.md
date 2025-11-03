@@ -1,22 +1,22 @@
-# 文件管理器
+# File Manager
 
-### 概述
+### Overview
 
-文件管理器是用于处理关系目标表为文件表的关系字段组件，便于管理和关联文件数据。
+File manager is a relationship field component used to handle relationship fields where the relationship target table is a file table, facilitating management and association of file data.
 
 ![](../../../../../../public/fieldSetting-file-manager2.png)
 ![](../../../../../../public/fieldSetting-file-manager1.png)
 
-### 字段配置项
+### Field Configuration Items
 
-- **[字段组件](../field-settings/field-component.md)**
+- **[Field Component](../field-settings/field-component.md)**
 
-支持切换为其他关系字段组件，如下拉选择、数据选择器等。
+Supports switching to other relationship field components, such as dropdown select, data picker, etc.
 
-- **快速上传（默认开启）**
+- **Quick Upload (enabled by default)**
 
-允许直接上传文件，并自动关联到当前记录。
+Allows directly uploading files and automatically associating them to the current record.
 
-- **选择文件（默认开启）**
+- **Select File (enabled by default)**
 
-可从已上传的文件中选择并关联到当前记录。
+Can select from already uploaded files and associate to the current record.

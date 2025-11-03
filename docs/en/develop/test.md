@@ -1,14 +1,14 @@
-# 测试
+# Testing
 
-测试基于 [Jest](https://jestjs.io/) 测试框架。为了方便的编写测试，提供了 `mockDatabase()` 和 `mockServer()` 用于数据库和服务端应用的测试。
+Testing is based on the [Jest](https://jestjs.io/) testing framework. For convenient test writing, `mockDatabase()` and `mockServer()` are provided for database and server application testing.
 
 :::warning
-测试的环境变量在 `.env.test` 文件里配置，建议使用独立的测试数据库进行测试。
+Test environment variables are configured in the `.env.test` file. It's recommended to use an independent test database for testing.
 :::
 
 ## `mockDatabase()`
 
-默认提供一种完全隔离的 db 测试环境
+Provides a completely isolated db test environment by default
 
 ```ts
 import { mockDatabase } from '@tachybase/test';
@@ -49,12 +49,12 @@ describe('my db suite', () => {
 
 ## `mockServer()`
 
-提供模拟的服务端应用实例，对应的 app.db 为 `mockDatabase()` 实例，同时还提供了便捷的 `app.agent()` 用于测试 HTTP API，针对 Tachybase 的 Resource Action 还封装了 `app.agent().resource()` 用于测试资源的 Action。
+Provides a mock server application instance, with corresponding app.db as a `mockDatabase()` instance. It also provides convenient `app.agent()` for testing HTTP APIs. For Tachybase Resource Actions, `app.agent().resource()` is also encapsulated for testing resource Actions.
 
 ```ts
 import { MockServer, mockServer } from '@tachybase/test';
 
-// 每个插件的 app 最小化安装的插件都不一样，需要插件根据自己的情况添加必备插件
+// The minimally installed plugins for each plugin's app are different, plugins need to add essential plugins according to their own situation
 async function createApp(options: any = {}) {
   const app = mockServer({
     ...options,
@@ -65,17 +65,17 @@ async function createApp(options: any = {}) {
       'error-handler',
       ...options.plugins,
     ],
-    // 还会有些其他参数配置
+    // There will also be some other parameter configurations
   });
-  // 这里可以补充一些需要特殊处理的逻辑，比如导入测试需要的数据表
+  // Here you can supplement some logic that needs special handling, such as importing data tables needed for testing
   return app;
 }
 
-// 大部分的测试都需要启动应用，所以也可以提供一个通用的启动方法
+// Most tests need to start the application, so a common startup method can also be provided
 async function startApp() {
   const app = createApp();
   await app.quickstart({
-    // 运行测试前，清空数据库
+    // Clear database before running tests
     clean: true,
   });
   return app;
@@ -89,9 +89,9 @@ describe('test example', () => {
   });
 
   afterEach(async () => {
-    // 运行测试后，清空数据库
+    // Clear database after running tests
     await app.destroy();
-    // 只停止不清空数据库
+    // Only stop without clearing database
     await app.stop();
   });
 
@@ -101,20 +101,20 @@ describe('test example', () => {
 });
 ```
 
-## 常用的应用流程
+## Common Application Processes
 
-如果需要测试不同流程的情况，可以根据以下示例执行相关命令。
+If you need to test different process scenarios, you can execute related commands according to the following examples.
 
-### 先安装再启动
+### Install First, Then Start
 
-终端命令行
+Terminal command line
 
 ```bash
 pnpm tachybase install
 pnpm start
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -122,17 +122,17 @@ await app.runCommand('install');
 await app.runCommand('start');
 ```
 
-### 先启动再安装
+### Start First, Then Install
 
-终端命令行
+Terminal command line
 
 ```bash
-pnpm start # 常驻内存
-# 另一个终端里执行
+pnpm start # Resident in memory
+# Execute in another terminal
 pnpm tachybase install
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -140,32 +140,32 @@ await app.runCommand('start');
 await app.runCommand('install');
 ```
 
-### 快速启动（自动安装或升级）
+### Quick Start (Automatic Install or Upgrade)
 
-终端命令行
+Terminal command line
 
 ```bash
 yarn start --quickstart
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
 await app.runCommand('start', '--quickstart');
 ```
 
-### 对已安装启动的应用进行重装
+### Reinstall Already Installed and Started Application
 
-终端命令行
+Terminal command line
 
 ```bash
 pnpm start --quickstart
-# 另一个终端里执行
+# Execute in another terminal
 pnpm tachybase install -f
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -173,16 +173,16 @@ await app.runCommand('start', '--quickstart');
 await app.runCommand('install', '-f');
 ```
 
-### 升级应用（启动前）
+### Upgrade Application (Before Start)
 
-终端命令行
+Terminal command line
 
 ```bash
 pnpm tachybase upgrade
 pnpm start
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -190,15 +190,15 @@ await app.runCommand('upgrade', '-f');
 await app.runCommand('start', '--quickstart');
 ```
 
-### 升级应用（启动后）
+### Upgrade Application (After Start)
 
 ```bash
-pnpm start # 常驻内存
-# 另一个终端里执行
+pnpm start # Resident in memory
+# Execute in another terminal
 pnpm tachybase upgrade
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -206,16 +206,16 @@ await app.runCommand('start', '--quickstart');
 await app.runCommand('upgrade', '-f');
 ```
 
-### 激活插件
+### Enable Plugin
 
-终端命令行
+Terminal command line
 
 ```bash
 yarn start --quickstart
 yarn pm enable @my-project/plugin-hello
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();
@@ -223,16 +223,16 @@ await app.runCommand('start', '--quickstart');
 await app.runCommand('pm', 'enable', '@my-project/plugin-hello');
 ```
 
-### 禁用插件
+### Disable Plugin
 
-终端命令行
+Terminal command line
 
 ```bash
 yarn start --quickstart
 yarn pm disable @my-project/plugin-hello
 ```
 
-前置的测试流程
+Pre-test process
 
 ```ts
 const app = mockServer();

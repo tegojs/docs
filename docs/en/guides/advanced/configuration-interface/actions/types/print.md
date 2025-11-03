@@ -1,14 +1,14 @@
-# 打印
+# Print
 
-> ℹ️ **提示**  
-> 由插件 `plugin-action-print` 提供
+> ℹ️ **Note**  
+> Provided by the `plugin-action-print` plugin
 
-## 介绍
+## Introduction
 
-打印按钮是详情卡片的功能按钮，点击后触发浏览器的打印功能，方便用户将内容打印到纸质文档或其他打印设备上。
+The print button is a function button of the details block. After clicking, it triggers the browser's print function, making it convenient for users to print content to paper documents or other printing devices.
 
-## 安装
+## Installation
 
-内置插件，无需单独安装
+Built-in plugin, no separate installation required
 
 ![20240426105637](/actions/print-1.png)

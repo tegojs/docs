@@ -1,46 +1,46 @@
-# 联动规则
+# Linkage Rules
 
-## 介绍
+## Introduction
 
-联动规则允许根据用户的行为动态调整表单字段的状态，例如：显示/隐藏、必填/非必填、赋值等。现在支持配置联动规则的有：[表单区块]、[详情区块]、[操作按钮]、[子表单]（需 v1.3.17-beta 及以上版本）、[子表格]（需 v1.3.17-beta 及以上版本）。
+Linkage rules allow dynamically adjusting the status of form fields based on user behavior, such as: show/hide, required/not required, assign values, etc. Currently support configuring linkage rules: [Form Block], [Details Block], [Action Buttons], [Sub-form] (requires v1.3.17-beta and above), [Sub-table] (requires v1.3.17-beta and above).
 
-## 使用说明
+## Usage Instructions
 
-1. 配置表单字段：所有在规则中使用的表单字段都需要配置出来，以确保规则的有效性和准确性。
+1. Configure form fields: All form fields used in rules need to be configured to ensure the validity and accuracy of rules.
 
-2. 条件触发：当规则中的条件满足时（非必填），会自动执行下方的属性修改操作。
+2. Condition trigger: When the conditions in the rule are met (not required), property modification operations below will be automatically executed.
 
-3. 支持多个规则：可以为一个表单配置多个联动规则，当同时符合多个规则条件时，系统会按照规则的先后顺序从前往后执行结果。
+3. Support multiple rules: Multiple linkage rules can be configured for one form. When multiple rule conditions are met simultaneously, the system will execute results in order from front to back according to the rule sequence.
 
-4. 规则管理：支持自定义命名、排序、删除、启用、禁用和复制规则。
+4. Rule management: Supports custom naming, sorting, deletion, enabling, disabling, and copying rules.
 
-5. 支持常量/变量：在字段赋值和条件配置中支持使用常量或变量，关于变量内容可参考 [变量](/handbook/ui/variables)。
+5. Support constants/variables: Supports using constants or variables in field assignment and condition configuration. For variable content, refer to [Variables](/handbook/ui/variables).
 
-### 赋值
+### Assignment
 
-示例：根据预计年采购额自动评估并设置客户的级别（例如：A+ 级、A 级、 A- 级)。
+Example: Automatically evaluate and set customer level (for example: A+ level, A level, A- level) based on expected annual purchase amount.
 
-- 年采购额 大于 20000 客户级别为 A+。
-
-
-- 年采购额 大于 10000 客户级别小于等于20000为 A。
-
-- 年采购额 小于 10000 客户级别为 A-。
+- Annual purchase amount greater than 20000, customer level is A+.
 
 
-### 必填
+- Annual purchase amount greater than 10000 and less than or equal to 20000, customer level is A.
 
-示例: 根据是否促销控制商品促销价格是否必填。
-
-- 是否促销为 true ,促销价格必填。
-
-- 是否促销为 false ,促销价格非必填。
-
-### 显示/隐藏
-
-示例: 根据是否促销控制促销价格输入框是否显示。
-
-- 是否促销为 true,促销价格显示且必填。
+- Annual purchase amount less than 10000, customer level is A-.
 
 
-- 是否促销为 false,促销价格隐藏且非必填。
+### Required
+
+Example: Control whether product promotion price is required based on whether it's on promotion.
+
+- If on promotion is true, promotion price is required.
+
+- If on promotion is false, promotion price is not required.
+
+### Show/Hide
+
+Example: Control whether promotion price input box is displayed based on whether it's on promotion.
+
+- If on promotion is true, promotion price is displayed and required.
+
+
+- If on promotion is false, promotion price is hidden and not required.

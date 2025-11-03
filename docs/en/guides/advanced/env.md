@@ -1,14 +1,14 @@
-# 环境变量
+# Environment Variables
 
-## 如何设置环境变量？
+## How to Set Environment Variables?
 
-### Git 源码或 create-tachybase-app 安装方式
+### Git Source Code or create-tachybase-app Installation Method
 
-在项目根目录下的 `.env` 文件里设置环境变量，修改环境变量之后需要 kill 应用进程，重新启动。
+Set environment variables in the `.env` file in the project root directory. After modifying environment variables, you need to kill the application process and restart.
 
-### Docker 安装方式
+### Docker Installation Method
 
-修改 `docker-compose.yml` 配置，在 `enviroment` 参数里设置环境变量。示例：
+Modify the `docker-compose.yml` configuration and set environment variables in the `environment` parameter. Example:
 
 ```yml
 services:
@@ -18,7 +18,7 @@ services:
       - APP_ENV=production
 ```
 
-也可以使用 `env_file`，即可在 `.env` 文件中设置环境变量。示例：
+You can also use `env_file`, which allows setting environment variables in the `.env` file. Example:
 
 ```yml
 services:
@@ -27,44 +27,44 @@ services:
     env_file: .env
 ```
 
-修改环境变量之后，需要重建 app 容器。
+After modifying environment variables, you need to rebuild the app container.
 
 ```yml
 docker-compose up -d app
 ```
 
-## 全局环境变量
+## Global Environment Variables
 
 ### TZ
 
-用于设置应用的时区，默认为操作系统时区。
+Used to set the application's timezone, defaults to the operating system timezone.
 
 https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 :::warning
-与时间相关的操作会依据该时区进行处理，修改 TZ 可能会影响数据库里的日期值。
+Operations related to time will be processed according to this timezone. Modifying TZ may affect date values in the database.
 :::
 
 ### APP_ENV
 
-应用环境，默认值 `development`，可选项包括：
+Application environment, default value `development`, options include:
 
-- `production` 生产环境
-- `development` 开发环境
+- `production` Production environment
+- `development` Development environment
 
 ```bash
 APP_ENV=production
 ```
 
-APP_ENV=production 时，如果没有设置LOGGER_FORMAT，默认json格式。如果没有设置LOGGER_LEVEL，默认info级别。
+When APP_ENV=production, if LOGGER_FORMAT is not set, defaults to json format. If LOGGER_LEVEL is not set, defaults to info level.
 
 
 ### APP_KEY
 
-应用的密钥，用于生成用户 token 等，修改为自己的应用密钥，并确保不对外泄露
+Application secret key, used to generate user tokens, etc. Change to your own application secret key and ensure it's not leaked
 
 :::warning
-如果 APP_KEY 修改了，旧的 token 也会随之失效
+If APP_KEY is changed, old tokens will also become invalid
 :::
 
 ```bash
@@ -73,7 +73,7 @@ APP_KEY=app-key-test
 
 ### APP_PORT
 
-应用端口，默认值 `3000`
+Application port, default value `3000`
 
 ```bash
 APP_PORT=3000
@@ -81,7 +81,7 @@ APP_PORT=3000
 
 ### API_BASE_PATH
 
-tachybase API 地址前缀，默认值 `/api/`
+Tachybase API address prefix, default value `/api/`
 
 ```bash
 API_BASE_PATH=/api/
@@ -89,7 +89,7 @@ API_BASE_PATH=/api/
 
 ### LOCAL_STORAGE_DEST
 
-本地存储路径，默认值 `storage/uploads`
+Local storage path, default value `storage/uploads`
 
 ```bash
 LOCAL_STORAGE_DEST=storage/uploads
@@ -97,32 +97,32 @@ LOCAL_STORAGE_DEST=storage/uploads
 
 ### PLUGIN_PACKAGE_PREFIX
 
-插件包名前缀，默认为：`@tachybase/plugin-,@tachybase/preset-,@tachybase/module-,@hera/plugin-,@hera/module-`。
+Plugin package name prefix, defaults to: `@tachybase/plugin-,@tachybase/preset-,@tachybase/module-,@hera/plugin-,@hera/module-`.
 
-例如，添加 `hello` 插件到 `my-tachybase-app` 项目，插件的完整包名则为 `@my-tachybase-app/plugin-hello`。
+For example, adding a `hello` plugin to a `my-tachybase-app` project, the plugin's full package name would be `@my-tachybase-app/plugin-hello`.
 
-PLUGIN_PACKAGE_PREFIX 可以配置为：
+PLUGIN_PACKAGE_PREFIX can be configured as:
 
 ```bash
 PLUGIN_PACKAGE_PREFIX=@tachybase/plugin-,@tachybase/preset-,@tachybase/module-,@hera/plugin-,@hera/module-
 ```
 
-则插件名称和包名对应关系如下：
+Then plugin names and package names correspond as follows:
 
-- `users` 插件的包名为 `@tachybase/module-users`
-- `tachybase` 插件的包名为 `@tachybase/preset-tachybase`
-- `hello` 插件的包名为 `@my-tachybase-app/plugin-hello`
+- `users` plugin package name is `@tachybase/module-users`
+- `tachybase` plugin package name is `@tachybase/preset-tachybase`
+- `hello` plugin package name is `@my-tachybase-app/plugin-hello`
 
 ### DB_DIALECT
 
-数据库类型，默认值 `sqlite`，可选项包括：
+Database type, default value `sqlite`, options include:
 
 - `sqlite`
 - `mariadb`
 - `mysql`
 - `postgres`
 
-推荐使用postgres数据库,部分数据库在特定插件下可能不支持
+Postgres database is recommended, some databases may not be supported under specific plugins
 
 ```bash
 DB_DIALECT=postgres
@@ -130,20 +130,20 @@ DB_DIALECT=postgres
 
 ### DB_STORAGE
 
-数据库文件路径（使用 SQLite 数据库时配置）
+Database file path (configured when using SQLite database)
 
 ```bash
-# 相对路径
+# Relative path
 DB_STORAGE=storage/db/tachybase.db
-# 绝对路径
+# Absolute path
 DB_STORAGE=/your/path/tachybase.db
 ```
 
 ### DB_HOST
 
-数据库主机（使用 MySQL 或 PostgreSQL 数据库时需要配置）
+Database host (needs to be configured when using MySQL or PostgreSQL database)
 
-默认值 `localhost`
+Default value `localhost`
 
 ```bash
 DB_HOST=localhost
@@ -151,10 +151,10 @@ DB_HOST=localhost
 
 ### DB_PORT
 
-数据库端口（使用 MySQL 或 PostgreSQL 数据库时需要配置）
+Database port (needs to be configured when using MySQL or PostgreSQL database)
 
-- MySQL、MariaDB 默认端口 3306
-- PostgreSQL 默认端口 5432
+- MySQL, MariaDB default port 3306
+- PostgreSQL default port 5432
 
 ```bash
 DB_PORT=3306
@@ -162,7 +162,7 @@ DB_PORT=3306
 
 ### DB_DATABASE
 
-数据库名（使用 MySQL 或 PostgreSQL 数据库时需要配置）
+Database name (needs to be configured when using MySQL or PostgreSQL database)
 
 ```bash
 DB_DATABASE=tachybase
@@ -170,7 +170,7 @@ DB_DATABASE=tachybase
 
 ### DB_USER
 
-数据库用户（使用 MySQL 或 PostgreSQL 数据库时需要配置）
+Database user (needs to be configured when using MySQL or PostgreSQL database)
 
 ```bash
 DB_USER=tachybase
@@ -178,7 +178,7 @@ DB_USER=tachybase
 
 ### DB_PASSWORD
 
-数据库密码（使用 MySQL 或 PostgreSQL 数据库时需要配置）
+Database password (needs to be configured when using MySQL or PostgreSQL database)
 
 ```bash
 DB_PASSWORD=tachybase
@@ -186,7 +186,7 @@ DB_PASSWORD=tachybase
 
 ### DB_TABLE_PREFIX
 
-数据表前缀
+Data table prefix
 
 ```bash
 DB_TABLE_PREFIX=tachybase_
@@ -194,18 +194,18 @@ DB_TABLE_PREFIX=tachybase_
 
 ### DB_UNDERSCORED
 
-数据库表名、字段名是否转为 snake case 风格，默认为 `false`。如果使用 MySQL（MariaDB）数据库，并且 `lower_case_table_names=1`，则 DB_UNDERSCORED 必须为 `true`
+Whether database table names and field names are converted to snake case style, defaults to `false`. If using MySQL (MariaDB) database and `lower_case_table_names=1`, then DB_UNDERSCORED must be `true`
 
 :::warning
-当 `DB_UNDERSCORED=true` 时，数据库实际的表名和字段名与界面所见的并不一致，如 `orderDetails` 数据库里的是 `order_details`
+When `DB_UNDERSCORED=true`, the actual table names and field names in the database are not consistent with what you see in the interface, for example `orderDetails` in the database is `order_details`
 :::
 
 ### DB_LOGGING
 
-数据库日志开关，默认值 `off`，可选项包括：
+Database logging switch, default value `off`, options include:
 
-- `on` 打开
-- `off` 关闭
+- `on` On
+- `off` Off
 
 ```bash
 DB_LOGGING=on
@@ -213,12 +213,12 @@ DB_LOGGING=on
 
 ### LOGGER_TRANSPORT
 
-日志输出方式，多个用 `,` 分隔。开发环境默认值 `console`，生产环境默认值 `console,dailyRotateFile`.
-可选项：
+Log output method, multiple values separated by `,`. Development environment default value `console`, production environment default value `console,dailyRotateFile`.
+Options:
 
 - `console` - `console.log`
-- `file` - `文件`
-- `dailyRotateFile` - `按天滚动文件`
+- `file` - `File`
+- `dailyRotateFile` - `Daily rotating file`
 
 ```bash
 LOGGER_TRANSPORT=console,dailyRotateFile
@@ -226,7 +226,7 @@ LOGGER_TRANSPORT=console,dailyRotateFile
 
 ### LOGGER_BASE_PATH
 
-基于文件的日志存储路径，默认为 `storage/logs`。
+File-based log storage path, defaults to `storage/logs`.
 
 ```bash
 LOGGER_BASE_PATH=storage/logs
@@ -234,7 +234,7 @@ LOGGER_BASE_PATH=storage/logs
 
 ### LOGGER_LEVEL
 
-输出日志级别，开发环境默认值 `debug`，生产环境默认值 `info`. 可选项：
+Output log level, development environment default value `debug`, production environment default value `info`. Options:
 
 - `error`
 - `warn`
@@ -246,14 +246,14 @@ LOGGER_BASE_PATH=storage/logs
 LOGGER_LEVEL=info
 ```
 
-数据库日志输出级别为 `debug`，由 `DB_LOGGING` 控制是否输出，不受 `LOGGER_LEVEL` 影响。
+Database log output level is `debug`, controlled by `DB_LOGGING` whether to output, not affected by `LOGGER_LEVEL`.
 
 ### LOGGER_MAX_FILES
 
-最大保留日志文件数。
+Maximum number of log files to retain.
 
-- `LOGGER_TRANSPORT` 为 `file` 时，默认值为 `10`.
-- `LOGGER_TRANSPORT` 为 `dailyRotateFile`，使用 `[n]d` 代表天数。默认值为 `14d`.
+- When `LOGGER_TRANSPORT` is `file`, default value is `10`.
+- When `LOGGER_TRANSPORT` is `dailyRotateFile`, use `[n]d` to represent days. Default value is `14d`.
 
 ```bash
 LOGGER_MAX_FILES=14d
@@ -261,10 +261,10 @@ LOGGER_MAX_FILES=14d
 
 ### LOGGER_MAX_SIZE
 
-按大小滚动日志。
+Log rotation by size.
 
-- `LOGGER_TRANSPORT` 为 `file` 时，单位为 `byte`，默认值为 `20971520 (20 * 1024 * 1024)`.
-- `LOGGER_TRANSPORT` 为 `dailyRotateFile`，可以使用 `[n]k`，`[n]m`，`[n]g`. 默认不配置。
+- When `LOGGER_TRANSPORT` is `file`, unit is `byte`, default value is `20971520 (20 * 1024 * 1024)`.
+- When `LOGGER_TRANSPORT` is `dailyRotateFile`, can use `[n]k`, `[n]m`, `[n]g`. No default configuration.
 
 ```bash
 LOGGER_MAX_SIZE=20971520
@@ -272,7 +272,7 @@ LOGGER_MAX_SIZE=20971520
 
 ### LOGGER_FORMAT
 
-日志打印格式，开发环境默认 `console`，生产环境默认 `json`. 可选项:
+Log print format, development environment default `console`, production environment default `json`. Options:
 
 - `console`
 - `json`
@@ -285,7 +285,7 @@ LOGGER_FORMAT=json
 
 ### CACHE_DEFAULT_STORE
 
-使用缓存方式的唯一标识，指定服务端默认缓存方式，默认值 `memory`，内置可选项：
+Unique identifier for cache method, specifies server's default cache method, default value `memory`, built-in options:
 
 - `memory`
 - `redis`
@@ -296,7 +296,7 @@ CACHE_DEFAULT_STORE=memory
 
 ### CACHE_MEMORY_MAX
 
-内存缓存项目最大个数，默认值 `2000`。
+Maximum number of memory cache items, default value `2000`.
 
 ```bash
 CACHE_MEMORY_MAX=2000
@@ -304,7 +304,7 @@ CACHE_MEMORY_MAX=2000
 
 ### CACHE_REDIS_URL
 
-Redis连接，可选。示例：`redis://localhost:6379`
+Redis connection, optional. Example: `redis://localhost:6379`
 
 ```bash
 CACHE_REDIS_URL=redis://localhost:6379
@@ -312,7 +312,7 @@ CACHE_REDIS_URL=redis://localhost:6379
 
 ### ENCRYPTION_KEY
 
-加密字段的加密密钥,32位字符串,默认为12345678901234567890123456789012。
+Encryption key for encrypted fields, 32-character string, defaults to 12345678901234567890123456789012.
 
 ```bash
 ENCRYPTION_FIELD_KEY=12345678901234567890123456789012
@@ -320,7 +320,7 @@ ENCRYPTION_FIELD_KEY=12345678901234567890123456789012
 
 ### WOKER_COUNT
 
-工作进程数，默认值 `1`。
+Number of worker processes, default value `1`.
 
 ```bash
 WOKER_COUNT=1
@@ -328,7 +328,7 @@ WOKER_COUNT=1
 
 ### WORKER_COUNT_MAX
 
-工作进程最大数，默认值 `8`。现在在网页上控制输入的线程数不能超过这个值。
+Maximum number of worker processes, default value `8`. Currently, the number of threads controlled input on the web page cannot exceed this value.
 
 ```bash
 WORKER_COUNT_MAX=8
@@ -336,7 +336,7 @@ WORKER_COUNT_MAX=8
 
 ### WORKER_TIMEOUT
 
-工作进程处理事务最大超时时间（秒），默认值 `1800`。
+Worker process transaction maximum timeout (seconds), default value `1800`.
 
 ```bash
 WORKER_TIMEOUT=1800
@@ -344,7 +344,7 @@ WORKER_TIMEOUT=1800
 
 ### WORKER_ERROR_RETRY
 
-工作进程启动失败重试次数，默认值 `5`。
+Worker process startup failure retry count, default value `5`.
 
 ```bash
 WORKER_ERROR_RETRY=5
@@ -352,7 +352,7 @@ WORKER_ERROR_RETRY=5
 
 ### WORKER_COUNT_SUB
 
-子应用工作进程数，为防止开启多个子应用占用资源，默认值 `0`。
+Sub-application worker process count, to prevent multiple sub-applications from occupying resources, default value `0`.
 
 ```bash
 WORKER_COUNT_SUB=0
@@ -361,7 +361,7 @@ WORKER_COUNT_SUB=0
 
 ### EXPORT_LENGTH_MAX
 
-导出表格最大长度，默认值 `2000`。
+Export table maximum length, default value `2000`.
 
 ```bash
 EXPORT_LENGTH_MAX=2000
@@ -369,7 +369,7 @@ EXPORT_LENGTH_MAX=2000
 
 ### EXPORT_WORKER_PAGESIZE
 
-使用工作线程导出表格的每页大小，默认值 `1000`。
+Page size for exporting tables using worker threads, default value `1000`.
 
 ```bash
 EXPORT_WORKER_PAGESIZE=1000
@@ -377,9 +377,9 @@ EXPORT_WORKER_PAGESIZE=1000
 
 ### PRESETS_CORE_PLUGINS
 
-内置插件的启用关闭，默认值为空。
+Enable/disable built-in plugins, default value is empty.
 
-名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
+Add ! before name to remove specified plugin, add | before name to add specified plugin but disable by default
 
 ```bash
 PRESETS_CORE_PLUGINS=api-doc,api-keys,!messages
@@ -387,9 +387,9 @@ PRESETS_CORE_PLUGINS=api-doc,api-keys,!messages
 
 ### PRESETS_LOCAL_PLUGINS
 
-本地插件的启用关闭，默认值为空。
+Enable/disable local plugins, default value is empty.
 
-名称前加!表示移除指定插件 名称前加|表示添加指定插件但默认禁用
+Add ! before name to remove specified plugin, add | before name to add specified plugin but disable by default
 
 ```bash
 PRESETS_CORE_PLUGINS=gantt,!iframe-block,|audit-logs
@@ -397,19 +397,19 @@ PRESETS_CORE_PLUGINS=gantt,!iframe-block,|audit-logs
 
 ### FORCE_LOCALE_CACHE
 
-强制使用缓存的语言包，开启后在本地开发环境可以针对getLang接口缓存请求,返回302状态码, 不推荐开启. 默认值 `0`。
+Force use of cached language packs, when enabled in local development environment can cache requests for getLang interface, returning 302 status code, not recommended to enable. Default value `0`.
 
 ```bash
 FORCE_LOCALE_CACHE=1
 ```
 
-<!-- TODO: TELEMETRY 遥测有关 -->
+<!-- TODO: TELEMETRY telemetry related -->
 
-## 临时环境变量
+## Temporary Environment Variables
 
-临时环境变量只在特定场合(安装)中生效，安装后不影响运行
+Temporary environment variables only take effect in specific situations (installation), do not affect runtime after installation
 
-安装 tachybase 时，可以通过设置临时的环境变量来辅助安装，如：
+When installing tachybase, you can set temporary environment variables to assist installation, such as:
 
 ```bash
 pnpm cross-env \
@@ -419,20 +419,20 @@ pnpm cross-env \
   INIT_ROOT_NICKNAME="Super Admin" \
   tachybase install
 
-# 等同于
+# Equivalent to
 pnpm tachybase install \
   --lang=zh-CN  \
   --root-email=demo@tachybase.com \
   --root-password=admin123 \
   --root-nickname="Super Admin"
 
-# 等同于
+# Equivalent to
 pnpm tachybase install -l zh-CN -e demo@tachybase.com -p admin123 -n "Super Admin"
 ```
 
 ### INIT_APP_LANG
 
-安装时的语言，默认值 `en-US`，可选项包括：
+Language during installation, default value `en-US`, options include:
 
 - `en-US`
 - `zh-CN`
@@ -445,7 +445,7 @@ pnpm cross-env \
 
 ### INIT_ROOT_EMAIL
 
-Root 用户邮箱
+Root user email
 
 ```bash
 pnpm cross-env \
@@ -456,7 +456,7 @@ pnpm cross-env \
 
 ### INIT_ROOT_PASSWORD
 
-Root 用户密码
+Root user password
 
 ```bash
 pnpm cross-env \
@@ -468,7 +468,7 @@ pnpm cross-env \
 
 ### INIT_ROOT_NICKNAME
 
-Root 用户昵称
+Root user nickname
 
 ```bash
 pnpm cross-env \

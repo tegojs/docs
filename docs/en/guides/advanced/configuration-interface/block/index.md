@@ -1,22 +1,22 @@
-# 概述
+# Overview
 
-数据和内容的载体，可以放置于页面（Page）、对话框（Modal）或抽屉（Drawer）等容器里，卡片可以自由拖拽排列。
+Carriers of data and content that can be placed in containers such as Page, Modal, or Drawer. Blocks can be freely dragged and arranged.
 
-## 卡片类型
+## Block Types
 
-- 数据卡片, 用于将数据源中的数据展示在界面上
-- 筛选卡片, 用于将数据源中的数据作为筛选条件, 对其他数据卡片发起筛选
-- 自定义卡片, 比如审批待办, AI聊天框, 图表等自定义内容
+- Data blocks, used to display data from data sources on the interface
+- Filter blocks, used to use data from data sources as filter conditions to filter other data blocks
+- Custom blocks, such as approval to-dos, AI chat boxes, charts, and other custom content
   
-## 添加卡片
-卡片可以放置于页面（Page）、对话框（Modal）或抽屉（Drawer）里。
+## Add Blocks
+Blocks can be placed in Page, Modal, or Drawer.
 
-### 页面里的卡片
-目前页面里的卡片类型包括：数据卡片、筛选卡片、其他卡片。
+### Blocks in Pages
+Currently, block types in pages include: data blocks, filter blocks, and other blocks.
 
 ![](/blocks/page-block.png)
 
-### 弹窗（对话框或抽屉）里的卡片
-弹窗有对话框和抽屉两种，和页面一样也可以添加卡片，区别在于弹窗里的卡片通常为单条记录的添加、编辑或查看等，卡片类型包括数据卡片、其他卡片。
+### Blocks in Modals (Dialog or Drawer)
+Modals come in two types: dialog and drawer. Like pages, blocks can also be added. The difference is that blocks in modals are usually for adding, editing, or viewing single records. Block types include data blocks and other blocks.
 
 ![](/blocks/drawer-block.png)

@@ -1,21 +1,21 @@
-# 工作流
+# Workflow
 
-## 介绍
+## Introduction
 
-工作流插件是一个编排和配置自动化流程的强大工具，业界通常称为业务流程管理（BPM）工具。常用于基于数据模型的业务流程设计与编排，通过触发条件与执行流程节点编排实现业务流程的自动化流转。
+The workflow plugin is a powerful tool for orchestrating and configuring automated processes, commonly known in the industry as Business Process Management (BPM) tools. It is commonly used for business process design and orchestration based on data models, achieving automated circulation of business processes through trigger conditions and execution process node orchestration.
 
-在 tachybase 应用中，工作流插件针对无代码场景设计，使用该插件可以在 UI 界面上完成大部分常见业务的编排与数据处理，以动态地实现系统中的业务流程变更。
+In tachybase applications, the workflow plugin is designed for no-code scenarios. Using this plugin, most common business orchestration and data processing can be completed on the UI interface to dynamically implement business process changes in the system.
 
-每个工作流通过一个触发器与若干节点编排而成，通过每个节点的特定功能，描述系统中对应事件产生后需要处理的业务逻辑。
+Each workflow is orchestrated through a trigger and several nodes. Through the specific functions of each node, it describes the business logic that needs to be processed after the corresponding event occurs in the system.
 
-以上工作流的功能是：当用户提交一个订单表单后，系统自动检查订单中的商品库存，如果库存充足，则扣减库存，否则订单更新为无效。
+The above workflow's function is: when a user submits an order form, the system automatically checks the product inventory in the order. If the inventory is sufficient, it deducts the inventory; otherwise, the order is updated as invalid.
 
-从更通用的角度，工作流在 tachybase 应用中可以解决几大场景的问题：
+From a more general perspective, workflows in tachybase applications can solve problems in several major scenarios:
 
-- 数据自动化处理：比如在数据表中新增一条数据后，自动按预定流程处理数据，如计算触发数据后更新关联数据等。
-- 人工介入的业务流程：当业务流程不能完全自动化决策时，可以通过人工类型的节点，将部分决策权交给人工处理，比如审批、复核等。人工处理的结果提交以后，再继续执行后续流程。
-- 与外部系统连接：可以通过请求节点（或扩展各类调用第三方功能的节点）调用外部系统的 API 接口，实现和外部系统的数据交互。
+- Automated data processing: For example, after adding a new record in a data table, automatically process the data according to a predetermined process, such as calculating triggered data and then updating associated data, etc.
+- Business processes involving manual intervention: When business processes cannot be fully automated for decision-making, manual-type nodes can be used to hand over some decision-making power to manual processing, such as approval, review, etc. After the manual processing results are submitted, the subsequent process continues.
+- Connection with external systems: Request nodes (or extend various nodes that call third-party functions) can be used to call external system API interfaces to achieve data interaction with external systems.
 
-## 安装
+## Installation
 
-工作流是 tachybase 的内置插件，无需额外安装。
+Workflow is a built-in plugin of tachybase and requires no additional installation.

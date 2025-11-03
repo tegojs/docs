@@ -1,20 +1,20 @@
-# 操作
+# Actions
 
-在 UI 里，操作是用来触发一段指令的按钮。可以直接放在页面、对话框、抽屉里，也可以和卡片组合使用。目前可动态配置的操作，主要是和卡片组合使用。
+In the UI, actions are buttons used to trigger a set of instructions. They can be placed directly on pages, dialogs, or drawers, and can also be used in combination with blocks. Currently, dynamically configurable actions are mainly used in combination with blocks.
 
-## 卡片里的操作
+## Actions in Blocks
 
 ![actions1](/actions1.png)
 
-## 操作的设计器（工具栏）
+## Action Designer (Toolbar)
 
-和卡片、字段不太一样，操作的设计器里只有两个图标，分别为：
-- 拖拽
-- 参数配置
+Unlike blocks and fields, the action designer only has two icons:
+- Drag and drop
+- Parameter configuration
 
 ![actions2](/actions2.png)
 
-## 操作的拖拽排序
+## Drag and Drop Sorting of Actions
 
-按住按钮设计器里的「拖拽」图标，可以对按钮进行排序。
+Hold the "Drag and drop" icon in the button designer to sort buttons.
 ![actions3](/actions3.gif)

@@ -1,11 +1,11 @@
-# 日历数据表
+# Calendar Data Table
 
-::: info &#9432; 提示
-该功能由插件 plugin-block-calendar 提供。
+::: info &#9432; Note
+This feature is provided by the plugin-block-calendar plugin.
 :::
 
-### 介绍
-日历数据表是一种专门用来存储日期及其相关信息的数据结构，通常应用于应用程序或系统中的时间管理。其设计目的是为了提供高效且灵活的日期查询，以便迅速检索和处理与时间相关的信息。
+### Introduction
+A calendar data table is a data structure specifically designed to store dates and their related information, typically used for time management in applications or systems. Its design purpose is to provide efficient and flexible date queries to quickly retrieve and process time-related information.
 
-### 使用手册
+### User Manual
 ![](/datasource/datasource-13.png)

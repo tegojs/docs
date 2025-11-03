@@ -1,21 +1,21 @@
-# 详情
+# Details
 
-## 介绍
+## Introduction
 
-详情卡片用于详细展示每条数据的每个字段的值。它支持灵活的字段布局，并内置了多种数据操作。
+The details block is used to display the value of each field for each data record in detail. It supports flexible field layout and has multiple built-in data operations.
 
-## 添加卡片
+## Add Block
 
 ![](/blocks/detail-add.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/blocks/detail-setting.png)
 
-## 配置字段
+## Configure Fields
 
 ![](/blocks/detail-field.png)
 
-## 配置操作
+## Configure Actions
 
 ![](/blocks/detail-action.png)

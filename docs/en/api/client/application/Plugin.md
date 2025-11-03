@@ -1,8 +1,8 @@
 # Plugin
 
-Plugin 基类。
+Plugin base class.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Plugin<T = any> {
@@ -46,24 +46,24 @@ class Plugin<T = any> {
 }
 ```
 
-- 详细信息
+- Details
 
-  - 构造函数
-    - `options`： 插件的添加有两种方式，一种方式从插件列表中远程加载出来，另一种方式是通过 [PluginManager](./PluginManager) 添加
-      - 远程加载：`options` 会被自动注入 `{ name: 'npm package.name' }`
-      - PluginManager `options` 由用户自己传递
-    - `app`：此参数是自动注入的，是应用实例
-  - 快捷访问：基类提供了对 `app` 部分方法和属性的快捷访问
+  - Constructor
+    - `options`: There are two ways to add plugins. One way is to remotely load from the plugin list, another way is through [PluginManager](./PluginManager) to add
+      - Remote loading: `options` will be automatically injected with `{ name: 'npm package.name' }`
+      - PluginManager `options` are passed by users themselves
+    - `app`: This parameter is automatically injected and is the application instance
+  - Quick access: The base class provides quick access to some methods and properties of `app`
     - `pluginManager`
     - `router`
     - `systemSettingsManager`
     - `schemaSettingsManager`
     - `schemaInitializerManager`
-  - 声明周期
-    - `afterAdd`：插件被添加后立即执行
-    - `beforeLoad`：执行渲染时执行，在 `afterAdd` 之后，`load` 之前
-    - `load`：最后执行
-- 示例
+  - Lifecycle
+    - `afterAdd`: Executes immediately after plugin is added
+    - `beforeLoad`: Executes during rendering, after `afterAdd`, before `load`
+    - `load`: Executes last
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -79,10 +79,10 @@ class MyPlugin extends Plugin {
   async load() {
     console.log('load')
 
-    // 可以访问应用实例
+    // Can access application instance
     console.log(this.app)
 
-    // 访问应用实例内容
+    // Access application instance content
     console.log(this.app.router, this.router);
   }
 }

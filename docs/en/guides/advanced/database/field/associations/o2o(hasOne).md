@@ -1,36 +1,36 @@
-# 一对一(has one)
+# One-to-One (has one)
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/o2o1.png)
 
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added
 
-### 使用参数
+### Usage Parameters
 #### Source Collection
-源表，指的是当前字段所在的表。
+Source table, refers to the table where the current field is located.
 
 #### Target Collection
-目标表，即与哪个表进行关联。
+Target table, which table to associate with.
 
 #### Foreign Key
-外键，用于在两个表之间建立关联。对于一对一关系，外键可以放在源表或目标表中。如果外键表示的是“某个”关系（例如“一对一”中的一方拥有另一方），将外键放在目标表会更加合适；如果是表示“隶属关系”或“归属关系”，则应该将外键放在源表中。
+Foreign key, used to establish an association between two tables. For a one-to-one relationship, the foreign key can be placed in either the source table or the target table. If the foreign key represents a "has a" relationship (e.g., one party owns the other in a one-to-one relationship), placing the foreign key in the target table would be more appropriate; if it represents a "belongs to" or "ownership" relationship, the foreign key should be placed in the source table.
 
-#### Source key <- Foreign Key（外键在目标表）
-外键约束引用的字段必须具有唯一性。当外键位于目标表时，通常表示“有一个”关联。
+#### Source key <- Foreign Key (foreign key in target table)
+The field referenced by the foreign key constraint must be unique. When the foreign key is in the target table, it typically represents a "has one" association.
 
-#### Target key <- Foreign Key（外键在源表）
-外键约束引用的字段也必须具有唯一性。当外键放置在源表时，表示的是“隶属关系”或“所属关系”。
+#### Target key <- Foreign Key (foreign key in source table)
+The field referenced by the foreign key constraint must also be unique. When the foreign key is placed in the source table, it represents a "belongs to" or "ownership" relationship.
 
 #### ON DELETE
-ON DELETE 是在父表记录被删除时对相关子表中外键引用的操作规则。它是定义外键约束时的一个选项，常见的 ON DELETE 选项包括：
+ON DELETE is the operation rule for foreign key references in related child tables when deleting parent table records. It is an option when defining foreign key constraints. Common ON DELETE options include:
 
-- **CASCADE**：当父表中的记录被删除时，自动删除子表中与之关联的所有记录。
-- **SET NULL**：当父表中的记录被删除时，将子表中与之关联的外键值设置为 NULL。
-- **RESTRICT**：这是默认选项，当试图删除父表中的记录时，如果子表中存在与之关联的记录，则拒绝删除父表中的记录。
-- **NO ACTION**：与 RESTRICT 相似，当子表存在与父表记录关联的数据时，拒绝删除父表中的记录。
+- **CASCADE**: When a record in the parent table is deleted, automatically delete all associated records in the child table.
+- **SET NULL**: When a record in the parent table is deleted, set the associated foreign key values in the child table to NULL.
+- **RESTRICT**: This is the default option. When attempting to delete a record in the parent table, if there are associated records in the child table, the deletion of the parent table record is refused.
+- **NO ACTION**: Similar to RESTRICT, when associated data exists in the child table, the deletion of the parent table record is refused.

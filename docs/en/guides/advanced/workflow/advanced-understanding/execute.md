@@ -1,53 +1,53 @@
-# 执行计划（历史记录）
+# Execution Plan (History Records)
 
-每个工作流触发后，会创建对应的执行计划，以跟踪此次任务的执行过程。每个执行计划都有一个状态值用于表示当前的执行状态，该状态在执行历史的列表和详情中都可以查看到：
+After each workflow is triggered, a corresponding execution plan is created to track the execution process of this task. Each execution plan has a status value to indicate the current execution status, which can be viewed in both the execution history list and details:
 ![](/workflow/workflow-15.png)
 
-当主流程分支中的节点全部都以“完成”状态执行到流程终点时，整个执行计划将以“完成”状态结束。当主流程分支中的节点出现“失败”、“出错”、“取消”、“拒绝”等终态时，整个执行计划将以对应的状态**提前终止**。当主流程分支中的节点出现“等待”状态时，整个执行计划将暂停执行，但仍显示“执行中”的状态，直到等待的节点被恢复后继续执行。不同的节点类型对等待状态的处理方式不同，比如人工节点需要等待人工处理，而延时节点需要等待时间到达后继续执行。
+When all nodes in the main process branch execute to the end of the process with "Completed" status, the entire execution plan will end with "Completed" status. When nodes in the main process branch have terminal states such as "Failed", "Error", "Canceled", "Rejected", etc., the entire execution plan will **terminate early** with the corresponding status. When nodes in the main process branch have a "Waiting" status, the entire execution plan will pause execution but still display "In Progress" status until the waiting node is resumed and continues execution. Different node types handle the waiting status differently. For example, manual nodes need to wait for manual processing, while delay nodes need to wait until the time arrives before continuing execution.
 
-执行计划的状态如下表：
+The execution plan statuses are as follows:
 
-| 状态   | 对应主流程最后执行的节点状态 | 含义                                             |
-| ------ | ---------------------------- | ------------------------------------------------ |
-| 队列中 | -                            | 流程已触发并生成执行计划，排队等待调度器安排执行 |
-| 进行中 | 等待                         | 节点要求暂停，等待进一步输入或回调再继续         |
-| 完成   | 完成                         | 未遇到任何问题，所有节点按预期逐个执行完成。     |
-| 失败   | 失败                         | 由于未满足节点配置，导致失败。                   |
-| 出错   | 出错                         | 节点遇到未捕获的程序错误，提前结束。             |
-| 取消   | 取消                         | 等待中的节点被流程管理者从外部取消执行，提前结束 |
-| 拒绝   | 拒绝                         | 在人工处理的节点中，被人工拒绝不再继续后续流程   |
+| Status    | Corresponding Main Process Last Executed Node Status | Meaning                                                                    |
+| --------- | ---------------------------------------------------- | -------------------------------------------------------------------------- |
+| Queued    | -                                                    | Process has been triggered and execution plan generated, queued waiting for scheduler to arrange execution |
+| In Progress | Waiting                                            | Node requires pause, waiting for further input or callback before continuing |
+| Completed | Completed                                            | No problems encountered, all nodes executed one by one as expected.        |
+| Failed    | Failed                                               | Failed due to node configuration not being met.                            |
+| Error     | Error                                                | Node encountered uncaught program error, ended early.                      |
+| Canceled  | Canceled                                             | Waiting node was canceled externally by process manager, ended early       |
+| Rejected  | Rejected                                             | In manual processing nodes, was manually rejected and will not continue subsequent process |
 
-在 [快速开始] 的例子中，我们已经知道查看工作流的执行历史的详情可以检查执行过程中所有节点的执行是否正常，以及每个已执行的节点的执行状态和结果数据，在一些高级的流程和节点中，节点的结果还可能有多个，例如循环节点的结果：
+In the example in [Quick Start], we already know that viewing the details of workflow execution history can check whether all nodes executed normally during execution, as well as the execution status and result data of each executed node. In some advanced processes and nodes, the node's results may also have multiple, such as the results of loop nodes:
 
 ![](/workflow/workflow-16.png)
 
-:::info{title=提示}
-工作流可以被并发的触发，但执行是逐个排队执行的，即使同时触发多个工作流，也会依次执行，不会并行执行。所以出现“队列中”的情况时，代表有其他工作流正在执行，需要等待。
+:::info{title=Note}
+Workflows can be triggered concurrently, but execution is queued one by one. Even if multiple workflows are triggered simultaneously, they will execute sequentially, not in parallel. So when the "Queued" status appears, it means other workflows are executing and need to wait.
 
-“进行中”的状态只代表该执行计划已经开始，且通常由于内部节点的等待状态而暂停，并不代表该执行计划抢占了队头的执行资源。所以存在“进行中”的执行计划时，其他“队列中”的执行计划仍可被调度开始执行。
+The "In Progress" status only means that the execution plan has started and is usually paused due to the waiting status of internal nodes. It does not mean that the execution plan has occupied the execution resources at the head of the queue. So when there are "In Progress" execution plans, other "Queued" execution plans can still be scheduled to start execution.
 :::
 
-## 节点执行状态
+## Node Execution Status
 
-执行计划的状态是由其中每个节点的执行决定的，在一次触发后的执行计划中，每个节点执行后会产生一个执行状态，状态则会决定后续流程是否继续执行。通常情况下，节点执行成功后，会继续执行下一个节点，直到所有节点依次执行完成，或者被中断。当遇到流程控制相关节点时，如分支、循环、并行、延时等，会根据节点配置的条件，以及运行时的上下文数据，决定下一个节点的执行流向。
+The status of the execution plan is determined by the execution of each node within it. In an execution plan after a trigger, each node will produce an execution status after execution. The status will determine whether the subsequent process continues to execute. Under normal circumstances, after a node executes successfully, it will continue to execute the next node until all nodes are executed in sequence or are interrupted. When process control-related nodes are encountered, such as branches, loops, parallels, delays, etc., the next node's execution direction will be determined according to the node's configured conditions and runtime context data.
 
-每个节点执行后可能产生的状态如下表：
+The possible statuses after each node executes are as follows:
 
-| 状态 | 是否是终态 | 是否提前终止 | 含义                                                   |
-| ---- | :--------: | :----------: | ------------------------------------------------------ |
-| 等待 |     否     |      否      | 节点要求暂停，等待进一步输入或回调再继续               |
-| 完成 |     是     |      否      | 未遇到任何问题，执行成功，继续执行下一个节点直至结束。 |
-| 失败 |     是     |      是      | 由于未满足节点配置，导致失败。                         |
-| 出错 |     是     |      是      | 节点遇到未捕获的程序错误，提前结束。                   |
-| 取消 |     是     |      是      | 等待中的节点被流程管理者从外部取消执行，提前结束       |
-| 拒绝 |     是     |      是      | 在人工处理的节点中，被人工拒绝不再继续后续流程         |
+| Status   | Is Terminal State | Terminates Early | Meaning                                                                  |
+| -------- | :---------------: | :--------------: | ------------------------------------------------------------------------ |
+| Waiting  |        No         |        No        | Node requires pause, waiting for further input or callback before continuing |
+| Completed |       Yes         |        No        | No problems encountered, executed successfully, continue executing next node until end. |
+| Failed   |        Yes        |       Yes        | Failed due to node configuration not being met.                          |
+| Error    |        Yes        |       Yes        | Node encountered uncaught program error, ended early.                    |
+| Canceled |        Yes        |       Yes        | Waiting node was canceled externally by process manager, ended early     |
+| Rejected |        Yes        |       Yes        | In manual processing nodes, was manually rejected and will not continue subsequent process |
 
-除等待状态外，其他状态都是节点执行的终态，只有终态是“完成”的状态，才会继续执行，否则都会提前终止整个流程的执行。当节点处在分支流程中时（并行分支、条件判断、循环等），节点执行产生的终态会由开启分支的节点接管处理，并以此类推决定整个流程的流转。
+Except for the waiting status, other statuses are terminal states of node execution. Only when the terminal state is "Completed" will it continue execution, otherwise it will terminate the entire process execution early. When a node is in a branch process (parallel branch, condition judgment, loop, etc.), the terminal state produced by node execution will be taken over by the node that opened the branch, and so on to determine the flow of the entire process.
 
-例如当我们使用了“‘是’则继续”模式的条件节点时，当执行时如果结果为“否”，则会提前终止整个流程的执行，并已失败状态退出，不再执行后续节点，如下图所示：
+For example, when we use a condition node in "Continue if 'Yes'" mode, if the result is "No" during execution, it will terminate the entire process execution early and exit with a failed status, no longer executing subsequent nodes, as shown below:
 
 ![](/workflow/workflow-17.png)
 
-:::info{title=提示}
-所有非“完成”的终止状态都可以被视为失败，但失败的原因不同，可以通过查看节点的执行结果来进一步了解失败的原因。
+:::info{title=Note}
+All non-"Completed" termination statuses can be considered failures, but the reasons for failure are different. You can further understand the reason for failure by viewing the node's execution results.
 :::

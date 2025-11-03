@@ -1,86 +1,86 @@
-# 循环
+# Loop
 
-循环相当编程语言中的 `for`/`while`/`forEach` 等语法结构，当需要一定次数或针对某个数据集合（数组）重复执行一些操作时，可以使用循环节点。
+Loop is equivalent to syntax structures like `for`/`while`/`forEach` in programming languages. When you need to repeat some operations a certain number of times or for a data collection (array), you can use loop nodes.
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“循环”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Loop" node:
 
-<!-- ![创建循环节点] -->
-<!-- TODO: 插入图片 -->
+<!-- ![Create Loop Node] -->
+<!-- TODO: Insert image -->
 
-创建循环节点后，会生成一个循环内部的分支，可以在分支中增加任意多个节点，这些节点除了可以使用流程上下文的变量，还可以使用循环上下文的局部变量，例如循环集合中每次循环到的数据对象，或者是循环次数的索引（索引从 `0` 开始计数）。局部变量的作用域仅限于循环内部，如果有多层循环嵌套，可以按层使用具体循环的局部变量。
+After creating a loop node, a branch inside the loop will be generated. You can add any number of nodes in the branch. These nodes can not only use context variables from the process, but also use local variables from the loop context, such as the data object from each iteration in the loop collection, or the index of the loop count (index starts counting from `0`). The scope of local variables is limited to inside the loop. If there are multiple nested loops, you can use local variables of specific loops by layer.
 
-## 节点配置
+## Node Configuration
 
-### 循环对象
+### Loop Object
 
-循环会以循环对象不同数据类型做不同的处理：
+The loop will process differently based on different data types of the loop object:
 
-1.  **数组**：最常见的情况，通常是可以选择流程上下文的变量，比如查询节点的多条数据结果，或者预加载的对多关系数据。如果选择的是数组，循环节点会遍历数组中的每个元素，每次循环都会将当前元素赋值给循环上下文的局部变量。
+1.  **Array**: The most common case, usually you can select variables from the process context, such as multiple data results from query nodes, or preloaded one-to-many relationship data. If an array is selected, the loop node will traverse each element in the array. Each iteration will assign the current element to a local variable in the loop context.
 
-2.  **数字**：当选择的变量是一个数字是，会以该数字为循环次数，局域变量中的循环次数的索引也即循环对象的值。
+2.  **Number**: When the selected variable is a number, it will use that number as the number of loop iterations. The index of the loop count in local variables is also the value of the loop object.
 
-3.  **字符串**：当选择的变量是一个字符串时，会以该字符串的长度为循环次数，每次按索引处理字符串中的每一个字符。
+3.  **String**: When the selected variable is a string, it will use the length of that string as the number of loop iterations, processing each character in the string by index each time.
 
-4.  **其他**：其他类型的值（包括对象类型）都仅作为单次处理的循环对象，也只会循环一次，通常这种情况不需要使用循环。
+4.  **Other**: Other types of values (including object types) are only treated as loop objects for single processing and will only loop once. Usually, loops are not needed in this case.
 
-除了选择变量，针对数字和字符串类型也可以直接输入常量，例如输入 `5`（数字类型），循环节点会循环 5 次，输入 `abc`（字符串类型），循环节点会循环 3 次，分别处理 `a`、`b`、`c` 三个字符。在选择变量的工具中选择希望使用常量的类型。
+In addition to selecting variables, for number and string types, you can also directly input constants. For example, input `5` (number type), the loop node will loop 5 times. Input `abc` (string type), the loop node will loop 3 times, processing the three characters `a`, `b`, `c` respectively. Select the type you want to use as a constant in the variable selection tool.
 
-## 示例
+## Example
 
-例如在订单下单时，需要对订单中的每个商品进行库存检查，如果库存充足则扣减库存，否则订单明细内的商品更新为无效。
+For example, when placing an order, you need to check the inventory for each product in the order. If the inventory is sufficient, deduct the inventory; otherwise, update the product in the order details as invalid.
 
-1.  创建三张表，商品表 <-(1:m)-- 订单明细表 --(m:1)-> 订单表，数据模型如下：
+1.  Create three tables: Products table <-(1:m)-- Order Details table --(m:1)-> Orders table, with the following data models:
 
-    | 字段名称     | 字段类型       |
-    | ------------ | -------------- |
-    | 订单商品明细 | 多对一（明细） |
-    | 订单总价     | 数字           |
+    | Field Name       | Field Type        |
+    | ---------------- | ----------------- |
+    | Order Details    | Many-to-One (Details) |
+    | Order Total      | Number            |
 
-    | 字段名称 | 字段类型       |
-    | -------- | -------------- |
-    | 商品     | 一对多（商品） |
-    | 数量     | 数字           |
+    | Field Name | Field Type         |
+    | ---------- | ------------------ |
+    | Product    | One-to-Many (Product) |
+    | Quantity   | Number             |
 
-    | 字段名称 | 字段类型 |
-    | -------- | -------- |
-    | 商品名称 | 单行文本 |
-    | 价格     | 数字     |
-    | 库存     | 整数     |
+    | Field Name | Field Type       |
+    | ---------- | ---------------- |
+    | Product Name | Single Line Text |
+    | Price      | Number           |
+    | Inventory  | Integer          |
 
-2.  创建工作流，触发器选择“数据表事件”，选择“订单”表“新增数据时”触发，并且需要配置上预加载“订单明细”表和明细下的商品表的关系数据：
+2.  Create a workflow with trigger selecting "Data Table Event", select "Orders" table "When Data is Added" to trigger, and need to configure preloading of "Order Details" table and product table relationship data under details:
 
-    <!-- ![循环节点_示例_触发器配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Trigger Configuration] -->
+    <!-- TODO: Insert image -->
 
 
-3.  创建循环节点，选择循环对象为“触发数据 / 订单明细”，即对订单明细表中的每一条数据：
+3.  Create a loop node, select loop object as "Trigger Data / Order Details", i.e., for each data record in the order details table:
 
-    <!-- ![循环节点_示例_循环节点配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Loop Node Configuration] -->
+    <!-- TODO: Insert image -->
 
-4.  循环节点内部创建一个“条件判断”节点，判断商品的库存是否充足：
+4.  Inside the loop node, create a "Condition" node to determine if the product inventory is sufficient:
 
-    <!-- ![循环节点_示例_条件判断节点配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Condition Node Configuration] -->
+    <!-- TODO: Insert image -->
 
-5.  如果充足则在“是”的分支中创建一个“计算节点”和一个“更新数据”节点，将计算完扣减的库存更新至对应商品的记录：
+5.  If sufficient, create a "Calculation Node" and an "Update Data" node in the "Yes" branch to update the calculated deducted inventory to the corresponding product record:
 
-    <!-- ![循环节点_示例_计算节点配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Calculation Node Configuration] -->
+    <!-- TODO: Insert image -->
 
-    <!-- ![循环节点_示例_更新库存节点配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Update Inventory Node Configuration] -->
+    <!-- TODO: Insert image -->
 
-6.  否则在“否”的分支中创建一个“更新数据”节点，更新订单明细的状态为“无效”：
+6.  Otherwise, in the "No" branch, create an "Update Data" node to update the order detail status to "Invalid":
 
-    <!-- ![循环节点_示例_更新订单明细节点配置] -->
-    <!-- TODO: 插入图片 -->
+    <!-- ![Loop Node_Example_Update Order Detail Node Configuration] -->
+    <!-- TODO: Insert image -->
 
-总的流程结构如下图：
+The overall process structure is as follows:
 
-<!-- ![循环节点_示例_流程结构] -->
-<!-- TODO: 插入图片 -->
+<!-- ![Loop Node_Example_Process Structure] -->
+<!-- TODO: Insert image -->
 
-配置完成并激活该流程后，当创建新订单时，会自动检查订单明细中的商品库存，如果库存充足则扣减库存，否则订单明细内的商品更新为无效（以便计算有效的订单总价）。
+After completing the configuration and activating this process, when creating a new order, it will automatically check the product inventory in the order details. If the inventory is sufficient, it will deduct the inventory; otherwise, the product in the order details will be updated as invalid (to facilitate calculating the valid order total).

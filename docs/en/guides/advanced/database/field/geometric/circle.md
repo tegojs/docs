@@ -1,9 +1,9 @@
-# 圆
+# Circle
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

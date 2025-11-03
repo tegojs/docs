@@ -1,31 +1,31 @@
-# 加密
+# Encryption
 
-::: info &#9432; 提示
-该功能由插件 module-field-encryption 提供。
+::: info &#9432; Note
+This feature is provided by the module-field-encryption plugin.
 :::
 
-### 介绍
+### Introduction
 
-一些敏感业务数据，如客户手机号、邮箱地址、卡号等，可以通过加密进行保护，确保加密后的数据以密文的形式存储在数据库中。
+Some sensitive business data, such as customer phone numbers, email addresses, card numbers, etc., can be protected through encryption, ensuring encrypted data is stored in ciphertext form in the database.
 
-### 环境变量
+### Environment Variables
 
 ::: warning &#9888; WARNING
-若`ENCRYPTION_FIELD_KEY`丢失，数据将会无法解密
+If `ENCRYPTION_FIELD_KEY` is lost, data will not be decryptable
 :::
 
-如果需要启用加密功能，需配置 ENCRYPTION_FIELD_KEY 环境变量，该密钥应为 32 位，例如：
+If you need to enable encryption, you need to configure the ENCRYPTION_FIELD_KEY environment variable, which should be 32 characters long, for example:
 `ENCRYPTION_FIELD_KEY='aZ7$wLq+28VnPb&1tXkYh3m9zJ0uQwE#'`
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/field_encryption1.png)
 
-### 加密后筛选
+### Filtering After Encryption
 
-加密后的字段只能使用等于、不等于、存在、不存在。
-<!-- TODO: 插入图片 -->
+Encrypted fields can only use equals, not equals, exists, and does not exist operators.
+<!-- TODO: Insert image -->
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

@@ -1,74 +1,74 @@
-# 移动端
+# Mobile
 
-> ℹ️ **提示**  
-> 由插件 `module` 提供
+> ℹ️ **Note**  
+> Provided by the `module` plugin
 
-## 介绍
+## Introduction
 
-提供移动端页面配置，内核框架基于 Ant Design Mobile 实现，提供了各种扩展点，兼容添加部分桌面端区块。
+Provides mobile page configuration. The core framework is implemented based on Ant Design Mobile, provides various extension points, and is compatible with adding some desktop blocks.
 
 :::warning
-旧的 `plugin-mobile-client` 已废弃，v1.3 及以上的版本，请使用 `plugin-mobile` 代替。两个插件不兼容，新版本需要重新配置移动端。
+The old `plugin-mobile-client` is deprecated. For v1.3 and above, please use `plugin-mobile` instead. The two plugins are not compatible, and the new version needs to reconfigure mobile.
 :::
 
-## 安装
+## Installation
 
-预置插件。
+Preset plugin.
 
 ![20240712113500](/mobile-1.png)
 
-## 使用手册
+## User Manual
 
-### UI 配置界面
+### UI Configuration Interface
 
-Tachybase 为移动端提供了特有的 UI 配置界面
+Tachybase provides a unique UI configuration interface for mobile
 
 ![20240828220321](/mobile-2.png)
 
-### 标签栏
+### Tab Bar
 
-支持添加页面
+Supports adding pages
 
 ![20240828223244](/mobile-3.png)
 
-### 添加区块
+### Add Blocks
 
-目前支持添加的桌面端区块有
+Currently supported desktop blocks include
 
 ![20240828223454](/mobile-4.png)
 
-<!-- tachybase未实现 -->
-<!-- ### 页面配置 -->
+<!-- tachybase not implemented -->
+<!-- ### Page Configuration -->
 
 <!-- ![20240828221452](https://static-docs.nocobase.com/20240828221452.png) -->
 
-### 页面标签页
+### Page Tabs
 
 ![20240828222225](/mobile-5.png)
 
-<!-- tachybase未实现 -->
-<!-- ### 子页面
+<!-- tachybase not implemented -->
+<!-- ### Sub-pages
 
-移动端弹窗操作都是以子页面方式打开，支持滑动返回 -->
+Mobile modal operations are all opened as sub-pages, supporting swipe to return -->
 
 
-<!-- tachybase未实现 -->
-<!-- ### 筛选
+<!-- tachybase not implemented -->
+<!-- ### Filter
 
-采用 [弹出层](https://mobile.ant.design/components/popup) 的交互方式
+Uses [Popup](https://mobile.ant.design/components/popup) interaction method
 
 ![20240828230549] -->
 
-<!-- tachybase未实现 -->
+<!-- tachybase not implemented -->
 <!-- 
-### 配置菜单访问权限
+### Configure Menu Access Permissions
 
-可以像桌面端一样配置菜单访问权限，位置如下所示（需先启用移动端插件）：
+You can configure menu access permissions like on desktop, the location is as shown below (need to enable mobile plugin first):
 
 ![20240903221327_rec_] -->
 
-## 开发指南
+## Development Guide
 
-目前支持的扩展点有
+Currently supported extension points include
 
 ![20240712115610](/mobile-9.png)

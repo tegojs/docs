@@ -1,12 +1,12 @@
-# 树结构表
+# Tree Structure Table
 
-::: info &#9432; 提示
-该功能由插件 module-data-source 提供。
+::: info &#9432; Note
+This feature is provided by the module-data-source plugin.
 :::
 
-### 介绍
-树结构表是一种用于存储层次化数据的设计模式，其表结构类似于树状层级关系。在这种模式下，每条数据记录都可以关联一个或多个子记录，而这些子记录同样能够拥有自己的下级数据。
+### Introduction
+A tree structure table is a design pattern for storing hierarchical data, with a table structure similar to tree-like hierarchical relationships. In this pattern, each data record can be associated with one or more child records, and these child records can similarly have their own subordinate data.
 
-### 使用手册
+### User Manual
 ![](/datasource/datasource-11.png)
 ![](/datasource/datasource-12.png)

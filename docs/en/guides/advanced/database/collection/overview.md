@@ -1,17 +1,17 @@
-# 概述
+# Overview
 
-灵矶使用了特有的领域特定语言(Domain-Specific Language)称之为**collections**，用于统一描述各种来源的数据结构，使数据管理、分析和应用更加直观和便捷。
+Tachybase uses a proprietary Domain-Specific Language called **collections** to uniformly describe data structures from various sources, making data management, analysis, and application more intuitive and convenient.
 ![](../../../../../public/fields.png)
 
-为了快捷的的创建各种数据模型，设计了不同类型的数据表来支持:
+To quickly create various data models, different types of data tables have been designed to support:
 
-- [普通表](./collection/general-collection.md): 标准的常用字段设置;
-- [评论表](./collection/): 存储用户对内容的反馈和评论;
-- [树结构表](./collection/collection-tree.md): 用于表示层级关系的数据结构，如目录或分类;
-- [表达式表](./collection/workflow-dynamic-calculation.md): 用于表达工作流的动态场景;
-- [日历数据表](./collection/calendar-collection.md): 用于存储日期和时间相关的事件信息;
-- [文件数据表](./collection/file-collection.md): 用于管理文件的元数据，如文件名、路径和大小;
-- [继承表](./collection/inheritance-collection.md): 创建一个父表，然后从父表中衍生出字表;
-- [SQL数据表](./collection/sql.md): 用于存储通过 SQL 查询获取的数据;
-- [外部数据表(FDW)](./collection/collection-fdw.md): 用于连接远程数据表;
-- [连接数据库视图](./collection/collection-view.md): 用于提供不同数据模型间的数据视图和整合;
+- [General Table](./collection/general-collection.md): Standard common field settings;
+- [Comment Table](./collection/): Stores user feedback and comments on content;
+- [Tree Structure Table](./collection/collection-tree.md): Data structure for representing hierarchical relationships, such as directories or categories;
+- [Expression Table](./collection/workflow-dynamic-calculation.md): Used to express dynamic workflow scenarios;
+- [Calendar Data Table](./collection/calendar-collection.md): Used to store date and time-related event information;
+- [File Data Table](./collection/file-collection.md): Used to manage file metadata, such as file name, path, and size;
+- [Inheritance Table](./collection/inheritance-collection.md): Create a parent table, then derive child tables from the parent table;
+- [SQL Data Table](./collection/sql.md): Used to store data obtained through SQL queries;
+- [External Data Table (FDW)](./collection/collection-fdw.md): Used to connect to remote data tables;
+- [Connect Database View](./collection/collection-view.md): Used to provide data views and integration between different data models;

@@ -1,23 +1,23 @@
-# 数据源管理
+# Data Source Management
 
-::: info &#9432; 提示
-该功能由插件 module-data-source 提供。
+::: info &#9432; Note
+This feature is provided by the module-data-source plugin.
 :::
 
-### 介绍
-灵矶提供了数据源管理插件，用于管理数据源及其数据表。该插件主要负责提供数据源的管理界面，而数据源的接入能力则需要与各类数据源插件配合使用。目前支持接入的数据源包括：
+### Introduction
+Tachybase provides a data source management plugin for managing data sources and their data tables. This plugin is primarily responsible for providing a management interface for data sources, while the data source integration capability needs to be used in conjunction with various data source plugins. Currently supported data sources include:
 
-- **[主数据库](./datasource/data-source-main.md)**：灵矶的主数据库，支持 MySQL、PostgreSQL、SQLite 等多种关系型数据库。
-- **外部数据库:**
-  - **MySQL**：数据源可使用外部 MySQL 数据库。
-  - **MariaDB**：数据源可使用外部 MariaDB 数据库。
-  - **PostgreSQL**：数据源可使用外部 PostgreSQL 数据库。
+- **[Main Database](./datasource/data-source-main.md)**: Tachybase's main database, supports multiple relational databases such as MySQL, PostgreSQL, SQLite, etc.
+- **External Databases:**
+  - **MySQL**: Data source can use external MySQL database.
+  - **MariaDB**: Data source can use external MariaDB database.
+  - **PostgreSQL**: Data source can use external PostgreSQL database.
 
-此外，灵矶也支持通过插件扩展更多类型的数据源，包括各种类型的数据库，以及提供API(SDK)的平台。
+In addition, Tachybase also supports extending more types of data sources through plugins, including various types of databases and platforms that provide APIs (SDKs).
 
-### 安装
-内置插件， 无需单独安装
+### Installation
+Built-in plugin, no separate installation required
 
-### 使用说明
-应用初始化安装时，会默认提供一个用于存储灵矶数据的数据源，称为[主数据源](./data-source-main.md)。
+### Usage Instructions
+When the application is initialized and installed, a data source for storing Tachybase data is provided by default, called the [Main Data Source](./data-source-main.md).
 ![](/datasource/data-source-1.png)

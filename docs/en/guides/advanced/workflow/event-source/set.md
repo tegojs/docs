@@ -1,79 +1,79 @@
-# 数据库事件
+# Database Events
 
-数据库事件类型将监听数据表的增删改事件，当发生对该表的数据操作且满足配置的条件时，触发对应工作流。例如新增订单后扣减商品的库存，新增一条评论后等待人工审核等场景。
+Database event types will monitor create, update, and delete events of data tables. When data operations on the table occur and meet the configured conditions, the corresponding workflow is triggered. For example, deducting product inventory after adding an order, waiting for manual review after adding a comment, etc.
 
-## 基本使用
+## Basic Usage
 
-数据表的变动有几种情况：
+There are several situations for data table changes:
 
-1. 新增数据后。
-2. 更新数据后。
-3. 新增或更新数据后。
-4. 删除数据后。
-
-
-可以根据业务的不同需要选择监听的时机。
-
-数据库事件监听后会在触发的工作流执行计划中注入产生事件的数据行作为触发上下文数据，以供后续流程中的节点作为变量调用。但当后续节点中希望使用该数据的关系字段时，需要先配置对关系数据的预加载，选中的关系数据将会在触发后一并注入到上下文中，且可被按层级进行选择使用。
-
-## 相关提示
-
-### 暂不支持批量数据操作触发
-
-数据库事件事件暂不支持批量数据操作的监听，例如新增文章数据时同时新增的该文章的多个标签数据（对多关系数据），将仅能监听对文章新增的事件，而同时新增的多个标签将不会触发新增标签的事件源。多对多关系数据的关联和新增时，也不会监听中间表的事件源。
-
-### 非应用内的数据操作不会触发
-
-通过 HTTP API 调用应用接口对数据表的操作也可以触发相应事件，但如果不通过应用，而是直接通过数据库操作产生的数据变动，就无法监听相应事件。比如数据库中本身的监听不会与应用中的事件源监听产生关联。
-
-另外，使用 SQL 操作节点对数据库进行操作相当于直接操作数据库，事件源也不会监听。
-
-### 外部数据源
-
-工作流从 `0.20` 开始支持外部数据源，如果使用了外部数据源插件，并且数据表事件配置的是外部数据源，只要对该数据源的数据操作是在应用内完成的（用户新增、更新和工作流数据操作等），都可以监听对应的数据库事件。但如果数据变动是通过其他系统或直接在外部数据库内变更的，则无法监听事件。
-
-## 示例
-
-以新增一个订单后计算总价并扣减库存的场景举例。
-
-首先，我们创建商品表和订单表，数据模型如下：
-
-| 字段名称 | 字段类型 |
-| -------- | -------- |
-| 商品名称 | 单行文本 |
-| 价格     | 数字     |
-| 库存     | 整数     |
-
-| 字段名称 | 字段类型       |
-| -------- | -------------- |
-| 订单号   | 自动编号       |
-| 订单商品 | 多对一（商品） |
-| 订单总价 | 数字           |
-
-并添加基础的商品数据：
-
-| 商品名称      | 价格 | 库存 |
-| ------------- | ---- | ---- |
-| iPhone 14 Pro | 7999 | 10   |
-| iPhone 13 Pro | 5999 | 0    |
-
-然后创建一个基于订单数据表事件的事件源：
-
-![数据表事件_示例_新增订单触发]
-
-其中的几个配置项：
-
-- 名称: 事件源名称。
-- 工作流: 需要触发执行的工作流。
-- 类型: 数据库事件。
-- 选项: 
-    - 数据表: 留空。
-    - 数据表事件: 留空。
-    - 事件名称: 表名+需要监听的钩子事件
+1. After adding data.
+2. After updating data.
+3. After adding or updating data.
+4. After deleting data.
 
 
-之后根据流程的逻辑配置工作流其他节点，检查商品库存是否大于 0，大于 0 的扣减库存，否则订单无效删除订单：
+You can choose when to listen according to different business needs.
 
-节点的配置会在具体类型的介绍文档中详细说明。
+After database events are monitored, the data row that generated the event will be injected into the triggered workflow execution plan as trigger context data for subsequent nodes in the process to use as variables. However, when subsequent nodes need to use the relationship fields of this data, you need to first configure preloading of relationship data. The selected relationship data will be injected into the context together after triggering and can be selected and used by level.
 
-启用该事件源，并通过界面新增订单来测试。
+## Related Notes
+
+### Batch Data Operations Not Currently Supported
+
+Database events do not currently support monitoring of batch data operations. For example, when adding article data and simultaneously adding multiple tag data for that article (one-to-many relationship data), only the event of adding the article can be monitored, while the multiple tags added simultaneously will not trigger the event source for adding tags. When associating and adding many-to-many relationship data, the event source of the intermediate table will not be monitored either.
+
+### Data Operations Outside the Application Will Not Trigger
+
+Calling application interfaces through HTTP API to operate on data tables can also trigger corresponding events, but if you directly operate the database without going through the application, the corresponding events cannot be monitored. For example, the monitoring in the database itself will not be associated with the event source monitoring in the application.
+
+In addition, using SQL operation nodes to operate on the database is equivalent to directly operating the database, and the event source will not monitor it either.
+
+### External Data Sources
+
+Starting from `0.20`, workflows support external data sources. If you use external data source plugins and the data table event is configured for an external data source, as long as data operations on that data source are completed within the application (user additions, updates, and workflow data operations, etc.), the corresponding database events can be monitored. However, if data changes are made through other systems or directly in the external database, events cannot be monitored.
+
+## Example
+
+Take the scenario of calculating the total price and deducting inventory after adding an order.
+
+First, we create a products table and an orders table with the following data models:
+
+| Field Name | Field Type  |
+| ---------- | ----------- |
+| Product Name | Single Line Text |
+| Price      | Number      |
+| Inventory  | Integer     |
+
+| Field Name | Field Type         |
+| ---------- | ------------------ |
+| Order Number | Auto Sequence     |
+| Order Product | Many-to-One (Product) |
+| Order Total | Number            |
+
+And add basic product data:
+
+| Product Name  | Price | Inventory |
+| ------------- | ----- | --------- |
+| iPhone 14 Pro | 7999  | 10        |
+| iPhone 13 Pro | 5999  | 0         |
+
+Then create an event source based on order data table events:
+
+![Data Table Event_Example_Add Order Trigger]
+
+Configuration items:
+
+- Name: Event source name.
+- Workflow: Workflow to be triggered for execution.
+- Type: Database event.
+- Options:
+    - Data Table: Leave blank.
+    - Data Table Event: Leave blank.
+    - Event Name: Table name + hook event to monitor
+
+
+Then configure other nodes of the workflow according to the process logic, check if product inventory is greater than 0, deduct inventory if greater than 0, otherwise delete the order as invalid:
+
+Node configuration will be explained in detail in the introduction documentation for specific types.
+
+Enable this event source and test by adding orders through the interface.

@@ -1,8 +1,8 @@
 # Collection
 
-Collection 数据表类，其被 [CollectionManager](./CollectionManager) 管理。
+Collection data table class, which is managed by [CollectionManager](./CollectionManager).
 
-## 1. 类型
+## 1. Type
 
 ```tsx | pure
 interface CollectionOptions {
@@ -99,15 +99,15 @@ export interface CollectionOptions {
 }
 ```
 
-- name: Collection 的标识，必须唯一。
+- name: Collection's identifier, must be unique.
 
-- title: Collection 的标题，用于显示。
+- title: Collection's title, used for display.
 
-- fields: 字段列表，详细说明请查看 [CollectionField](./CollectionField)
+- fields: Field list, for details please see [CollectionField](./CollectionField)
 
-- template: 模板标识，用于标识该 Collection 是由哪个模板创建的，详细说明请查看 [CollectionTemplate](./CollectionTemplate)
+- template: Template identifier, used to identify which template created this Collection, for details please see [CollectionTemplate](./CollectionTemplate)
 
-- dataSource: 数据源标识，用于标识该 Collection 是由哪个数据源创建的，详细说明请查看 [DataSource](./DataSource)
+- dataSource: Data source identifier, used to identify which data source created this Collection, for details please see [DataSource](./DataSource)
 
 - duplicator
 
@@ -126,27 +126,27 @@ export interface CollectionOptions {
 - repository
 
 
-## 3. 实例属性
+## 3. Instance Properties
 
 ### collection.collectionManager
 
-[CollectionManager](./CollectionManager) 的实例。
+[CollectionManager](./CollectionManager) instance.
 
 ### collection.titleFieldName
 
-标题字段的 name 属性。
+The name property of the title field.
 
-### 其他属性
+### Other Properties
 
-其他属性同 [CollectionOptions](#CollectionOptions)。
+Other properties are the same as [CollectionOptions](#CollectionOptions).
 
-## 4. 实例方法
+## 4. Instance Methods
 
 ### collection.getOptions()
 
-获取 collection 的所有配置项。
+Get all configuration items of collection.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -154,7 +154,7 @@ class Collection {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const usersCollection = new Collection({
@@ -170,9 +170,9 @@ console.log(usersCollection.getOptions()); // { name: 'users', title: 'Users', f
 
 ### collection.setOptions(options)
 
-设置 collection 的配置项，最终会和默认配置项进行合并。
+Set collection configuration items, which will eventually be merged with default configuration items.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -180,7 +180,7 @@ class Collection {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 collection.setOptions({
@@ -194,9 +194,9 @@ collection.setOptions({
 
 ### collection.getOption(key)
 
-获取 collection 的单个配置项。
+Get a single configuration item of collection.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -204,7 +204,7 @@ class Collection {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 collection.getOption('name'); // 'users'
@@ -213,9 +213,9 @@ collection.getOption('title'); // 'Users'
 
 ### collection.getFields(predicate?)
 
-获取 collection 的字段列表。
+Get the field list of collection.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -223,19 +223,19 @@ class Collection {
 }
 ```
 
-- 详解
+- Details
   - predicate
-    - 类型
+    - Type
       - `CollectionFieldOptions`
       - `(collection: CollectionFieldOptions) => boolean`
       - `keyof CollectionFieldOptions`
-    - 说明
-      - 如果传递了 `predicate`，则返回符合条件的字段列表
-      - 如果没有传递 `predicate`，则返回所有字段列表
+    - Description
+      - If `predicate` is passed, returns field list that meets the condition
+      - If `predicate` is not passed, returns all field list
 
-`predicate` 的使用可看参考 [lodash.filter](https://www.lodashjs.com/docs/lodash.filter)。
+Usage of `predicate` can refer to [lodash.filter](https://www.lodashjs.com/docs/lodash.filter).
 
-- 示例
+- Example
 
 ```tsx | pure
 collection.getFields(); // [{ name: 'username', type: 'string', primaryKey: true }, { name: 'age', type: 'integer' }]
@@ -249,9 +249,9 @@ collection.getFields(field => field.type === 'string'); // [{ name: 'name', type
 
 ### collection.getField(name)
 
-获取 collection 的单个字段。
+Get a single field of collection.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -259,7 +259,7 @@ class Collection {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 collection.getField('username'); // { name: 'username', type: 'string', primaryKey: true }
@@ -267,9 +267,9 @@ collection.getField('username'); // { name: 'username', type: 'string', primaryK
 
 ### collection.hasField(name)
 
-判断 collection 是否存在某个字段。
+Determine if collection has a certain field.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Collection {
@@ -277,7 +277,7 @@ class Collection {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 collection.hasField('username'); // true

@@ -1,10 +1,10 @@
 # ExtendCollectionsProvider
 
-用于扩展 [Collection](./Collection.md) 。
+Used to extend [Collection](./Collection.md).
 
-## 组件
+## Component
 
-- 类型
+- Type
 
 ```tsx | pure
 interface ExtendCollectionsProviderProps {
@@ -13,7 +13,7 @@ interface ExtendCollectionsProviderProps {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { ExtendCollectionsProvider, CollectionOptions } from '@tachybase/client'
@@ -60,7 +60,7 @@ const ChildComponent = () => {
 
 ### useExtendCollections()
 
-获取扩展的数据表。
+Get extended data tables.
 
 ```tsx | pure
 import { useExtendCollections } from '@tachybase/client'

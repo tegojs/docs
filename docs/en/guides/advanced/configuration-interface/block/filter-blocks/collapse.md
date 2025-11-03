@@ -1,22 +1,22 @@
-# 折叠面板筛选卡片
+# Collapse Panel Filter Block
 
-## 介绍
+## Introduction
 
-Collapse 筛选卡片需要连接数据卡片使用，为数据卡片提供筛选能力，它支持选择关系字段和选项字段作为筛选字段，并以折叠面板效果展示。
+Collapse filter blocks need to be connected with data blocks to provide filtering capabilities for data blocks. It supports selecting relationship fields and option fields as filter fields and displays them in collapse panel format.
 
-## 添加卡片
+## Add Block
 
 ![](/filters/collapse-add.png)
 
-示例：配置产品折叠面板卡片与产品表格卡片实现筛选联动。
+Example: Configure product collapse panel block with product table block to achieve filter linkage.
 
 ![](/filters/collapse-link.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/filters/collapse-setting.png)
 
-## 配置字段
+## Configure Fields
 
-仅支持关系字段和选项字段为筛选字段。
+Only supports relationship fields and option fields as filter fields.
 ![](/filters/collapse-field.png)

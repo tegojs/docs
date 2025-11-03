@@ -1,6 +1,6 @@
 # AssociationProvider
 
-用于传递关联数据字段以及对应的数据表信息，等同于 `CollectionFieldProvider` + `CollectionProvider`。
+Used to pass association data fields and corresponding data table information, equivalent to `CollectionFieldProvider` + `CollectionProvider`.
 
 ```tsx | pure
 const AssociationProvider = <CollectionFieldProvider name={fieldName}>
@@ -10,4 +10,4 @@ const AssociationProvider = <CollectionFieldProvider name={fieldName}>
 </CollectionFieldProvider>
 ```
 
-更多信息，请参考 [CollectionField](./CollectionField)。
+For more information, please refer to [CollectionField](./CollectionField).

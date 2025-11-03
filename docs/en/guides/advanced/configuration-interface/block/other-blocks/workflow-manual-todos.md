@@ -1,8 +1,8 @@
-# 工作流：人工待办卡片
+# Workflow: Manual To-do Block
 
-对于人工处理来说，还需要在页面中添加待办列表，用于展示待办任务，相关人员才可以通过该列表进入人工节点的具体任务处理。
+For manual processing, you also need to add a to-do list to the page to display to-do tasks. Related personnel can then enter the specific task processing of manual nodes through this list.
 
-## 添加卡片
+## Add Block
 
-可以从页面中的卡片中选择“工作流待办”，添加待办列表的卡片：
+You can select "Workflow To-do" from the blocks on the page to add a to-do list block:
 ![](/other-blocks/workflow-todo.png)

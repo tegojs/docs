@@ -1,35 +1,35 @@
-# 提交
+# Submit
 
-## 介绍
+## Introduction
 
-提交操作用于保存表单数据（表单卡片特有），还可以结合工作流，实现数据自动化流程。
+The submit operation is used to save form data (specific to form blocks) and can also be combined with workflows to implement automated data processes.
 
 ![20240413093210](/actions/submit-1.png)
 
-## 操作配置项
+## Operation Configuration Items
 
 ![20240413095124](/actions/submit-2.png)
 
-### 保存模式
+### Save Mode
 
-仅新增数据的表单卡片的提交操作支持配置保存方式。
+Only the submit operation of form blocks for adding data supports configuring save mode.
 
 ![20240413101209](/actions/submit-3.png)
 
 ![20240413100531](/actions/submit-4.png)
 
-1. 直接插入新建；
-2. 不存在时插入（需要配置用于判断记录是否存在的字段）；
-3. 不存在时插入，否则更新（需要配置用于判断记录是否存在的字段）；
+1. Direct insert and create;
+2. Insert if not exists (need to configure fields used to determine if record exists);
+3. Insert if not exists, otherwise update (need to configure fields used to determine if record exists);
 
-### 绑定工作流
+### Bind Workflow
 
-只有在数据提交成功后才会触发绑定的工作流。
+Bound workflows will only be triggered after data is successfully submitted.
 
 ![20240417120149](/actions/submit-5.png)
 
-更多内容可参考 [绑定工作流](/guides/advanced/configuration-interface/actions/action-settings/bind-workflow)
+For more content, refer to [Bind Workflow](/guides/advanced/configuration-interface/actions/action-settings/bind-workflow)
 
 
-- [编辑按钮](/guides/advanced/configuration-interface/actions/action-settings/edit-button)
-- [二次确认](/guides/advanced/configuration-interface/actions/action-settings/double-check)
+- [Edit Button](/guides/advanced/configuration-interface/actions/action-settings/edit-button)
+- [Double Check](/guides/advanced/configuration-interface/actions/action-settings/double-check)

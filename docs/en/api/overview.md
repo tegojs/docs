@@ -1,9 +1,9 @@
-# 概览
+# Overview
 
-这里是 API 文档的概览。
-文档包含每个类方法的说明，这些对你二次开发会很有帮助
+This is the overview of the API documentation.
+The documentation contains descriptions of methods for each class, which will be very helpful for your secondary development.
 
-| 模块                                          | 包名                 | 描述       |
-| --------------------------------------------- | -------------------- | ---------- |
-| [Client](./client/dataSource/introduction.md) | `@tachybase/client` | 客户端应用 |
-| Other                                         | ---                  | 其他模块   |
+| Module                                        | Package Name         | Description         |
+| --------------------------------------------- | -------------------- | ------------------- |
+| [Client](./client/dataSource/introduction.md) | `@tachybase/client` | Client Application  |
+| Other                                         | ---                  | Other Modules       |

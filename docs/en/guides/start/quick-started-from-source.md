@@ -1,9 +1,9 @@
-# 快速开始（源码）
+# Quick Start (From Source)
 
-## 0.先决条件
- 请确保你已经：
+## 0. Prerequisites
+Make sure you have:
 
-- 安装了 Node.js 20.18.0 及以上版本 + pnpm 10.12.1 
+- Installed Node.js version 20.18.0 or above + pnpm 10.12.1
 
  ```bash
 $ node -v 
@@ -12,29 +12,29 @@ $ pnpm -v
 10.12.1
  ```
 
-## 1.安装项目
+## 1. Clone the Project
 
 ```bash
 git clone https://github.com/tachybase/tachybase.git
 ```
 
-## 2. 切换目录
+## 2. Change Directory
 
 ```bash
 cd tachybase
 ```
 
-## 3. 安装依赖
+## 3. Install Dependencies
 
-📢 由于网络环境、系统配置等因素影响，接下来这一步骤可能需要十几分钟时间。
+📢 Due to factors such as network environment and system configuration, this step may take more than ten minutes.
 
 ```bash
 pnpm install
 ```
 
-## 4. 设置环境变量
+## 4. Set Environment Variables
 
-Tachybase 所需的环境变量储存在根目录 `.env` 文件里，根据实际情况修改环境变量，如果你不知道怎么改，[点此查看环境变量说明](/guides/advanced/env.md)，也可以保持默认。
+The environment variables required by Tachybase are stored in the `.env` file in the root directory. Modify the environment variables according to actual conditions. If you don't know how to modify them, [click here to view environment variable instructions](/guides/advanced/env.md), or you can keep the defaults.
 
 ```bash
 TZ=Asia/Shanghai
@@ -48,30 +48,30 @@ DB_PASSWORD=tachybase
 ```
 
 
->  - `TZ` 用于设置应用的时区，默认为操作系统时区；
->  - `APP_KEY` 是应用的密钥，用于生成用户 token 等（如果 APP_KEY 修改了，旧的 token 也会随之失效）。它可以是任意随机字符串。请修改为自己的秘钥，并确保不对外泄露；
->  - `DB_*` 为数据库相关，如果不是例子默认的数据库服务，请根据实际情况修改。
+>  - `TZ` is used to set the application's timezone, defaults to the operating system timezone;
+>  - `APP_KEY` is the application's secret key, used to generate user tokens, etc. (if APP_KEY is changed, old tokens will also become invalid). It can be any random string. Please change it to your own secret key and ensure it is not leaked;
+>  - `DB_*` are database-related. If it's not the default database service in the example, please modify according to actual conditions.
 
 
-## 5. 初始化灵矶
+## 5. Initialize Tachybase
 
 ```bash
 pnpm tachybase install --lang=zh-CN
 ```
-## 6. 启动灵矶
+## 6. Start Tachybase
 
 ```bash
 pnpm dev
 ```
 
-## 7. 访问灵矶
+## 7. Access Tachybase
 
-使用浏览器打开 [http://localhost:3000](http://localhost:3000) 初始化账号和密码是 `admin@tachybase.com` 和 `!Admin123.`。
+Open [http://localhost:3000](http://localhost:3000) in your browser. The initial account and password are `admin@tachybase.com` and `!Admin123.`.
 
 
-## 其他说明
+## Additional Notes
 
-由于国内网络环境的原因，强烈建议你更换国内镜像。
+Due to domestic network environment in China, it is strongly recommended that you switch to a Chinese mirror.
 
 ```bash
 $ pnpm config set disable-self-update-check true

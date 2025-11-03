@@ -1,19 +1,19 @@
-# 标题
+# Title
 
-### 概述
+### Overview
 
-在阅读模式下，关系字段的默认组件为标题组件，通过显示标题字段的值来标识当前关联的记录。
+In read mode, the default component for relationship fields is the title component, which identifies the currently associated record by displaying the value of the title field.
 
 
-### 字段配置项
+### Field Configuration Items
 
 ![](../../../../../../public/title-field2.png)
 
-#### 启用链接（默认开启）
+#### Enable Link (enabled by default)
 
 ![](../../../../../../public/title-field1.png)
 
-- 允许点击标题字段，弹出自定义配置的弹窗，以便进行数据管理。
-- 可根据需求调整弹窗内容和操作权限。
+- Allows clicking on the title field to pop up a custom configured popup for data management.
+- Can adjust popup content and operation permissions according to needs.
 
-更多内容请参考 [字段组件](../field-settings/title-field.md)。
+For more content, refer to [Field Component](../field-settings/title-field.md).

@@ -1,31 +1,31 @@
-# 卡片高度
+# Block Height
 
-## 介绍
+## Introduction
 
-区块高度设置支持三种情况：默认高度、指定高度和全高。大部分区块都支持高度设置（甘特图区块暂不支持，图表区块通过参数控制高度。
+Block height setting supports three situations: default height, specified height, and full height. Most blocks support height setting (Gantt chart block does not support it yet, chart block controls height through parameters).
 
-### 默认
+### Default
 
-不同类型的区块有不同的默认高度处理。例如，表格和表单区块会根据内容自适应高度，而看板区块的默认高度则设为视口高度的70%。
-### 指定高度
+Different types of blocks have different default height processing. For example, table and form blocks adapt height based on content, while kanban blocks have a default height set to 70% of the viewport height.
+### Specified Height
 
-用户可以指定区块的外框总高度，区块内部自动计算并分配高度。
-
-
-### 全高
-
-与指定高度类似，全高模式会基于窗口可视区域的高度自动计算并分配区块的高度。页面不会出现滚动条，滚动条只会在区块内部出现。
-
-不同区块的高度处理存在细节差异：
-
-- 表格： tbody 内部滚动；
-- 表单/详情： Grid 内滚动，也就是除了操作以外的部分滚动；
-- 列表/网格卡片： Grid 内滚动，也就是除了操作和分页栏以外的部分滚动；
-- 看板：列高（滚动条在每一列内部）；
-- 地图和日历：（整体自适应高度，无滚动条）；
-- Iframe/Markdown：限制的是区块外框总高度,滚动条出现在区块内;
-
-#### 表格全高
+Users can specify the total height of the block's outer frame. The block automatically calculates and allocates height internally.
 
 
-#### 表单全高
+### Full Height
+
+Similar to specified height, full height mode automatically calculates and allocates block height based on the height of the window's visible area. The page will not have scroll bars; scroll bars will only appear inside the block.
+
+Different blocks have detail differences in height processing:
+
+- Table: tbody internal scrolling;
+- Form/Details: Scrolling within Grid, that is, the part excluding actions scrolls;
+- List/Grid Card: Scrolling within Grid, that is, the part excluding actions and pagination bar scrolls;
+- Kanban: Column height (scroll bar inside each column);
+- Map and Calendar: (Overall adaptive height, no scroll bar);
+- Iframe/Markdown: Limits the total height of the block's outer frame, scroll bar appears inside the block;
+
+#### Table Full Height
+
+
+#### Form Full Height

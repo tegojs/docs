@@ -1,29 +1,29 @@
-# 批量编辑
+# Bulk Edit
 
-> ℹ️ **提示**  
-> 由插件 `plugin-action-bulk-edit` 提供
+> ℹ️ **Note**  
+> Provided by the `plugin-action-bulk-edit` plugin
 
-## 介绍
+## Introduction
 
-批量编辑操作适用于灵活性要求较高的批量数据处理场景。用户点击批量编辑按钮后，在弹窗中配置批量编辑表单，为字段指定不同的赋值逻辑。
+Bulk edit operations are suitable for batch data processing scenarios with high flexibility requirements. After users click the bulk edit button, they configure the bulk edit form in a popup to specify different assignment logic for fields.
 
 ![](/actions/bulk-edit-1.png)
 
-## 安装
+## Installation
 
-内置插件，无需单独安装
+Built-in plugin, no separate installation required
 
-## 使用指南
+## User Guide
 
 ![](/actions/bulk-edit-2.png)
 
-1. 设置批量编辑的数据：选中/所有，默认为选中。
+1. Set bulk edit data: Selected/All, default is selected.
 
-2. 为字段设置更新逻辑，支持为特定字段设置逻辑。
+2. Set update logic for fields, supports setting logic for specific fields.
 
-示例：在运单表格卡片中配置批量编辑操作，批量编辑选中的数据，将运输模式修改为空运，并将确认送达和实际到达时间清空。
+Example: Configure bulk edit operation in waybill table block, bulk edit selected data, change transport mode to air transport, and clear confirmed delivery and actual arrival time.
 
 ![](/actions/bulk-edit-3.gif)
 
-<!-- TODO: 跳转链接没写 -->
-更多批量编辑表单内容参考 [批量编辑表单]()
+<!-- TODO: Jump link not written -->
+For more bulk edit form content, refer to [Bulk Edit Form]()

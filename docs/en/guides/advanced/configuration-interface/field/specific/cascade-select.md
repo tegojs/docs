@@ -1,19 +1,19 @@
-# 级联选择
+# Cascade Select
 
-### 概述
+### Overview
 
-级联选择器适用于目标表为树形结构的关系字段。用户可以根据树表的层级结构选择数据，并支持模糊搜索。
+Cascade selector is suitable for relationship fields where the target table is a tree structure. Users can select data according to the hierarchical structure of the tree table and supports fuzzy search.
 
-### 使用说明
+### Usage Instructions
 
-1. 关系为对一：级联选择器为单选模式。
+1. To-one relationship: Cascade selector is in single-select mode.
 ![](/field/field-6.png)
 
-2. 关系为对多：级联选择器为多选模式，并支持拖拽排序。
+2. To-many relationship: Cascade selector is in multi-select mode and supports drag and drop sorting.
 ![](/field/field-7.png)
 
-### 字段配置项
+### Field Configuration Items
 
-- [标题字段](../field-settings/title-field.md)：设置级联组件中显示的选项内容（即标题字段）。
+- [Title Field](../field-settings/title-field.md): Set the option content displayed in the cascade component (i.e., title field).
 
-- [字段组件](../field-settings/field-component.md)：支持切换为其他关系字段组件，如下拉选择、数据选择器等。
+- [Field Component](../field-settings/field-component.md): Supports switching to other relationship field components, such as dropdown select, data picker, etc.

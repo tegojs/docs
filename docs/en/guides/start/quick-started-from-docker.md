@@ -1,16 +1,16 @@
-# 快速开始（Docker）
+# Quick Start (Docker)
 
-## 0.先决条件
- 请确保你已经：
+## 0. Prerequisites
+Make sure you have:
 
-- 安装了 docker
+- Installed Docker
 
-## 1.运行项目
+## 1. Run the Project
 
 ```bash
 docker run -p 3000:3000  tachybase/tachybase-all:latest
 ```
 
-## 2. 访问灵矶
+## 2. Access Tachybase
 
-使用浏览器打开 [http://localhost:3000](http://localhost:3000) 初始化账号和密码是 `admin@tachybase.com` 和 `!Admin123.`。
+Open [http://localhost:3000](http://localhost:3000) in your browser. The initial account and password are `admin@tachybase.com` and `!Admin123.`.

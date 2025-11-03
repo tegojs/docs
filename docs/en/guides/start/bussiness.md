@@ -1,7 +1,7 @@
-# 商务合作
+# Business Cooperation
 
-灵矶作为开源项目向全部用户免费试用，可以用于商业平台开发以及任意其他的商业用途。如果有需要商务合作，可以和灵矶团队进行合作，欢迎前来洽谈。
+Tachybase is available as an open-source project free for all users to try, and can be used for commercial platform development and any other commercial purposes. If you need business cooperation, you can cooperate with the Tachybase team, and we welcome you to come and discuss.
 
-## 计费规则
+## Pricing Rules
 
-灵矶团队提供收费服务，可以为用户提供公有云服务和私有化服务，不同类型的价格不同，可以根据具体的需求进行进一步沟通，商务合作咨询请联系邮箱 hello@daoyoucloud.com
+The Tachybase team provides paid services, offering both public cloud services and private deployment services. Different types have different prices, and further communication can be conducted based on specific needs. For business cooperation inquiries, please contact email: hello@daoyoucloud.com

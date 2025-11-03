@@ -1,7 +1,7 @@
-#  显示标题
+# Display Title
 
-### 概述
+### Overview
 
-用于控制字段标题的显示与否，默认情况下是开启的。用户可以根据不同的布局需求选择关闭，从而隐藏字段标题。
+Used to control whether the field title is displayed. It is enabled by default. Users can choose to disable it according to different layout needs, thereby hiding the field title.
 ![](../../../../../../public/display-title1.png)
 ![](../../../../../../public/display-title2.png)

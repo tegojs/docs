@@ -1,65 +1,65 @@
-# 最佳实践
+# Best Practices
 
-灵矶(Tachybase)作为一款高度可扩展的低代码开发平台，为了充分发挥其优势，我们整理了以下最佳实践指南。本文档旨在帮助开发者和团队在使用灵矶构建应用时提高效率、保证质量。
+As a highly extensible low-code development platform, Tachybase requires following best practices to fully leverage its advantages. This document aims to help developers and teams improve efficiency and ensure quality when building applications with Tachybase.
 
-## 架构设计最佳实践
+## Architecture Design Best Practices
 
-### 三层架构合理利用
-- **核心层**：避免直接修改核心层代码，而是通过提供的API和扩展点进行功能扩展
-- **功能层**：优先使用现有功能模块组合实现需求，减少重复开发
-- **扩展层**：将业务特定逻辑封装为插件，确保代码复用性和可维护性
+### Rational Use of Three-Tier Architecture
+- **Core Layer**: Avoid directly modifying core layer code; instead, extend functionality through provided APIs and extension points
+- **Function Layer**: Prioritize using existing functional modules in combination to implement requirements, reducing redundant development
+- **Extension Layer**: Encapsulate business-specific logic as plugins to ensure code reusability and maintainability
 
-### 模块化设计
-- 将应用拆分为独立的功能模块，每个模块专注于解决特定业务问题
-- 模块间通过标准接口通信，减少耦合
-- 使用灵矶的插件系统管理模块依赖关系
+### Modular Design
+- Split applications into independent functional modules, with each module focused on solving specific business problems
+- Modules communicate through standard interfaces, reducing coupling
+- Use Tachybase's plugin system to manage module dependencies
 
-## 开发流程最佳实践
+## Development Workflow Best Practices
 
-### 环境配置
-- 使用不同的环境配置文件(.env)区分开发、测试和生产环境
-- 敏感信息如数据库凭证、API密钥等不要硬编码，而是使用环境变量
-- 开发环境使用`pnpm dev`，生产环境使用`pnpm start`
+### Environment Configuration
+- Use different environment configuration files (.env) to distinguish development, testing, and production environments
+- Do not hardcode sensitive information like database credentials and API keys; use environment variables instead
+- Use `pnpm dev` for development environment, `pnpm start` for production environment
 
-### 版本控制
-- 遵循语义化版本控制规范
-- 为重要功能创建专门的分支，完成后合并到主分支
-- 提交代码前运行测试确保功能正常
+### Version Control
+- Follow semantic versioning conventions
+- Create dedicated branches for important features, merging to the main branch after completion
+- Run tests before committing code to ensure functionality is working
 
-## 性能优化最佳实践
+## Performance Optimization Best Practices
 
-### 数据库优化
-- 合理设计数据结构，避免冗余和复杂的关联
-- 对频繁查询的字段创建索引
-- 使用查询缓存减少数据库负载
+### Database Optimization
+- Design data structures rationally, avoiding redundancy and complex associations
+- Create indexes for frequently queried fields
+- Use query caching to reduce database load
 
-### 前端优化
-- 组件按需加载，减少初始加载时间
-- 使用灵矶提供的数据缓存机制，减少重复请求
-- 优化大数据列表的渲染性能，考虑使用虚拟滚动
+### Frontend Optimization
+- Load components on-demand to reduce initial load time
+- Use Tachybase's provided data caching mechanism to reduce redundant requests
+- Optimize rendering performance for large data lists, consider using virtual scrolling
 
-## 安全最佳实践
+## Security Best Practices
 
-### 身份验证与授权
-- 使用灵矶的RBAC（基于角色的访问控制）系统管理权限
-- 定期更新`APP_KEY`和其他安全凭证
-- 对敏感操作实施多因素认证
+### Authentication and Authorization
+- Use Tachybase's RBAC (Role-Based Access Control) system to manage permissions
+- Regularly update `APP_KEY` and other security credentials
+- Implement multi-factor authentication for sensitive operations
 
-### 数据安全
-- 实施最小权限原则，只授予用户完成任务所需的最小权限
-- 敏感数据加密存储，特别是个人身份信息
-- 定期备份数据，并测试恢复流程
+### Data Security
+- Implement the principle of least privilege, granting users only the minimum permissions needed to complete tasks
+- Encrypt sensitive data storage, especially personally identifiable information
+- Regularly backup data and test recovery procedures
 
-## 部署与维护
+## Deployment and Maintenance
 
-### 部署策略
-- 使用Docker容器化应用，确保环境一致性
-- 实施CI/CD流程自动化构建和部署
-- 采用蓝绿部署或金丝雀发布策略减少升级风险
+### Deployment Strategy
+- Use Docker to containerize applications, ensuring environment consistency
+- Implement CI/CD processes for automated build and deployment
+- Adopt blue-green deployment or canary release strategies to reduce upgrade risks
 
-### 监控与日志
-- 配置全面的日志记录，包括用户活动和系统事件
-- 实施监控系统及时发现性能问题和异常
-- 定期分析使用数据，优化用户体验
+### Monitoring and Logging
+- Configure comprehensive logging, including user activities and system events
+- Implement monitoring systems to detect performance issues and anomalies promptly
+- Regularly analyze usage data to optimize user experience
 
-通过遵循这些最佳实践，您可以充分发挥灵矶(Tachybase)的优势，构建高效、安全、可扩展的应用系统，满足企业不断变化的业务需求。 
+By following these best practices, you can fully leverage the advantages of Tachybase to build efficient, secure, and scalable application systems that meet enterprises' ever-changing business needs.

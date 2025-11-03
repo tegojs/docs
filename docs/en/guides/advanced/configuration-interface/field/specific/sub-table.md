@@ -1,50 +1,50 @@
-# 子表格
+# Sub-table
 
-### 概述
+### Overview
 
-子表格适用于处理对多关系字段，支持批量新建目标表数据后进行关联，或从已有数据中选择进行关联。
+Sub-table is suitable for handling to-many relationship fields, supporting batch creation of target table data and then associating, or selecting from existing data for association.
 
-### 使用说明
+### Usage Instructions
 
 ![](/sub-table1.png)
 
-- 字段显示与编辑
-子表格中，不同类型的字段会显示不同的字段组件。对于大字段（如富文本、Json、多行文本等），将通过悬浮弹窗进行编辑。
+- Field Display and Edit
+In sub-tables, different types of fields display different field components. For large fields (such as rich text, Json, multi-line text, etc.), editing will be done through hover popup.
 
 ![](/sub-table2.png)
 
-- 关系字段
-示例：用户（一对多）> 产品（一对多）>分类。
+- Relationship Fields
+Example: User (one-to-many) > Product (one-to-many) > Category.
 
 ![](/field/field-8.png)
 
-- 字段组件
-关系字段组件默认是下拉选择器，但也支持数据选择器或子表单（弹窗）等其他组件。
+- Field Component
+Relationship field component defaults to dropdown selector, but also supports other components such as data picker or sub-form (popover).
 ![](/field/field-9.png)
 
-- 拖拽排序
-支持对子表格内的数据进行拖拽排序。
+- Drag and Drop Sorting
+Supports drag and drop sorting of data within sub-table.
 ![](/field/field-10.gif)
 
-### 字段配置项
+### Field Configuration Items
 
-#### 允许选择已有数据（默认不开启）
-可以从已有数据中选择并关联数据。
+#### Allow Select Existing Data (not enabled by default)
+Can select and associate data from existing data.
 
 ![](/field/field-11.png)
 
-#### 字段组件
-支持切换为其他关系[字段组件](../field-settings/field-component.md)，如下拉选择、数据选择器等。
+#### Field Component
+Supports switching to other relationship [Field Components](../field-settings/field-component.md), such as dropdown select, data picker, etc.
 
-<!-- #### 联动规则 -->
+<!-- #### Linkage Rules -->
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
-<!-- 适用于设置字段间的联动。
-更多内容请参考 [联动规则](../../block/block-settings/linkage-rule.md)。 -->
+<!-- Suitable for setting linkage between fields.
+For more content, refer to [Linkage Rules](../../block/block-settings/linkage-rule.md). -->
 
-<!-- #### 允许解除已有数据关联 -->
+<!-- #### Allow Disassociate Existing Data Association -->
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
-<!-- 支持解除与已关联数据的关联。 -->
+<!-- Supports disassociating from already associated data. -->

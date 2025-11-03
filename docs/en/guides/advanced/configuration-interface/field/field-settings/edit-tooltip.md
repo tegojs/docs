@@ -1,8 +1,8 @@
-# 编辑提示信息
+# Edit Tooltip
 
-## 介绍
+## Introduction
 
-字段提示信息是鼠标悬停在字段上时显示的文字，旨在提供有关该字段的额外说明或指导。这些提示信息通常包括字段的用途、输入格式、限制条件等内容，帮助用户更好地理解和使用该字段。
+Field tooltip is text displayed when the mouse hovers over the field, intended to provide additional explanation or guidance about the field. These tooltips typically include content such as the purpose of the field, input format, restriction conditions, etc., helping users better understand and use the field.
 
 ![20240412112137](/field/field-settings/edit-tooltip-1.png)
 

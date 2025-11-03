@@ -1,8 +1,7 @@
-# 编辑字段标题
+# Edit Field Title
 
-### 概述
+### Overview
 
-字段标题是字段定义的名称或标签，可以根据不同卡片的需求进行个性化定制。
+Field title is the name or label of the field definition, which can be customized according to different block needs.
 ![](../../../../../../public/edit-title1.png)
 ![](../../../../../../public/edit-title2.png)
-

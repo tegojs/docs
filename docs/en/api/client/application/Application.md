@@ -2,9 +2,9 @@
 
 ## new Application(options)
 
-创建一个 Tachybase 应用。
+Create a Tachybase application.
 
-- 类型
+- Type
 
 ```tsx | pure
 export interface ApplicationOptions {
@@ -24,20 +24,20 @@ export interface ApplicationOptions {
 }
 ```
 
-- 详细信息
-  - `apiClient`：API 请求实例
-  - `i18n`：国际化，具体请参考：[https://www.i18next.com/overview/api#createinstance](https://www.i18next.com/overview/api#createinstance)
-  - `providers`：上下文
-  - `components`：全局组件
-  - `scopes`：全局 scopes
-  - `router`：配置路由，具体请参考：[RouterManager](./RouterManager)
+- Details
+  - `apiClient`: API request instance
+  - `i18n`: Internationalization, for details please refer to: [https://www.i18next.com/overview/api#createinstance](https://www.i18next.com/overview/api#createinstance)
+  - `providers`: Context
+  - `components`: Global components
+  - `scopes`: Global scopes
+  - `router`: Configure routes, for details please refer to: [RouterManager](./RouterManager)
   - `pluginSettings`: [SystemSettingsManager](./SystemSettingsManager)
-  - `schemaSettings`：Schema 设置工具，具体参考：[SchemaSettingsManager](./SchemaInitializerManager)
-  - `schemaInitializers`：Schema 添加工具，具体参考：[SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
-  - `loadRemotePlugins`：用于控制是否加载远程插件，默认为 `false`，即不加载远程插件（方便单测和 DEMO 环境）。
-  - `dataSourceManager`：数据源管理器，具体参考：[DataSourceManager](../data-source/DataSourceManager)
-  - `addFieldInterfaceComponentOption`: 添加 Field interface 组件选项。具体参考： [CollectionFieldInterfaceManager](../data-source/CollectionFieldInterfaceManager)
-- 示例
+  - `schemaSettings`: Schema settings tool, for details refer to: [SchemaSettingsManager](./SchemaInitializerManager)
+  - `schemaInitializers`: Schema add tool, for details refer to: [SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
+  - `loadRemotePlugins`: Used to control whether to load remote plugins, default is `false`, i.e., do not load remote plugins (convenient for unit tests and DEMO environment).
+  - `dataSourceManager`: Data source manager, for details refer to: [DataSourceManager](../data-source/DataSourceManager)
+  - `addFieldInterfaceComponentOption`: Add Field interface component option. For details refer to: [CollectionFieldInterfaceManager](../data-source/CollectionFieldInterfaceManager)
+- Example
 
 ```tsx
 /**
@@ -73,7 +73,7 @@ const app = new Application({
 export default app.getRootComponent();
 ```
 
-## 实例属性
+## Instance Properties
 
 ### app.i18n
 
@@ -83,7 +83,7 @@ class Application {
 }
 ```
 
-详细介绍，请参考：[i18next](https://www.i18next.com/overview/api#createinstance)
+For detailed introduction, please refer to: [i18next](https://www.i18next.com/overview/api#createinstance)
 
 ### app.apiClient
 
@@ -93,35 +93,35 @@ class Application {
 }
 ```
 
-详细介绍，请参考：[Request](./Request)
+For detailed introduction, please refer to: [Request](./Request)
 
 ### app.router
 
-详细介绍，请参考：[RouterManager](./RouterManager)
+For detailed introduction, please refer to: [RouterManager](./RouterManager)
 
 ### app.systemSettingsManager
 
-详细介绍，请参考：[SystemSettingsManager](./SystemSettingsManager)
+For detailed introduction, please refer to: [SystemSettingsManager](./SystemSettingsManager)
 
 ### app.schemaSettingsManager
 
-详细介绍，请参考：[SchemaSettingsManager](../ui-schema/SchemaInitializerManager)
+For detailed introduction, please refer to: [SchemaSettingsManager](../ui-schema/SchemaInitializerManager)
 
 ### app.schemaInitializerManager
 
-详细介绍，请参考：[SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
+For detailed introduction, please refer to: [SchemaInitializerManager](../ui-schema/SchemaInitializerManager)
 
 ### app.dataSourceManager
 
-详细介绍，请参考：[DataSourceManager](../data-source/DataSourceManager)
+For detailed introduction, please refer to: [DataSourceManager](../data-source/DataSourceManager)
 
-## 实例方法
+## Instance Methods
 
 ### app.getRootComponent()
 
-获取应用的根组件。
+Get the root component of the application.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -129,7 +129,7 @@ class Application {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Application } from '@tachybase/client';
@@ -141,9 +141,9 @@ const App = app.getRootComponent();
 
 ### app.mount()
 
-将应用实例挂载在一个容器元素中。
+Mount the application instance in a container element.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -151,7 +151,7 @@ class Application {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Application } from '@tachybase/client';
@@ -163,9 +163,9 @@ app.mount('#root');
 
 ### app.addProvider()
 
-添加 `Provider` 上下文。
+Add `Provider` context.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -173,14 +173,14 @@ class Application {
 }
 ```
 
-- 详细信息
+- Details
 
-第一个参数是组件，第二个参数是组件的参数。注意 `Provider` 一定要渲染 `children`。
+The first parameter is a component, the second parameter is component parameters. Note that `Provider` must render `children`.
 
-- 示例
+- Example
 
 ```tsx | pure
-// 场景1：第三方库，或者自己创建的 Context
+// Scenario 1: Third-party library, or Context created by yourself
 const MyContext = createContext({});
 app.addProvider(MyContext.provider, { value: { color: 'red' } });
 ```
@@ -218,7 +218,7 @@ export default app.getRootComponent();
 ```
 
 ```tsx | pure
-// 场景2：自定义的组件，注意 children
+// Scenario 2: Custom component, note children
 const GlobalDemo = ({ name, children }) => {
     return <div>
         <div>hello, { name }</div>
@@ -263,9 +263,9 @@ export default app.getRootComponent();
 
 ### app.addProviders()
 
-添加多个 `Provider` 上下文。
+Add multiple `Provider` contexts.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -273,11 +273,11 @@ class Application {
 }
 ```
 
-- 详细信息
+- Details
 
-一次添加多个 `Provider`。
+Add multiple `Providers` at once.
 
-- 示例
+- Example
 
 ```tsx | pure
 app.addProviders([[MyContext.provider, { value: { color: 'red' } }], [GlobalDemo, { name: 'tachybase' }]])
@@ -285,11 +285,11 @@ app.addProviders([[MyContext.provider, { value: { color: 'red' } }], [GlobalDemo
 
 ### app.addComponents()
 
-添加全局组件。
+Add global components.
 
-全局组件可以使用在 [RouterManager](./RouterManager) 和 [UI Schema](../ui-schema/SchemaComponent)上。
+Global components can be used in [RouterManager](./RouterManager) and [UI Schema](../ui-schema/SchemaComponent).
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -297,7 +297,7 @@ class Application {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 app.addComponents({ Demo, Foo, Bar })
@@ -305,11 +305,11 @@ app.addComponents({ Demo, Foo, Bar })
 
 ### app.addScopes()
 
-添加全局的 scope。
+Add global scopes.
 
-全局组 scope 可以在[UI Schema](../ui-schema/SchemaComponent) 上使用。
+Global scopes can be used in [UI Schema](../ui-schema/SchemaComponent).
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -317,7 +317,7 @@ class Application {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 function useSomeThing() {}
@@ -328,9 +328,9 @@ app.addScopes({ useSomeThing, anyVar })
 
 ### app.getCollectionManager()
 
-获取指定数据源的 [collection manager](../data-source/CollectionManager) 实例。
+Get the [collection manager](../data-source/CollectionManager) instance for the specified data source.
 
-- 类型
+- Type
 
 ```tsx | pure
 class Application {
@@ -338,26 +338,26 @@ class Application {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
-app.getCollectionManager() // 获取默认数据源的 collection manager
-app.getCollectionManager('test') // 获取指定数据源的 collection manager
+app.getCollectionManager() // Get collection manager of default data source
+app.getCollectionManager('test') // Get collection manager of specified data source
 ```
 
 ## Hooks
 
 ### useApp()
 
-获取当前应用的实例。
+Get the instance of the current application.
 
-- 类型
+- Type
 
 ```tsx | pure
 const useApp: () => Application
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const Demo = () => {

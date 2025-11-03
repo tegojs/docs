@@ -1,18 +1,18 @@
-# 布局
+# Layout
 
-## 介绍
+## Introduction
 
-表单类区块如表单区块、详情区块和列表区块等，支持布局设置。布局方式分为垂直布局（标签与输入框逐行排列）和水平布局（标签与输入框并排放置）。这种灵活的布局选择可根据具体需求优化用户体验，确保信息输入既清晰又高效。
-
-
-### 垂直（默认）
-
-子表单、子表单（弹窗）也支持布局配置，默认布局为垂直。
+Form-type blocks such as form blocks, details blocks, and list blocks support layout settings. Layout methods are divided into vertical layout (labels and input boxes arranged row by row) and horizontal layout (labels and input boxes placed side by side). This flexible layout choice can optimize user experience according to specific needs, ensuring information input is both clear and efficient.
 
 
-### 水平
+### Vertical (Default)
 
-水平布局将标签与输入框并排放置，节省空间。
+Sub-forms and sub-forms (popover) also support layout configuration, with vertical layout as default.
 
 
-主表单垂直布局，子表单水平布局。
+### Horizontal
+
+Horizontal layout places labels and input boxes side by side, saving space.
+
+
+Main form vertical layout, sub-form horizontal layout.

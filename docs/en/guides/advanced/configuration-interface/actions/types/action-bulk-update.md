@@ -1,22 +1,22 @@
-# 批量更新
+# Bulk Update
 
-> ℹ️ **提示**  
-> 由插件 `plugin-action-bulk-update` 提供
+> ℹ️ **Note**  
+> Provided by the `plugin-action-bulk-update` plugin
 
-## 介绍
+## Introduction
 
-批量更新操作用于需要对一组记录进行相同更新的情况，在执行批量更新操作之前，用户需要预先定义好更新的字段赋值逻辑。这一套逻辑将在用户点击更新按钮时应用到所有选中的记录上
+Bulk update operations are used when the same update needs to be applied to a group of records. Before executing the bulk update operation, users need to predefine the field assignment logic for the update. This set of logic will be applied to all selected records when the user clicks the update button.
 
 ![](/actions/bulk-update-1.png)
 
-## 安装
+## Installation
 
-内置插件，无需单独安装
-## 使用指南
+Built-in plugin, no separate installation required
+## User Guide
 
-1. 设置更新的数据：选中/所有，默认为选中
-2. 字段赋值：设置批量更新的字段，只有设置的字段会更新
+1. Set data to update: Selected/All, default is selected
+2. Field assignment: Set fields for bulk update, only set fields will be updated
 
-如图在运单表格中配置批量更新操作，将选中的数据批量更新为确认送达
+As shown in the waybill table, configure bulk update operation to batch update selected data to confirmed delivery
 
 ![](/actions/bulk-update-2.gif)

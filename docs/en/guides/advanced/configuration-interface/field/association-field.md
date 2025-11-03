@@ -1,71 +1,71 @@
-# 关系字段组件
+# Association Field Components
 
-### 概述
+### Overview
 
-灵矶的关系字段组件旨在帮助用户更好地展示和处理关联数据。无论关系类型如何，这些组件具有灵活性和通用性，用户能够根据具体需求选择并配置这些组件。
+Tachybase's association field components are designed to help users better display and handle related data. Regardless of relationship type, these components have flexibility and versatility, allowing users to select and configure these components according to specific needs.
 
 
 
-#### 下拉选择器
-除了目标表为文件表的所有关系字段，编辑状态下的默认组件均为下拉选择器，下拉选项显示的是标题字段的值，适用于通过显示一个关键字段信息即快速选取关联数据的场景。
+#### Dropdown Selector
+Except for all relationship fields where the target table is a file table, the default component in edit mode is a dropdown selector. The dropdown options display the value of the title field, suitable for scenarios where associated data can be quickly selected by displaying a single key field information.
 ![](../../../../../public/association-field1.png)
 
-更多内容参考 [下拉选择器](./specific/select.md)
+For more content, refer to [Dropdown Selector](./specific/select.md)
 
-#### 数据选择器
-数据选择器以弹窗形态呈现数据，用户可以在数据选择器中配置需要显示的字段（包括关系的关系字段），从而更精确地选取关联数据。
+#### Data Picker
+The data picker presents data in modal form. Users can configure fields to be displayed in the data picker (including relationship fields of relationships) to more precisely select associated data.
 ![](../../../../../public/association-field2.png)
 
-更多内容参考 [数据选择器](./specific/date-picker.md)
+For more content, refer to [Data Picker](./specific/date-picker.md)
 
-<!-- #### 级联选择器
-级联选择器适用于目标表为树表的关系字段，允许用户按照树表数据的层级结构选取数据。适用于省市区、行业分类、产品属性等级联选择的场景。
+<!-- #### Cascade Selector
+Cascade selector is suitable for relationship fields where the target table is a tree table, allowing users to select data according to the hierarchical structure of tree table data. Suitable for scenarios such as province/city/district, industry classification, product attributes, and other cascading selections.
 
-更多内容参考 [级联选择器](./specific/cascade-select.md) -->
+For more content, refer to [Cascade Selector](./specific/cascade-select.md) -->
 
-#### 子表单
-当处理较复杂的关系数据时，使用下拉选择器或数据选择器操作都会显得不便捷。这种情况下，用户需要频繁打开弹窗。针对这种场景，则可以使用子表单，用户能够在当前页面或当前弹窗卡片上直接维护关系表字段，而无需反复打开新的弹窗，操作流程更流畅。多层级的关系以嵌套表单的形态展示。
+#### Sub-form
+When handling more complex relationship data, using dropdown selectors or data pickers for operations can be inconvenient. In this case, users need to frequently open modals. For this scenario, sub-forms can be used. Users can directly maintain relationship table fields on the current page or current modal block without repeatedly opening new modals, making the operation flow smoother. Multi-level relationships are displayed in nested form.
 
 ![](../../../../../public/association-field4.png)
 
-更多内容参考 [子表单](./specific/nester.md)
+For more content, refer to [Sub-form](./specific/nester.md)
 
-#### 子表单（弹窗）
-当关系层级较深、数据字段众多的情况下，子表单布局可能显得冗长，难以有效呈现表单的主次关系。针对这种场景则可以使用子表单（弹窗），用户可以将某些非关键性或不常用的关系字段从主表单中移至独立的弹窗中进行填写，使得主表单更简洁明确。
+#### Sub-form (Popover)
+When relationship levels are deep and there are many data fields, sub-form layout may seem lengthy and difficult to effectively present the primary and secondary relationships of the form. For this scenario, sub-form (popover) can be used. Users can move some non-critical or infrequently used relationship fields from the main form to an independent popover for filling, making the main form more concise and clear.
 
-子表单（弹窗）不仅简化了表单布局，还解决了在子表格中无法直接填写关系字段数据的问题。
+Sub-form (popover) not only simplifies form layout but also solves the problem of not being able to directly fill in relationship field data in sub-tables.
 ![](../../../../../public/association-field5.png)
 
 ![](../../../../../public/association-field6.png)
 
-更多内容参考 [子表单（弹窗）](./specific/popover-nester.md)
+For more content, refer to [Sub-form (Popover)](./specific/popover-nester.md)
 
-#### 子表格
-子表格以表格形式展示一对多或多对多关系记录。它提供了一种清晰、结构化的方式来展示和管理关联数据，支持批量新建数据或选择已有数据关联。
+#### Sub-table
+Sub-table displays one-to-many or many-to-many relationship records in table form. It provides a clear, structured way to display and manage associated data, supporting batch creation of new data or selecting existing data for association.
 ![](../../../../../public/association-field3.png)
 
-更多内容参考 [子表格](./specific/sub-table.md)
+For more content, refer to [Sub-table](./specific/sub-table.md)
 
-<!-- #### 子详情
-子详情是子表单在阅读模式下的对应组件，支持多层关系嵌套展示数据。
+<!-- #### Sub-detail
+Sub-detail is the corresponding component of sub-form in read mode, supporting multi-level relationship nested data display.
 
-更多内容参考 [子详情](./specific/sub-detail.md) -->
+For more content, refer to [Sub-detail](./specific/sub-detail.md) -->
 
-#### 文件管理器
-文件管理器是专门用于处理关系目标表为文件表的关系字段组件。
+#### File Manager
+File manager is a relationship field component specifically used to handle relationship fields where the relationship target table is a file table.
 
-<!-- TODO: 添加图片 -->
+<!-- TODO: Add image -->
 
-更多内容参考 [文件管理器](./specific/file-manager.md)
+For more content, refer to [File Manager](./specific/file-manager.md)
 
-#### 标题
-标题组件是阅读模式下使用的关系字段组件，通过配置标题字段显示关联数据的关键信息。
+#### Title
+The title component is a relationship field component used in read mode, displaying key information of associated data by configuring the title field.
 
-<!-- TODO: 添加图片 -->
+<!-- TODO: Add image -->
 
-更多内容参考 [标题](./specific/title.md)
+For more content, refer to [Title](./specific/title.md)
 
-<!-- #### 标签
-标签组件是阅读模式下使用的关系字段组件，使用标签组件在数据展示中能更好地分类和标识关系数据，需要配置标题字段和颜色字段（从目标表字段中选取）。
+<!-- #### Tag
+The tag component is a relationship field component used in read mode. Using tag components in data display can better classify and identify relationship data. Needs to configure title field and color field (selected from target table fields).
 
-更多内容参考 [标签](./specific/tag.md) -->
+For more content, refer to [Tag](./specific/tag.md) -->

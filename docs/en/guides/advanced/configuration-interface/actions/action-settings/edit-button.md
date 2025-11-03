@@ -1,8 +1,8 @@
-# 编辑按钮
+# Edit Button
 
-## 介绍
+## Introduction
 
-可自定义按钮名称、图标和按钮背景颜色，可选择默认、高亮或红色三种颜色之一。
+You can customize button name, icon, and button background color, choosing from one of three colors: default, highlight, or red.
 
 ![1](/actions/edit-button-1.png)
 

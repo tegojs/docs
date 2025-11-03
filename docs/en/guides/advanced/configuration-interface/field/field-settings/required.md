@@ -1,20 +1,19 @@
-# 必填
+# Required
 
-## 介绍
+## Introduction
 
-必填是表单验证的常用规则，可以直接在字段配置项中开启必填，也可以通过表单的联动规则动态设置字段必填。
+Required is a common rule for form validation. You can directly enable required in field configuration items, or dynamically set fields as required through form linkage rules.
 
-## 静态设置
+## Static Setting
 
-直接设置字段为必填项，适用于那些始终需要用户填写的字段，如用户名、密码等。
+Directly set field as required, suitable for fields that always need to be filled by users, such as username, password, etc.
 
 ![20240411114641](/field/field-settings/required-1.png)
 
-## 动态设置(条件必填)
+## Dynamic Setting (Conditional Required)
 
-通过表单卡片的联动规则按条件设置必填。
+Set required conditionally through linkage rules of form blocks.
 
-示例：当订单状态为已发货时发货日期字段必填。
+Example: When order status is shipped, shipping date field is required.
 
 ![20240412110939](/field/field-settings/required-3.gif)
-

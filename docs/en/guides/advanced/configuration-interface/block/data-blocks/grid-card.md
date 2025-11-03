@@ -1,31 +1,31 @@
-# 网格卡片
+# Grid Card
 
-## 介绍
+## Introduction
 
-网格卡片卡片以卡片形式展示数据记录的摘要信息，支持根据不同屏幕尺寸配置列数，以确保在不同尺寸的设备上友好显示。
+Grid card blocks display summary information of data records in card form, supporting configuration of column numbers according to different screen sizes to ensure friendly display on devices of different sizes.
 
-## 卡片配置项
+## Block Configuration Items
 
-### 数据范围
+### Data Scope
 
 ![](/blocks/grid-scope.png)
 
-## 配置字段
+## Configure Fields
 
-### 普通字段
+### Regular Fields
 
 ![](/blocks/grid-field.png)
 
-### 关系字段
+### Relationship Fields
 
 ![](/blocks/grid-related-field.png)
 
-## 配置操作
+## Configure Actions
 
-### 全局操作
+### Global Actions
 
 ![](/blocks/grid-action.png)
 
-### 行操作
+### Row Actions
 
 ![](/blocks/grid-row-action.png)

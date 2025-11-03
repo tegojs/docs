@@ -1,68 +1,68 @@
-# 聚合查询
+# Aggregate Query
 
-用于对某个数据表的满足条件的数据进行聚合函数查询，并返回对应的统计结果。常用于处理报表相关的统计数据。
+Used to perform aggregate function queries on data that meets conditions in a data table and return corresponding statistical results. Commonly used to process statistical data related to reports.
 
-节点的实现上基于数据库的聚合函数，目前仅支持对一个数据表的单字段进行统计，统计结果的数值会保存在节点的结果中供后续其他节点使用。
+The node implementation is based on database aggregate functions. Currently, only statistics for a single field of one data table are supported. The numerical value of the statistical result will be saved in the node's result for use by other subsequent nodes.
 
-## 安装
+## Installation
 
-内置插件，无需安装。
+Built-in plugin, no installation required.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“聚合查询”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add an "Aggregate Query" node:
 
-![创建聚合查询节点]
-<!-- TODO: 插入图片 -->
+![Create Aggregate Query Node]
+<!-- TODO: Insert image -->
 
-### 节点配置
+### Node Configuration
 
-![聚合查询节点_节点配置]
-<!-- TODO: 插入图片 -->
+![Aggregate Query Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-#### 聚合函数
+#### Aggregate Function
 
-支持 SQL 中的 `COUNT`、`SUM`、`AVG`、`MIN` 和 `MAX` 共 5 种聚合函数，选择其中一种对数据进行聚合查询。
+Supports 5 aggregate functions in SQL: `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`. Select one of them to perform aggregate queries on data.
 
-#### 目标类型
+#### Target Type
 
-聚合查询的目标可以通过两种模式选择，一种是直接选择目标数据表和其中的一个字段，另一种是通过流程上下文已有的数据对象，选择其对多的关系数据表及字段，进行聚合查询。
+The target of an aggregate query can be selected through two modes. One is to directly select the target data table and one of its fields. The other is through data objects already in the process context, selecting its one-to-many relationship data table and field to perform aggregate queries.
 
-#### 去重
+#### Distinct
 
-即 SQL 中的 `DISTINCT`，去重的字段与选择的数据表字段相同，暂时不支持两者选不同的字段。
+That is, `DISTINCT` in SQL. The distinct field is the same as the selected data table field. Currently, selecting different fields for the two is not supported.
 
-#### 筛选条件
+#### Filter Conditions
 
-与普通的数据表查询时的筛选条件类似，可以使用流程的上下文变量。
+Similar to filter conditions when querying regular data tables, you can use context variables from the process.
 
-### 示例
+### Example
 
-聚合目标为“数据表数据”比较容易理解，这里以“统计新增文章后该文章分类的总文章数”为例，介绍聚合目标为“关联数据表数据”的用法。
+Aggregate target of "Data Table Data" is relatively easy to understand. Here we use "Count total articles in the article category after adding a new article" as an example to introduce the use of aggregate target as "Associated Data Table Data".
 
-首先，创建两张数据表：“文章”和“分类”，其中文章有一个多对一关系字段指向分类表，同时创建反向关系字段分类一对多文章：
+First, create two data tables: "Articles" and "Categories", where articles have a many-to-one relationship field pointing to the categories table, and also create a reverse relationship field of category one-to-many articles:
 
-| 字段名   | 类型           |
-| -------- | -------------- |
-| 标题     | 单行文本       |
-| 所属分类 | 多对一（分类） |
+| Field Name | Type              |
+| ---------- | ----------------- |
+| Title      | Single Line Text  |
+| Category   | Many-to-One (Category) |
 
-| 字段名   | 类型           |
-| -------- | -------------- |
-| 分类名称 | 单行文本       |
-| 包含文章 | 一对多（文章） |
+| Field Name | Type              |
+| ---------- | ----------------- |
+| Category Name | Single Line Text |
+| Articles   | One-to-Many (Article) |
 
-接下来创建一个数据表事件触发的工作流，选择文章表新增数据后触发。
+Next, create a workflow triggered by data table events, select to trigger after adding data to the articles table.
 
-之后增加一个聚合查询节点，配置如下：
+Then add an aggregate query node with the following configuration:
 
-![聚合查询节点_示例_节点配置]
-<!-- TODO: 插入图片 -->
+![Aggregate Query Node_Example_Node Configuration]
+<!-- TODO: Insert image -->
 
-这样在工作流被触发后，聚合查询节点中将会统计新增文章的分类下所有文章的数量，并保存为节点的结果。
+This way, after the workflow is triggered, the aggregate query node will count the number of all articles under the category of the newly added article and save it as the node's result.
 
-:::info{title=提示}
-其中如需使用数据表事件触发器的关系数据，需要在触发器中配置“预加载关联数据”的相关字段，否则无法选择。
+:::info{title=Note}
+If you need to use relationship data from the data table event trigger, you need to configure the "Preload Associated Data" related fields in the trigger, otherwise it cannot be selected.
 :::

@@ -1,8 +1,5 @@
-# 路线图
+# Roadmap
 
-| 序号 | 功能 | 描述 | 文档 |
+| No. | Feature | Description | Documentation |
 | --- | --- | --- | --- |
-| 1 | 示例功能 | 示例描述| [示例链接](https://tachybase.org/plugins/plugin-list.html) |
-
-
-
+| 1 | Example Feature | Example Description | [Example Link](https://tachybase.org/plugins/plugin-list.html) |

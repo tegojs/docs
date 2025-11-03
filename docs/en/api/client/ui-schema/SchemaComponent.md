@@ -15,30 +15,30 @@ interface SchemaComponentContext {
 }
 ```
 
-Schema 渲染的上下文。
+Schema rendering context.
 
-- `scope`：Schema 中变量的映射
-- `components`: Schema 中组件的映射
-- `refresh`：触发 React 重新渲染的工具函数
-- `reset`：重置整个 Schema 节点
-- `designable`：是否显示设计器，默认 `false`
-- `setDesignable`：用于切换 `designable` 的值
+- `scope`: Variable mapping in Schema
+- `components`: Component mapping in Schema
+- `refresh`: Utility function to trigger React re-rendering
+- `reset`: Reset entire Schema node
+- `designable`: Whether to display designer, default `false`
+- `setDesignable`: Used to toggle the value of `designable`
 
 ## Hooks
 
 ### useSchemaOptionsContext()
 
-用于获取注册的 `scope` 和 `components`。
+Used to get registered `scope` and `components`.
 
 ```tsx | pure
 const { scope, components } = useSchemaOptionsContext();
 ```
 
-## 组件
+## Components
 
 ### SchemaComponentProvider
 
-其是对 `SchemaComponentContext.Provider` 和 [FormProvider ](https://react.formilyjs.org/api/components/form-provider)的封装，并内置在 `Application` 中，并且会将 `app.components` 和 `app.scopes` 传递过去，所以一般情况下 *不需要关注* 此组件。
+It is an encapsulation of `SchemaComponentContext.Provider` and [FormProvider](https://react.formilyjs.org/api/components/form-provider), and is built into `Application`, and will pass `app.components` and `app.scopes`. So in general, *you don't need to worry about* this component.
 
 - props
 
@@ -51,15 +51,15 @@ interface SchemaComponentProviderProps {
 }
 ```
 
-- 详细解释
-  - `designable`：`SchemaComponentContext` 中 `designable` 的默认值
-  - `form`：Tachybase 的 Schema 能力是基于 formily 的 `FormProvider` 提供的，form 是其参数，默认为  `createForm()`
-  - `scope`：Schema 中所用到的变量，会通过 `SchemaComponentContext` 进行传递
-  - `components`：Schema 中所用到的组件，会通过 `SchemaComponentContext` 进行传递
+- Detailed Explanation
+  - `designable`: Default value of `designable` in `SchemaComponentContext`
+  - `form`: Tachybase's Schema capability is based on formily's `FormProvider`, form is its parameter, defaults to `createForm()`
+  - `scope`: Variables used in Schema, will be passed through `SchemaComponentContext`
+  - `components`: Components used in Schema, will be passed through `SchemaComponentContext`
 
 ### SchemaComponent
 
-用于渲染 Schema，此组件必须和 `SchemaComponentProvider` 一起使用，因为 `SchemaComponentProvider` 提供了  [FormProvider](https://react.formilyjs.org/api/components/form-provider) 作为渲染 Schema 的根节点。
+Used to render Schema. This component must be used with `SchemaComponentProvider` because `SchemaComponentProvider` provides [FormProvider](https://react.formilyjs.org/api/components/form-provider) as the root node for rendering Schema.
 
 - Props
 
@@ -71,15 +71,15 @@ type SchemaComponentProps = (ISchemaFieldProps | IRecursionFieldProps) & {
 }
 ```
 
-- 详细解释
+- Detailed Explanation
 
-  - `memoized`：当为 `true` 时，会对每层的 Schema 使用 `useMemo()` 进行处理
-  - `components`：同 `SchemaComponentProvider` 的 `components`
-  - `scope`: 同 `SchemaComponentProvider` 的 `components`
+  - `memoized`: When `true`, will use `useMemo()` to process each layer of Schema
+  - `components`: Same as `components` in `SchemaComponentProvider`
+  - `scope`: Same as `components` in `SchemaComponentProvider`
 
-## 综合示例
+## Comprehensive Example
 
-结合 `SchemaComponentProvider`、 `useSchemaComponentContext()` 和 `SchemaComponent`。
+Combining `SchemaComponentProvider`, `useSchemaComponentContext()` and `SchemaComponent`.
 
 ```tsx
 /**
@@ -113,7 +113,7 @@ const Root = () => {
 export default Root;
 ```
 
-使用 `new Application()` 的方式，其内置了 `SchemaComponentProvider` ，我们可以如下操作：
+Using the `new Application()` method, which has built-in `SchemaComponentProvider`, we can operate as follows:
 
 ```tsx
 /**
@@ -161,7 +161,7 @@ export default app.getRootComponent();
 
 ### SchemaComponentOptions
 
-在应用中，会有很多层级的嵌套，每一层都可能提供自己的组件和 scope，此组件就是为了层层传递  Schema 所需的 `components` 和 `scope` 的。
+In an application, there will be many levels of nesting, each level may provide its own components and scope. This component is for passing the `components` and `scope` required by Schema layer by layer.
 
 - props
 
@@ -172,7 +172,7 @@ interface SchemaComponentOptionsProps {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx
 /**

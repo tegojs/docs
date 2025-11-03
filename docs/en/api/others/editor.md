@@ -1,107 +1,107 @@
-# Editor 类
+# Editor Class
 
-**主要功能：** 页面编辑框，动态更新位置，换行，设定表格值，提示建议触发处，验证器相关
+**Main Function:** Page edit box, dynamic position update, line break, set table value, suggestion trigger, validator related
 
-调用方法：
+Calling method:
 
 ```js
-// instance 你创建的实例，公有方法可以直接调用，私有方法不可以
+// instance is the instance you created, public methods can be called directly, private methods cannot
 instance.sheet.editor.publicFn(args);
 ```
 
-## 说明
+## Description
 
-这些有助于你理解该文件作用
+These help you understand the purpose of this file
 
-## 私有方法
+## Private Methods
 
 ### resetTextareaSize()
 
-动态刷新编辑框宽高设定函数
+Dynamic refresh edit box width and height setting function
 
 ### insertText({ target }, itxt)
 
-插入文本值
+Insert text value
 
-`@param {target}` 目标编辑框
+`@param {target}` Target edit box
 
-`@param itext` 规则
+`@param itext` Rule
 
 ### keydownEventHandler(evt)
 
-监听键盘按下事件触发函数
+Listen to keyboard press event trigger function
 
-`@param evt` 触发事件对象
+`@param evt` Trigger event object
 
 ### inputEventHandler(evt)
 
-监听编辑框 `textarea` 输入事件触发函数
+Listen to edit box `textarea` input event trigger function
 
-`@param evt` 触发事件对象
+`@param evt` Trigger event object
 
 ### setTextareaRange(position)
 
-设置编辑框 `textarea` 中的光标位置
+Set cursor position in edit box `textarea`
 
-`@param position` 位置
+`@param position` Position
 
 ### setText(text, position))
 
-设置编辑框 `textarea` 中的光标位置，并且设定值
+Set cursor position in edit box `textarea` and set value
 
-`@param text` 目标值
+`@param text` Target value
 
-`@param position` 光标要设定的位置
+`@param position` Position where cursor should be set
 
 ### suggestItemClick(it)
 
-设置输入状态下提示框点击事件
+Set suggestion box click event in input state
 
-`@param it` 点击的目标对象值
+`@param it` Clicked target object value
 
 ### resetSuggestItems()
 
-重置提示框内容设置函数
+Reset suggestion box content setting function
 
 ### dateFormat(d)
 
-日期格式化
+Date formatting
 
-`@param d` 日期对象
+`@param d` Date object
 
-## 公有方法
+## Public Methods
 
-统一使用`instance.function` 调用
+Uniformly use `instance.function` to call
 
 ### setFreezeLengths(width, height)
 
-保存冻结行列设定的宽高到配置中，便于计算
+Save frozen row and column set width and height to configuration for calculation
 
-`@param witdth` 冻结列的总宽度
+`@param width` Total width of frozen columns
 
-`@param height` 冻结行的总高度
+`@param height` Total height of frozen rows
 
 ### clear()
 
-清除所有输入状态，设定为默认值
+Clear all input states, set to default value
 
 ### setOffset(offset, suggestPosition = 'top')
 
-设定编辑器偏移量，定位
+Set editor offset, positioning
 
-`@param offset` 偏移对象
+`@param offset` Offset object
 
-`@param suggestPosition` 设定位置是在编辑框 `textarea`的上方还是下方，两个值 `top` | `bottom`
+`@param suggestPosition` Set whether position is above or below the edit box `textarea`, two values `top` | `bottom`
 
 ### setCell(cell, validator)
 
-设置单元格的值，并加载验证器
+Set cell value and load validator
 
-`@param cell` 单元格
-`@param validator` 验证规则
+`@param cell` Cell
+`@param validator` Validation rule
 
 ### setText(text)
 
-设定值，并更新输入框大小
+Set value and update input box size
 
-`@parame text` 目标值
+`@param text` Target value

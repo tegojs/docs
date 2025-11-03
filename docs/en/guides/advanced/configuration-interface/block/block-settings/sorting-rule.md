@@ -1,18 +1,18 @@
-# 设置排序规则
+# Set Sorting Rules
 
-## 介绍
+## Introduction
 
-设置排序规则是指为数据区块定义默认的排序规则，区块的数据将按照特定的顺序呈现。
+Setting sorting rules refers to defining default sorting rules for data blocks. Block data will be presented in a specific order.
 
-## 使用手册
-
-
-目前仅支持按本表字段进行排序。
+## User Manual
 
 
-### 单个排序规则
+Currently only supports sorting by current table fields.
 
 
-### 多个排序规则
+### Single Sorting Rule
 
-适用于复杂的排序需求,如先按照订单状态排序，在同一订单状态内按照收货时间排序。
+
+### Multiple Sorting Rules
+
+Suitable for complex sorting needs, such as sorting by order status first, then sorting by delivery time within the same order status.

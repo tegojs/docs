@@ -1,27 +1,27 @@
-# 列表
+# List
 
-## 介绍
+## Introduction
 
-列表卡片以列表形式展示数据，适用于任务列表、新闻资讯、产品信息等数据展示场景。
+The list block displays data in list form, suitable for data display scenarios such as task lists, news information, product information, etc.
 
-## 添加卡片
+## Add Block
 
 ![](/blocks/list-add.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/blocks/list-setting.png)
 
-## 配置字段
+## Configure Fields
 
 ![](/blocks/list-field.png)
 
-## 配置操作
+## Configure Actions
 
-### 全局操作
+### Global Actions
 
 ![](/blocks/list-action.png)
 
-### 行内操作
+### Inline Actions
 
 ![](/blocks/list-action-row.png)

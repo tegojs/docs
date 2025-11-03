@@ -1,41 +1,41 @@
-# 表格
+# Table
 
-## 介绍
+## Introduction
 
-表格卡片是 Tachybase 内置的核心数据卡片之一，以表格形式展示和管理结构化数据。它具备灵活的配置选项，可定制表格列、列宽、排序规则、数据范围等，同时内置了多种操作供配置：筛选、新建、复制、编辑、删除等。
+The table block is one of Tachybase's built-in core data blocks, displaying and managing structured data in table form. It has flexible configuration options, can customize table columns, column widths, sorting rules, data scope, etc., and has multiple built-in operations for configuration: filter, create, copy, edit, delete, etc.
 
-## 添加卡片
+## Add Block
 
 ![](/blocks/add-block.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/blocks/setting-block.png)
 
-### 设置数据范围
+### Set Data Scope
 
 ![](/blocks/scope-block.png)
 
-### 设置排序规则
+### Set Sorting Rules
 
 ![](/blocks/sort-block.png)
 
-## 配置字段
+## Configure Fields
 
-### 当前数据表字段
+### Current Data Table Fields
 
 ![](/blocks/field-block.png)
 
-### 关联表字段
+### Association Table Fields
 
 ![](/blocks/association-field-block.png)
 
-## 配置操作
+## Configure Actions
 
-### 全局操作
+### Global Actions
 
 ![](/blocks/action-block.png)
 
-### 行操作
+### Row Actions
 
 ![](/blocks/action-row-block.png)

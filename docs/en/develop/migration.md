@@ -1,22 +1,22 @@
-# 升级脚本
+# Migration Scripts
 
-插件在更新迭代过程中，可能会出现某些不兼容的改动，这些不兼容的升级脚本可以通过编写 migration 文件来处理，由 `tachybase upgrade` 命令触发，相关流程如下：
+During plugin updates and iterations, there may be incompatible changes. These incompatible upgrade scripts can be handled by writing migration files, triggered by the `tachybase upgrade` command. The related process is as follows:
 
-升级的 migrations 有 beforeLoad、afterSync 和 afterLoad 之分：
+Upgrade migrations are divided into beforeLoad, afterSync, and afterLoad:
 
-- beforeLoad：在各模块加载前执行，分为三个阶段：
-  - 内核模块加载前
-  - preset 插件加载前
-  - 其他插件加载前
-- afterSync：在数据表配置与数据库同步之后，分为三个阶段：
-  - 内核表与数据库同步之后
-  - preset 插件的表与数据库同步之后
-  - 其他插件的表与数据库同步后
-- afterLoad：应用全部加载之后才执行
+- beforeLoad: Executed before each module loads, divided into three phases:
+  - Before core module loading
+  - Before preset plugin loading
+  - Before other plugin loading
+- afterSync: After data table configuration is synchronized with the database, divided into three phases:
+  - After core tables are synchronized with the database
+  - After preset plugin tables are synchronized with the database
+  - After other plugin tables are synchronized with the database
+- afterLoad: Executed only after the entire application is loaded
 
-## 创建 migration 文件
+## Creating Migration Files
 
-通过 create-migration 命令创建 migration 文件
+Create migration files using the create-migration command
 
 ```bash
 pnpm tachybase create-migration -h
@@ -29,7 +29,7 @@ Options:
   -h, --help   display help for command
 ```
 
-示例
+Example
 
 ```bash
 $ pnpm tachybase create-migration update-ui --pkg=@tachybase/plugin-web
@@ -39,7 +39,7 @@ $ pnpm tachybase create-migration update-ui --pkg=@tachybase/plugin-web
 ✨  Done in 5.02s.
 ```
 
-将在插件包 @tachybase/plugin-client 的 src/server/migrations 里生成一个 migration 文件，名为 20240107173313-update-ui.ts，初始内容如下：
+This will generate a migration file in the src/server/migrations directory of the @tachybase/plugin-client plugin package, named 20240107173313-update-ui.ts, with the following initial content:
 
 ```ts
 import { Migration } from '@tachybase/server';
@@ -54,15 +54,15 @@ export default class extends Migration {
 }
 ```
 
-## 触发 migration
+## Triggering Migrations
 
-通过 `tachybase upgrade` 命令触发
+Trigger using the `tachybase upgrade` command
 
 ```bash
 $ pnpm tachybase upgrade
 ```
 
-## 测试 migration
+## Testing Migrations
 
 ```ts
 import { createMockServer, MockServer } from '@tachybase/test';
@@ -72,8 +72,8 @@ describe('test example', () => {
 
   beforeEach(async () => {
     app = await createMockServer({
-      plugins: ['my-plugin'], // 插件
-      version: '0.18.0-alpha.5', // 升级前的版本
+      plugins: ['my-plugin'], // plugin
+      version: '0.18.0-alpha.5', // version before upgrade
     });
   });
 

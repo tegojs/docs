@@ -1,25 +1,25 @@
-# 工作流：审批相关卡片
+# Workflow: Approval-related Blocks
 
-## 添加审批流程
+## Add Approval Process
 
 ![](/other-blocks/approval-setting.png)
 
-## 设置审批流程
+## Set Up Approval Process
 
 ![](/other-blocks/approval-create.png)
 
-## 界面添加审批流程
+## Add Approval Process to Interface
 
 ![](/other-blocks/approval-add.png)
 
-## 我的发起
+## My Initiated
 
 ![](/other-blocks/approval-init.png)
 
-## 我的待办
+## My To-do
 
 ![](/other-blocks/approval-todo.png)
 
-## 我的抄送
+## My CC
 
 ![](/other-blocks/approval-cc.png)

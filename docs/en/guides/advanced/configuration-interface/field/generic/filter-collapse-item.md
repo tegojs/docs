@@ -1,38 +1,38 @@
-# 折叠面板字段
+# Collapse Panel Field
 
-### 概述
+### Overview
 
-折叠筛选卡片仅支持选择关系字段和选项字段作为筛选字段。
+Collapse filter blocks only support selecting relationship fields and option fields as filter fields.
 
-### 字段配置项
+### Field Configuration Items
 
 ![](../../../../../../public/filter-collapse-item1.png)
 
-#### 设置数据范围
-为关系字段配置数据范围，以限定可筛选的内容。
+#### Set Data Scope
+Configure data scope for relationship fields to limit filterable content.
 
 ![](../../../../../../public/filter-collapse-item2.png)
 
-示例：筛选用户名包含a。
+Example: Filter users whose username contains 'a'.
 
 ![](../../../../../../public/filter-collapse-item3.png)
 
-更多内容请参考 [设置数据范围](../field-settings/data-scope.md)。
+For more content, refer to [Set Data Scope](../field-settings/data-scope.md).
 
-#### 标题字段
+#### Title Field
 
 ![](../../../../../../public/filter-collapse-item4.png)
-配置筛选卡片的标题字段。
-更多内容请参考 [标题字段](../field-settings/title-field.md)。
+Configure the title field of the filter block.
+For more content, refer to [Title Field](../field-settings/title-field.md).
 
-- 默认展示（默认不展开）
+- Default display (not expanded by default)
 
-设置筛选卡片的默认展开状态，默认为不展开。
+Set the default expanded state of the filter block, default is not expanded.
 
-- 设置排序规则（关系数据的排序）
+- Set sorting rules (sorting of relationship data)
 
-配置关系数据的排序规则，以便更精确地控制筛选结果的顺序。
+Configure sorting rules for relationship data to more precisely control the order of filter results.
 
-- 自定义标题
+- Custom title
 
-可以自定义筛选卡片的标题。
+You can customize the title of the filter block.

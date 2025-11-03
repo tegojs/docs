@@ -1,45 +1,45 @@
-# 新增数据
+# Create Data
 
-用于对某个数据表新增一行数据。
+Used to add a new row of data to a data table.
 
-新增数据行的字段值可以使用流程上下文的变量，对关系字段的赋值可以直接引用上下文中的对应数据变量，可以是对象，也可以是外键的值。如果不使用变量，则需要手动填写外键的值，对多关系的多个外键值需要使用英文逗号分隔的形式。
+Field values for the new data row can use variables from the process context. Assignments to relationship fields can directly reference corresponding data variables in the context, which can be objects or foreign key values. If variables are not used, foreign key values need to be manually entered. Multiple foreign key values for one-to-many relationships need to be separated by English commas.
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“新增数据”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Create Data" node:
 
-![创建新增数据节点]
-<!-- TODO: 插入图片 -->
+![Create Create Data Node]
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-![新增节点_示例_节点配置]
-<!-- TODO: 插入图片 -->
+![Create Node_Example_Node Configuration]
+<!-- TODO: Insert image -->
 
-### 数据表
+### Data Table
 
-选择要新增数据的数据表。
+Select the data table to which data will be added.
 
-### 字段值
+### Field Values
 
-针对数据表的字段进行赋值，可以使用流程上下文的变量，也可以手动填写静态值。
+Assign values to fields in the data table. You can use variables from the process context or manually enter static values.
 
-:::info{title="提示"}
-工作流中新增节点新增的数据不会自动处理“创建人”、“最后修改人”等用户数据，需要根据情况自行配置这两个字段的值。
+:::info{title="Note"}
+The "Created By" and "Last Updated By" user data are not automatically processed for data created by create nodes in workflows. You need to configure the values of these two fields according to the situation.
 :::
 
-### 预加载关系数据
+### Preload Relationship Data
 
-如果新增数据的字段中包含关系字段，且希望后续流程中使用相应的关系数据时，可以在预加载配置中勾选相应的关系字段，这样在新增数据完成后，会自动加载相应的关系数据一并储存在节点的结果数据中。
+If the fields of the data to be added contain relationship fields and you want to use the corresponding relationship data in subsequent processes, you can check the corresponding relationship fields in the preload configuration. This way, after the data is added, the corresponding relationship data will be automatically loaded and stored together in the node's result data.
 
-## 示例
+## Example
 
-例如当“文章”表的数据新增或更新后，需要自动新增一条“文章版本”数据，记录文章的一次变更历史，可以使用新增节点来实现：
+For example, when data in the "Articles" table is added or updated, a "Article Version" data record needs to be automatically added to record a change history of the article. This can be implemented using a create node:
 
-![新增节点_示例_流程配置]
-<!-- TODO: 插入图片 -->
+![Create Node_Example_Process Configuration]
+<!-- TODO: Insert image -->
 
-![新增节点_示例_节点配置]
-<!-- TODO: 插入图片 -->
+![Create Node_Example_Node Configuration]
+<!-- TODO: Insert image -->
 
-按此配置启用工作流后，当“文章”表的数据变更时，会自动新增一条“文章版本”数据，记录文章的变更历史。
+After enabling the workflow with this configuration, when data in the "Articles" table changes, an "Article Version" data record will be automatically added to record the article's change history.

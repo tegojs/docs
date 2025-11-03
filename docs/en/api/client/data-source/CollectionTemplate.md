@@ -1,6 +1,6 @@
 # CollectionTemplate
 
-用于创建数据表的模板。
+Used to create templates for data tables.
 
 
 ```ts
@@ -69,7 +69,7 @@ class CollectionTemplate {
 }
 ```
 
-其需要结合 [CollectionTemplateManager](./CollectionTemplateManager) 使用。
+Needs to be used in conjunction with [CollectionTemplateManager](./CollectionTemplateManager).
 
 ```ts
 import { Plugin, Collection, CollectionTemplate } from '@tachybase/client';
@@ -82,7 +82,7 @@ class SqlCollection extends Collection {
 
 class SqlCollectionTemplate extends CollectionTemplate {
   name = 'sql';
-  Collection = SqlCollection; // 自定义的数据表类
+  Collection = SqlCollection; // Custom data table class
   title = '{{t("SQL collection")}}';
   order = 4;
   color = 'yellow';
@@ -104,24 +104,24 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 1. 实例属性
+## 1. Instance Properties
 
 ### name
 
-模板的唯一标识符。
+Unique identifier of the template.
 
 
 ### Collection
 
-模板对应的数据表类。
+Data table class corresponding to the template.
 
-在创建数据表后，Collection 会有 [template 字段](./Collection)，用于标识该数据表是由哪个模板创建的。
+After creating a data table, Collection will have a [template field](./Collection), used to identify which template created this data table.
 
-当通过 `collectionManager.addCollections()` 添加数据表对象时，会先读取 `collection.template` 字段，然后通过 `collectionManager.getCollectionTemplate(collection.template)` 获取到 `collectionTemplate`。
+When adding data table objects through `collectionManager.addCollections()`, it will first read the `collection.template` field, then get `collectionTemplate` through `collectionManager.getCollectionTemplate(collection.template)`.
 
-读取 `collectionTemplate.Collection` 字段，并通过 `new collectionTemplate.Collection(collection)` 创建对应的实例。
+Read the `collectionTemplate.Collection` field and create the corresponding instance through `new collectionTemplate.Collection(collection)`.
 
-如果不传递 `Collection`，则会通过 `new Collection(collection)` 创建对应的实例。
+If `Collection` is not passed, the corresponding instance will be created through `new Collection(collection)`.
 
 ```ts
 class SqlCollection extends Collection {
@@ -132,7 +132,7 @@ class SqlCollection extends Collection {
 
 class SqlCollectionTemplate extends CollectionTemplate {
   name = 'sql';
-  Collection = SqlCollection; // 自定义的数据表类
+  Collection = SqlCollection; // Custom data table class
   // ...
 }
 
@@ -142,29 +142,29 @@ const userCollection = {
   // ...
 }
 
-// 内部会调用 new SqlCollection(userCollection)
+// Internally will call new SqlCollection(userCollection)
 ```
 
 ### title
 
-模板的标题。
+Title of the template.
 
 ### color
 
-模板的颜色。
+Color of the template.
 
 ### order
 
-模板的排序。
+Sorting of the template.
 
 ### events
 
-- `beforeSubmit`：提交前触发
+- `beforeSubmit`: Triggered before submission
 
 
 ### configurableProperties
 
-表单配置项。
+Form configuration items.
 
 <!-- ![](./images//collection-template-form.png) -->
 
@@ -198,19 +198,19 @@ class SqlCollectionTemplate extends CollectionTemplate {
 
 ### default
 
-表单默认值。
+Form default value.
 
 
 
-## 2. 实例方法
+## 2. Instance Methods
 
 ## 3. Utils
 
 ### getConfigurableProperties()
 
-用于获取内置的配置项字段。
+Used to get built-in configuration item fields.
 
-- 类型
+- Type
 
 ```tsx | pure
 export type DefaultConfigurableKeys =
@@ -230,7 +230,7 @@ export type DefaultConfigurableKeys =
 const getConfigurableProperties: (...keys: DefaultConfigurableKeys[]) => Record<DefaultConfigurableKeys, any>
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { getConfigurableProperties } from '@tachybase/client';

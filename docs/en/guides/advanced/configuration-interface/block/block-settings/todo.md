@@ -1,3 +1,3 @@
 # TODO
 
-补充卡片设置项中所有的图片
+Add all images in block settings

@@ -1,22 +1,22 @@
-# 如何协作编写文档
+# How to Collaborate on Documentation
 
-## 你需要安装 `pnpm` 环境
+## You Need to Install the `pnpm` Environment
 
-首先你需要安装 [pnpm](https://pnpm.io/zh/installation) 的环境
+First, you need to install the [pnpm](https://pnpm.io/installation) environment
 
 ```bash
   git clone https://github.com/tachybase/sheet
-  # 初始化
+  # Initialize
   pnpm install
-  # 项目启动
+  # Start the project
   pnpm doc:dev
-  # 然后开始愉快的开始协作吧~
+  # Then start collaborating happily~
 ```
 
-## 使用 markdown 编辑
+## Editing with Markdown
 
-如果还不熟悉，可以花费一点时间，[查看](/contribution/markdown/)
+If you're not familiar yet, you can spend some time [learning](/contribution/markdown/)
 
-## 使用 rspress 构建
+## Built with rspress
 
-如果不熟悉可以查看 [官方文档](https://rspress.dev/)
+If you're not familiar, you can check the [official documentation](https://rspress.dev/)

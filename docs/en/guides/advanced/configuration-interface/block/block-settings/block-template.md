@@ -1,17 +1,17 @@
-# 保存为卡片模板
+# Save as Block Template
 
-## 介绍
+## Introduction
 
-保存为区块模板是将区块及其关联的数据表保存为模板，在模板管理页中可以统一管理这些模板，在添加区块时，可以选择引用模板或复制模板快速创建区块。
+Saving as a block template means saving the block and its associated data table as a template. These templates can be managed centrally in the template management page. When adding blocks, you can choose to reference the template or copy the template to quickly create blocks.
 
-## 使用手册
+## User Manual
 
-自定义区块模板名称。
-
-
-在区块模板管理页中统一管理所有区块模板。
+Customize block template name.
 
 
-在添加区块时候选择引用模板或复制模板,快速创建区块。
+Manage all block templates centrally in the block template management page.
 
-更多区块模板介绍可参考 [区块模板](/handbook/ui/blocks/block-templates)
+
+When adding blocks, choose to reference or copy the template to quickly create blocks.
+
+For more block template introduction, refer to [Block Templates](/handbook/ui/blocks/block-templates)

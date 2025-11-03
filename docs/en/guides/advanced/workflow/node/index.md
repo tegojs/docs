@@ -1,41 +1,41 @@
-# 概述
+# Overview
 
-节点是工作流中逻辑编排的基本单元，一个工作流可以配置任意多个节点，每个节点的类型代表一个指令，决定了节点的行为。节点的配置即对应指令的参数，参数决定其行为的操作数据对象或其他内容。
+Nodes are the basic units of logical orchestration in workflows. A workflow can have any number of nodes configured. Each node's type represents an instruction that determines the node's behavior. The node's configuration corresponds to the instruction's parameters, which determine the data objects or other content for its behavior operations.
 
-:::info{title=提示}
-工作流的触发器不属于节点，只是以入口节点的形式展示在流程图中，但与节点是不同的概念，详情请参考[事件源](../event-source/overview.md)的内容。
+:::info{title=Note}
+The workflow trigger is not a node. It is only displayed as an entry node in the process diagram, but it is a different concept from nodes. For details, please refer to the content of [Event Sources](../event-source/overview.md).
 :::
 
-从功能角度，目前已实现的节点可以分为四大类（共 24 种节点）：
+From a functional perspective, currently implemented nodes can be divided into four major categories (a total of 24 types of nodes):
 
-- 流程控制类
-  - [条件判断](./process-control/condition.md)
-  - [延时]（插件 @tachybase/plugin-workflow-deley 提供）
-  - [结束流程](./process-control/end.md)
-  - [JSON 变量映射]（插件 @tachybase/plugin-workflow-json-variable-mapping 提供）
-  - [循环](./process-control/loop.md)（插件 @tachybase/plugin-workflow-loop 提供）
-  - [并行分支]（插件 @tachybase/plugin-workflow-parallel 提供）
-  - [流程输出]（插件 @tachybase/plugin-workflow-subflow 提供）
-  - [调用工作流]（插件 @tachybase/plugin-workflow-subflow 提供）
-  - [自定义变量]（插件 @tachybase/plugin-workflow-variable 提供）
-- 计算类
-  - [运算](./calculation/index.md)
-  - [日期计算]（插件 @tachybase/plugin-workflow-date-calculation 提供）
-  - [动态表达式运算](./calculation/dynamic-calculation.md)（插件 @tachybase/plugin-workflow-dynamic-calculation 提供）
-  - [JSON 计算]（插件 @tachybase/plugin-workflow-json-query 提供）
-- 数据表操作
-  - [新增数据](./collection/create.md)
-  - [更新数据](./collection/update.md)
-  - [删除数据](./collection/destroy.md)
-  - [查询数据](./collection/query.md)
-  - [聚合查询](./collection/aggregate.md)（插件 @tachybase/plugin-workflow-aggregate 提供）
-  - [SQL 操作](./collection/sql.md)（插件 @tachybase/plugin-workflow-sql 提供）
-- 人工处理
-  - [人工处理](./manual/manual.md)（插件 @tachybase/plugin-workflow-manual 提供）
-  - [审批](./manual/approval.md)（插件 @tachybase/plugin-workflow-approval 提供）
-- 其他扩展
-  - [TypeScript](./extension-type/typeScript.md)（插件 @tachybase/plugin-workflow-javascript 提供）
-  <!-- - [邮件发送](./mailer.md)（插件 @tachybase/plugin-workflow-mailer 提供） -->
-  <!-- - [通知](./notification.md)（插件 @tachybase/plugin-workflow-notification 提供） -->
-  - [HTTP 请求](./extension-type/request.md)（插件 @tachybase/plugin-workflow-request 提供）
-  - [响应消息]（插件 @tachybase/plugin-workflow-response-message 提供）
+- Process Control
+  - [Condition](./process-control/condition.md)
+  - [Delay] (provided by plugin @tachybase/plugin-workflow-deley)
+  - [End Process](./process-control/end.md)
+  - [JSON Variable Mapping] (provided by plugin @tachybase/plugin-workflow-json-variable-mapping)
+  - [Loop](./process-control/loop.md) (provided by plugin @tachybase/plugin-workflow-loop)
+  - [Parallel Branch] (provided by plugin @tachybase/plugin-workflow-parallel)
+  - [Process Output] (provided by plugin @tachybase/plugin-workflow-subflow)
+  - [Call Workflow] (provided by plugin @tachybase/plugin-workflow-subflow)
+  - [Custom Variable] (provided by plugin @tachybase/plugin-workflow-variable)
+- Calculation
+  - [Calculation](./calculation/index.md)
+  - [Date Calculation] (provided by plugin @tachybase/plugin-workflow-date-calculation)
+  - [Dynamic Expression Calculation](./calculation/dynamic-calculation.md) (provided by plugin @tachybase/plugin-workflow-dynamic-calculation)
+  - [JSON Calculation] (provided by plugin @tachybase/plugin-workflow-json-query)
+- Data Table Operations
+  - [Create Data](./collection/create.md)
+  - [Update Data](./collection/update.md)
+  - [Delete Data](./collection/destroy.md)
+  - [Query Data](./collection/query.md)
+  - [Aggregate Query](./collection/aggregate.md) (provided by plugin @tachybase/plugin-workflow-aggregate)
+  - [SQL Operation](./collection/sql.md) (provided by plugin @tachybase/plugin-workflow-sql)
+- Manual Processing
+  - [Manual Processing](./manual/manual.md) (provided by plugin @tachybase/plugin-workflow-manual)
+  - [Approval](./manual/approval.md) (provided by plugin @tachybase/plugin-workflow-approval)
+- Other Extensions
+  - [TypeScript](./extension-type/typeScript.md) (provided by plugin @tachybase/plugin-workflow-javascript)
+  <!-- - [Email Sending](./mailer.md) (provided by plugin @tachybase/plugin-workflow-mailer) -->
+  <!-- - [Notification](./notification.md) (provided by plugin @tachybase/plugin-workflow-notification) -->
+  - [HTTP Request](./extension-type/request.md) (provided by plugin @tachybase/plugin-workflow-request)
+  - [Response Message] (provided by plugin @tachybase/plugin-workflow-response-message)

@@ -1,25 +1,25 @@
-# 结束流程
+# End Process
 
-该节点执行时将立即结束当前执行的工作流，并以节点配置的状态结束。通常用于特定逻辑的流程控制，在满足某些逻辑条件后，跳出当前工作流，不再继续执行后续流程的处理。可类比编程语言中的 `return` 指令，用于退出当前执行的函数。
+When this node is executed, it will immediately end the currently executing workflow and end with the status configured in the node. Usually used for specific logic process control. After meeting certain logical conditions, exit the current workflow without continuing to execute subsequent process handling. Can be compared to the `return` instruction in programming languages, used to exit the currently executing function.
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“结束流程”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add an "End Process" node:
 
-<!-- ![结束流程_添加] -->
-<!-- TODO: 插入图片 -->
+<!-- ![End Process_Add] -->
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-<!-- ![结束流程_节点配置] -->
-<!-- TODO: 插入图片 -->
+<!-- ![End Process_Node Configuration] -->
+<!-- TODO: Insert image -->
 
-### 结束状态
+### End Status
 
-结束状态将影响该工作流执行计划的最终状态，可配置为“成功”或“失败”。当流程执行到该节点时，会以配置的状态立即退出。
+The end status will affect the final status of the workflow execution plan and can be configured as "Success" or "Failure". When the process executes to this node, it will immediately exit with the configured status.
 
-:::info{title=提示}
-在“操作前事件”类型的流程中使用时，会导致对发起操作的请求进行拦截。详情请参考[“操作前事件”的使用说明](../../event-source/beforeOperation.md)。
+:::info{title=Note}
+When used in "Pre-operation Event" type processes, it will cause the request that initiated the operation to be intercepted. For details, please refer to the ["Pre-operation Event" Usage Instructions](../../event-source/beforeOperation.md).
 
-同时，除了会导致对发起操作的请求进行拦截，结束状态的配置还会影响“响应消息”在该类型流程中反馈信息的状态。
+At the same time, in addition to causing the request that initiated the operation to be intercepted, the end status configuration will also affect the status of the information fed back by "Response Message" in this type of process.
 :::

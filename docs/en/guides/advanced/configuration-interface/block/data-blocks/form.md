@@ -1,21 +1,21 @@
-# 表单
+# Form
 
-## 介绍
+## Introduction
 
-表单卡片是用于构建数据输入和编辑界面的重要卡片。它具有高度的定制性，基于数据模型来使用相应的组件显示所需的字段。通过联动规则，表单卡片可以动态展示字段。此外，还可以与工作流程结合，实现自动化流程触发和数据处理，进一步提高工作效率或实现逻辑编排。
+The form block is an important block for building data input and editing interfaces. It is highly customizable and uses corresponding components to display required fields based on the data model. Through linkage rules, form blocks can dynamically display fields. In addition, it can be combined with workflows to achieve automated process triggering and data processing, further improving work efficiency or implementing logic orchestration.
 
-## 添加卡片
+## Add Block
 
 ![](/blocks/form-add.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/blocks/form-setting.png)
 
-## 配置字段
+## Configure Fields
 
 ![](/blocks/form-field.png)
 
-## 配置操作
+## Configure Actions
 
 ![](/blocks/form-action.png)

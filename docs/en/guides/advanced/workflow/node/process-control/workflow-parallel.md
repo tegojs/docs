@@ -1,31 +1,31 @@
-# 并行分支
+# Parallel Branch
 
-并行分支节点可以将流程分为多个分支，每个分支可以配置不同的节点，根据分支的模式不同，分支的执行方式也不同。在需要在同时执行多个操作的场景下，可以使用并行分支节点。
+The parallel branch node can divide the process into multiple branches, each branch can configure different nodes. Depending on the branch mode, the execution method of branches also differs. In scenarios where multiple operations need to be executed simultaneously, you can use parallel branch nodes.
 
-## 安装
+## Installation
 
-内置插件，无需安装。
+Built-in plugin, no installation required.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“并行分支”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Parallel Branch" node:
 
-![并行分支_添加]
+![Parallel Branch_Add]
 
-在流程中增加并行分支节点后，会默认增加两个子分支，同时也可以点击增加分支的按钮增加任意多个分支，每个分支都可以增加任意的节点，不需要的分支可以点击分支开始处的删除按钮删除。
+After adding a parallel branch node to the process, two sub-branches will be added by default. You can also click the add branch button to add any number of branches. Each branch can add any nodes. Unneeded branches can be deleted by clicking the delete button at the beginning of the branch.
 
-![并行分支_分支管理]
+![Parallel Branch_Branch Management]
 
-### 节点配置
+### Node Configuration
 
-#### 分支模式
+#### Branch Mode
 
-并行分支节点有以下三种模式：
+Parallel branch nodes have the following three modes:
 
-- **全部成功**：所有分支都执行成功，流程才会继续执行分支结束后的节点。否则任意分支提前终止，无论是失败、出错还是其他非成功状态，都导致整个并行分支节点以该状态提前终止，也称作“All 模式”。
-- **任意成功**：任意分支执行成功，流程就会继续执行分支结束后的节点。除非所有分支都提前终止，无论是失败、出错还是其他非成功状态，才会导致整个并行分支节点以该状态提前终止，也称作“Any 模式”。
-- **任意成功和失败**：任意分支执行成功后流程就会继续执行分支结束后的节点，但任意节点失败后，会导致整个并行以该状态提前终止，也称作“Race 模式”。
+- **All Success**: All branches must execute successfully before the process will continue to execute nodes after the branch ends. Otherwise, if any branch terminates early, whether it's failure, error, or other non-success status, it will cause the entire parallel branch node to terminate early with that status, also known as "All Mode".
+- **Any Success**: As long as any branch executes successfully, the process will continue to execute nodes after the branch ends. Unless all branches terminate early, whether it's failure, error, or other non-success status, it will cause the entire parallel branch node to terminate early with that status, also known as "Any Mode".
+- **Any Success and Failure**: After any branch executes successfully, the process will continue to execute nodes after the branch ends, but if any node fails, it will cause the entire parallel to terminate early with that status, also known as "Race Mode".
 
-不论哪种模式，都会从左到右依次尝试执行每个分支，直到满足分支预设模式的相关条件后，继续执行后续节点或提前退出。
+Regardless of which mode, each branch will be attempted to execute sequentially from left to right until the relevant conditions of the preset branch mode are met, then continue to execute subsequent nodes or exit early.

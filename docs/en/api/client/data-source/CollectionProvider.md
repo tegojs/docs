@@ -1,12 +1,12 @@
 # CollectionProvider
 
-用于提供 [Collection](./Collection.md) 实例。
+Used to provide [Collection](./Collection.md) instance.
 
-## 组件
+## Component
 
 ### CollectionProvider
 
-- 类型
+- Type
 
 ```tsx | pure
 interface CollectionProviderProps {
@@ -16,13 +16,13 @@ interface CollectionProviderProps {
 }
 ```
 
-- 详解
+- Details
 
-组件会根据 `name` 去 [CollectionManager](/core/data-source/collection-manager) 中查询数据表信息，如果查询不到，则会不进行渲染。
+The component will query data table information from [CollectionManager](/core/data-source/collection-manager) based on `name`. If not found, it will not render.
 
-`dataSource` 用于指定数据表所在的[命名空间](/core/data-source/collection-manager#datasource)，如果不指定，则默认命名空间。
+`dataSource` is used to specify the [namespace](/core/data-source/collection-manager#datasource) where the data table is located. If not specified, defaults to default namespace.
 
-- 示例
+- Example
 
 ```tsx | pure
 import { CollectionProvider } from '@tachybase/client';
@@ -41,7 +41,7 @@ const MyComponent = () => {
 
 ### useCollection()
 
-用于获取 `CollectionProvider` 传递的 `Collection` 实例。
+Used to get the `Collection` instance passed by `CollectionProvider`.
 
 ```tsx | pure
 const collection = useCollection()
@@ -50,14 +50,13 @@ console.log(collection instanceof Collection) // true
 console.log(collection);
 ```
 
-结合 Mixin 使用：
+Use with Mixin:
 
 ```tsx | pure
 const collection = useCollection<TestMixin>()
 const collection = useCollection<TestMixin & TestMixin2>()
 ```
 
-## 示例
+## Example
 
 <code src="./demos/collection/demo1.tsx"></code>
-

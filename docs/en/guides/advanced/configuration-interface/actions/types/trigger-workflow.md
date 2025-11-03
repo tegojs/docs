@@ -1,37 +1,37 @@
-# 操作配置
+# Operation Configuration
 
-根据工作流配置的上下文类型不同，在不同卡片的操作按钮配置也有所区别。
+Depending on the context type configured in the workflow, the operation button configuration in different blocks also differs.
 
-## 无上下文
+## No Context
 
 > v.1.6.0+
 
-在操作面板和其他数据卡片，均可添加“触发工作流”按钮：
+In action panels and other data blocks, "Trigger Workflow" buttons can be added:
 
-添加按钮后绑定之前创建的无上下文的工作流，以操作面板中的按钮为例：
+After adding the button, bind the previously created context-free workflow. Taking the button in the action panel as an example:
 
-![选择要绑定的工作流_无上下文](/actions/trigger-workflow-2.png)
+![Select workflow to bind_No context](/actions/trigger-workflow-2.png)
 
-## 单行记录
+## Single Row Record
 
-在任意数据卡片中，对单行数据的操作栏中都可以添加“触发工作流”按钮，如表单、表格的数据行、详情等：
+In any data block, "Trigger Workflow" buttons can be added to the operation bar for single row data, such as forms, table data rows, details, etc.:
 
-![卡片添加操作按钮_表单](/actions/trigger-workflow-11.png)
+![Block add operation button_Form](/actions/trigger-workflow-11.png)
 
-![卡片添加操作按钮_表格行](/actions/trigger-workflow-12.png)
+![Block add operation button_Table row](/actions/trigger-workflow-12.png)
 
-![卡片添加操作按钮_详情](/actions/trigger-workflow-13.png)
+![Block add operation button_Details](/actions/trigger-workflow-13.png)
 
-添加按钮后绑定之前创建的工作流：
+After adding the button, bind the previously created workflow:
 
-![按钮绑定工作流](/actions/trigger-workflow-21.png)
+![Button bind workflow](/actions/trigger-workflow-21.png)
 
-![选择要绑定的工作流](/actions/trigger-workflow-22.png)
+![Select workflow to bind](/actions/trigger-workflow-22.png)
 
-之后点击此按钮即可触发该自定义操作事件：
+After that, clicking this button will trigger this custom operation event:
 
-<!-- TODO: 这里tachybase没有实现 -->
+<!-- TODO: tachybase has not implemented this -->
 
-## 多行记录
+## Multiple Row Records
 
-<!-- TODO: 这里tachybase没有实现 -->
+<!-- TODO: tachybase has not implemented this -->

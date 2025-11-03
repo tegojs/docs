@@ -1,165 +1,165 @@
-# 如何书写 md 文档
+# How to Write Markdown Documents
 
-## 标题
+## Headings
 
-使用#标记 作为开头，中间隔开空格， 并且对应 h1-h6
+Use # marks at the beginning, with a space in between, corresponding to h1-h6
 
-**注意事项：** 搜索内容仅对一至三级标题(h1-h3)生效
+**Note:** Search functionality only applies to first through third-level headings (h1-h3)
 
-### 一级标题
+### First-Level Heading
 
-有且只有一个
-
-```html
-# 文字
-```
-
-### 二级标题
+There should be one and only one
 
 ```html
-## 文字
+# Text
 ```
 
-### 三级标题
+### Second-Level Heading
 
 ```html
-### 文字
+## Text
 ```
 
-### 四级标题
+### Third-Level Heading
 
 ```html
-#### 文字
+### Text
 ```
 
-### 五级标题
+### Fourth-Level Heading
 
 ```html
-##### 文字
+#### Text
 ```
 
-### 六级标题
+### Fifth-Level Heading
 
 ```html
-###### 文字
+##### Text
 ```
 
-## 加粗、斜体
+### Sixth-Level Heading
 
-你可以使用 `*` 或者 `_` 作为标记开头，来对文字加粗或者斜体
+```html
+###### Text
+```
 
-### 加粗
+## Bold and Italic
 
-使用 `**` 或者 `__` 来标记，成对出现
+You can use `*` or `_` as marks to make text bold or italic
 
-::: tip 例子
-`**你的文字**` : **你的文字**
+### Bold
 
-`__你的文字__` : **你的文字**
+Use `**` or `__` as marks, appearing in pairs
+
+::: tip Example
+`**Your text**` : **Your text**
+
+`__Your text__` : **Your text**
 :::
 
-### 斜体
+### Italic
 
-使用 `*` 或者 `_` 来标记， 成对出现
+Use `*` or `_` as marks, appearing in pairs
 
-::: tip 例子
-`*你的文字*` : _你的文字_
+::: tip Example
+`*Your text*` : _Your text_
 
-`_你的文字_` : _你的文字_
+`_Your text_` : _Your text_
 :::
 
-### 加粗斜体
+### Bold Italic
 
-使用`***` 或者 `___` 作为标记，成对出现
+Use `***` or `___` as marks, appearing in pairs
 
-:::tip 例子
-`***你的文字***` : **_你的文字_**
+:::tip Example
+`***Your text***` : **_Your text_**
 
-`___你的文字___` : **_你的文字_**  
+`___Your text___` : **_Your text_**  
 :::
 
-## 列表
+## Lists
 
-### 有序列表
+### Ordered Lists
 
-使用 1. 来标记，英文标点
+Use 1. as marks, with English punctuation
 
-:::tip 这是一个有序列表 `1. 测试`
+:::tip This is an ordered list `1. Test`
 
-1. 测试
-2. 测试
+1. Test
+2. Test
    :::
 
-### 无序列表
+### Unordered Lists
 
-可以使用 `-`、`+`、`*` 来写无序列表
+Can use `-`, `+`, `*` to write unordered lists
 
-::: tip 例子 `- 测试`, `+`、`*`都相同
+::: tip Example `- Test`, `+`, `*` are all the same
 
-- 测试
+- Test
 
-- 测试
+- Test
 
 :::
 
-## 引用
+## Quotes
 
-使用 `>` 标记作为开头可以嵌套
+Use `>` marks at the beginning, can be nested
 
-::: tip 例子
+::: tip Example
 
-> 这是一段引用1
+> This is a quote 1
 >
-> > 这是一段引用2
+> > This is a quote 2
 > >
-> > > 这是一段引用3
+> > > This is a quote 3
 
 :::
 
-引用可以在列表中使用
+Quotes can be used in lists
 
-## 代码块
+## Code Blocks
 
-行内代码块可以是用 "`" 来标记，成对出现
+Inline code blocks can use "`" marks, appearing in pairs
 
-`测试文本`
+`Test text`
 
-多行包裹代码块使用 " ```javascript/php/typescript... " 来包裹标记，成对出现, 语言标注说明开头标记后
+Multi-line wrapped code blocks use " ```javascript/php/typescript... " to wrap, appearing in pairs, with language annotation after the opening mark
 
 ```js
 const txt = 'test';
 ```
 
-## 超链接
+## Hyperlinks
 
-在页面加入超链接 `[文字](地址)` 或者直接是地址 `<地址>`
+Add hyperlinks to pages using `[text](address)` or directly using address `<address>`
 
-:::tip 例子
-`[文字](地址)`: [百度](https://www.baidu.com)
+:::tip Example
+`[text](address)`: [Baidu](https://www.baidu.com)
 
-`<地址>`: <https://www.baidu.com>
+`<address>`: <https://www.baidu.com>
 :::
 
-## 图片
+## Images
 
-在页面加入图片,使用 `![文字描述](地址)`
+Add images to pages using `![text description](address)`
 
-::: tip 例子
-`![测试地址](http://bbs.cnlinfo.net/up/tou/150611164743.jpg)`:![测试地址](http://bbs.cnlinfo.net/up/tou/150611164743.jpg)
+::: tip Example
+`![test address](http://bbs.cnlinfo.net/up/tou/150611164743.jpg)`:![test address](http://bbs.cnlinfo.net/up/tou/150611164743.jpg)
 :::
 
-## 表格
+## Tables
 
-快速嵌入表格
+Quickly embed tables
 
 ```html
-| 标头 | 标头 | | ---- | ---- | // 可以使用对齐方式， :- 左对齐， -: 右对齐，:-:
-居中对齐 | 单元格 | 单元格 | | 单元格 | 单元格 |
+| Header | Header | | ---- | ---- | // Can use alignment, :- left align, -: right align, :-:
+center align | Cell | Cell | | Cell | Cell |
 ```
 
-::: tip 例子
-| 表头 | 表头 |
+::: tip Example
+| Header | Header |
 | ---- | ---- |
-| 单元格 | 单元格 |
-| 单元格 | 单元格 |
+| Cell | Cell |
+| Cell | Cell |
 :::

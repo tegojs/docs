@@ -1,11 +1,11 @@
-# 普通数据表
+# General Data Table
 
-::: info &#9432; 提示
-该功能由插件 module-data-source 提供。
+::: info &#9432; Note
+This feature is provided by the module-data-source plugin.
 :::
 
-### 介绍
-适用于大部分场景的标准情况。非特殊情况都可以使用。
+### Introduction
+Suitable for most standard scenarios. Can be used in all non-special situations.
 
-### 使用手册
+### User Manual
 ![](/datasource/datasource-5.png)

@@ -1,3 +1,3 @@
-# 链接
+# Link
 
-<!-- TODO: 待补充 -->
+<!-- TODO: To be added -->

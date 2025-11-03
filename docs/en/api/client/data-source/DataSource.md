@@ -1,10 +1,10 @@
 # DataSource
 
-主要是用于获取数据源和数据源的数据表结构列表，并在获取后交给 [CollectionManager](./CollectionManager) 进行管理，其被 [DataSourceManager](./DataSourceManager) 管理。
+Mainly used to get data sources and data source data table structure lists, and after getting them, hand them over to [CollectionManager](./CollectionManager) for management. It is managed by [DataSourceManager](./DataSourceManager).
 
-## 1. 数据源定义
+## 1. Data Source Definition
 
-数据源的定义需要继承 `DataSource` 类，并实现 `getDataSource` 方法，当调用 `reload` 方法时，会调用 `getDataSource` 方法获取数据表结构。
+Data source definition needs to extend the `DataSource` class and implement the `getDataSource` method. When the `reload` method is called, the `getDataSource` method will be called to get the data table structure.
 
 ```tsx | pure
 import { DataSource } from '@tachybase/client'
@@ -19,11 +19,11 @@ class MyDataSource extends DataSource {
 }
 ```
 
-### 数据源注册
+### Data Source Registration
 
-数据源需要在插件中注册，通过 `DataSourceManager` 的 `addDataSource` 方法进行注册。
+Data sources need to be registered in plugins through the `addDataSource` method of `DataSourceManager`.
 
-初始化添加的时候 `collections` 可以为空，当调用 `reload` 方法时，会调用 `getDataSource` 方法获取数据表结构。
+When initially adding, `collections` can be empty. When the `reload` method is called, the `getDataSource` method will be called to get the data table structure.
 
 ```tsx | pure
 import { Plugin, DataSource, DataSourceOptions } from '@tachybase/client'
@@ -51,24 +51,24 @@ class MyPlugin extends Plugin {
 }
 ```
 
-- `key`：数据源的唯一标识
-- `displayName`：数据源的显示名称
-- `status`：数据源的状态 `DataSourceState`，`loaded` 表示已加载，`loading` 表示正在加载，`loading-failed` 表示加载失败, `reloading` 表示正在重新加载，`reloading-failed` 表示重新加载失败
+- `key`: Unique identifier of the data source
+- `displayName`: Display name of the data source
+- `status`: Status of the data source `DataSourceState`, `loaded` means loaded, `loading` means loading, `loading-failed` means loading failed, `reloading` means reloading, `reloading-failed` means reloading failed
   
 ```tsx | pure
 type DataSourceState = 'loading' | 'loaded' | 'loading-failed' | 'reloading' | 'reloading-failed';
 ```
-- `errorMessage`：错误信息
-- `collections`：数据表结构
+- `errorMessage`: Error message
+- `collections`: Data table structure
 
 
 
 
-## 2. 实例方法
+## 2. Instance Methods
 
 ### getDataSource()
 
-用于获取数据源信息，其会被 `reload` 方法内部调用，外部不需要调用。
+Used to get data source information, which will be called internally by the `reload` method, external calls are not needed.
 
 ``` tsx | pure
 
@@ -91,9 +91,9 @@ export abstract class DataSource {
 
 ### addReloadCallback()
 
-用于添加数据源加载完成后的回调函数。
+Used to add callback functions after data source loading is complete.
 
-- 类型
+- Type
 
 ```tsx | pure
 type LoadCallback = (collections: CollectionOptions[]) => void
@@ -105,9 +105,9 @@ class DataSource {
 
 ### removeReloadCallback()
 
-用于移除数据源加载完成后的回调函数。
+Used to remove callback functions after data source loading is complete.
 
-- 类型
+- Type
 
 ```tsx | pure
 type LoadCallback = (collections: CollectionOptions[]) => void
@@ -116,7 +116,7 @@ class DataSource {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -136,9 +136,9 @@ const MyComponent = () => {
 
 ### reload()
 
-用于重新加载数据源，会调用 `getDataSource` 方法获取数据表结构，并内部调用 `addReloadCallback` 添加的回调函数。
+Used to reload data source, will call `getDataSource` method to get data table structure, and internally call callback functions added by `addReloadCallback`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSource {
@@ -146,7 +146,7 @@ class DataSource {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -160,9 +160,9 @@ const MyComponent = () => {
 
 ### getOptions()
 
-获取数据源的配置信息列表。
+Get the configuration information list of the data source.
 
-- 类型
+- Type
 
 ```tsx | pure
 interface DataSourceOptions {
@@ -182,9 +182,9 @@ class DataSource {
 
 ### getOption(key)
 
-获取数据源的配置信息。
+Get the configuration information of the data source.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSource {
@@ -192,7 +192,7 @@ class DataSource {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {

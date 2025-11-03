@@ -1,34 +1,34 @@
-# 一对多
+# One-to-Many
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/o2m1.png)
 
-### 界面配置
+### Interface Configuration
 
-### 使用参数
+### Usage Parameters
 
 **Source Collection**
-源表，即当前字段所在的表。
+Source table, the table where the current field is located.
 
 **Target Collection**
-目标表，指与当前表建立关联的表。
+Target table, refers to the table that establishes an association with the current table.
 
 **Source Key**
-外键约束引用的字段，必须具有唯一性。
+Field referenced by the foreign key constraint, must be unique.
 
 **Foreign Key**
-目标表中的字段，用于在两个表之间建立关联。
+Field in the target table, used to establish an association between the two tables.
 
 **Target Key**
-目标表中的字段，用于在关系卡片中查看每行记录，通常是唯一性的字段。
+Field in the target table, used to view each row of records in the relationship card, usually a unique field.
 
 **ON DELETE**
-ON DELETE 是在删除父表记录时对相关子表中的外键引用操作的规则。它是外键约束定义中的一个选项。常见的 ON DELETE 选项包括：
+ON DELETE is the rule for operations on foreign key references in related child tables when deleting parent table records. It is an option in the foreign key constraint definition. Common ON DELETE options include:
 
-- **CASCADE**：当删除父表中的记录时，自动删除子表中与之关联的所有记录。
-- **SET NULL**：当删除父表中的记录时，将子表中与之关联的外键值设置为 NULL。
-- **RESTRICT**：默认选项，如果存在与父表记录关联的子表记录，拒绝删除父表记录。
-- **NO ACTION**：与 RESTRICT 相似，如果存在与父表记录关联的子表记录，拒绝删除父表记录。
+- **CASCADE**: When deleting a record in the parent table, automatically delete all associated records in the child table.
+- **SET NULL**: When deleting a record in the parent table, set the associated foreign key values in the child table to NULL.
+- **RESTRICT**: Default option, refuses to delete parent table records if associated child table records exist.
+- **NO ACTION**: Similar to RESTRICT, refuses to delete parent table records if associated child table records exist.

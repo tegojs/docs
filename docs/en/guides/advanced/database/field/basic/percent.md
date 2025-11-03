@@ -1,11 +1,11 @@
-# 百分比
+# Percent
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/percent1.png)
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

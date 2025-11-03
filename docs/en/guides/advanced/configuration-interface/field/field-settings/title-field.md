@@ -1,19 +1,19 @@
-# 标题字段
+# Title Field
 
-### 概述
+### Overview
 
-标题字段常用于关系字段组件中，用作界面上显示的关系数据标识字段。
+Title field is commonly used in relationship field components as the relationship data identifier field displayed on the interface.
 
-### 哪里可以配置标题字段
+### Where Can Title Field Be Configured
 
-#### 数据表配置标题字段
-此配置对整个系统生效。
+#### Configure Title Field in Data Table
+This configuration takes effect for the entire system.
 
 ![](../../../../../../public/title-field1.png)
 
-#### 关系字段组件配置标题字段
-此配置仅在当前卡片内生效，且具有最高优先级。
+#### Configure Title Field in Relationship Field Component
+This configuration only takes effect within the current block and has the highest priority.
 ![](../../../../../../public/title-field2.png)
 
-<!-- TODO: 添加图片 -->
-<!-- TODO: 添加图片 -->
+<!-- TODO: Add image -->
+<!-- TODO: Add image -->

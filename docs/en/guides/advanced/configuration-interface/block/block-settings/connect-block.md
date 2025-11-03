@@ -1,20 +1,20 @@
-# 连接数据卡片
+# Connect Data Block
 
-## 介绍
+## Introduction
 
-连接数据区块用于实现区块之间的筛选联动。核心在于连接两个表，其中一个作为源表（主表），另一个作为目标表（外键表），实现数据的筛选联动。连接区块的可选项为当前页面（或当前弹窗）的**同表数据区块或有关系的外键约束或是有继承关系的不同表区块**，可同时连接多个区块，无论是哪一种方式本质都是源表（主动连接的表）提供 filter 参数给目标表(被连接的表)。
+Connecting data blocks is used to implement filter linkage between blocks. The core is to connect two tables, one as the source table (main table) and the other as the target table (foreign key table), implementing data filter linkage. The available options for connecting blocks are **same-table data blocks or blocks from different tables with relationship foreign key constraints or inheritance relationships** on the current page (or current modal). Multiple blocks can be connected simultaneously. Regardless of which method, the essence is that the source table (actively connecting table) provides filter parameters to the target table (connected table).
 
-## 使用手册
+## User Manual
 
-### 筛选区块连接数据区块
+### Filter Block Connects Data Block
 
 
-### 数据区块连接数据区块
+### Data Block Connects Data Block
 
-#### 同数据表数据区块联动
+#### Same Data Table Data Block Linkage
 
-示例：订单表格区块与订单详情区块实现联动。
+Example: Order table block and order details block implement linkage.
 
-#### 关系数据表区块联动（有关系的外键约束的不同表区块）
+#### Relationship Data Table Block Linkage (different table blocks with relationship foreign key constraints)
 
-示例：订单表与客户表是多对一的关系，客户表格区块与订单表格区块实现筛选联动，查询指定客户下的订单数据。
+Example: The order table and customer table have a many-to-one relationship. Customer table block and order table block implement filter linkage, querying order data under a specified customer.

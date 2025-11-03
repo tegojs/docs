@@ -1,83 +1,83 @@
-# 变量
+# Variables
 
-## 介绍
-变量是一组标记，用来标识当前上下文中的某个值，可以在配置区块数据范围、字段默认值、联动规则、工作流等场景下使用。
+## Introduction
+Variables are a set of markers used to identify a certain value in the current context. They can be used in scenarios such as configuring block data scope, field default values, linkage rules, workflows, etc.
 
 ![2024-09-25_20-08-38-2024-09-25-20-11-51](/variables-1.png)
 
-## 现在已经支持的变量
+## Currently Supported Variables
 
-### 当前用户
+### Current User
 
-表示当前登录用户的数据。
+Represents the data of the currently logged-in user.
 
 ![20240416154950](/variables-2.png)
 
-### 当前角色
+### Current Role
 
-表示当前登录用户的角色标识（role name）。
+Represents the role identifier (role name) of the currently logged-in user.
 
 ![20240416155100](/variables-3.png)
 
-### 当前表单
+### Current Form
 
-当前表单的值，仅用于表单区块。使用场景有：
+The value of the current form, only used for form blocks. Usage scenarios include:
 
-- 当前表单的联动规则
-- 表单字段默认值（仅新增数据时有效）
-- 关系字段的数据范围设置
-- 提交操作的字段赋值配置
+- Linkage rules for current form
+- Form field default values (only valid when adding data)
+- Data scope settings for relationship fields
+- Field assignment configuration for submit operations
 
-#### 当前表单的联动规则
+#### Linkage Rules for Current Form
 
 ![20240416170732_rec_](/variables-4.gif)
 
-#### 表单字段默认值（仅新增数据时有效）
+#### Form Field Default Values (only valid when adding data)
 
 ![20240416171129_rec_](/variables-5.gif)
 
-#### 关系字段的数据范围设置
+#### Data Scope Settings for Relationship Fields
 
-用于处理关系之间的联动，例如：
+Used to handle linkage between relationships, for example:
 
 ![20240416171743_rec_](/variables-6.gif)
 
-#### 提交操作的字段赋值配置
+#### Field Assignment Configuration for Submit Operations
 
 ![20240416171215_rec_](/variables-7.gif)
 
-### 当前对象
+### Current Object
 
-目前仅用于表单区块的子表单和子表格的字段配置，表示其每一项的值：
+Currently only used for field configuration of sub-forms and sub-tables in form blocks, representing the value of each item:
 
-- 子字段的默认值
-- 子关系字段的数据范围
+- Default values for sub-fields
+- Data scope for sub-relationship fields
 
-#### 子字段的默认值
+#### Default Values for Sub-fields
 
 ![20240416172933_rec_](/variables-8.gif)
 
-#### 子关系字段的数据范围
+#### Data Scope for Sub-relationship Fields
 
 ![20240416173043_rec_](/variables-9.gif)
 
-<!-- ### 上级对象 -->
-<!-- 这个tachybase应该没有的 -->
+<!-- ### Parent Object -->
+<!-- This should not exist in tachybase -->
 
-### 当前记录
+### Current Record
 
-记录是指数据表中的行，每一行代表着一条记录。在展示类的区块的**行操作的联动规则**里都有「当前记录」变量。
+A record refers to a row in a data table, with each row representing a record. There is a "Current Record" variable in **linkage rules for row operations** in display-type blocks.
 
-#### 行操作的联动规则
+#### Linkage Rules for Row Operations
 
 ![20240416174813_rec_](/variables-10.gif)
 
-<!-- ### 当前弹窗记录
-tachybase 未实现弹窗逻辑 -->
+<!-- ### Current Modal Record
+tachybase has not implemented modal logic -->
 
-### 日期变量
+### Date Variables
 
-相关变量有：
+Related variables include:
 
 - Current time
 - Yesterday
@@ -105,22 +105,22 @@ tachybase 未实现弹窗逻辑 -->
 <br />
 
 :::warning
-除了当前时间（Current time）为时刻（字符串），其他的日期变量都是时段（数组），目前时段只能用在数据范围中，不能用在字段默认值中。
+Except for current time (Current time) which is a moment (string), other date variables are time periods (arrays). Currently, time periods can only be used in data scope, not in field default values.
 :::
 
-相关使用场景有：
+Related usage scenarios include:
 
-- 区块数据范围的日期字段条件设置
-- 关系字段的数据范围的日期字段条件设置
-- 操作联动规则的日期字段条件设置
-- 日期字段默认值设置
+- Date field condition settings for block data scope
+- Date field condition settings for relationship field data scope
+- Date field condition settings for operation linkage rules
+- Date field default value settings
 
-<!-- tachybase 未实现 -->
-<!-- ### URL 查询参数 -->
+<!-- tachybase not implemented -->
+<!-- ### URL Query Parameters -->
 <!-- 
-该变量表示的是当前页面 URL 中的查询参数，只有当页面 URL 中存在查询字符串时该变量才是可用状态。配合[链接操作]()一起使用会更方便。
+This variable represents the query parameters in the current page URL. This variable is only available when there is a query string in the page URL. It is more convenient to use together with [Link Operation]().
 
 
 ### API token
 
-该变量的值是一个字符串，是用于访问 NocoBase API 的凭证。可以用于验证用户的身份。 -->
+The value of this variable is a string, which is a credential for accessing the NocoBase API. It can be used to verify the user's identity. -->

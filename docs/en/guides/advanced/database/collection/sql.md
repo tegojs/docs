@@ -1,44 +1,44 @@
-# SQL 数据表
+# SQL Data Table
 
-::: info &#9432; 提示
-该功能由插件 module-data-source 提供。
+::: info &#9432; Note
+This feature is provided by the module-data-source plugin.
 :::
 
-### 介绍
-SQL collection 通过 SQL 语句提取数据，并在配置字段元数据后，使用户能够像使用普通表一样，将其应用于表格、图表、工作流等场景，适用于关联查询、统计分析等需求。
+### Introduction
+SQL collection extracts data through SQL statements and, after configuring field metadata, enables users to apply it to tables, charts, workflows, and other scenarios just like using regular tables, suitable for relational queries, statistical analysis, and other needs.
 
-### 使用手册
+### User Manual
 
-#### 新建
+#### Create New
 ![](/datasource/datasource-17.png)
-1. 在 SQL 输入框输入 SQL 语句并点击执行 (Execute) 后，系统会解析 SQL 语句，识别其中使用的表和字段，并从来源表中提取字段元数据。
+1. After entering an SQL statement in the SQL input box and clicking Execute, the system will parse the SQL statement, identify the tables and fields used, and extract field metadata from the source tables.
 ![](/datasource/datasource-18.png)
-2. 如果系统自动解析的来源表和字段不正确，可以手动指定对应的表和字段，以确保使用正确的字段元数据。在操作时，需要先选择来源表，随后才能在字段来源中选择该表的字段。
+2. If the system's automatic parsing of source tables and fields is incorrect, you can manually specify the corresponding tables and fields to ensure the correct field metadata is used. When operating, you need to first select the source table, and then you can select fields from that table in the field source.
 ![](/datasource/datasource-19.png)
-3. 如果字段没有对应的来源字段，系统会根据数据类型自动推断字段类型。若推断结果不准确，用户可以手动调整字段类型，以确保数据正确解析和使用。
+3. If a field has no corresponding source field, the system will automatically infer the field type based on the data type. If the inference result is inaccurate, users can manually adjust the field type to ensure data is correctly parsed and used.
 ![](/datasource/datasource-20.png)
-4. 在配置字段时，预览区域会同步显示相应的展示效果，方便用户直观检查和调整字段设置。
+4. When configuring fields, the preview area will synchronously display the corresponding display effect, making it convenient for users to visually inspect and adjust field settings.
 ![](/datasource/datasource-21.png)
-5. 配置完成并确认无误后，需要点击 SQL 输入框下方的 确认 (Confirm) 按钮，以完成最终提交。
+5. After configuration is complete and confirmed to be correct, you need to click the Confirm button below the SQL input box to complete the final submission.
 ![](/datasource/datasource-22.png)
-#### 编辑
+#### Edit
 
-1. 当 SQL 语句发生变化时，可以点击“修改” (Edit) 按钮直接编辑 SQL 语句并重新配置字段。
+1. When the SQL statement changes, you can click the "Edit" button to directly edit the SQL statement and reconfigure fields.
 
-2. 若需修改字段元数据，可以通过“配置字段” (Configure fields) 进行操作，类似于普通表的字段配置。
+2. If you need to modify field metadata, you can do so through "Configure fields", similar to field configuration for regular tables.
 
-#### 同步
+#### Sync
 
-1. 当 SQL 语句未发生变化但数据库表结构有变更时，可以通过点击“配置字段” (Configure fields) - “从数据库同步” (Sync from database) 来同步和配置字段。
+1. When the SQL statement has not changed but the database table structure has changed, you can sync and configure fields by clicking "Configure fields" - "Sync from database".
 ![](/datasource/datasource-23.png)
 
-#### SQL数据表对比连接数据库试图
+#### SQL Data Table vs Connect Database View
 
-|数据表类型|使用场景|实现原理|增删改支持|
+|Data Table Type|Use Case|Implementation Principle|Add/Delete/Modify Support|
 |:---------:|:------:|:-------:|:--------:|
-|SQL数据表| 模型较简单且适用于轻量级场景; 不方便操作数据库; 不想维护; 试图希望能够完全通过用户界面(UI)进行操作|SQL子查询|不支持|
-|数据库视图| 数据库需要较为良好且稳定; 有数据库交互需求; 修改数据需求; 模型较为复杂 |数据库视图|支持部分|
+|SQL Data Table| Model is relatively simple and suitable for lightweight scenarios; inconvenient to operate database; don't want to maintain; view wishes to be fully operated through user interface (UI)|SQL subquery|Not supported|
+|Database View| Database needs to be relatively good and stable; has database interaction needs; data modification needs; model is relatively complex |Database view|Partially supported|
 
 ::: warning &#9888; WARNING
-在使用 SQL 表时，请选择在灵矶中可管理的数据表。如果选择同一数据库下未接入灵矶的其他表，可能会导致 SQL 语句解析不准确。如果有这种需求，可以考虑通过创建视图并进行连接。
+When using SQL tables, please select data tables manageable in Tachybase. If you select other tables in the same database that are not connected to Tachybase, it may cause SQL statement parsing to be inaccurate. If you have this need, you can consider creating a view and connecting it.
 :::

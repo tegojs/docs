@@ -1,22 +1,22 @@
-# 卡片模板
+# Block Templates
 
-## 介绍
+## Introduction
 
-将一个数据类型区块保存为模板，以后添加区块时可以直接复制或引用这个模板。如一个数据表的表单，既用于新增数据，又用于编辑数据，那就可以将这个表单保存为模板，在新增数据和编辑数据的界面里引用它。
+Save a data type block as a template. When adding blocks in the future, you can directly copy or reference this template. For example, if a form for a data table is used both for adding data and editing data, then this form can be saved as a template and referenced in the interfaces for adding and editing data.
 
-## 如何添加和使用模板？
+## How to Add and Use Templates?
 
-1. 将数据区块保存为区块模板。
-
-
-1. 添加区块时，选择复制或引用模板。
+1. Save a data block as a block template.
 
 
-## 复制和引用的区别
+1. When adding blocks, select to copy or reference the template.
 
-复制是基于区块模板创建的全新区块，区块有调整不影响模块；引用是直接使用区块模板，区块调整会改变模板，所有引用了当前模板的区块都会产生变化。
 
-## 注意事项
+## Difference Between Copy and Reference
 
-- 使用关系区块创建的模板，只能用于创建关系区块。
-- 使用非关系区块创建的模板，只能用于创建非关系区块。
+Copy creates a brand new block based on the block template. Block adjustments do not affect the module. Reference directly uses the block template. Block adjustments will change the template, and all blocks that reference the current template will change.
+
+## Notes
+
+- Templates created using relationship blocks can only be used to create relationship blocks.
+- Templates created using non-relationship blocks can only be used to create non-relationship blocks.

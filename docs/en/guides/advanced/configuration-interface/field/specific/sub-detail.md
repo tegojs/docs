@@ -1,18 +1,18 @@
-# 子详情
+# Sub-detail
 
-### 概述
+### Overview
 
-子详情是子表单在阅读模式下的对应组件，与标签和标题组件相比，子详情不仅可以展示更多本表数据，还能配置展示关系表数据。多层级的关系数据通过嵌套详情的形式清晰展示。
+Sub-detail is the corresponding component of sub-form in read mode. Compared to tag and title components, sub-detail can not only display more current table data, but can also configure to display relationship table data. Multi-level relationship data is clearly displayed through nested details form.
 
-### 使用说明
+### Usage Instructions
 
-#### 对多的关系字段子详情
+#### To-many relationship field sub-detail
 ![](/field/field-14.png)
-支持多层关系字段的嵌套显示。
+Supports nested display of multi-level relationship fields.
 
-#### 对一的关系字段子详情
-适用于一对一的关系字段，展示相关数据。
+#### To-one relationship field sub-detail
+Suitable for one-to-one relationship fields, displaying related data.
 ![](/field/field-12.png)
 
-#### 字段组件
-支持切换为其他关系[字段组件](../field-settings/field-component.md)，如下拉选择、数据选择器等。
+#### Field Component
+Supports switching to other relationship [Field Components](../field-settings/field-component.md), such as dropdown select, data picker, etc.

@@ -1,6 +1,6 @@
 # CollectionField
 
-字段的 schema 分为 2 部分，一部分在 schema 中，一部分在 collection 中。例如：
+The schema of a field is divided into 2 parts, one part in schema, one part in collection. For example:
 
 ```tsx | pure
 const schema = {
@@ -30,15 +30,15 @@ const collection = {
 }
 ```
 
-两者通过 `name: username` 联系起来，`CollectionField` 会自动读取 schema `name` 属性，并根据 `name` 属性查找 collection 中对应的 `uiSchema` 属性，然后拼接到 schema 中，进行渲染。
+The two are connected through `name: username`. `CollectionField` will automatically read the schema `name` property, find the corresponding `uiSchema` property in the collection based on the `name` property, then splice it into the schema for rendering.
 
-这样做的好处是，对于同一个字段创建的内容，可以在不同的地方共享同一个 schema，当 schema 变化时，只需要修改一处即可。比如通过上面的 `title:  "UserName"` 假设变化 `title: "Name"` 则所有使用到此字段的地方都会变化。
+The benefit of doing this is that content created for the same field can share the same schema in different places. When the schema changes, only one place needs to be modified. For example, if the above `title: "UserName"` changes to `title: "Name"`, all places using this field will change.
 
 <code src="./demos/collection-field/demo1.tsx"></code>
 
 ## 1. CollectionFieldOptions
 
-字段的配置项。
+Field configuration items.
 
 ```ts
 interface CollectionFieldOptions {
@@ -52,13 +52,13 @@ interface CollectionFieldOptions {
 }
 ```
 
-### 普通字段和关系字段
+### Regular Fields and Relationship Fields
 
-字段有 2 种情况，一种是普通字段，一种是关系字段。
+There are 2 types of fields: regular fields and relationship fields.
 
-关系字段是指，字段的值是另一个 collection 的数据，例如 `users` 和 `roles` 两个 collection，`users` 中有一个字段 `roles`，其值是 `roles` collection 的数据，那么 `roles` 就是一个关系字段。
+Relationship fields mean that the field's value is data from another collection. For example, `users` and `roles` are two collections. `users` has a field `roles`, and its value is data from the `roles` collection, so `roles` is a relationship field.
 
-普通字段的示例如下：
+Example of regular field:
 
 ```json
 {
@@ -81,7 +81,7 @@ interface CollectionFieldOptions {
 }
 ```
 
-关系字段的示例如下：
+Example of relationship field:
 
 ```json
 {
@@ -116,17 +116,17 @@ interface CollectionFieldOptions {
 ```
 
 
-### 全部字段说明
+### All Field Descriptions
 
-- `name`：字段名称
-- `collectionName`：数据表名称
-- `sourceKey`：当字段为关系字段时，对应的关系字段名称。
+- `name`: Field name
+- `collectionName`: Data table name
+- `sourceKey`: When field is a relationship field, the corresponding relationship field name.
 
 ## 2. Hooks
 
 ### useCollectionField()
 
-用于获取字段信息。
+Used to get field information.
 
 ```tsx | pure
 const collection = {
@@ -150,9 +150,6 @@ const { uiSchema } = useCollectionField()
 const required = uiSchema?.required
 ```
 
-其通常在 SchemaSettings 中使用，用来获取和修改字段的属性。
+Usually used in SchemaSettings to get and modify field properties.
 
 <code src="./demos/collection-field/demo2.tsx"></code>
-
-
-

@@ -4,55 +4,55 @@
 
 ```ts
 class APIClient {
-  // axios 实例
+  // axios instance
   axios: AxiosInstance;
-  // 缓存带 uid 的 useRequest({}, {uid}) 的结果，可供其他组件调用
+  // Cache results of useRequest({}, {uid}) with uid, can be called by other components
   services: Record<string, Result<any, any>>;
-  // 构造器
+  // Constructor
   constructor(instance?: AxiosInstance | AxiosRequestConfig);
-  // 客户端请求，支持 AxiosRequestConfig 和 ResourceActionOptions
+  // Client request, supports AxiosRequestConfig and ResourceActionOptions
   request<T = any, R = AxiosResponse<T>, D = any>(config: AxiosRequestConfig<D> | ResourceActionOptions): Promise<R>;
-  // 获取资源
+  // Get resource
   resource<R = IResource>(name: string, of?: any): R;
 }
 ```
 
-示例
+Example
 
 ```ts
 import axios from 'axios';
 
-// 不传参时，内部直接创建 axios 实例
+// When no parameters are passed, axios instance is created internally
 const apiClient = new APIClient();
 
-// 提供 AxiosRequestConfig 配置参数
+// Provide AxiosRequestConfig configuration parameters
 const apiClient = new APIClient({
   baseURL: '',
 });
 
-// 提供 AxiosInstance
+// Provide AxiosInstance
 const instance = axios.create({
   baseURL: '',
 });
 const apiClient = new APIClient(instance);
 
-// 常规请求
+// Regular request
 const response = await apiClient.request({ url });
 
-// Tachybase 特有的资源操作
+// Tachybase specific resource operations
 const response = await apiClient.resource('posts').list();
 
-// 请求共享
+// Request sharing
 const { data, loading, run } = apiClient.service('uid');
 ```
 
-`api.service(uid)` 的例子，ComponentB 里刷新 ComponentA 的请求数据
+Example of `api.service(uid)`, ComponentB refreshes ComponentA's request data
 
 <code src="./demos/demo3.tsx"></code>
 
 ## APIClientProvider
 
-提供 APIClient 实例的上下文。
+Context that provides APIClient instance.
 
 ```tsx | pure
 const apiClient = new APIClient();
@@ -62,7 +62,7 @@ const apiClient = new APIClient();
 
 ## useAPIClient
 
-获取当前上下文的 APIClient 实例。
+Get the APIClient instance of the current context.
 
 ```ts
 const apiClient = useAPIClient();
@@ -77,12 +77,12 @@ function useRequest<P>(
 );
 ```
 
-支持 `axios.request(config)`，config 详情查看 [axios](https://github.com/axios/axios#request-config)
+Supports `axios.request(config)`, for config details see [axios](https://github.com/axios/axios#request-config)
 
 ```ts
 const { data, loading, refresh, run, params } = useRequest({ url: '/users' });
 
-// useRequest 里传的是 AxiosRequestConfig，所以 run 里传的也是 AxiosRequestConfig
+// useRequest passes AxiosRequestConfig, so run also passes AxiosRequestConfig
 run({
   params: {
     pageSize: 20,
@@ -90,11 +90,11 @@ run({
 });
 ```
 
-例子如下：
+Example:
 
 <code src="./demos/demo2.tsx"></code>
 
-或者是 Tachybase 的 resource & action 请求：
+Or Tachybase's resource & action requests:
 
 ```ts
 const { data, run } = useRequest({
@@ -105,17 +105,17 @@ const { data, run } = useRequest({
   },
 });
 
-// useRequest 传的是 ResourceActionOptions，所以 run 直接传 action params 就可以了。
+// useRequest passes ResourceActionOptions, so run can directly pass action params.
 run({
   pageSize: 50,
 });
 ```
 
-例子如下：
+Example:
 
 <code src="./demos/demo1.tsx"></code>
 
-也可以是自定义的异步函数：
+Can also be a custom async function:
 
 ```ts
 const { data, loading, run, refresh, params } = useRequest((...params) => Promise.resolve({}));
@@ -123,7 +123,7 @@ const { data, loading, run, refresh, params } = useRequest((...params) => Promis
 run(...params);
 ```
 
-更多用法查看 ahooks 的 [useRequest()](https://ahooks.js.org/hooks/use-request/index)
+For more usage, see ahooks' [useRequest()](https://ahooks.js.org/hooks/use-request/index)
 
 ## useResource
 
@@ -131,21 +131,21 @@ run(...params);
 function useResource(name: string, of?: string | number): IResource;
 ```
 
-资源是 Tachybase 的核心概念，包括：
+Resource is a core concept in Tachybase, including:
 
-- 独立资源，如 `posts`
-- 关系资源，如 `posts.tags` `posts.user` `posts.comments`
+- Independent resources, such as `posts`
+- Relationship resources, such as `posts.tags` `posts.user` `posts.comments`
 
-资源 URI
+Resource URI
 
 ```bash
-# 独立资源，文章
+# Independent resource, articles
 /api/posts
-# 关系资源，文章 ID=1 的评论
+# Relationship resource, comments for article ID=1
 /api/posts/1/comments
 ```
 
-通过 APIClient 获取资源
+Get resource through APIClient
 
 ```ts
 const api = new APIClient();
@@ -154,7 +154,7 @@ api.resource('posts');
 api.resource('posts.comments', 1);
 ```
 
-useResource 用法：
+useResource usage:
 
 ```ts
 const resource = useResource('posts');

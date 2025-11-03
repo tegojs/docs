@@ -1,75 +1,75 @@
-# 快速入门
+# Quick Start
 
-## 配置一个工作流
+## Configure a Workflow
 
-从顶部菜单栏的插件配置菜单进入工作流插件的管理页面：
+Enter the workflow plugin management page from the plugin configuration menu in the top menu bar:
 ![](/workflow/workflow-1.png)
 
-管理界面中会列出所有已创建的工作流：
+The management interface will list all created workflows:
 ![](/workflow/workflow-2.png)
 
 
-点击“新建”按钮，创建一个新的工作流，选择数据表事件：
+Click the "Create" button to create a new workflow, select data table event:
 
 ![](/workflow/workflow-3.png)
 
 
-点击列表中的“配置”链接，进入工作流配置界面：
+Click the "Configure" link in the list to enter the workflow configuration interface:
 
 ![](/workflow/workflow-4.png)
 
-然后点击触发器的卡片，打开触发器配置抽屉，选择一张之前创建的数据表（例如“用户”表），点击“保存”按钮，完成触发器的配置：
+Then click on the trigger card to open the trigger configuration drawer, select a previously created data table (for example, the "Users" table), and click the "Save" button to complete the trigger configuration:
 
 ![](/workflow/workflow-5.png)
 
-接下来我们可以点击流程中的加号按钮为流程增加一个节点，例如选择一个运算节点，用于将触发器中的数据的“标题”字段与“ID”字段进行拼接计算：
+Next, we can click the plus button in the process to add a node to the process. For example, select a calculation node to concatenate the "Title" field and "ID" field of the data in the trigger:
 
 ![](/workflow/workflow-6.png)
 
-点击节点卡片打开节点配置抽屉，使用 Formula.js 提供的运算函数 `CONCATENATE`，拼接“标题”与“ID”字段，两个字段通过变量选择器插入：
+Click on the node card to open the node configuration drawer, use the calculation function `CONCATENATE` provided by Formula.js to concatenate the "Title" and "ID" fields. Both fields are inserted through the variable selector:
 
 ![](/workflow/workflow-7.png)
 
-之后再创建一个更新数据节点，用于将结果保存到“标题”字段中：
+Then create an update data node to save the result in the "Title" field:
 ![](/workflow/workflow-8.png)
 
 
-同样地，点击卡片打开更新数据节点的配置抽屉，选择“用户”表，更新的数据 ID 选择触发器中的数据 ID，更新的数据项选择“标题”，更新的数据值选择运算节点的结果：
+Similarly, click on the card to open the update data node configuration drawer, select the "Users" table, select the trigger data ID for the data ID to update, select "Title" for the data item to update, and select the calculation node result for the data value to update:
 ![](/workflow/workflow-9.png)
 
 
-最后再点击右上角工具栏里的“启用”/“停用”开关，将工作流切换至启用状态，这样工作流就可以被触发执行了。
+Finally, click the "Enable"/"Disable" switch in the toolbar at the top right to switch the workflow to the enabled state, so the workflow can be triggered and executed.
 
-## 触发工作流
+## Trigger the Workflow
 
-返回工作流列表界面，点击右侧test，输入想要的数据或直接点击运行，或通过事件源事件进行触发。
+Return to the workflow list interface, click test on the right, enter the desired data or click run directly, or trigger through event source events.
 ![](/workflow/workflow-10.png)
 
-## 查看执行历史
+## View Execution History
 
-刚才的工作流已经成功触发执行了一次，我们可以回到工作流的管理界面中查看到对应的执行历史：
+The workflow we just ran has been successfully triggered and executed once. We can return to the workflow management interface to view the corresponding execution history:
 
 ![](/workflow/workflow-11.png)
 
-工作流列表中可以看到这个工作流已经产生了一次执行历史，点击次数的链接，可以打开对应工作流的执行历史记录：
+In the workflow list, you can see that this workflow has generated one execution history. Click on the count link to open the execution history records of the corresponding workflow:
 
 ![](/workflow/workflow-12.png)
 
-再点击“查看”链接可以进入到当次执行的详情页面，可以看到每个节点的执行状态和结果数据：
+Click the "View" link again to enter the details page of that execution, where you can see the execution status and result data of each node:
 
 ![](/workflow/workflow-13.png)
 
-触发器的上下文数据和节点执行的结果数据都可以通过点击对应卡片右上角的状态按钮打开查看，比如我们查看其中运算节点的结果数据：
+The trigger's context data and the node execution result data can be viewed by clicking the status button in the upper right corner of the corresponding card. For example, let's view the result data of the calculation node:
 
 ![](/workflow/workflow-14.png)
 
-可以看到运算节点的结果数据中包含了运算后的标题，这个标题就是后续更新数据节点更新的数据。
+You can see that the result data of the calculation node contains the calculated title, which is the data updated by the subsequent update data node.
 
-## 小结
+## Summary
 
-通过上面的步骤，我们已经完成了一个简单的工作流的配置和触发，也接触了以下几个基础概念：
+Through the above steps, we have completed the configuration and triggering of a simple workflow and have been introduced to the following basic concepts:
 
-- **工作流**：用于定义流程的基本信息，包括名称、触发器类型和启用状态等，可在其中配置任意多个执行节点，是承载流程的实体。
-- **触发器**：每个工作流都包含一个触发器，可配置为工作流被触发的特定条件，是流程的入口。
-- **节点**：节点是工作流内的执行特定操作的指令单元，工作流中多个节点之间通过上下游关系组成完整的执行流程。
-- **执行计划**：执行计划是工作流触发后的具体执行对象，也称为执行记录或执行历史，包含了执行的状态、触发上下文数据等信息。其中针对每个节点也有对应的执行结果，包含了节点执行后的状态和结果数据信息。
+- **Workflow**: Used to define the basic information of a process, including name, trigger type, and enabled status, etc. Any number of execution nodes can be configured within it, and it is the entity that carries the process.
+- **Trigger**: Each workflow contains a trigger, which can be configured as a specific condition for the workflow to be triggered, and is the entry point of the process.
+- **Node**: A node is an instruction unit that performs specific operations within a workflow. Multiple nodes in a workflow form a complete execution process through upstream and downstream relationships.
+- **Execution Plan**: The execution plan is the specific execution object after the workflow is triggered, also known as execution record or execution history. It contains information such as execution status and trigger context data. There are also corresponding execution results for each node, containing node execution status and result data information.

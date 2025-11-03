@@ -1,40 +1,40 @@
-# 多对多
+# Many-to-Many
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/m2m1.png)
 
-### 界面配置
+### Interface Configuration
 
-### 使用参数
+### Usage Parameters
 
 **Source Collection**
-源表，指当前字段所在的表。
+Source table, refers to the table where the current field is located.
 
 **Target Collection**
-目标表，指与当前表进行关联的表。
+Target table, refers to the table that is associated with the current table.
 
 **Through Collection**
-中间表，用于存储两个实体之间的多对多关系。中间表通常有两个外键，分别表示两个实体之间的关联。
+Intermediate table, used to store many-to-many relationships between two entities. The intermediate table typically has two foreign keys, representing the associations between the two entities.
 
 **Source Key**
-外键约束所引用的字段，必须具有唯一性。
+Field referenced by the foreign key constraint, must be unique.
 
 **Foreign Key 1**
-中间表中的字段，用于与源表建立关联。
+Field in the intermediate table, used to establish association with the source table.
 
 **Foreign Key 2**
-中间表中的字段，用于与目标表建立关联。
+Field in the intermediate table, used to establish association with the target table.
 
 **Target Key**
-外键约束所引用的字段，必须具备唯一性。
+Field referenced by the foreign key constraint, must be unique.
 
 **ON DELETE**
-ON DELETE 是用来定义在删除父表记录时对子表中外键引用的操作规则。常见的 ON DELETE 选项有：
+ON DELETE is used to define the operation rules for foreign key references in child tables when deleting parent table records. Common ON DELETE options include:
 
-- **CASCADE**：删除父表记录时，自动删除所有与之相关联的子表记录。
-- **SET NULL**：删除父表记录时，将子表中相关联的外键值设为 NULL。
-- **RESTRICT**：默认选项，若子表中存在关联记录，禁止删除父表记录。
-- **NO ACTION**：与 RESTRICT 类似，如果子表中存在关联记录，则禁止删除父表记录。
+- **CASCADE**: When deleting a parent table record, automatically delete all associated child table records.
+- **SET NULL**: When deleting a parent table record, set the associated foreign key values in the child table to NULL.
+- **RESTRICT**: Default option, prohibits deletion of parent table records if associated child table records exist.
+- **NO ACTION**: Similar to RESTRICT, prohibits deletion of parent table records if associated child table records exist.

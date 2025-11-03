@@ -1,15 +1,15 @@
-# 事件源概览
+# Event Source Overview
 
-事件源是工作流的触发入口，当应用运行过程中满足事件源条件的事件产生时，工作流将会被触发执行。目前已支持的事件源类型如下：
+Event sources are the trigger entry points for workflows. When an event that meets the event source conditions occurs during application runtime, the workflow will be triggered for execution. Currently supported event source types are as follows:
 
-- [数据库事件](./set.md)
-- [应用事件](./application.md)
-- [资源操作前事件](./beforeOperation.md)
-- [资源操作后事件](./afterOperation.md)
-- [自定义资源操作](./customize.md)
+- [Database Events](./set.md)
+- [Application Events](./application.md)
+- [Pre-Resource Operation Events](./beforeOperation.md)
+- [Post-Resource Operation Events](./afterOperation.md)
+- [Custom Resource Operations](./customize.md)
 
-比如用户提交一个表单，或者数据表中的数据由于用户操作或程序调用发生变化，都会触发事件源并调用工作流执行。
+For example, when a user submits a form, or data in a data table changes due to user operations or program calls, it will trigger the event source and invoke workflow execution.
 
-与数据有关的事件源（如操作、数据库事件）通常会携带触发上下文数据，这些数据可以在工作流的节点中被引用，用以实现数据的自动化处理。例如当用户提交一个表单进行修改，事件源会监听并调用相对应的工作流，表单提交的数据会被注入到执行计划的上下文环境中，以供后续节点作为变量使用。
+Event sources related to data (such as operations, database events) usually carry trigger context data, which can be referenced in workflow nodes to implement automated data processing. For example, when a user submits a form for modification, the event source will monitor and call the corresponding workflow, and the data submitted by the form will be injected into the execution plan's context environment for subsequent nodes to use as variables.
 
-创建工作流以后，在工作流查看页面中，事件源触发会以入口节点的样式显示在流程的开始位置，点击该卡片即可打开配置抽屉。根据事件源的类型不同，可以配置相关条件。
+After creating a workflow, on the workflow view page, the event source trigger will be displayed as an entry node style at the beginning of the process. Clicking on this card will open the configuration drawer. Depending on the type of event source, relevant conditions can be configured.

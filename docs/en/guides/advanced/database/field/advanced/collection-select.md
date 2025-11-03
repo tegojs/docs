@@ -1,11 +1,11 @@
-# 数据表选择器
+# Collection Selector
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/collection_select1.png)
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

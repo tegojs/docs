@@ -1,10 +1,10 @@
 # DataBlockRequestProvider
 
-其内部获取到 [BlockResourceProvider](./DataBlockResourceProvider) 提供的 `resource`，根据 [BlockProvider](./DataBlockProvider) 提供的参数，自动调用 `resource.get()` 或者 `resource.list()` 获取的卡片的数据，并通过 context 传递下去。
+Internally gets the `resource` provided by [BlockResourceProvider](./DataBlockResourceProvider), and automatically calls `resource.get()` or `resource.list()` based on parameters provided by [BlockProvider](./DataBlockProvider) to get block data, and passes it down through context.
 
-## 请求参数
+## Request Parameters
 
-请求参数是获取 `DataBlockProvider` 提供中的 `params` 和 `filterByTk`。
+Request parameters are `params` and `filterByTk` obtained from what `DataBlockProvider` provides.
 
 ```ts | pure
 const schema = {
@@ -12,12 +12,12 @@ const schema = {
   'x-decorator-props': {
     'collection': 'users',
     'action': 'list',
-    // 静态参数
+    // Static parameters
     params: {
       pageSize: 10,
     }
   },
-  // 动态参数
+  // Dynamic parameters
   'x-use-decorator-props': 'useDynamicDataBlockProps',
 }
 
@@ -30,13 +30,13 @@ const useDynamicDataBlockProps: UseDataBlockProps<'CollectionList'>  = () => {
 }
 ```
 
-会自动调用 `resource.list()` 获取数据，发起 `GET /api/users:list?pageSize=10&size=15` 的请求。
+Will automatically call `resource.list()` to get data, initiating a `GET /api/users:list?pageSize=10&size=15` request.
 
 ## Hooks
 
 ### useDataBlockRequest()
 
-用于获取请求对象，一般用卡片组件中。
+Used to get request object, generally used in block components.
 
 ```tsx | pure
 const MyTable = () => {
@@ -58,18 +58,18 @@ const MyTable = () => {
 
 ## Record
 
-### Get 请求
+### Get Request
 
-对于 `get` 请求，当获取到 `data` 数据后，会通过 `CollectionRecordProvider` 提供 `record` 对象，用于获取当前卡片的数据。
+For `get` requests, after getting `data`, will provide `record` object through `CollectionRecordProvider` for getting the current block's data.
 
 ```ts | pure
 const schema = {
   'x-decorator': 'DataBlockProvider',
   'x-decorator-props': {
     'collection': 'users',
-    'action': 'get', // get 请求
+    'action': 'get', // get request
   },
-  // 动态参数
+  // Dynamic parameters
   'x-use-decorator-props': 'useDynamicFormProps',
 }
 
@@ -82,19 +82,19 @@ const useDynamicDataBlockProps: UseDataBlockProps<'CollectionGet'>  = () => {
 }
 ```
 
-会自动调用 `resource.get()` 获取数据，发起 `GET /api/users:get/1` 的请求，并通过 `CollectionRecordProvider` 提供上下文。
+Will automatically call `resource.get()` to get data, initiating a `GET /api/users:get/1` request, and provide context through `CollectionRecordProvider`.
 
 ```tsx | pure
 const { data } = useDataBlockRequest();
-const record = useCollectionRecord(); // record 上下文数据
+const record = useCollectionRecord(); // record context data
 
-// 相等
+// Equal
 record.data === data;
 ```
 
-### List 请求
+### List Request
 
-对于 `list` 请求则不会提供 `record` 对象，需要自己通过 `<CollectionRecordProvider />` 设置上下文。
+For `list` requests, `record` object will not be provided. You need to set context yourself through `<CollectionRecordProvider />`.
 
 ```tsx | pure
 const MyTable = () => {
