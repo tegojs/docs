@@ -1,14 +1,14 @@
-# Schema 渲染
-## 核心组件
-Schema 渲染相关组件包括：
+# Schema Rendering
+## Core Components
+Schema rendering related components include:
 
-<SchemaComponentProvider /> 提供 schema 渲染所需的上下文
-<SchemaComponentOptions /> 用于扩展 components 和 scopes，非必须
-<SchemaComponent /> 用于渲染 schema，必须用在 <SchemaComponentProvider /> 内部
+<SchemaComponentProvider /> Provides the context required for schema rendering
+<SchemaComponentOptions /> Used to extend components and scopes, not required
+<SchemaComponent /> Used to render schema, must be used inside <SchemaComponentProvider />
 
 
-## 什么是 scope？
-scope 指的是 schema 内可用的变量或函数。例如以下例子的函数 t() 需要注册到 scope 里，才能正确渲染 title
+## What is scope?
+Scope refers to variables or functions available within the schema. For example, in the following example, the function t() needs to be registered in the scope to correctly render the title
 ```tsx
 <SchemaComponent
   scope={{ t }}
@@ -18,13 +18,13 @@ scope 指的是 schema 内可用的变量或函数。例如以下例子的函数
 >
 ```
 
-## 注册 components 和 scopes
+## Register components and scopes
 
-SchemaComponentProvider、SchemaComponentOptions 和 SchemaComponent 都可以注册 components 和 scopes。区别在于：
+SchemaComponentProvider, SchemaComponentOptions, and SchemaComponent can all register components and scopes. The difference is:
 
-SchemaComponentProvider 提供最顶层的上下文
-SchemaComponentOptions 用于局部上下文的替换和扩展
-SchemaComponent 为当前 schema 的上下文
+SchemaComponentProvider provides the top-level context
+SchemaComponentOptions is used for local context replacement and extension
+SchemaComponent is the context for the current schema
 
 ```tsx
 <SchemaComponentProvider components={{ ComponentA }}>
@@ -36,18 +36,18 @@ SchemaComponent 为当前 schema 的上下文
   </SchemaComponentOptions>
 </SchemaComponentProvider>
 ```
-- schema1 里可以使用 ComponentA、ComponentB
-- schema2 里可以使用 ComponentA、ComponentC
-- schema3 里可以使用 ComponentA、ComponentD、ComponentE
-- schema4 里可以使用 ComponentA、ComponentD、ComponentF
+- schema1 can use ComponentA, ComponentB
+- schema2 can use ComponentA, ComponentC
+- schema3 can use ComponentA, ComponentD, ComponentE
+- schema4 can use ComponentA, ComponentD, ComponentF
 
 
-## 在 Application 里使用
-Tachybase 客户端的 Application 的 Providers 内置了 SchemaComponentProvider 组件
+## Using in Application
+Tachybase client Application's Providers has built-in SchemaComponentProvider component
 
 ```tsx
 class Application {
-  // 默认提供的 Providers
+  // Default provided Providers
   addDefaultProviders() {
     this.addProvider(SchemaComponentProvider, {
       scopes: this.scopes
@@ -56,33 +56,31 @@ class Application {
   }
 }
 ```
-最终渲染的组件结构如下:
+The final rendered component structure is as follows:
 
 ```tsx
 <Router>
-  {/* 路由的 Context Provider */}
+  {/* Router Context Provider */}
   <SchemaComponentProvider components={app.components} scopes={app.scopes}>
-    {/* 其他自定义 Provider 组件 - 开始标签 */}
+    {/* Other custom Provider components - Opening tags */}
     <Routes />
-    {/* 其他自定义 Provider 组件 - 结束标签 */}
+    {/* Other custom Provider components - Closing tags */}
   </SchemaComponentProvider>
 </Router>
 ```
-应用内部使用时，无需再套 SchemaComponentProvider，直接用 SchemaComponent 就可以了
+When used inside the application, there's no need to wrap with SchemaComponentProvider, just use SchemaComponent directly
 
-在应用的生命周期方法内可以使用 app.addComponents() 和 app.addScopes() 扩展全局的 components 和 scopes。
+In the application lifecycle methods, you can use app.addComponents() and app.addScopes() to extend global components and scopes.
 
 ```tsx
 class PluginHello extends Plugin {
   async load() {
     this.app.addComponents({
-      // 扩展的组件
+      // Extended components
     });
     this.app.addScopes({
-      // 扩展的 scope
+      // Extended scope
     });
   }
 }
 ```
-
-

@@ -1,46 +1,46 @@
-# 路由
+# Routing
 
-通过 `app.router.add()`和 `app.systemSettingsManager.add()`可分别扩展普通页面和系统设置页，具体实现如下：
+Through `app.router.add()` and `app.systemSettingsManager.add()`, you can extend regular pages and system settings pages respectively. The specific implementation is as follows:
 
-## 一、普通页面扩展
+## I. Regular Page Extension
 
-通过`app.router.add()`方法可动态添加常规页面路由，支持多级路由结构：
+Through the `app.router.add()` method, you can dynamically add regular page routes, supporting multi-level routing structures:
 
 ```typescript
-this.app.router.add('路由名称', {
-  path: '/路径', // 路由路径（支持动态参数）
-  element: <组件 />, // 页面组件（支持React组件或Outlet）
-  exact: true, // 是否严格匹配路径
-  title: '页面标题', // 页面标题（可选）
-  icon: '图标名称', // 页面图标（可选）
+this.app.router.add('Route Name', {
+  path: '/path', // Route path (supports dynamic parameters)
+  element: <Component />, // Page component (supports React components or Outlet)
+  exact: true, // Whether to strictly match the path
+  title: 'Page Title', // Page title (optional)
+  icon: 'Icon Name', // Page icon (optional)
 })
 ```
 
-- 路由路径支持层级结构（如 `root.home` ）
-- 可通过 `app.router.getRoutes()` 查看所有已注册路由
+- Route paths support hierarchical structure (e.g., `root.home`)
+- You can view all registered routes through `app.router.getRoutes()`
 
-### 示例1：创建首页路由
+### Example 1: Create Home Route
 
 ```typescript
 this.app.router.add('home', {
   path: '/',
   element: <HomeComponent />,
-  title: '首页',
+  title: 'Home',
   icon: 'HomeOutlined',
 })
 ```
 
-### 示例2：多级路由配置
+### Example 2: Multi-level Route Configuration
 
 ```typescript
 class MyPlugin extends Plugin {
   async load() {
-    // 添加根路由布局
+    // Add root route layout
     this.app.router.add('root', {
       element: <Layout />,
     })
 
-    // 添加子页面路由
+    // Add child page routes
     this.app.router.add('root.home', {
       path: '/',
       element: <Home />,
@@ -53,21 +53,21 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 二、系统设置页扩展
+## II. System Settings Page Extension
 
-通过 `app.systemSettingsManager.add()` 方法可注册系统专属设置页：
+Through the `app.systemSettingsManager.add()` method, you can register system-exclusive settings pages:
 
 ```typescript
 class HelloPlugin extends Plugin {
   async load() {
-    // 注册顶级设置页
+    // Register top-level settings page
     this.app.systemSettingsManager.add('hello', {
       title: 'Hello',
       icon: 'ApiOutlined',
       Component: HelloSettingPage,
     })
 
-    // 注册多级子设置页
+    // Register multi-level sub-settings pages
     this.app.systemSettingsManager.add('hello.demo1', {
       title: 'Demo1 Page',
       Component: () => <div>Demo1 Content</div>,
@@ -81,22 +81,22 @@ class HelloPlugin extends Plugin {
 }
 ```
 
-- 路由路径自动挂载到`/_admin/:name`下
-- 支持通过系统设置界面统一管理设置页
+- Route paths are automatically mounted under `/_admin/:name`
+- Supports unified management of settings pages through the system settings interface
 
-## 三、初始路由说明
+## III. Initial Route Description
 
-默认已注册以下路由：
-| 名称           | 路径               | 组件           | 说明           |
-|----------------|--------------------|----------------|----------------|
-| admin          | /admin/*           | AdminLayout    | 后台管理主页   |
-| admin.page     | /admin/:name       | AdminDynamicPage| 动态页面入口   |
-| admin-settings | /_admin/:name      | AdminSettingsLayout | 系统配置页入口 |
+The following routes are registered by default:
+| Name           | Path               | Component           | Description           |
+|----------------|--------------------|---------------------|----------------------|
+| admin          | /admin/*           | AdminLayout         | Backend admin homepage |
+| admin.page     | /admin/:name       | AdminDynamicPage    | Dynamic page entry   |
+| admin-settings | /_admin/:name      | AdminSettingsLayout | System config page entry |
 
-## 四、扩展建议
+## IV. Extension Recommendations
 
-1. 命名规范：建议使用 `pluginName.feature` 格式命名路由（如hello.demo1）
-2. 组件复用：可通过`Outlet`组件实现多级页面嵌套
-3. 图标配置：支持使用`Ant Design`图标库（如`ApiOutlined`）
+1. Naming Convention: It's recommended to use the `pluginName.feature` format for naming routes (e.g., hello.demo1)
+2. Component Reuse: Multi-level page nesting can be achieved through the `Outlet` component
+3. Icon Configuration: Supports using the `Ant Design` icon library (e.g., `ApiOutlined`)
 
-**通过上述方法，可灵活实现页面扩展与插件功能集成。**
+**Through the above methods, you can flexibly implement page extension and plugin feature integration.**

@@ -1,30 +1,30 @@
-# 阿里云 OSS
+# Aliyun OSS
 
-基于阿里云 OSS 的存储引擎，使用前需要准备相关账号和权限。
+Storage engine based on Aliyun OSS. Relevant accounts and permissions need to be prepared before use.
 
-## 配置参数
+## Configuration Parameters
 
 
-:::info{title=提示}
-仅介绍阿里云 OSS 存储引擎的专用参数，通用参数请参考[引擎通用参数](./index.md#引擎通用参数)。
+:::info{title=Note}
+Only the dedicated parameters for the Aliyun OSS storage engine are introduced here. For common parameters, please refer to [Engine Common Parameters](./index.md#engine-common-parameters).
 :::
 
-### 区域
+### Region
 
-填写 OSS 存储的区域，例如：`oss-cn-hangzhou`。
+Fill in the OSS storage region, for example: `oss-cn-hangzhou`.
 
-:::info{title=提示}
-可以在[阿里云 OSS 控制台](https://oss.console.aliyun.com/)中查看存储空间的区域信息，且只需截取区域前缀部分即可（无需完整域名）。
+:::info{title=Note}
+You can view the storage space region information in the [Aliyun OSS Console](https://oss.console.aliyun.com/), and only need to extract the region prefix part (full domain name not required).
 :::
 
 ### AccessKey ID
 
-填写阿里云授权访问密钥的 ID。
+Fill in the ID of the Aliyun authorized access key.
 
 ### AccessKey Secret
 
-填写阿里云授权访问密钥的 Secret。
+Fill in the Secret of the Aliyun authorized access key.
 
-### 存储桶
+### Bucket
 
-填写 OSS 存储的存储桶名称。
+Fill in the bucket name of the OSS storage.

@@ -4,16 +4,16 @@
   {
     "type": "dir",
     "name": "advanced-understanding",
-    "label": "进阶理解"
+    "label": "Advanced Understanding"
   },
   {
     "type": "dir",
     "name": "event-source",
-    "label": "事件源"
+    "label": "Event Sources"
   },
   {
     "type": "dir",
     "name": "node",
-    "label": "节点"
+    "label": "Nodes"
   }
 ]

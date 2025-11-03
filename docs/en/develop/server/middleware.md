@@ -1,8 +1,8 @@
-# 中间件
+# Middleware
 
-## 如何注册中间件？
+## How to Register Middleware?
 
-中间件的注册方法一般写在 load 方法里
+Middleware registration methods are generally written in the load method
 
 ```ts
 export class MyPlugin extends Plugin {
@@ -14,13 +14,13 @@ export class MyPlugin extends Plugin {
 }
 ```
 
-说明：
+Explanation:
 
-1. `app.acl.use()` 添加资源权限级中间件，在权限判断之前执行
-2. `app.resourcer.use()` 添加资源级中间件，只有请求已定义的 resource 时才执行
-3. `app.use()` 添加应用级中间件，每次请求都执行
+1. `app.acl.use()` Adds resource permission-level middleware, executed before permission judgment
+2. `app.resourcer.use()` Adds resource-level middleware, only executed when a defined resource is requested
+3. `app.use()` Adds application-level middleware, executed on every request
 
-## 洋葱模型
+## Onion Model
 
 ```ts
 app.use(async (ctx, next) => {
@@ -38,59 +38,59 @@ app.use(async (ctx, next) => {
 });
 ```
 
-访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
+Visit http://localhost:3000/api/hello to view, the browser response data is:
 
 ```js
 {"data": [1,3,4,2]}
 ```
 
-## 内置中间件及执行顺序
+## Built-in Middleware and Execution Order
 
 1. `bodyParser`
 2. `cors`
 3. `i18n`
 4. `dataWrapping`
 5. `db2resource`
-6. `restApi` 其实就是resourcer
+6. `restApi` actually resourcer
    1. `auth`
    2. `acl`
-      1. `acl.use()` 添加的其他中间件
-   3. `resourcer.use()` 添加的其他中间件
+      1. Other middleware added by `acl.use()`
+   3. Other middleware added by `resourcer.use()`
    4. `action handler`
-7. `app.use()` 添加的其他中间件
+7. Other middleware added by `app.use()`
 
-也可以使用 `before` 或 `after` 将中间件插入到前面的某个 `tag` 标记的位置，如：
+You can also use `before` or `after` to insert middleware at a position marked by a `tag`, such as:
 
 ```ts
 app.use(m1, { tag: 'restApi' });
 app.resourcer.use(m2, { tag: 'parseToken' });
 app.resourcer.use(m3, { tag: 'checkRole' });
-// m4 将排在 m1 前面
+// m4 will be placed before m1
 app.use(m4, { before: 'restApi' });
-// m5 会插入到 m2 和 m3 之间
+// m5 will be inserted between m2 and m3
 app.resourcer.use(m5, { after: 'parseToken', before: 'checkRole' });
 ```
 
-如果未特殊指定位置，新增的中间件的执行顺序是：
+If the position is not specifically specified, the execution order of newly added middleware is:
 
-1. 优先执行 acl.use 添加的，
-2. 然后是 resourcer.use 添加的，包括 middleware handler 和 action handler，
-3. 最后是 app.use 添加的。
+1. First execute those added by acl.use,
+2. Then those added by resourcer.use, including middleware handler and action handler,
+3. Finally those added by app.use.
 
 
-访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
+Visit http://localhost:3000/api/hello to view, the browser response data is:
 
 ```js
 {"data": [1,2]}
 ```
 
-访问 http://localhost:3000/api/test:list 查看，浏览器响应的数据是：
+Visit http://localhost:3000/api/test:list to view, the browser response data is:
 
 ```js
 {"data": [5,3,7,1,2,8,4,6]}
 ```
 
-### resource 未定义，不执行 resourcer.use() 添加的中间件
+### Resource undefined, middleware added by resourcer.use() is not executed
 
 ```ts
 app.use(async (ctx, next) => {
@@ -108,16 +108,16 @@ app.resourcer.use(async (ctx, next) => {
 });
 ```
 
-访问 http://localhost:3000/api/hello 查看，浏览器响应的数据是：
+Visit http://localhost:3000/api/hello to view, the browser response data is:
 
 ```js
 {"data": [1,2]}
 ```
 
-以上示例，hello 资源未定义，不会进入 resourcer，所以就不会执行 resourcer 里的中间件
+In the above example, the hello resource is undefined and will not enter the resourcer, so middleware in the resourcer will not be executed
 
-## 辅助插件
+## Helper Plugin
 
-开启开发工具，可以查看当前请求的中间件执行顺序和相关use的堆栈地址
+Enable dev tools to view the middleware execution order and related use stack addresses for the current request
 
 ![Middleware Execution Flow](./assets/middleware.png)

@@ -1,6 +1,6 @@
-# 命令行
+# Command Line
 
-在插件里，自定义的命令必须放在插件的 `packages/server/commands/*.ts` 目录下，内容如下：
+In plugins, custom commands must be placed in the plugin's `packages/server/commands/*.ts` directory, with the following content:
 
 ```ts
 import { Application } from '@tachybase/server';
@@ -19,16 +19,16 @@ export default function(app: Application) {
 ```
 
 :::warning
-插件自定义的命令行必须在插件安装激活之后才有效
+Plugin custom commands only take effect after the plugin is installed and activated
 :::
 
-Command 的特殊配置
+Special Command configuration
 
-- `ipc()` 当 app 运行时，命令行通过 ipc 发送指令，操作正在运行的 app 实例，未配置 ipc() 时，会新建一个应用实例，再执行操作（不会干扰正在运行的 app 实例）
-- `auth()` 进行数据库检验，如果数据库配置不正确，不会执行该命令
-- `preload()` 是否预先加载应用配置，也就是执行 app.load()
+- `ipc()` When the app is running, the command line sends instructions via ipc to operate the running app instance. Without ipc() configuration, a new application instance will be created and operations will be executed (without interfering with the running app instance)
+- `auth()` Performs database verification. If the database configuration is incorrect, the command will not be executed
+- `preload()` Whether to preload the application configuration, i.e., execute app.load()
 
-可以根据命令的实际用途进行配置，例子如下：
+You can configure based on the actual purpose of the command, examples:
 
 ```ts
 app.command('a').ipc().action()

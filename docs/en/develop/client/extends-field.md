@@ -1,43 +1,43 @@
-# 扩展字段组件
+# Extending Field Components
 
-## 1. 介绍
+## 1. Introduction
 
-### 背景说明
+### Background
 
-在现有项目中，我们通过扩展字段类型的方式支持自定义字段功能。这种机制虽然灵活，但存在一定的局限性：
+In existing projects, we support custom field functionality by extending field types. While this mechanism is flexible, it has certain limitations:
 
-某些场景下，我们并不需要新增一种字段类型，而是希望改变现有字段的展示形式，以适应不同的业务需求或用户体验优化。
+In some scenarios, we don't need to add a new field type, but rather want to change the display form of existing fields to adapt to different business needs or user experience optimization.
 
-以 URL 字段为例，目前它通常以纯文本方式展示。但我们可能需要以下多种展示方式：
-- 作为可点击的链接；
-- 显示链接预览（如网页标题或缩略图）；
-- 仅展示域名部分；
-- 自定义格式化输出等。
+Taking the URL field as an example, it is currently usually displayed as plain text. But we may need the following display methods:
+- As a clickable link;
+- Display link preview (such as web page title or thumbnail);
+- Display only the domain part;
+- Custom formatted output, etc.
 
-这类需求并不需要新建字段类型，而应视为字段展示层的扩展能力。
+These types of requirements do not need to create new field types, but should be regarded as an extension capability of the field display layer.
 
-### 解决方案
+### Solution
 
-通过 `CollectionFieldInterfaceManager` 提供的扩展机制，我们可以为现有字段类型添加多种展示组件选项，让用户能够根据具体需求选择合适的展示方式。
+Through the extension mechanism provided by `CollectionFieldInterfaceManager`, we can add multiple display component options for existing field types, allowing users to choose the appropriate display method according to specific needs.
 
-## 2. 核心概念
+## 2. Core Concepts
 
-### 字段接口组件选项
+### Field Interface Component Option
 
 ```tsx
 interface CollectionFieldInterfaceComponentOption {
-  label: string;           // 展示给用户的标签名称
-  value: string;           // 组件的唯一标识符
-  useVisible?: () => boolean;  // 控制该选项是否可见
-  useProps?: () => any;    // 返回传递给组件的属性
+  label: string;           // Label name displayed to the user
+  value: string;           // Unique identifier for the component
+  useVisible?: () => boolean;  // Control whether the option is visible
+  useProps?: () => any;    // Return properties passed to the component
 }
 ```
 
-### 管理器接口
+### Manager Interface
 
 ```tsx
 class CollectionFieldInterfaceManager {
-  // 为指定字段类型添加展示组件选项
+  // Add display component option for specified field type
   addFieldInterfaceComponentOption(
     interfaceName: string, 
     componentOption: CollectionFieldInterfaceComponentOption
@@ -45,10 +45,10 @@ class CollectionFieldInterfaceManager {
 }
 ```
 
-## 3. 基础用法
+## 3. Basic Usage
 
 ```tsx
-// 定义
+// Definition
 interface CollectionFieldInterfaceComponentOption {
   label: string;
   value: string;
@@ -63,7 +63,7 @@ class CollectionFieldInterfaceManager {
   ): void
 }
 
-// 用法
+// Usage
 class MyPlugin extends Plugin {
   async load() {
     this.app.dataSourceManager.
@@ -76,18 +76,18 @@ class MyPlugin extends Plugin {
 }
 ```
 
-## 4. 使用场景
+## 4. Use Cases
 
-### 4.1 URL 字段多展示形式
+### 4.1 Multiple Display Forms for URL Fields
 
 ```tsx
 class UrlDisplayPlugin extends Plugin {
   async load() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 1. 可点击链接展示
+    // 1. Clickable link display
     manager.addFieldInterfaceComponentOption('url', {
-      label: '可点击链接',
+      label: 'Clickable Link',
       value: 'UrlField.ClickableLink',
       useProps: () => ({
         target: '_blank',
@@ -95,9 +95,9 @@ class UrlDisplayPlugin extends Plugin {
       })
     });
     
-    // 2. 链接预览展示
+    // 2. Link preview display
     manager.addFieldInterfaceComponentOption('url', {
-      label: '链接预览',
+      label: 'Link Preview',
       value: 'UrlField.Preview',
       useProps: () => ({
         showTitle: true,
@@ -106,9 +106,9 @@ class UrlDisplayPlugin extends Plugin {
       })
     });
     
-    // 3. 域名展示
+    // 3. Domain display
     manager.addFieldInterfaceComponentOption('url', {
-      label: '仅显示域名',
+      label: 'Domain Only',
       value: 'UrlField.DomainOnly',
       useProps: () => ({
         showProtocol: false,
@@ -116,9 +116,9 @@ class UrlDisplayPlugin extends Plugin {
       })
     });
     
-    // 4. 格式化展示
+    // 4. Formatted display
     manager.addFieldInterfaceComponentOption('url', {
-      label: '格式化显示',
+      label: 'Formatted Display',
       value: 'UrlField.Formatted',
       useProps: () => ({
         format: 'short',
@@ -129,16 +129,16 @@ class UrlDisplayPlugin extends Plugin {
 }
 ```
 
-### 4.2 数字字段多展示形式
+### 4.2 Multiple Display Forms for Number Fields
 
 ```tsx
 class NumberDisplayPlugin extends Plugin {
   async load() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 1. 货币格式
+    // 1. Currency format
     manager.addFieldInterfaceComponentOption('number', {
-      label: '货币格式',
+      label: 'Currency Format',
       value: 'NumberField.Currency',
       useProps: () => ({
         currency: 'CNY',
@@ -146,9 +146,9 @@ class NumberDisplayPlugin extends Plugin {
       })
     });
     
-    // 2. 百分比格式
+    // 2. Percentage format
     manager.addFieldInterfaceComponentOption('number', {
-      label: '百分比',
+      label: 'Percentage',
       value: 'NumberField.Percentage',
       useProps: () => ({
         precision: 1,
@@ -156,9 +156,9 @@ class NumberDisplayPlugin extends Plugin {
       })
     });
     
-    // 3. 科学计数法
+    // 3. Scientific notation
     manager.addFieldInterfaceComponentOption('number', {
-      label: '科学计数法',
+      label: 'Scientific Notation',
       value: 'NumberField.Scientific',
       useProps: () => ({
         notation: 'scientific',
@@ -169,35 +169,35 @@ class NumberDisplayPlugin extends Plugin {
 }
 ```
 
-### 4.3 日期字段多展示形式
+### 4.3 Multiple Display Forms for Date Fields
 
 ```tsx
 class DateDisplayPlugin extends Plugin {
   async load() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 1. 相对时间
+    // 1. Relative time
     manager.addFieldInterfaceComponentOption('datetime', {
-      label: '相对时间',
+      label: 'Relative Time',
       value: 'DateField.Relative',
       useProps: () => ({
         format: 'relative',
-        updateInterval: 60000 // 每分钟更新
+        updateInterval: 60000 // Update every minute
       })
     });
     
-    // 2. 自定义格式
+    // 2. Custom format
     manager.addFieldInterfaceComponentOption('datetime', {
-      label: '自定义格式',
+      label: 'Custom Format',
       value: 'DateField.Custom',
       useProps: () => ({
         format: 'YYYY年MM月DD日 HH:mm:ss'
       })
     });
     
-    // 3. 时间范围
+    // 3. Time range
     manager.addFieldInterfaceComponentOption('datetime', {
-      label: '时间范围',
+      label: 'Time Range',
       value: 'DateField.Range',
       useProps: () => ({
         showRange: true,
@@ -208,16 +208,16 @@ class DateDisplayPlugin extends Plugin {
 }
 ```
 
-## 5. 条件显示
+## 5. Conditional Display
 
-### 5.1 基于字段值控制显示
+### 5.1 Control Display Based on Field Values
 
 ```tsx
 manager.addFieldInterfaceComponentOption('url', {
-  label: '高级预览',
+  label: 'Advanced Preview',
   value: 'UrlField.AdvancedPreview',
   useVisible: () => {
-    // 只在特定条件下显示此选项
+    // Only show this option under specific conditions
     const currentUser = this.app.getCurrentUser();
     return currentUser.hasPermission('advanced_preview');
   },
@@ -228,11 +228,11 @@ manager.addFieldInterfaceComponentOption('url', {
 });
 ```
 
-### 5.2 基于环境控制显示
+### 5.2 Control Display Based on Environment
 
 ```tsx
 manager.addFieldInterfaceComponentOption('url', {
-  label: '开发模式预览',
+  label: 'Development Mode Preview',
   value: 'UrlField.DevPreview',
   useVisible: () => {
     return process.env.NODE_ENV === 'development';
@@ -244,9 +244,9 @@ manager.addFieldInterfaceComponentOption('url', {
 });
 ```
 
-## 6. 完整示例
+## 6. Complete Example
 
-### 6.1 插件定义
+### 6.1 Plugin Definition
 
 ```tsx
 import { Plugin } from '@tachybase/client';
@@ -261,9 +261,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
   private registerUrlFieldExtensions() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 基础链接展示
+    // Basic link display
     manager.addFieldInterfaceComponentOption('url', {
-      label: '基础链接',
+      label: 'Basic Link',
       value: 'UrlField.Basic',
       useProps: () => ({
         target: '_blank',
@@ -271,9 +271,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
       })
     });
     
-    // 智能预览
+    // Smart preview
     manager.addFieldInterfaceComponentOption('url', {
-      label: '智能预览',
+      label: 'Smart Preview',
       value: 'UrlField.SmartPreview',
       useProps: () => ({
         fetchMetadata: true,
@@ -283,9 +283,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
       })
     });
     
-    // 安全链接
+    // Secure link
     manager.addFieldInterfaceComponentOption('url', {
-      label: '安全链接',
+      label: 'Secure Link',
       value: 'UrlField.Secure',
       useProps: () => ({
         showSecurityBadge: true,
@@ -298,9 +298,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
   private registerNumberFieldExtensions() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 千分位分隔
+    // Thousands separator
     manager.addFieldInterfaceComponentOption('number', {
-      label: '千分位分隔',
+      label: 'Thousands Separator',
       value: 'NumberField.Thousands',
       useProps: () => ({
         separator: ',',
@@ -308,9 +308,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
       })
     });
     
-    // 文件大小
+    // File size
     manager.addFieldInterfaceComponentOption('number', {
-      label: '文件大小',
+      label: 'File Size',
       value: 'NumberField.FileSize',
       useProps: () => ({
         format: 'fileSize',
@@ -322,9 +322,9 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
   private registerDateFieldExtensions() {
     const manager = this.app.dataSourceManager.collectionFieldInterfaceManager;
     
-    // 倒计时
+    // Countdown
     manager.addFieldInterfaceComponentOption('datetime', {
-      label: '倒计时',
+      label: 'Countdown',
       value: 'DateField.Countdown',
       useProps: () => ({
         format: 'countdown',
@@ -337,53 +337,53 @@ export class FieldDisplayExtensionsPlugin extends Plugin {
 }
 ```
 
-### 6.2 使用方式
+### 6.2 Usage
 
 ```tsx
-// 在应用中注册插件
+// Register plugin in application
 import { FieldDisplayExtensionsPlugin } from './plugins/FieldDisplayExtensionsPlugin';
 
 const app = new Application({
   plugins: [
     FieldDisplayExtensionsPlugin,
-    // 其他插件...
+    // Other plugins...
   ]
 });
 ```
 
-## 7. 最佳实践
+## 7. Best Practices
 
-### 7.1 命名规范
+### 7.1 Naming Conventions
 
-- 组件值使用 `FieldType.ComponentName` 格式
-- 标签使用简洁明了的中文描述
-- 保持命名的一致性和可读性
+- Use `FieldType.ComponentName` format for component values
+- Use concise and clear descriptions for labels
+- Maintain consistency and readability in naming
 
-### 7.2 性能优化
+### 7.2 Performance Optimization
 
-- 在 `useProps` 中避免复杂的计算
-- 合理使用 `useVisible` 控制选项显示
-- 缓存计算结果避免重复计算
+- Avoid complex calculations in `useProps`
+- Use `useVisible` reasonably to control option display
+- Cache calculation results to avoid repeated calculations
 
-### 7.3 用户体验
+### 7.3 User Experience
 
-- 提供合理的默认选项
-- 根据用户权限和环境动态调整选项
-- 保持选项的简洁性，避免过度复杂
+- Provide reasonable default options
+- Dynamically adjust options based on user permissions and environment
+- Keep options simple and avoid excessive complexity
 
-### 7.4 扩展性
+### 7.4 Extensibility
 
-- 设计可复用的组件选项
-- 支持配置化的属性传递
-- 考虑未来可能的扩展需求
+- Design reusable component options
+- Support configurable property passing
+- Consider possible future extension needs
 
-## 8. 注意事项
+## 8. Notes
 
-1. **组件注册**：确保相应的展示组件已经正确注册到系统中
-2. **属性兼容性**：传递给组件的属性需要与组件接口兼容
-3. **性能影响**：过多的展示选项可能影响用户选择体验
-4. **维护成本**：需要维护多个展示组件的实现和测试
+1. **Component Registration**: Ensure the corresponding display components are correctly registered in the system
+2. **Property Compatibility**: Properties passed to components need to be compatible with component interfaces
+3. **Performance Impact**: Too many display options may affect user selection experience
+4. **Maintenance Cost**: Need to maintain implementation and testing of multiple display components
 
-## 9. 总结
+## 9. Summary
 
-通过字段展示扩展机制，我们可以在不改变字段类型的情况下，为现有字段提供丰富的展示形式。这种设计既保持了系统的灵活性，又避免了不必要的复杂性，是提升用户体验的有效方式。
+Through the field display extension mechanism, we can provide rich display forms for existing fields without changing the field type. This design maintains system flexibility while avoiding unnecessary complexity, and is an effective way to enhance user experience.

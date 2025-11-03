@@ -1,30 +1,30 @@
-# 文件管理器
+# File Manager
 
-## 介绍
+## Introduction
 
-文件管理器插件提供了文件表、附件字段以及文件存储引擎，用于有效地管理文件。文件是特定结构的数据表记录，这个特定结构的数据表被称为文件表，用于存储文件的元信息，并可以通过文件管理器进行管理，附件字段是与文件表相关联的特定关系字段。文件支持多种存储方式，目前已支持的文件存储引擎包括本地存储、阿里云 OSS、亚马逊 S3 以及腾讯云 COS。
+The File Manager plugin provides file collections, attachment fields, and file storage engines for effective file management. Files are data table records with a specific structure. This specific structured data table is called a file collection, used to store file metadata and can be managed through the file manager. Attachment fields are specific relationship fields associated with file collections. Files support multiple storage methods. Currently supported file storage engines include local storage, Aliyun OSS, Amazon S3, and Tencent Cloud COS.
 
-## 使用手册
+## User Manual
 
-### 文件表
+### File Collection
 
-内置了 attachments 表，用于存储所有附件字段关联的文件。除此之外，也可以创建新的文件表，用于存储特定文件。
+The built-in attachments collection is used to store files associated with all attachment fields. In addition, new file collections can be created to store specific files.
 
-[更多用法查看文件表介绍文档](./file-collection.md)
-
-
-### 附件字段
-
-附件字段是与文件表相关联的特定关系字段，可以通过「附件类型字段」创建，也可以通过「关系字段」配置。
-
-[更多用法查看附件字段介绍文档](./field-attachment.md)
-
-### 文件存储引擎
-
-文件存储引擎用于将文件保存到特定的服务中，包括本地存储（保存到服务器硬盘）、云存储等。
-
-[更多内容查看文件存储引擎介绍](./storage/index.md)
+[For more usage, see the file collection documentation](./file-collection.md)
 
 
-## 扩展开发
-* [扩展前端文件类型](./development.md)
+### Attachment Field
+
+Attachment fields are specific relationship fields associated with file collections. They can be created through "Attachment Type Field" or configured through "Relationship Field".
+
+[For more usage, see the attachment field documentation](./field-attachment.md)
+
+### File Storage Engine
+
+File storage engines are used to save files to specific services, including local storage (saved to server hard disk), cloud storage, etc.
+
+[For more information, see the file storage engine documentation](./storage/index.md)
+
+
+## Extension Development
+* [Extend frontend file types](./development.md)

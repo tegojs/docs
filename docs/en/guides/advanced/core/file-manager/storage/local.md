@@ -1,17 +1,17 @@
-# 本地存储
+# Local Storage
 
-上传文件将保存在服务器本地硬盘目录中，适用于系统管理的上传文件总量较少或试验性的场景。
+Uploaded files will be saved in the server's local hard disk directory, suitable for scenarios where the total amount of uploaded files managed by the system is small or for experimental purposes.
 
-## 配置参数
+## Configuration Parameters
 ![](/core/storage-1.png)
 
-:::info{title=提示}
-仅介绍本地存储引擎的专用参数，通用参数请参考[引擎通用参数](./index.md#引擎通用参数)。
+:::info{title=Note}
+Only the dedicated parameters for the local storage engine are introduced here. For common parameters, please refer to [Engine Common Parameters](./index.md#engine-common-parameters).
 :::
 
-### 路径
+### Path
 
-同时表达文件存储在服务器上的相对路径和 URL 访问路径。如：“`user/avatar`”（无需开头和结尾的“`/`”），代表了：
+Represents both the relative path where files are stored on the server and the URL access path. For example: "`user/avatar`" (no leading or trailing "`/`" needed), which represents:
 
-1. 上传文件时存储在服务器上的相对路径：`/path/to/tachybase-app/storage/uploads/user/avatar`。
-2. 访问时的 URL 地址前缀：``。
+1. The relative path where files are stored on the server when uploading: `/path/to/tachybase-app/storage/uploads/user/avatar`.
+2. The URL address prefix when accessing: ``.

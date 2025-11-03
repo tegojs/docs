@@ -1,11 +1,11 @@
-# 部门
+# Departments
 
-## 介绍
+## Introduction
 
-部门插件支持在 TachyBase 中以部门的形式来组织用户，设定上下级关系。可以通过给部门绑定角色来控制一组用户的权限。支持将部门信息作为变量用于工作流和表达式等支持设置变量的地方。
+The Departments plugin supports organizing users in TachyBase in the form of departments, establishing hierarchical relationships. You can control the permissions of a group of users by binding roles to departments. Department information can be used as variables in workflows, expressions, and other places that support variable settings.
 
-![](/core/tachybase-core-departments-1.png)
+![](/core/departments-1.png)
 
-<!-- TODO: 插入图片 -->
-<!-- TODO: ##安装 -->
-<!-- TODO: 插入图片 -->
+<!-- TODO: Insert image -->
+<!-- TODO: ##Installation -->
+<!-- TODO: Insert image -->

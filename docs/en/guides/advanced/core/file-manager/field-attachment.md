@@ -1,14 +1,14 @@
-# 附件字段
+# Attachment Field
 
 <PluginInfo name="file-manager"></PluginInfo>
 
-## 介绍
+## Introduction
 
-附件字段是与文件表相关联的特定关系字段。
+Attachment fields are specific relationship fields associated with file collections.
 
-## 字段配置
+## Field Configuration
 ![](/core/fileManager-2.png)
 
-## 示例
+## Examples
 
-待补充
+To be added

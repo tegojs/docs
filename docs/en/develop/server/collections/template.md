@@ -1,8 +1,8 @@
-# Collection 模板
+# Collection Templates
 
-在实际的业务场景中，不同的 collection 可能有自己的初始化规则和业务逻辑，TachyBase 通过提供 Collection 模板来解决这类问题。
+In actual business scenarios, different collections may have their own initialization rules and business logic. TachyBase provides Collection templates to solve such problems.
 
-## 常规表
+## General Table
 
 ```ts
 db.collection({
@@ -16,7 +16,7 @@ db.collection({
 });
 ```
 
-## 树结构表
+## Tree Structure Table
 
 ```ts
 db.collection({
@@ -73,9 +73,9 @@ db.collection({
 });
 ```
 
-## 父子继承表
+## Parent-Child Inheritance Table
 
-通过inherits指定要继承的父表
+Specify the parent table to inherit through inherits
 
 ```ts
 db.collection({
@@ -90,9 +90,9 @@ db.collection({
 });
 ```
 
-## 更多模板
+## More Templates
 
-如日历表，每个初始化的表都需要初始化特殊的 cron 和 exclude 字段，而这种字段的定义就由模板来完成
+Such as calendar tables, each initialized table needs to initialize special cron and exclude fields, and the definition of such fields is completed by the template
 
 ```ts
 db.collection({

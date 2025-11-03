@@ -1,23 +1,23 @@
-# 日志
+# Logger
 
-Tachybase 日志基于 <a href="https://github.com/winstonjs/winston" target="_blank">Winston</a> 封装。默认情况下，Tachybase 将日志分为接口请求日志、系统运行日志和 SQL 执行日志，其中接口请求日志和 SQL 执行日志由应用内部打印，插件开发者通常只需要打印插件相关的系统运行日志。
+Tachybase logging is based on <a href="https://github.com/winstonjs/winston" target="_blank">Winston</a> encapsulation. By default, Tachybase divides logs into API request logs, system runtime logs, and SQL execution logs. API request logs and SQL execution logs are printed by the application internally. Plugin developers typically only need to print system runtime logs related to their plugins.
 
-本文档主要介绍在开发插件的时候，如何创建和打印日志。
+This documentation mainly introduces how to create and print logs when developing plugins.
 
-## 默认打印方法
+## Default Print Methods
 
-Tachybase 提供了系统运行日志的打印方法，日志按照规定字段打印，同时输出到指定文件。
+Tachybase provides print methods for system runtime logs. Logs are printed according to specified fields and simultaneously output to specified files.
 
 ```ts
-// 默认打印方法
+// Default print method
 app.log.info("message");
 
-// 在中间件中使用
+// Use in middleware
 async function (ctx, next) {
   ctx.log.info("message");
 }
 
-// 在插件中使用
+// Use in plugins
 class CustomPlugin extends Plugin {
   async load() {
     this.log.info("message");
@@ -25,9 +25,9 @@ class CustomPlugin extends Plugin {
 }
 ```
 
-以上方法都遵循下面的用法：
+The above methods all follow the usage below:
 
-第一个参数为日志消息，第二个参数为可选 metadata 对象，可以是任意键值对，其中 `module`, `submodule`, `method` 会被提取为单独字段，其余字段则放到 `meta` 字段中。
+The first parameter is the log message, and the second parameter is an optional metadata object, which can be any key-value pair. Among them, `module`, `submodule`, and `method` will be extracted as separate fields, and the remaining fields will be placed in the `meta` field.
 
 ```ts
 app.log.info('message', {
@@ -44,9 +44,9 @@ app.log.warn();
 app.log.error();
 ```
 
-## 输出到其他文件
+## Output to Other Files
 
-如果想沿用系统默认的打印方法，但是不想输出到默认的文件中，可以使用 `createSystemLogger` 创建一个自定义的系统日志实例。
+If you want to use the system's default print method but don't want to output to the default file, you can use `createSystemLogger` to create a custom system log instance.
 
 ```ts
 import { createSystemLogger } from '@tachybase/logger';
@@ -54,13 +54,13 @@ import { createSystemLogger } from '@tachybase/logger';
 const logger = createSystemLogger({
   dirname: '/pathto/',
   filename: 'xxx',
-  seperateError: true, // 是否将 error 级别日志单独输出到 'xxx_error.log'
+  seperateError: true, // Whether to output error level logs separately to 'xxx_error.log'
 });
 ```
 
-## 自定义日志
+## Custom Logger
 
-如果不想使用系统提供的打印方法，想使用 Winston 原生的方法，可以通过以下方法创建日志。
+If you don't want to use the system's provided print methods and want to use Winston's native methods, you can create logs through the following methods.
 
 ### `createLogger`
 
@@ -72,31 +72,31 @@ const logger = createLogger({
 });
 ```
 
-`options` 在原来 `winston.LoggerOptions` 的基础上进行了扩展。
+`options` extends the original `winston.LoggerOptions`.
 
-- `transports` - 可以使用 `'console' | 'file' | 'dailyRotateFile'` 应用预置的输出方式。
-- `format` - 可以使用 `'logfmt' | 'json' | 'delimiter'` 应用预置的打印格式。
+- `transports` - You can use `'console' | 'file' | 'dailyRotateFile'` for preset output methods.
+- `format` - You can use `'logfmt' | 'json' | 'delimiter'` for preset print formats.
 
 ### `app.createLogger`
 
-在多应用的场景下，有时候我们希望自定义的输出目录和文件，可以输出到当前应用名称的目录下。
+In multi-application scenarios, sometimes we want to customize the output directory and file, which can be output to the current application name's directory.
 
 ```ts
 app.createLogger({
   dirname: '',
-  filename: 'custom', // 输出到 /storage/logs/main/custom.log
+  filename: 'custom', // Output to /storage/logs/main/custom.log
 });
 ```
 
 ### `plugin.createLogger`
 
-使用场景和用法同 `app.createLogger`.
+Usage and use case same as `app.createLogger`.
 
 ```ts
 class CustomPlugin extends Plugin {
   async load() {
     const logger = this.createLogger({
-      // 输出到 /storage/logs/main/custom-plugin/YYYY-MM-DD.log
+      // Output to /storage/logs/main/custom-plugin/YYYY-MM-DD.log
       dirname: 'custom-plugin',
       filename: '%DATE%.log',
       transports: ['dailyRotateFile'],
@@ -104,4 +104,3 @@ class CustomPlugin extends Plugin {
   }
 }
 ```
-

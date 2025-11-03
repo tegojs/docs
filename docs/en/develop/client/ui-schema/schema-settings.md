@@ -1,27 +1,27 @@
-# SchemaSettings 设置器
+# SchemaSettings
 
-激活 UI 配置之后，鼠标移动到指定卡片、字段、操作上方时，会显示对应的 Schema 工具栏，工具栏的设置按钮就是当前 Schema 的设置器。
+After activating UI configuration, when the mouse moves over specified blocks, fields, or actions, the corresponding Schema toolbar will be displayed. The settings button in the toolbar is the settings controller for the current Schema.
 ![](/schemas/schema-settings.png)
 
-## SchemaSettings 的作用
+## Purpose of SchemaSettings
 
-SchemaSettings 通过修改 FieldSchema 或者 Field 的属性，组件读取这些属性来实现对卡片、字段、操作等的配置。
+SchemaSettings modifies properties of FieldSchema or Field, and components read these properties to implement configuration for blocks, fields, actions, etc.
 
-Field 是 FieldSchema 的实例，如果是修改 Field 不会将 Schema 结构保存到数据库，只是修改当前实例的属性，刷新页面后会丢失。如果你需要保存到数据库，需要修改 FieldSchema。
+Field is an instance of FieldSchema. Modifying Field will not save the Schema structure to the database, it only modifies the properties of the current instance and will be lost after refreshing the page. If you need to save to the database, you need to modify FieldSchema.
 
-## 内置的设置器
+## Built-in Settings Controllers
 
 ![](/schemas/setting-tools.png)
 
-## 向已有的设置器里添加设置项
+## Add Settings Items to Existing Settings Controllers
 
-推荐使用 schemaSettingsManager.addItem() 方法添加设置项，item 的详细配置参考 SchemaSettings Item API
+It's recommended to use the schemaSettingsManager.addItem() method to add settings items. For detailed item configuration, refer to SchemaSettings Item API
 
 ```tsx
 class PluginDemoAddSchemaSettingsItem extends Plugin {
   async load() {
     this.schemaSettingsManager.addItem(
-      'mySettings', // 示例，已存在的 schema settings
+      'mySettings', // Example, existing schema settings
       'customItem',
       {
         type: 'item',
@@ -32,15 +32,15 @@ class PluginDemoAddSchemaSettingsItem extends Plugin {
 }
 ```
 
-## 添加新的设置器
+## Add New Settings Controller
 
-SchemaSettings 的详细参数参考 SchemaSettingsOptions API
+For detailed SchemaSettings parameters, refer to SchemaSettingsOptions API
 
 ```tsx
 const mySettings = new SchemaSettings({
-  // 必须是唯一标识
+  // Must be a unique identifier
   name: 'mySettings',
-  // 下拉菜单项
+  // Dropdown menu items
   items: [
     {
       name: 'edit',
@@ -51,14 +51,14 @@ const mySettings = new SchemaSettings({
 })
 ```
 
-### 在插件的 load 方法中添加
+### Add in Plugin load Method
 
-推荐使用 schemaSettingsManager.add() 将新增的设置器添加到应用里
+It's recommended to use schemaSettingsManager.add() to add the new settings controller to the application
 
 ```tsx
 class PluginDemoAddSchemaSettings extends Plugin {
   async load() {
-    // 注册全局组件
+    // Register global components
     this.app.addComponents({ CardItem, HomePage })
     const mySettings = new SchemaSettings({
       name: 'mySettings',
@@ -67,7 +67,7 @@ class PluginDemoAddSchemaSettings extends Plugin {
           type: 'item',
           name: 'edit',
           useComponentProps() {
-            // TODO: 补充相关设置逻辑
+            // TODO: Add related settings logic
             return {
               title: 'Edit',
               onClick() {
@@ -83,11 +83,11 @@ class PluginDemoAddSchemaSettings extends Plugin {
 }
 ```
 
-### 如何使用新添加的设置器
+### How to Use the Newly Added Settings Controller
 
-添加进来的 SchemaSettings，可以用于 Schema 的 x-settings 参数中，并不是所有的组件都支持 x-settings，通常需要和 BlockItem、FormItem、CardItem 这类包装器组件结合使用。自定义的组件中，也可以使用 useSchemaSettingsRender() 自主处理 x-settings 的渲染。
+The added SchemaSettings can be used in the x-settings parameter of Schema. Not all components support x-settings, usually need to be used in combination with wrapper components like BlockItem, FormItem, CardItem. In custom components, you can also use useSchemaSettingsRender() to handle x-settings rendering independently.
 
-大部分场景 x-settings 需要和 BlockItem、FormItem、CardItem 这类包装器组件结合使用。例如：
+In most scenarios, x-settings needs to be used in combination with wrapper components like BlockItem, FormItem, CardItem. For example:
 
 ```json
 {
@@ -97,12 +97,12 @@ class PluginDemoAddSchemaSettings extends Plugin {
   "x-component": "Hello"
 }
 ```
-如果 BlockItem、FormItem、CardItem 这类包装器组件并不满足需求时，也可以使用 useSchemaSettingsRender() 处理 x-settings 的渲染。
+If wrapper components like BlockItem, FormItem, CardItem do not meet the requirements, you can also use useSchemaSettingsRender() to handle x-settings rendering.
 
-大部分场景 settings 都是放在 SchemaToolbar 上的，所以为自定义组件支持 x-toolbar，也可以变相的支持 x-settings，更多用法参考 Schema 工具栏
+In most scenarios, settings are placed on SchemaToolbar, so supporting x-toolbar for custom components can indirectly support x-settings. For more usage, refer to Schema Toolbar
 
-## 如何实现 Schema 的设置？
-通过 useSchemaSettings() 获取当前 Schema 的 Designable，通过 Designable 来操作 Schema，常用 api 有
+## How to Implement Schema Settings?
+Use useSchemaSettings() to get the current Schema's Designable, and use Designable to operate on Schema. Commonly used APIs include:
 
 dn.insertAdjacent()
 dn.getSchemaAttribute()

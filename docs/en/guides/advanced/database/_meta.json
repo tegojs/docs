@@ -3,16 +3,16 @@
   {
     "type": "dir",
     "name": "datasource",
-    "label": "数据源"
+    "label": "Data Sources"
   },
   {
     "type": "dir",
     "name": "collection",
-    "label": "数据表"
+    "label": "Collections"
   },
   {
     "type": "dir",
     "name": "field",
-    "label": "数据表字段"
+    "label": "Fields"
   }
 ]

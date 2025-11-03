@@ -1,37 +1,37 @@
-# 概述
+# Overview
 
-# 介绍
-云组件提供了可以自定义在平台上进行特定的组件开发和调试，无需进行平台构建等机制，用户可方便、快捷的针对特定业务或需求制定单独的组件及展示。
+# Introduction
+Cloud components provide the ability to customize and develop specific components on the platform for debugging, without the need for platform building. Users can conveniently and quickly create separate components and displays for specific business requirements or needs.
 
-## 使用手册
+## User Manual
 
-添加组件
+Add Component
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/522b5275defd17a44d6bed7d129f8c33.png)
 
 
 
- 添加组件信息
+Add Component Information
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/a188348598820f6f241b5197991f8020.png)
 
 
 
-编辑组件信息
+Edit Component Information
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/f1d521640235b4c84006840615f9bc77.png)
 
 
-组件相关
+Component Related
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/eb52310bdc69e69ad146807653bd8446.png)
 
-组件内也可导入其他包或组件进行使用
+Components can also import other packages or components for use
 ```
 import { useForm } from '@tachybase/schema';
 import { useNavigate } from 'react-router-dom';
 ```
 
-可填写测试数据，在组件右侧预览信息
+You can fill in test data and preview information on the right side of the component
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/a3ab50a3674851158af8ba87b51dc266.png)
 
-示例
+Example
 ```
 export default () => {
   const form = useForm();
@@ -41,5 +41,5 @@ export default () => {
 }
 ```
 
-组件的信息、备注
+Component Information and Notes
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/ad593bb66b45f43e90405952f4413680.png)

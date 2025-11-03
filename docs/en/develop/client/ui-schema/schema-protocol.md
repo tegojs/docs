@@ -1,53 +1,53 @@
-# Schema 协议
+# Schema Protocol
 
-一种描述前端组件的协议，基于 Formily Schema 2.0，类 JSON Schema 风格。
+A protocol for describing frontend components, based on Formily Schema 2.0, JSON Schema style.
 
 ```typescript
 interface ISchema {
   type: 'void' | 'string' | 'number' | 'object' | 'array';
   name?: string;
   title?: any;
-  // 包装器组件
+  // Wrapper component
   ['x-decorator']?: string;
-  // 包装器组件属性
+  // Wrapper component properties
   ['x-decorator-props']?: any;
-  // 动态包装器组件属性
+  // Dynamic wrapper component properties
   ['x-use-decorator-props']?: any;
-  // 组件
+  // Component
   ['x-component']?: string;
-  // 组件属性
+  // Component properties
   ['x-component-props']?: any;
-  // 动态组件属性
+  // Dynamic component properties
   ['x-use-component-props']?: any;
-  // 展示状态，默认为 'visible'
+  // Display status, default is 'visible'
   ['x-display']?: 'none' | 'hidden' | 'visible';
-  // 组件的子节点，简单使用
+  // Component's child nodes, simple use
   ['x-content']?: any;
-  // children 节点 schema
+  // Children node schema
   properties?: Record<string, ISchema>;
 
-  // 以下仅字段组件时使用
+  // The following are only used for field components
 
-  // 字段联动
+  // Field linkage
   ['x-reactions']?: SchemaReactions;
-  // 字段 UI 交互模式，默认为 'editable'
+  // Field UI interaction mode, default is 'editable'
   ['x-pattern']?: 'editable' | 'disabled' | 'readPretty';
-  // 字段校验
+  // Field validation
   ['x-validator']?: Validator;
-  // 默认数据
+  // Default data
   default: ?:any;
 
-  // 设计器相关
+  // Designer related
 
-  // 初始化器，决定当前 schema 相邻位置可以插入什么
+  // Initializer, determines what can be inserted at adjacent positions of current schema
   ['x-initializer']?: string;
   ['x-initializer-props']?: any;
 
-  // 卡片设置，决定当前 schema 可以配置哪些参数
+  // Block settings, determines what parameters current schema can configure
   ['x-settings']?: string;
   ['x-settings-props']?: any;
 
-  // 工具栏组件
+  // Toolbar component
   ['x-toolbar']?: string;
   ['x-toolbar-props']?: any;
 }

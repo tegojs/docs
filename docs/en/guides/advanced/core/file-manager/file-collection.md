@@ -1,23 +1,23 @@
-# 文件表
+# File Collection
 
 
-## 介绍
+## Introduction
 
-文件是特定结构的数据表记录，这个特定结构的数据表被称为文件表，用于存储文件的元信息，并可以通过文件管理器进行管理。
+Files are data table records with a specific structure. This specific structured data table is called a file collection, used to store file metadata and can be managed through the file manager.
 
-## 使用手册
+## User Manual
 
-创建文件表
-<!-- TODO: 插入图片 -->
+Create file collection
+<!-- TODO: Insert image -->
 
-文件表预置字段
-<!-- TODO: 插入图片 -->
+File collection preset fields
+<!-- TODO: Insert image -->
 
-在卡片中使用
-<!-- TODO: 插入图片 -->
+Use in blocks
+<!-- TODO: Insert image -->
 
-关系字段
-<!-- TODO: 插入图片 -->
+Relationship field
+<!-- TODO: Insert image -->
 
-关系卡片
-<!-- TODO: 插入图片 -->
+Relationship block
+<!-- TODO: Insert image -->

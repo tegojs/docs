@@ -1,65 +1,64 @@
-# 使用手册
+# User Manual
 
-## 部门管理
+## Department Management
 ![](/core/departments-1.png)
 
-### 新建部门
+### Create Department
 ![](/core/departments-2.png)
 ![](/core/departments-3.png)
 
 
-### 新建子部门
+### Create Sub-department
 ![](/core/departments-4.png)
 ![](/core/departments-5.png)
 
 
-### 编辑部门
+### Edit Department
 ![](/core/departments-6.png)
 ![](/core/departments-7.png)
 
 
-### 修改上级部门
+### Change Parent Department
 
-在编辑部门的表单中修改上级部门字段，当前部门和当前部门的下级部门不可选。
+In the department edit form, modify the parent department field. The current department and its sub-departments cannot be selected.
 ![](/core/departments-16.png)
 
 
-## 部门成员管理
+## Department Member Management
 
-### 查看部门成员列表
+### View Department Member List
 ![](/core/departments-9.png)
 
 
-### 给部门添加成员
+### Add Members to Department
 
-一个用户可以同时加入多个部门，加入的第一个部门默认为主属部门，一个用户只有一个主属部门。
+A user can join multiple departments simultaneously. The first department they join becomes their primary department by default. A user can only have one primary department.
 ![](/core/departments-10.png)
 
-已经是部门成员的用户不会出现在用户选择列表中。
+Users who are already department members will not appear in the user selection list.
 ![](/core/departments-11.png)
 
 
 
 
-### 给用户配置部门
+### Configure Departments for Users
 
-除了给部门添加成员，还可以从用户视角，给用户配置部门。
+In addition to adding members to departments, you can also configure departments for users from the user perspective.
 ![](/core/departments-12.png)
 
 
 
-### 修改主属部门
+### Change Primary Department
 ![](/core/departments-13.png)
 
-## 部门角色管理
+## Department Role Management
 
-通过给部门关联一个或多个角色，可以使当前部门下的成员拥有这些角色。
+By associating a department with one or more roles, members of the current department can have these roles.
 
-有两种方式可以给部门关联角色。
+There are two ways to associate roles with a department.
 
-第一种是在部门编辑表单的角色字段选择角色。
+The first way is to select roles in the roles field of the department edit form.
 ![](/core/departments-14.png)
 
-第二种是在角色管理里面，给对应角色添加部门。
+The second way is to add departments to the corresponding role in role management.
 ![](/core/departments-15.png)
-
