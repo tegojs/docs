@@ -3,11 +3,11 @@
   {
     "type": "dir",
     "name": "action-settings",
-    "label": "通用配置项"
+    "label": "Generic Settings"
   },
   {
     "type": "dir",
     "name": "types",
-    "label": "操作类型"
+    "label": "Action Types"
   }
 ]

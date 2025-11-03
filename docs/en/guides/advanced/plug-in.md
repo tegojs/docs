@@ -1,13 +1,13 @@
-# 插件管理
+# Plugin Management
 
 
-## 插件管理器 
+## Plugin Manager
 
-通过点击右上角的插件管理器图标，可以进入插件管理器页面。在这里，可以查看、安装、启用、禁用插件。
-
-
+By clicking the plugin manager icon in the top right corner, you can enter the plugin manager page. Here, you can view, install, enable, and disable plugins.
 
 
-## 插件设置中心
 
-插件通常会带有自己的设置页面。通过点击右上角的设置图标，可以看到所有插件的设置页面的菜单，点击相应的菜单，即可对相应的插件进行设置。
+
+## Plugin Settings Center
+
+Plugins typically come with their own settings pages. By clicking the settings icon in the top right corner, you can see the menu for all plugin settings pages. Click on the corresponding menu to configure the respective plugin.

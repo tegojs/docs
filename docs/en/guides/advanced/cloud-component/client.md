@@ -1,15 +1,14 @@
-# 客户端插件
+# Client Plugin
 
-客户端插件指在仅插件配置在客户端进行运行，进行定义扩展插件
+Client plugins are configured to run only on the client side to define extension plugins.
 
-##使用组件
+## Using Components
 
-编写组件信息
+Write Component Information
 
-具体可参考[Application](/docs/zh/api/client/application/Application.md)进行详细使用
+For detailed usage, please refer to [Application](/docs/en/api/client/application/Application.md)
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/5176af9760cd94716a84d7b6bfebe654.png)
 
 
-配置组件信息
+Configure Component Information
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/68fb045990ea47031bd6c04d72dfa2bb.png)
-

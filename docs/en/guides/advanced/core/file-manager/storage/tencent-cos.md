@@ -1,29 +1,29 @@
-# 腾讯云 COS
+# Tencent Cloud COS
 
-基于腾讯云 COS 的存储引擎，使用前需要准备相关账号和权限。
+Storage engine based on Tencent Cloud COS. Relevant accounts and permissions need to be prepared before use.
 
-## 配置参数
+## Configuration Parameters
 
-:::info{title=提示}
-仅介绍腾讯云 COS 存储引擎的专用参数，通用参数请参考[引擎通用参数](./index.md#引擎通用参数)。
+:::info{title=Note}
+Only the dedicated parameters for the Tencent Cloud COS storage engine are introduced here. For common parameters, please refer to [Engine Common Parameters](./index.md#engine-common-parameters).
 :::
 
-### 区域
+### Region
 
-填写 COS 存储的区域，例如：`ap-chengdu`。
+Fill in the COS storage region, for example: `ap-chengdu`.
 
-:::info{title=提示}
-可以在[腾讯云 COS 控制台](https://console.cloud.tencent.com/cos)中查看存储空间的区域信息，且只需截取区域前缀部分即可（无需完整域名）。
+:::info{title=Note}
+You can view the storage space region information in the [Tencent Cloud COS Console](https://console.cloud.tencent.com/cos), and only need to extract the region prefix part (full domain name not required).
 :::
 
 ### SecretId
 
-填写腾讯云授权访问密钥的 ID。
+Fill in the ID of the Tencent Cloud authorized access key.
 
 ### SecretKey
 
-填写腾讯云授权访问密钥的 Secret。
+Fill in the Secret of the Tencent Cloud authorized access key.
 
-### 存储桶
+### Bucket
 
-填写 COS 存储的存储桶名称，例如：`qing-cdn-1234189398`。
+Fill in the bucket name of the COS storage, for example: `qing-cdn-1234189398`.

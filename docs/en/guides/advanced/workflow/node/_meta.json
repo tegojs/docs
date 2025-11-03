@@ -3,26 +3,26 @@
   {
     "type": "dir",
     "name": "process-control",
-    "label": "流程控制"
+    "label": "Process Control"
   },
   {
     "type": "dir",
     "name": "calculation",
-    "label": "计算"
+    "label": "Calculation"
   },
   {
     "type": "dir",
     "name": "collection",
-    "label": "数据表操作"
+    "label": "Collection Operations"
   },
   {
     "type": "dir",
     "name": "manual",
-    "label": "人工处理"
+    "label": "Manual Processing"
   },
   {
     "type": "dir",
     "name": "extension-type",
-    "label": "扩展类型"
+    "label": "Extension Types"
   }
 ]

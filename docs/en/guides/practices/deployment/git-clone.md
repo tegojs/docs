@@ -1,3 +1,3 @@
-# Git 源码部署
+# Deploy from Git Source
 
-其他流程与 [Git 源码安装](../installation/git-clone) 无异。
+The process is the same as [Git Source Installation](../installation/git-clone).

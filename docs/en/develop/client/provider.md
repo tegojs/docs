@@ -1,22 +1,22 @@
-# Provider 组件
-Provider 组件在外层定义，核心结构如下：
+# Provider Components
+Provider components are defined in the outer layer, with the core structure as follows:
 
 ```tsx
 <Router>
   {' '}
-  {/* 路由的 Context Provider */}
+  {/* Router Context Provider */}
   <ProviderA>
     <ProviderB>
-      {/* 其他自定义 Provider 组件 - 开始标签 */}
+      {/* Other custom Provider components - Opening tags */}
       <Routes />
-      {/* 其他自定义 Provider 组件 - 结束标签 */}
+      {/* Other custom Provider components - Closing tags */}
     </ProviderB>
   </ProviderA>
 </Router>
 ```
 
-因为定义在外层，所以 `Provider` 组件的用处有：
+Because they are defined in the outer layer, the purposes of `Provider` components are:
 
-- 提供全局共享的上下文（`Context`），需要渲染 `props.children`
-- 提供全局内容展示，需要渲染 `props.children`
-- 拦截作用，根据条件渲染 `props.children`
+- Provide globally shared context (`Context`), need to render `props.children`
+- Provide global content display, need to render `props.children`
+- Interception, conditionally render `props.children`

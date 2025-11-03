@@ -2,11 +2,11 @@
   {
     "type": "dir",
     "name": "users",
-    "label": "用户和权限"
+    "label": "Users and Permissions"
   },
   {
     "type": "dir",
     "name": "file-manager",
-    "label": "文件管理器"
+    "label": "File Manager"
   }
 ]

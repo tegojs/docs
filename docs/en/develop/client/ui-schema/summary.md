@@ -1,12 +1,12 @@
-# 概述
+# Overview
 
-| 概念      | 说明                                             |
-| --------- | ------------------------------------------------ |
-| UI Schema | 用于定义页面的结构和布局的 JSON 格式的配置文件。 |
+| Concept   | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| UI Schema | JSON format configuration file for defining page structure and layout. |
 
-## 一. 编写 Schema 组件
+## I. Writing Schema Components
 
-通过配置 `x-component` 将已注册的组件渲染出来
+Render registered components through configuring `x-component`
 
 ```typescript
 import { Application, Plugin, SchemaComponent } from '@tachybase/client'
@@ -49,9 +49,9 @@ const app = new Application({
 export default app.getRootComponent()
 ```
 
-## 二. 初始化生成 Schema 组件
+## II. Initialize and Generate Schema Components
 
-通过配置 `x-initializer` 将新的组件插入到已存在的 Schema 的相邻位置
+Insert new components into adjacent positions of existing Schema through configuring `x-initializer`
 
 ```typescript
 import {
@@ -71,7 +71,7 @@ const HelloComponent = () => <h1>Hello World!</h1>
 
 const myInitializer = new SchemaInitializer({
   name: 'myInitializer',
-  //  按钮标题标题
+  //  Button title
   title: 'Add block',
   wrap: Grid.wrap,
   items: [
@@ -80,7 +80,7 @@ const myInitializer = new SchemaInitializer({
       title: 'Hello block',
       Component: () => {
         const itemConfig = useSchemaInitializerItem()
-        // 调用插入功能
+        // Call insert function
         const { insert } = useSchemaInitializer()
         const handleClick = () => {
           insert({
@@ -133,7 +133,7 @@ const app = new Application({
   router: {
     type: 'memory',
   },
-  // 为了更好的展示 demo，直接将 designable 设置为 true
+  // For better demo display, directly set designable to true
   designable: true,
   plugins: [PluginHello],
 })
@@ -141,9 +141,9 @@ const app = new Application({
 export default app.getRootComponent()
 ```
 
-## 三. 为 Schema 添加设计器工具栏
+## III. Add Designer Toolbar for Schema
 
-通过配置 `x-settings` 为 Schema 组件提供参数配置器，设计器工具栏默认开启拖拽功能
+Provide parameter configurator for Schema components through configuring `x-settings`, designer toolbar enables drag functionality by default
 
 ```typescript
 import React from 'react'
@@ -178,17 +178,17 @@ const mySettings = new SchemaSettings({
 
 const myInitializer = new SchemaInitializer({
   name: 'MyInitializer',
-  //  按钮标题标题
+  //  Button title
   title: 'Button Text',
   wrap: Grid.wrap,
-  // 调用 initializer.render() 时会渲染 items 列表
+  // When calling initializer.render(), the items list will be rendered
   items: [
     {
       name: 'demo1',
       title: 'Demo1',
       Component: () => {
         const itemConfig = useSchemaInitializerItem()
-        // 调用插入功能
+        // Call insert function
         const { insert } = useSchemaInitializer()
         const handleClick = () => {
           insert({

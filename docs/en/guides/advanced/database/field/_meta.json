@@ -3,36 +3,36 @@
   {
     "type": "dir",
     "name": "basic",
-    "label": "基本类型"
+    "label": "Basic Types"
   },
   {
     "type": "dir",
     "name": "choices",
-    "label": "选择类型"
+    "label": "Choice Types"
   },
   {
     "type": "dir",
     "name": "media",
-    "label": "多媒体"
+    "label": "Media"
   },
   {
     "type": "dir",
     "name": "datetime",
-    "label": "日期 & 时间"
+    "label": "Date & Time"
   },
   {
     "type": "dir",
     "name": "associations",
-    "label": "关系类型"
+    "label": "Relationship Types"
   },
   {
     "type": "dir",
     "name": "advanced",
-    "label": "高级类型"
+    "label": "Advanced Types"
   },
   {
     "type": "dir",
     "name": "system-info",
-    "label": "系统信息"
+    "label": "System Info"
   }
 ]

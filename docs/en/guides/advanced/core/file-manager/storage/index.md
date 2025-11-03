@@ -1,58 +1,58 @@
-# 概述
+# Overview
 
-## 内置引擎
+## Built-in Engines
 
-目前 Tachybase 内置支持的引擎类型如下：
-- [本地存储](./local.md)
-- [阿里云 OSS](./aliyun-oss.md)
-- [亚马逊 S3](./amazon-s3.md)
-- [腾讯云 COS](./tencent-cos.md)
+Currently, Tachybase supports the following built-in engine types:
+- [Local Storage](./local.md)
+- [Aliyun OSS](./aliyun-oss.md)
+- [Amazon S3](./amazon-s3.md)
+- [Tencent Cloud COS](./tencent-cos.md)
 
-系统安装时会自动添加一个本地存储引擎，可直接使用。也可以添加新的或编辑已有的引擎参数。
+A local storage engine is automatically added during system installation and can be used directly. You can also add new engines or edit existing engine parameters.
 
-## 引擎通用参数
+## Engine Common Parameters
 
-除了不同引擎类别的特有参数外，以下部分为通用参数（以本地存储为例）：
+In addition to the specific parameters for different engine types, the following are common parameters (using local storage as an example):
 ![](/core/storage-1.png)
 
-### 标题
+### Title
 
-存储引擎的名称，用于人工识别。
+The name of the storage engine, used for human identification.
 
-### 系统名
+### System Name
 
-存储引擎的系统名称，用于系统识别。必须是系统唯一的，不填会由系统自动随机生成。
+The system name of the storage engine, used for system identification. It must be system-unique; if not filled, the system will automatically generate it randomly.
 
-### 访问 URL 基础
+### Base Access URL
 
-该文件对外可访问的 URL 地址前缀部分，可以是 CDN 的访问 URL 基础，如：“`https://cdn.Tachybase.com/app`”（无需结尾的“`/`”）。
+The URL prefix for external access to the file, which can be a CDN access URL base, such as: "`https://cdn.Tachybase.com/app`" (no trailing "`/`" needed).
 
-### 路径
+### Path
 
-存储文件时使用的相对路径，在访问时此部分也会被自动拼接到最终的 URL 中。如：“`user/avatar`”（无需开头和结尾的“`/`”）。
+The relative path used when storing files. This part will also be automatically concatenated to the final URL during access. For example: "`user/avatar`" (no leading or trailing "`/`" needed).
 
-### 文件大小限制
+### File Size Limit
 
-对此存储引擎上传文件时的大小限制，超过该设置大小的文件将无法上传。系统默认限制为 20MB，可调整到最大的限制为 1GB。
+The size limit for uploading files to this storage engine. Files exceeding this size cannot be uploaded. The system default limit is 20MB, adjustable up to a maximum of 1GB.
 
-### 文件类型
+### File Type
 
-可对上传文件的类型进行限制，使用  语法描述格式。例如：`image/*` 代表图片类文件。多个类型可以用英文逗号分隔，如：`image/*, application/pdf` 代表允许图片类型和 PDF 类型的文件。
+You can restrict the types of files that can be uploaded using MIME type syntax. For example: `image/*` represents image files. Multiple types can be separated by commas, such as: `image/*, application/pdf` allows image types and PDF type files.
 
-### 默认存储引擎
+### Default Storage Engine
 
-勾选后设置为系统的默认存储引擎，在附件字段或文件表未指定存储引擎时，上传的文件均会保存至默认存储引擎中。默认存储引擎不可删除。
+When checked, it is set as the system's default storage engine. When attachment fields or file collections do not specify a storage engine, uploaded files will be saved to the default storage engine. The default storage engine cannot be deleted.
 
-### 删除记录时保留文件
+### Keep Files When Deleting Records
 
-勾选后当附件表或文件表的数据记录被删除时，仍然保留存储引擎中已上传的文件。默认不勾选，即删除记录时会同时删除存储引擎中的文件。
+When checked, uploaded files in the storage engine are retained when data records in the attachment table or file table are deleted. By default, this is unchecked, meaning files in the storage engine will be deleted when records are deleted.
 
-:::info{title=提示}
-文件上传后，最终的访问路径会由几部分拼接而成：
+:::info{title=Note}
+After a file is uploaded, the final access path will be composed of several parts:
 
 ```
-<访问 URL 基础>/<路径>/<文件名><后缀名>
+<Base Access URL>/<Path>/<Filename><Extension>
 ```
 
-如：`https://cdn.tachybase.com/app/user/avatar/20240529115151.png。`
+For example: `https://cdn.tachybase.com/app/user/avatar/20240529115151.png`
 :::

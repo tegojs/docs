@@ -3,17 +3,17 @@
   {
     "type": "dir",
     "name": "generic",
-    "label": "通用配置项"
+    "label": "Generic Settings"
   },
   {
     "type": "dir",
     "name": "specific",
-    "label": "特有配置项"
+    "label": "Specific Settings"
   },
   {
     "type": "dir",
     "name": "field-settings",
-    "label": "字段配置项"
+    "label": "Field Settings"
   },
   "association-field"
 ]

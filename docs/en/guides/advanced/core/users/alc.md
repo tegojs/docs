@@ -1,25 +1,25 @@
-# 权限控制
+# Access Control
 
-## 介绍
+## Introduction
 
-Tachybase 的 ACL 模块主要由两部分组成：
+Tachybase's ACL module consists of two main parts:
 
-- 内核中的 `@tachybase/acl`，提供核心功能
-- 插件中的 `@tachybase/plugin-acl`，提供动态配置能力
+- `@tachybase/acl` in the core, providing core functionality
+- `@tachybase/plugin-acl` in the plugins, providing dynamic configuration capabilities
 
-## 安装
+## Installation
 
-内置插件，无需单独安装。
+Built-in plugin, no separate installation required.
 
-## 开发指南
+## Development Guide
 
-### 扩展一个新的权限配置栏
+### Extending a New Permission Configuration Tab
 
-下面以“移动端菜单”配置项为例，演示如何扩展一个新的权限配置栏。效果如下图所示：
+The following example demonstrates how to extend a new permission configuration tab using the "Mobile Menu" configuration item. The effect is shown in the image below:
 
 ![](/core/tachybase-core-alc-1.png)
 
-代码如下：
+Code:
 
 ```typescript
 import { Plugin } from '@tachybase/client';
@@ -44,9 +44,9 @@ class PluginMobileClient extends Plugin {
 }
 ```
 
-首先，我们需要获取到 `PluginACLClient` 插件的实例，通过 `settingsUI.addPermissionsTab` 方法添加一个新的权限配置栏。在这个例子中，我们添加了一个名为“移动端菜单”的权限配置栏。
+First, we need to get the instance of the `PluginACLClient` plugin, and add a new permission configuration tab through the `settingsUI.addPermissionsTab` method. In this example, we added a permission configuration tab named "Mobile Menu".
 
-`settingsUI` 属性的值是一个名为 `ACLSettingsUI` 的类的实例，其类型信息如下：
+The value of the `settingsUI` property is an instance of a class named `ACLSettingsUI`, with the following type information:
 
 ```typescript
 import { TabsProps } from 'antd/es/tabs/index';

@@ -2,24 +2,24 @@
   {
     "type": "dir",
     "name": "start",
-    "label": "开始"
+    "label": "Getting Started"
   },
   {
     "type": "dir",
     "name": "basic",
     "collapsed": true,
-    "label": "基础"
+    "label": "Basics"
   },
   {
     "type": "dir",
     "collapsed": true,
     "name": "advanced",
-    "label": "进阶"
+    "label": "Advanced"
   },
   {
     "type": "dir",
     "collapsed": true,
     "name": "practices",
-    "label": "最佳实践"
+    "label": "Best Practices"
   }
 ]

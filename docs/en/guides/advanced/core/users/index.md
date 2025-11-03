@@ -1,41 +1,39 @@
-# 用户
+# Users
 
-## 介绍
+## Introduction
 
-用户插件提供了基础的用户模型和用户管理界面。
+The Users plugin provides a basic user model and user management interface.
 
-## 安装
+## Installation
 
-内置插件，无需单独安装。
+Built-in plugin, no separate installation required.
 
-## 使用说明
+## Usage Instructions
 
-### 用户管理
+### User Management
 
-该插件在配置中心里提供了一个用户管理界面。应用初始化以后会添加一个不可删除的超级管理员账号, 管理员拥有 Root 权限，可以访问所有资源。
+This plugin provides a user management interface in the configuration center. After application initialization, a non-deletable super administrator account is added. The administrator has Root privileges and can access all resources.
 
 ![](/core/tachybase-core-user-1.png)
 
-除此之外，也可以在页面中使用用户表添加各种不同的卡片来管理用户，比如表格卡片：
+In addition, you can also use the user table in the page to add various blocks to manage users, such as table blocks:
 
 ![](/core/tachybase-core-user-2.png)
 
-### 添加用户
+### Add User
 
 ![](/core/tachybase-core-user-3.png)
 
 ![](/core/tachybase-core-user-4.png)
 
-### 修改用户资料
+### Edit User Profile
 
 ![](/core/tachybase-core-user-5.png)
 
 ![](/core/tachybase-core-user-6.png)
 
-### 修改用户密码
+### Change User Password
 
 ![](/core/tachybase-core-user-7.png)
 
 ![](/core/tachybase-core-user-8.png)
-
-

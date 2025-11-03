@@ -1,1 +1,1 @@
-# 柱状图
+# Column Chart

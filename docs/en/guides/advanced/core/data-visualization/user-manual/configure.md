@@ -1,1 +1,1 @@
-# 配置面板
+# Configuration Panel

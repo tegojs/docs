@@ -1,12 +1,12 @@
-# 扩展开发
+# Extension Development
 
-## 扩展前端文件类型
+## Extend Frontend File Types
 
-对于已上传完成的文件，在前端界面上可以基于不同文件类型展示不同预览内容。文件管理器的附件字段内置了基于浏览器（内嵌于 iframe）的文件预览，这种方式支持大部分文件格式（图片、视频、音频和 PDF 等）直接在浏览器中进行预览。当文件格式不支持浏览器预览，或者有特殊的预览交互需要时，可以通过扩展基于文件类型的预览组件来实现。
+For uploaded files, different preview content can be displayed in the frontend interface based on different file types. The file manager's attachment field has built-in browser-based (embedded in iframe) file preview, which supports most file formats (images, videos, audio, and PDF, etc.) to be previewed directly in the browser. When the file format does not support browser preview, or when there are special preview interaction needs, you can implement it by extending preview components based on file types.
 
-### 示例
+### Example
 
-例如希望对图片类型的文件扩展一个轮播切换组件，可以通过以下代码方式：
+For example, if you want to extend a carousel switching component for image type files, you can use the following code:
 
 ```ts
 import match from 'mime-match';
@@ -58,11 +58,11 @@ class MyPlugin extends Plugin {
 }
 ```
 
-其中 `attachmentFileTypes` 是 `@tachybase/client` 包中提供的用于扩展文件类型的入口对象，使用其提供的 `add` 方法来扩展一个文件类型描述对象。
+Where `attachmentFileTypes` is an entry object provided in the `@tachybase/client` package for extending file types. Use its `add` method to extend a file type description object.
 
-每个文件类型必须实现一个 `match()` 方法，用于检查文件类型是否满足要求，例子中通过 `mime-match` 包提供的方法对文件的 `mimetype` 属性进行检测，如果匹配 `image/*` 的类型，则认为是需要处理的文件类型。如果未匹配成功，则会降级为内置的类型处理。
+Each file type must implement a `match()` method to check if the file type meets the requirements. In the example, the method provided by the `mime-match` package is used to detect the file's `mimetype` property. If it matches the `image/*` type, it is considered the file type to be processed. If the match is unsuccessful, it will fall back to the built-in type handling.
 
-在类型描述对象上的 `Previewer` 属性即为用于预览的组件，当文件类型匹配时，将渲染该组件进行预览。通常建议使用弹窗类型的组件作为基础容器（如 `<Modal />` 等），再将预览和需要交互的内容放入该组件，实现预览功能。
+The `Previewer` property on the type description object is the component used for previewing. When the file type matches, this component will be rendered for preview. It is usually recommended to use a modal-type component as the base container (such as `<Modal />`, etc.), and then place the preview and interactive content inside that component to implement the preview functionality.
 
 ### API
 
@@ -96,7 +96,7 @@ export class AttachmentFileTypes {
 
 #### `attachmentFileTypes`
 
-`attachmentFileTypes` 是一个全局实例，通过 `@tachybase/client` 导入：
+`attachmentFileTypes` is a global instance, imported from `@tachybase/client`:
 
 ```ts
 import { attachmentFileTypes } from '@tachybase/client';
@@ -104,34 +104,34 @@ import { attachmentFileTypes } from '@tachybase/client';
 
 #### `attachmentFileTypes.add()`
 
-向文件类型注册中心注册新的文件类型描述对象。描述对象的类型为 `AttachmentFileType`。
+Register a new file type description object with the file type registry. The description object type is `AttachmentFileType`.
 
 #### `AttachmentFileType`
 
 ##### `match()`
 
-文件格式匹配方法。
+File format matching method.
 
-传入参数 `file` 为已上传文件夹的数据对象，包含相关的属性可以用于类型判断：
+The passed parameter `file` is the data object of the uploaded file, containing relevant properties that can be used for type determination:
 
-* `mimetype`：mimetype 描述
-* `extname`：文件后缀名，包含“.”
-* `path`：文件储存的相对路径
-* `url`：文件 URL
+* `mimetype`: mimetype description
+* `extname`: file extension, including "."
+* `path`: relative path where the file is stored
+* `url`: file URL
 
-返回值为 `boolean` 类型，表示是否匹配的结果。
+The return value is of type `boolean`, indicating the result of whether it matches.
 
 ##### `Previewer`
 
-用于预览文件的 React 组件。
+A React component for previewing files.
 
-传入 Props 参数为：
+The Props parameters passed in are:
 
-* `index`：文件在附件列表中的索引
-* `list`：附件列表
-* `onSwitchIndex`：用于切换索引的方法
+* `index`: index of the file in the attachment list
+* `list`: attachment list
+* `onSwitchIndex`: method for switching the index
 
-其中 `onSwitchIndex` 可以传入一个 list 中的任意索引值，用于切换到其他文件。如果使用 `null` 作为参数切换，则直接关闭预览组件。
+Where `onSwitchIndex` can be passed any index value in the list to switch to another file. If `null` is used as a parameter to switch, the preview component will be closed directly.
 
 ```ts
 onSwitchIndex(null);

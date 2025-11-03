@@ -1,7 +1,7 @@
-# 生产部署
+# Production Deployment
 
-Tachybase 支持三种安装方式，部署时略有不同。
+Tachybase supports three installation methods, each with slightly different deployment processes.
 
-- [通过 Docker Compose 部署](./docker-compose.md)
-- [create-tachybase-app 部署](./create-tachybase-app.md)
-- [Git 源码部署](./git-clone.md)
+- [Deploy via Docker Compose](./docker-compose.md)
+- [Deploy with create-tachybase-app](./create-tachybase-app.md)
+- [Deploy from Git Source](./git-clone.md)

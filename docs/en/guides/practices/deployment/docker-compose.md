@@ -1,19 +1,19 @@
-# 通过 Docker Compose 部署
+# Deploy via Docker Compose
 
-其他流程与 [Docker 安装](/guides/advanced/env.html#docker-安装方式) 无异。
+The process is the same as [Docker Installation](/guides/advanced/env#docker-installation-method).
 
 <br />
 
-[>>> 更多内容，查看完整的「环境变量」列表 <<<](/guides/advanced/env)
+[>>> For more details, see the complete "Environment Variables" list <<<](/guides/advanced/env)
 
-## 绑定域名
+## Bind Domain Name
 
-以 nginx 为例，通过 nginx 代理 http://127.0.0.1:13000/
+Using nginx as an example, proxy http://127.0.0.1:13000/ through nginx
 
 ```bash
 server {
     listen 80;
-    server_name your_domain.com;  # 将 your_domain.com 替换为您的域名
+    server_name your_domain.com;  # Replace your_domain.com with your domain
 
     location / {
         proxy_pass http://127.0.0.1:13000/;
@@ -25,9 +25,9 @@ server {
 }
 ```
 
-## 子路径部署
+## Deploy to Subpath
 
-部署到子路径，需要配置 `APP_PUBLIC_PATH` 环境变量。
+To deploy to a subpath, you need to configure the `APP_PUBLIC_PATH` environment variable.
 
 ```diff
 services:
@@ -37,12 +37,12 @@ services:
 +     - APP_PUBLIC_PATH=/tachybase/
 ```
 
-应用的 URL 是 http://127.0.0.1:13000/tachybase/ ，Nginx 配置为
+The application URL will be http://127.0.0.1:13000/tachybase/, and the Nginx configuration should be:
 
 ```bash
 server {
     listen 80;
-    server_name your_domain.com;  # 将 your_domain.com 替换为您的域名
+    server_name your_domain.com;  # Replace your_domain.com with your domain
 
     location /tachybase/ {
         proxy_pass http://127.0.0.1:13000/tachybase/;
@@ -54,4 +54,4 @@ server {
 }
 ```
 
-最后就可以通过 http://your_domain.com/tachybase/ 访问了
+Finally, you can access the application at http://your_domain.com/tachybase/

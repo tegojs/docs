@@ -1,23 +1,23 @@
-# 数据表
+# Collections
 
 ## Collection
 
-Collection 是所有种类数据的集合，中文翻译为「数据表」，如订单、商品、用户、评论等都是 Collection。不同 Collection 通过 name 区分，如：
+Collection is a collection of all kinds of data, translated in Chinese as "Data Table", such as orders, products, users, comments, etc. Different Collections are distinguished by name, such as:
 
 ```ts
-// 订单
+// Orders
 {
   name: 'orders',
 }
-// 商品
+// Products
 {
   name: 'products',
 }
-// 用户
+// Users
 {
   name: 'users',
 }
-// 评论
+// Comments
 {
   name: 'comments',
 }
@@ -25,38 +25,38 @@ Collection 是所有种类数据的集合，中文翻译为「数据表」，如
 
 ## Collection Field
 
-每个 Collection 都有若干 Fields。
+Each Collection has several Fields.
 
 ```ts
-// Collection 配置
+// Collection configuration
 {
   name: 'users',
   fields: [
     { type: 'string', name: 'name' },
     { type: 'integer', name: 'age' },
-    // 其他字段
+    // Other fields
   ],
 }
-// 示例数据
+// Sample data
 [
   {
-    name: '张三',
+    name: 'Zhang San',
     age: 20,
   },
   {
-    name: '李四',
+    name: 'Li Si',
     age: 18,
   }
 ];
 ```
 
-在 Tachybase 中 Collection Field 的构成包括：Field Component 和 Field Interface
+In Tachybase, Collection Field consists of: Field Component and Field Interface
 
 ### Field Type
 
-不同字段通过 name 区分，type 表示字段的数据类型，分为 Attribute Type 和 Association Type，如：
+Different fields are distinguished by name. Type indicates the data type of the field, divided into Attribute Type and Association Type, such as:
 
-**属性 - Attribute Type**
+**Attribute - Attribute Type**
 
 - string
 - text
@@ -70,7 +70,7 @@ Collection 是所有种类数据的集合，中文翻译为「数据表」，如
 - virtual
 - ...
 
-**关系 - Association Type**
+**Association - Association Type**
 
 - hasOne
 - hasMany
@@ -80,10 +80,10 @@ Collection 是所有种类数据的集合，中文翻译为「数据表」，如
 
 ### Field Component
 
-字段有了数据类型，字段值的 IO 没问题了，但是还不够，如果需要将字段展示在界面上，还需要另一个维度的配置 —— `uiSchema`，如：
+With data types for fields, field value IO is fine, but it's not enough. If you need to display the field on the interface, you need another dimension of configuration — `uiSchema`, such as:
 
 ```tsx | pure
-// 邮箱字段，用 Input 组件展示，使用 email 校验规则
+// Email field, displayed with Input component, using email validation rule
 {
   type: 'string',
   name: 'email',
@@ -91,30 +91,30 @@ Collection 是所有种类数据的集合，中文翻译为「数据表」，如
     'x-component': 'Input',
     'x-component-props': { size: 'large' },
     'x-validator': 'email',
-    'x-pattern': 'editable', // 可编辑状态，还有 readonly 不可编辑状态、read-pretty 阅读态
+    'x-pattern': 'editable', // Editable state, also has readonly non-editable state, read-pretty read state
   },
 }
 
-// 数据示例
+// Data example
 {
   email: 'admin@tachybase.com',
 }
 
-// 组件示例
+// Component example
 <Input name={'email'} size={'large'} value={'admin@tachybase.com'} />
 ```
 
-uiSchema 用于配置字段展示在界面上的组件，每个字段组件都会对应一个 value，包括几个维度的配置：
+uiSchema is used to configure the components displayed on the interface for fields. Each field component corresponds to a value, including several dimensions of configuration:
 
-- 字段的组件
-- 组件的参数
-- 字段的校验规则
-- 字段的模式（editable、readonly、read-pretty）
-- 字段的默认值
-- 其他
+- Field component
+- Component parameters
+- Field validation rules
+- Field pattern (editable, readonly, read-pretty)
+- Field default value
+- Others
 
 
-Tachybase 内置的字段组件有：
+Tachybase built-in field components include:
 
 - Input
 - InputNumber
@@ -125,10 +125,10 @@ Tachybase 内置的字段组件有：
 
 ### Field Interface
 
-有了 Field Type 和 Field Component 就可以自由组合出若干字段，我们将这种组合之后的模板称之为 Field Interface，如：
+With Field Type and Field Component, you can freely combine several fields. We call this combined template Field Interface, such as:
 
 ```ts
-// 邮箱字段 string + input，email 校验规则
+// Email field string + input, email validation rule
 {
   type: 'string',
   name: 'email',
@@ -139,7 +139,7 @@ Tachybase 内置的字段组件有：
   },
 }
 
-// 手机字段 string + input，phone 校验规则
+// Phone field string + input, phone validation rule
 {
   type: 'string',
   name: 'phone',
@@ -151,30 +151,30 @@ Tachybase 内置的字段组件有：
 }
 ```
 
-上面 email 和 phone 每次都需要配置完整的 uiSchema 非常繁琐，为了简化配置，又引申出另一个概念 Field interface，可以将一些参数模板化，如：
+The above email and phone need to configure complete uiSchema every time, which is very cumbersome. To simplify configuration, another concept Field interface is derived, which can template some parameters, such as:
 
 ```ts
-// email 字段的模板
+// Email field template
 interface email {
   type: 'string';
   uiSchema: {
     'x-component': 'Input',
-    'x-component-props': {},
-    'x-validator': 'email',
+    'x-component-props': {};
+    'x-validator': 'email';
   };
 }
 
-// phone 字段的模板
+// Phone field template
 interface phone {
   type: 'string';
   uiSchema: {
     'x-component': 'Input',
-    'x-component-props': {},
-    'x-validator': 'phone',
+    'x-component-props': {};
+    'x-validator': 'phone';
   };
 }
 
-// 简化之后的字段配置
+// Simplified field configuration
 // email
 {
   interface: 'email',

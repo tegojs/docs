@@ -1,19 +1,19 @@
-## SchemaInitializer 初始化器
+# SchemaInitializer
 
-当激活 UI 配置之后，界面上直观可见的各种橙色按钮就是 Schema 初始化器，用于向界面内添加各种卡片、字段、操作等。
+After activating UI configuration, the various orange buttons that are intuitively visible on the interface are Schema initializers, used to add various blocks, fields, actions, etc. to the interface.
 
 ![](/schemas/schema-init.png)
 
-## 向已有的初始化器里添加项
+## Add Items to Existing Initializers
 
-推荐使用 schemaInitializerManager.addItem() 方法添加项
+It's recommended to use the schemaInitializerManager.addItem() method to add items
 
 ```tsx
 class PluginDemoAddSchemaInitializerItem extends Plugin {
   async load() {
     this.schemaInitializerManager.addItem(
-      'myInitializer', // 示例，已存在的 schema initializer
-      'otherBlocks.custom', // 向 otherBlocks 分组内添加 custom
+      'myInitializer', // Example, existing schema initializer
+      'otherBlocks.custom', // Add custom to the otherBlocks group
       {
         type: 'item',
         useComponentProps() {},
@@ -23,18 +23,18 @@ class PluginDemoAddSchemaInitializerItem extends Plugin {
 }
 ```
 
-## 添加新的初始化器
+## Add New Initializer
 
 ```tsx
 const myInitializer = new SchemaInitializer({
-  // 初始化器标识，全局唯一
+  // Initializer identifier, globally unique
   name: 'myInitializer',
   title: 'Add Block',
-  // 包装，例如插入到 Grid 里，需要用 Grid.wrap 处理（添加行列标签）
+  // Wrapper, for example, when inserting into Grid, need to use Grid.wrap to handle (add row and column labels)
   wrap: Grid.wrap,
-  // 插入位置，默认为 beforeEnd，支持 'beforeBegin' | 'afterBegin' | 'beforeEnd' | 'afterEnd'
+  // Insert position, default is beforeEnd, supports 'beforeBegin' | 'afterBegin' | 'beforeEnd' | 'afterEnd'
   insertPosition: 'beforeEnd',
-  // 下拉菜单项
+  // Dropdown menu items
   items: [
     {
       name: 'a',
@@ -45,9 +45,9 @@ const myInitializer = new SchemaInitializer({
 })
 ```
 
-### 在插件的 load 方法中注册
+### Register in Plugin load Method
 
-推荐使用 schemaInitializerManager.add() 将新增的初始化器添加到应用里
+It's recommended to use schemaInitializerManager.add() to add the new initializer to the application
 
 ```tsx
 class PluginDemoAddSchemaInitializer extends Plugin {
@@ -82,11 +82,11 @@ class PluginDemoAddSchemaInitializer extends Plugin {
 }
 ```
 
-### 如何使用新添加的初始化器
+### How to Use the Newly Added Initializer
 
-SchemaInitializer 用于 Schema 的 x-initializer 参数中。
+SchemaInitializer is used in the x-initializer parameter of Schema.
 
-通用的支持 x-initializer 的 Schema 组件有 Grid、ActionBar、Tabs，例如：
+Common Schema components that support x-initializer include Grid, ActionBar, Tabs, for example:
 
 ```json
 {
@@ -96,4 +96,4 @@ SchemaInitializer 用于 Schema 的 x-initializer 参数中。
 }
 ```
 
-如果 Grid、ActionBar、Tabs 这类组件并不满足需求，自定义的组件中，也可以使用 useSchemaInitializerRender() 处理 x-initializer 的渲染。
+If components like Grid, ActionBar, Tabs do not meet your needs, in custom components, you can also use useSchemaInitializerRender() to handle the rendering of x-initializer.

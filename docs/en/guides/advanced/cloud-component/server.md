@@ -1,21 +1,14 @@
-# 服务端插件
+# Server Plugin
 
-服务端插件指需要在服务端运行的扩展插件。
+Server plugins are extension plugins that need to run on the server side.
 
-::: tip 提示
-保存服务端插件后需要重启应用才可使用
+::: tip Note
+After saving a server plugin, you need to restart the application before it can be used
 :::
 
-编写组件
-具体可参考[Application]()进行详细使用
+Write Component
+For detailed usage, please refer to [Application]()
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/0ba3e34d2c26e0be60083cc3bc26d9f4.png)
 
-配置组件信息
+Configure Component Information
 ![](https://tachybase-1321007335.cos.ap-shanghai.myqcloud.com/69d0f6a2e87b1a89943818483e84feef.png)
-
-
-
-
-
-
-

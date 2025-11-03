@@ -3,22 +3,22 @@
   {
     "type": "dir",
     "name": "data-blocks",
-    "label": "数据卡片"
+    "label": "Data Blocks"
   },
   {
     "type": "dir",
     "name": "filter-blocks",
-    "label": "筛选卡片"
+    "label": "Filter Blocks"
   },
   {
     "type": "dir",
     "name": "other-blocks",
-    "label": "自定义卡片"
+    "label": "Custom Blocks"
   },
   "block-templates",
   {
     "type": "dir",
     "name": "block-settings",
-    "label": "卡片设置项"
+    "label": "Block Settings"
   }
 ]

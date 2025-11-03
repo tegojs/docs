@@ -1,20 +1,20 @@
-# 日志
+# Logger
 
-## 介绍
+## Introduction
 
-日志是帮助我们定位系统问题的重要手段。Tachybase 的服务端日志主要包括接口请求日志和系统运行日志，支持日志级别、滚动策略、大小、打印格式等配置。本篇文档主要介绍 tachybase 服务端日志的相关内容，以及如何使用日志插件提供的服务端日志打包和下载的功能。
+Logs are an important tool to help us locate system issues. Tachybase's server-side logs mainly include API request logs and system runtime logs, supporting configuration of log levels, rolling strategies, size, print format, etc. This documentation mainly introduces the relevant content of Tachybase server-side logs and how to use the server-side log packaging and downloading functionality provided by the logger plugin.
 
-## 日志配置
+## Log Configuration
 
-可以通过 [环境变量] 配置日志级别、输出方式、打印格式等的日志相关参数。
+You can configure log-related parameters such as log level, output method, and print format through [Environment Variables].
 
-## 日志格式
+## Log Formats
 
-tachybase 支持配置4种不同的日志格式。
+Tachybase supports 4 different log formats.
 
 ### `console`
 
-开发环境默认格式，消息以高亮颜色显示。
+Default format for development environment, messages are displayed with highlighted colors.
 
 ```
 2023-12-30 22:40:06 [info ] response                                     method=GET path=/api/uiSchemas:getJsonSchema/tachybase-admin-menu res={"status":200} action={"actionName":"getJsonSchema","resourceName":"uiSchemas","params":{"filterByTk":"tachybase-admin-menu","resourceName":"uiSchemas","resourceIndex":"tachybase-admin-menu","actionName":"getJsonSchema"}} userId=1 status=200 cost=5 app=main reqId=ccf4e3bd-beb0-4350-af6e-b1fc1d9b6c3f
@@ -24,7 +24,7 @@ tachybase 支持配置4种不同的日志格式。
 
 ### `json`
 
-生产环境默认格式。
+Default format for production environment.
 
 ```json
 {
@@ -58,83 +58,83 @@ userId=undefined status=200 cost=14
 
 ### `delimiter`
 
-分隔符 `|` 分割。
+Separated by delimiter `|`.
 
 ```
 info|2023-12-26 22:07:09|13cd16f0-1568-418d-ac37-6771ee650e14|response|POST|/api/authenticators:publicList|{"status":200}|{"actionName":"publicList","resourceName":"authenticators","params":{"resourceName":"authenticators","actionName":"publicList"}}||200|25
 ```
 
-## 日志目录
+## Log Directory
 
-tachybase 日志文件的主要目录结构为：
+The main directory structure of Tachybase log files is:
 
-- `storage/logs` - 日志输出目录
-  - `main` - 主应用名称
-    - `request_YYYY-MM-DD.log` - 请求日志
-    - `system_YYYY-MM-DD.log` - 系统日志
-    - `system_error_YYYY-MM-DD.log` - 系统错误日志
-    - `sql_YYYY-MM-DD.log` - SQL 执行日志
+- `storage/logs` - Log output directory
+  - `main` - Main application name
+    - `request_YYYY-MM-DD.log` - Request logs
+    - `system_YYYY-MM-DD.log` - System logs
+    - `system_error_YYYY-MM-DD.log` - System error logs
+    - `sql_YYYY-MM-DD.log` - SQL execution logs
     - ...
-  - `sub-app` - 子应用名称
+  - `sub-app` - Sub-application name
     - `request_YYYY-MM-DD.log`
     - ...
 
-## 日志文件
+## Log Files
 
-### 请求日志
+### Request Logs
 
-`request_YYYY-MM-DD.log`, 接口请求和响应日志。
+`request_YYYY-MM-DD.log`, API request and response logs.
 
-| 字段          | 说明                               |
+| Field         | Description                        |
 | ------------- | ---------------------------------- |
-| `level`       | 日志级别                           |
-| `timestamp`   | 日志打印时间 `YYYY-MM-DD hh:mm:ss` |
-| `message`     | `request` 或 `response`            |
-| `userId`      | `response` 中才有                  |
-| `method`      | 请求方法                           |
-| `path`        | 请求路径                           |
-| `req` / `res` | 请求/响应内容                      |
-| `action`      | 请求资源和参数                     |
-| `status`      | 响应状态码                         |
-| `cost`        | 请求耗时                           |
-| `app`         | 当前应用名称                       |
-| `reqId`       | 请求 ID                            |
+| `level`       | Log level                          |
+| `timestamp`   | Log print time `YYYY-MM-DD hh:mm:ss` |
+| `message`     | `request` or `response`            |
+| `userId`      | Only in `response`                 |
+| `method`      | Request method                     |
+| `path`        | Request path                       |
+| `req` / `res` | Request/response content           |
+| `action`      | Request resource and parameters    |
+| `status`      | Response status code               |
+| `cost`        | Request duration                   |
+| `app`         | Current application name           |
+| `reqId`       | Request ID                         |
 
-:::info{title=提示}
-`reqId` 会通过 `X-Request-Id` 响应头携带给前端。
+:::info{title=Note}
+`reqId` is sent to the frontend via the `X-Request-Id` response header.
 :::
 
-### 系统日志
+### System Logs
 
-`system_YYYY-MM-DD.log`, 应用、中间件、插件等系统运行日志，`error` 级别日志会单独打印到 `system_error_YYYY-MM-DD.log`
+`system_YYYY-MM-DD.log`, application, middleware, plugin and other system runtime logs. `error` level logs are printed separately to `system_error_YYYY-MM-DD.log`
 
-| 字段        | 说明                               |
+| Field       | Description                        |
 | ----------- | ---------------------------------- |
-| `level`     | 日志级别                           |
-| `timestamp` | 日志打印时间 `YYYY-MM-DD hh:mm:ss` |
-| `message`   | 日志消息                           |
-| `module`    | 模块                               |
-| `submodule` | 子模块                             |
-| `method`    | 调用方法                           |
-| `meta`      | 其他相关信息, JSON 格式            |
-| `app`       | 当前应用名称                       |
-| `reqId`     | 请求 ID                            |
+| `level`     | Log level                          |
+| `timestamp` | Log print time `YYYY-MM-DD hh:mm:ss` |
+| `message`   | Log message                        |
+| `module`    | Module                             |
+| `submodule` | Submodule                          |
+| `method`    | Called method                      |
+| `meta`      | Other related information, JSON format |
+| `app`       | Current application name           |
+| `reqId`     | Request ID                         |
 
-### SQL 执行日志
+### SQL Execution Logs
 
-`sql_YYYY-MM-DD.log`, 数据库 SQL 执行日志。其中 `INSERT INTO` 语句仅保留前 2000 个字符。
+`sql_YYYY-MM-DD.log`, database SQL execution logs. `INSERT INTO` statements only retain the first 2000 characters.
 
-| 字段        | 说明                               |
+| Field       | Description                        |
 | ----------- | ---------------------------------- |
-| `level`     | 日志级别                           |
-| `timestamp` | 日志打印时间 `YYYY-MM-DD hh:mm:ss` |
-| `sql`       | SQL 语句                           |
-| `app`       | 当前应用名称                       |
-| `reqId`     | 请求 ID                            |
+| `level`     | Log level                          |
+| `timestamp` | Log print time `YYYY-MM-DD hh:mm:ss` |
+| `sql`       | SQL statement                      |
+| `app`       | Current application name           |
+| `reqId`     | Request ID                         |
 
-## 日志打包下载
+## Log Package Download
 
 
-1. 进入日志管理页面。
-2. 选择想要下载的日志文件。
-3. 点击下载 (Download) 按钮。
+1. Enter the log management page.
+2. Select the log files you want to download.
+3. Click the Download button.
