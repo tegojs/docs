@@ -2,7 +2,8 @@
 
 | 序号 | 功能 | 描述 | 文档 |
 | --- | --- | --- | --- |
-| 1 | 示例功能 | 示例描述| [示例链接](https://tachybase.org/plugins/plugin-list.html) |
+| 1 | 所见即所得的编辑模式 | 将传统编辑器升级为类似飞书的现代化编辑体验，提供统一工具栏、拖拽布局和非入侵式编辑功能 | [查看详情](./wysiwyg-editing-mode.md) |
+| 2 | 示例功能 | 示例描述| [示例链接](https://tachybase.org/plugins/plugin-list.html) |
 
 
 
