@@ -1,157 +1,157 @@
-# Sheet 类
+# Sheet Class
 
-**主要功能：** 表格初始化，事件初始化，绑定，调用方法为：
+**Main Function:** Table initialization, event initialization, binding. Calling method:
 
 ```js
-// instance 你创建的实例，公有方法可以直接调用，私有方法不可以
+// instance is the instance you created, public methods can be called directly, private methods cannot
 instance.sheet.publicFn(args);
 ```
 
-## 实例属性
+## Instance Properties
 
-方便深入学习，实例属性概述
+For in-depth learning, instance property overview
 
 ### eventMap
 
-`eventMap` 初始化事件 Map 对象，类似事件管理中心，挂载到 Sheet 类上
+`eventMap` Initialize event Map object, similar to event management center, mounted on Sheet class
 
 ### el
 
-`el` 初始化 Sheet 实例的 element 对象，**element：** 为重写 element 对象，非原生 dom 对象，挂载到 Sheet 类上
+`el` Initialize Sheet instance's element object, **element:** is rewritten element object, not native dom object, mounted on Sheet class
 
 ### toolbar
 
-`toolbar` 初始化工具栏实例化对象，挂载到 Sheet 类上
+`toolbar` Initialize toolbar instance object, mounted on Sheet class
 
 ### print
 
-`print` 初始化打印实例对象，挂载到 Sheet 类上
+`print` Initialize print instance object, mounted on Sheet class
 
 ### data
 
-`print` 初始化 data_proxy 实例对象，挂载到 Sheet 类上
+`data` Initialize data_proxy instance object, mounted on Sheet class
 
 ### tableEl
 
-`tableEl` 初始化 table 实例的 element 实例，挂载到 Sheet 类上
+`tableEl` Initialize table instance's element instance, mounted on Sheet class
 
 ### rowResizer
 
-`rowResizer` 初始化行调整实例对象，挂载到 Sheet 类上
+`rowResizer` Initialize row adjustment instance object, mounted on Sheet class
 
 ### colResizer
 
-`colResizer` 初始化列调整实例对象，挂载到 Sheet 类上
+`colResizer` Initialize column adjustment instance object, mounted on Sheet class
 
 ### verticalScrollbar
 
-`verticalScrollbar` 初始化垂直方向滚动条实例对象，挂载到 Sheet 类上
+`verticalScrollbar` Initialize vertical scrollbar instance object, mounted on Sheet class
 
 ### horizontalScrollbar
 
-`horizontalScrollbar` 初始化水平方向滚动条实例对象，挂载到 Sheet 类上
+`horizontalScrollbar` Initialize horizontal scrollbar instance object, mounted on Sheet class
 
 ### editor
 
-`editor` 初始化表格编辑功能实例对象，挂载到 Sheet 类上
+`editor` Initialize table edit function instance object, mounted on Sheet class
 
 ### modalValidation
 
-`modalValidation` 初始化格式验证实例对象，挂载到 Sheet 类上
+`modalValidation` Initialize format validation instance object, mounted on Sheet class
 
 ### contextMenu
 
-`contextMenu` 初始化右键菜单实例对象，挂载到 Sheet 类上
+`contextMenu` Initialize right-click menu instance object, mounted on Sheet class
 
 ### selector
 
-`selector` 初始化选择器实例对象，功能涉及点选操作，挂载到 Sheet 类上
+`selector` Initialize selector instance object, function involves click operation, mounted on Sheet class
 
 ### overlayerEl
 
-`overlayerEl` 初始化覆盖层 dom 实例对象，挂载到 Sheet 类上
+`overlayerEl` Initialize overlay dom instance object, mounted on Sheet class
 
 ### sortFilter
 
-`sortFilter` 初始化筛选实例对象，挂载到 Sheet 类上
+`sortFilter` Initialize filter instance object, mounted on Sheet class
 
 ### table
 
-`table` 初始化表格实例对象，挂载到 Sheet 类上
+`table` Initialize table instance object, mounted on Sheet class
 
-## 私有方法
+## Private Methods
 
 ### scrollbarMove()
 
-滚动条滚动事件设置
+Scrollbar scroll event setting
 
 ### selectorSet()
 
-表格选择器设定
+Table selector setting
 
 ### selectorMove()
 
-表格选择器移动时设定
+Table selector movement setting
 
 ### overlayerMousemove(evt)
 
-表格覆盖层鼠标按下移动事件
+Table overlay mouse down move event
 
-`@param evt` 事件event对象
+`@param evt` Event object
 
 ### overlayerMousescroll(evt)
 
-表格覆盖层鼠标滚动事件
+Table overlay mouse scroll event
 
-`@param evt` 事件event对象
+`@param evt` Event object
 
 ### overlayerTouch(direction, distance)
 
-表格覆盖层触摸事件
+Table overlay touch event
 
-`@param direction` 方向
+`@param direction` Direction
 
-`@param distance` 距离
+`@param distance` Distance
 
 ### verticalScrollbarSet()
 
-垂直方向滚动条设定
+Vertical scrollbar setting
 
 ### horizontalScrollbarSet()
 
-水平方向滚动条设定
+Horizontal scrollbar setting
 
 ### sheetFreeze()
 
-冻结行列设置函数
+Freeze row and column setting function
 
 ### sheetReset()
 
-表格重置刷新函数
+Table reset refresh function
 
 ### clearClipboard()
 
-清空剪切板
+Clear clipboard
 
 ### copy()
 
-复制函数
+Copy function
 
 ### cut()
 
-剪切函数
+Cut function
 
 ### paste()
 
-粘贴函数
+Paste function
 
 ### hideRowsOrCols()
 
-隐藏行列函数
+Hide rows and columns function
 
 ### unhideRowsOrCols(type, index)
 
-取消隐藏行列
+Unhide rows or columns
 
 `@param type` row | col
 
@@ -159,166 +159,166 @@ instance.sheet.publicFn(args);
 
 ### autofilter()
 
-自动过滤函数
+Auto filter function
 
 ### toolbarChangePaintformatPaste()
 
-格式粘贴
+Format paste
 
 ### overlayerMousedown(evt)
 
-覆盖层鼠标按下操作
+Overlay mouse down operation
 
-`@param evt` event 对象
+`@param evt` event object
 
 ### editorSetOffset()
 
-编辑层偏移
+Editor layer offset
 
 ### editorSet()
 
-编辑层设定
+Editor layer setting
 
 ### verticalScrollbarMove(distance)
 
-垂直方向滚动设定
+Vertical scrolling setting
 
-`@param distance` 距离
+`@param distance` Distance
 
 ### horizontalScrollbarMove(distance)
 
-水平方向滚动设定
+Horizontal scrolling setting
 
-`@param distance` 距离
+`@param distance` Distance
 
 ### rowResizerFinished(cRect, distance)
 
-调整行结束事件
+Adjust row end event
 
-`@param cRect` 边界
+`@param cRect` Boundary
 
-`@param distance` 距离
+`@param distance` Distance
 
 ### colResizerFinished(cRect, distance)
 
-调整列结束事件
+Adjust column end event
 
-`@param cRect` 边界
+`@param cRect` Boundary
 
-`@param distance` 距离
+`@param distance` Distance
 
 ### dataSetCellText(text, state = 'finished')
 
-设置 data，并重新刷新表格
+Set data and re-refresh table
 
-`@param text` 文本
+`@param text` Text
 
-`@param state` 输入状态
+`@param state` Input state
 
 ### insertDeleteRowColumn(type)
 
-实现表格的功能的整合
+Integrate table functionality
 
-`@param type` 功能类型
+`@param type` Function type
 
 ### toolbarChange(type, value)
 
-工具栏发生改变触发的事件
+Event triggered when toolbar changes
 
-`@param type` 功能类型
+`@param type` Function type
 
-`@param value` 目标结果值
+`@param value` Target result value
 
 ### sortFilterChange(ci, order, operator, value)
 
-筛选发生改变事件
+Filter change event
 
-`@param ci` 列 id
+`@param ci` Column id
 
-`@param order` 顺序
+`@param order` Order
 
-`@param operator` 操作值
+`@param operator` Operation value
 
-`@param value` 结果值
+`@param value` Result value
 
 ### sheetInitEvents()
 
-表格初始化绑定事件
+Table initialization bind events
 
-## 公有方法
+## Public Methods
 
 ### on(eventName, func)
 
-可以通过实例化后的 Sheet 实例调用，绑定事件函数
+Can be called through instantiated Sheet instance, bind event function
 
-`@param eventName` 事件名
+`@param eventName` Event name
 
-`@param func` 自定义事件
+`@param func` Custom event
 
-调用方法 `实例.on(eventName, func){}`
+Calling method `instance.on(eventName, func){}`
 
 ### trigger(eventName, ...args)
 
-可以通过实例化后的 Sheet 实例调用，监听触发函数
+Can be called through instantiated Sheet instance, listen trigger function
 
-`@param eventName` 事件名
+`@param eventName` Event name
 
-`@param ...args` 一个或多个参数
+`@param ...args` One or more parameters
 
-调用方法 `实例.trigger(eventName, ...args){}`
+Calling method `instance.trigger(eventName, ...args){}`
 
 ### resetData(data)
 
-可以通过实例化后的 Sheet 实例调用，重置刷新表格
+Can be called through instantiated Sheet instance, reset refresh table
 
-`@param data` 数据
+`@param data` Data
 
-调用方法 `实例.resetData(data)`
+Calling method `instance.resetData(data)`
 
 ### loadData(data)
 
-可以通过实例化后的 Sheet 实例调用，加载必要数据
+Can be called through instantiated Sheet instance, load necessary data
 
-`@param data` 数据
+`@param data` Data
 
-调用方法 `实例.loadData(data)`
+Calling method `instance.loadData(data)`
 
 ### freeze(ri, ci)
 
-可以通过实例化后的 Sheet 实例调用，设定冻结行/列
+Can be called through instantiated Sheet instance, set freeze row/column
 
-`@param ri` 行的索引
+`@param ri` Row index
 
-`@param ci` 列的索引
+`@param ci` Column index
 
-调用方法 `实例.freeze(ri, ci)`
+Calling method `instance.freeze(ri, ci)`
 
 ### undo()
 
-挂载撤销函数
+Mount undo function
 
-调用方法 `实例.undo()`
+Calling method `instance.undo()`
 
 ### redo()
 
-挂载重做函数
+Mount redo function
 
-调用方法 `实例.redo()`
+Calling method `instance.redo()`
 
 ### reload()
 
-重新加载表格，初始化事件等
+Reload table, initialize events, etc.
 
-调用方法 `实例.reload()`
+Calling method `instance.reload()`
 
 ### getRect()
 
-可以获得当前表格的宽和高，不包含 index 栏和表格 title 栏
+Can get current table width and height, not including index bar and table title bar
 
-调用方法 `实例.getRect()`
+Calling method `instance.getRect()`
 
 ### getTableOffset()
 
-可以获得当前表格的宽和高，left，top获得当前表格的详细偏移信息
+Can get current table width and height, left, top to get current table's detailed offset information
 
-调用方法 `实例.getTableOffset()`
+Calling method `instance.getTableOffset()`

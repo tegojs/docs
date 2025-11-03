@@ -1,14 +1,14 @@
-# 多行文本
+# Multi-line Text
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 ![](../../../../../../public/textarea1.png)
 
-### 界面配置
+### Interface Configuration
 
-可编辑模式
+Editable mode
 ![](../../../../../../public/textarea2.png)
 
-阅读模式
+Read mode
 ![](../../../../../../public/textarea3.png)

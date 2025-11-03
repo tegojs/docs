@@ -1,12 +1,12 @@
 # DataSourceManager
 
-数据源管理器,用于管理 `DataSource` 实例。
+Data source manager, used to manage `DataSource` instances.
 
-## 1. 实例属性
+## 1. Instance Properties
 
 ### collectionTemplateManager
 
-用于管理 `CollectionTemplate` 实例。
+Used to manage `CollectionTemplate` instances.
 
 ```tsx | pure
 import { Plugin, CollectionTemplate } from '@tachybase/client'
@@ -24,11 +24,11 @@ class MyPlugin extends Plugin {
 }
 ```
 
-详细请参考：[CollectionTemplateManager](./CollectionTemplateManager)
+For details please refer to: [CollectionTemplateManager](./CollectionTemplateManager)
 
 ### collectionFieldInterfaceManager
 
-用于管理 `CollectionFieldInterface` 实例。
+Used to manage `CollectionFieldInterface` instances.
 
 ```tsx | pure
 import { Plugin, CollectionFieldInterface } from '@tachybase/client'
@@ -46,15 +46,15 @@ class MyPlugin extends Plugin {
 }
 ```
 
-详细请参考：[CollectionFieldInterfaceManager](./CollectionFieldInterfaceManager)
+For details please refer to: [CollectionFieldInterfaceManager](./CollectionFieldInterfaceManager)
 
-## 2. 实例方法
+## 2. Instance Methods
 
 ### addCollectionTemplates()
 
-是 `CollectionTemplateManager` 的快捷方法，用于添加 `CollectionTemplate`。
+Shortcut method for `CollectionTemplateManager`, used to add `CollectionTemplate`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -62,7 +62,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Plugin, CollectionTemplate } from '@tachybase/client'
@@ -80,13 +80,13 @@ class MyPlugin extends Plugin {
 }
 ```
 
-更多详细请参考：[CollectionTemplateManager](./CollectionTemplateManager)
+For more details please refer to: [CollectionTemplateManager](./CollectionTemplateManager)
 
 ### addFieldInterfaces()
 
-是 `CollectionFieldInterfaceManager` 的快捷方法，用于添加 `CollectionFieldInterface`。
+Shortcut method for `CollectionFieldInterfaceManager`, used to add `CollectionFieldInterface`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -94,7 +94,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Plugin, CollectionFieldInterface } from '@tachybase/client'
@@ -112,13 +112,13 @@ class MyPlugin extends Plugin {
 }
 ```
 
-更多详细请参考：[CollectionFieldInterfaceManager](./CollectionFieldInterfaceManager)
+For more details please refer to: [CollectionFieldInterfaceManager](./CollectionFieldInterfaceManager)
 
 ### addCollectionMixins()
 
-用于添加 `Collection` 的 Mixins。
+Used to add Mixins for `Collection`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -126,7 +126,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Plugin, Collection } from '@tachybase/client'
@@ -149,13 +149,13 @@ const MyComponent = () => {
 }
 ```
 
-更多详细请参考：[CollectionMixins](./CollectionMixins)
+For more details please refer to: [CollectionMixins](./CollectionMixins)
 
 ### addDataSource()
 
-用于添加 `DataSource`。
+Used to add `DataSource`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -163,7 +163,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { Plugin, DataSource, DataSourceOptions } from '@tachybase/client'
@@ -187,13 +187,13 @@ class MyPlugin extends Plugin {
 }
 ```
 
-更多详细请参考：[DataSource](./DataSource)
+For more details please refer to: [DataSource](./DataSource)
 
 ### removeDataSources()
 
-移除 `DataSource`。
+Remove `DataSource`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -201,7 +201,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -212,9 +212,9 @@ const MyComponent = () => {
 
 ### getDataSources()
 
-获取全部 `DataSource` 实例列表。
+Get all `DataSource` instance list.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -222,7 +222,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -241,9 +241,9 @@ const MyComponent = () => {
 
 ### getDataSource(key)
 
-获取 `DataSource` 实例。
+Get `DataSource` instance.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -251,7 +251,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -264,9 +264,9 @@ const MyComponent = () => {
 
 ### getAllCollections()
 
-获取所有 DataSource 的所有 Collection 实例。
+Get all Collection instances of all DataSources.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -277,7 +277,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {
@@ -303,9 +303,9 @@ const MyComponent = () => {
 
 ### reload()
 
-重载所有 `DataSource`。
+Reload all `DataSource`.
 
-- 类型
+- Type
 
 ```tsx | pure
 class DataSourceManager {
@@ -313,7 +313,7 @@ class DataSourceManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const MyComponent = () => {

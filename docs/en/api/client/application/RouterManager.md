@@ -1,6 +1,6 @@
 # RouterManager
 
-用于管理路由。
+Used to manage routes.
 
 ```tsx | pure
 import { ComponentType } from 'react';
@@ -22,13 +22,13 @@ class RouterManager {
 }
 ```
 
-## 实例方法
+## Instance Methods
 
 ### router.add()
 
-添加一条路由。
+Add a route.
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -36,15 +36,15 @@ class RouterManager {
 }
 ```
 
-- 详情
+- Details
 
-第一个参数 `name`，是路由唯一标识，用于后续的删改查，并且 `name` 支持 `.` 用于分割层级，不过需要注意当使用 `.` 分层的时候，父级要使用 [Outlet](https://reactrouter.com/en/main/components/outlet)，让子元素能正常渲染。
+The first parameter `name` is the unique route identifier for subsequent CRUD operations, and `name` supports `.` for splitting levels. However, note that when using `.` for layering, the parent must use [Outlet](https://reactrouter.com/en/main/components/outlet) so that child elements can render normally.
 
-第二个参数 `RouteType` 的 `Component` 支持组件形式和字符串形式，如果是字符串组件，要先通过 [app.addComponents](./Application) 进行注册。
+The second parameter `RouteType`'s `Component` supports both component form and string form. If it's a string component, it must be registered first through [app.addComponents](./Application).
 
-- 示例
+- Example
 
-单层级路由。
+Single-level routes.
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -106,7 +106,7 @@ const app = new Application({
 export default app.getRootComponent();
 ```
 
-多层级路由。
+Multi-level routes.
 
 ```tsx | pure
 import { Plugin } from '@tachybase/client';
@@ -178,7 +178,7 @@ const app = new Application({
 export default app.getRootComponent();
 ```
 
-`Component` 参数为字符串。
+`Component` parameter as string.
 
 ```tsx | pure
 const LoginPage = () => {
@@ -187,12 +187,12 @@ const LoginPage = () => {
 
 class MyPlugin extends Plugin {
     async load() {
-        // 通过 app.addComponents 进行注册
+        // Register through app.addComponents
         this.app.addComponents({ LoginPage })
 
         this.app.router.add('login', {
             path: '/login',
-            Component: 'LoginPage', // 这里可以使用字符串了
+            Component: 'LoginPage', // String can be used here now
         })
     }
 }
@@ -200,9 +200,9 @@ class MyPlugin extends Plugin {
 
 ### router.getRoutes()
 
-获取路由列表。
+Get route list.
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -210,7 +210,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -221,9 +221,9 @@ class MyPlugin extends Plugin {
 ```
 ### router.getRoutesTree()
 
-获取用于 [useRoutes()](https://reactrouter.com/hooks/use-routes) 的数据。
+Get data for [useRoutes()](https://reactrouter.com/hooks/use-routes).
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -231,7 +231,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -243,9 +243,9 @@ class MyPlugin extends Plugin {
 
 ### router.get()
 
-获取单个路由配置。
+Get single route configuration.
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -253,7 +253,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -266,9 +266,9 @@ class MyPlugin extends Plugin {
 
 ### router.has()
 
-判断是否添加过路由。
+Determine if route has been added.
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -276,7 +276,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -289,9 +289,9 @@ class MyPlugin extends Plugin {
 
 ### router.remove()
 
-移除路由配置。
+Remove route configuration.
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -299,7 +299,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -312,10 +312,10 @@ class MyPlugin extends Plugin {
 
 ### router.setType()
 
-设置路由类型，默认为 `browser`。
+Set route type, default is `browser`.
 
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -323,12 +323,12 @@ class RouterManager {
 }
 ```
 
-- 详细解释
+- Detailed Explanation
   - browser: [BrowserRouter](https://reactrouter.com/en/main/router-components/browser-router)
   - memory: [MemoryRouter](https://reactrouter.com/en/main/router-components/hash-router)
   - hash: [HashRouter](https://reactrouter.com/en/main/router-components/memory-router)
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -340,9 +340,9 @@ class MyPlugin extends Plugin {
 
 ### router.setBasename()
 
-设置 [basename](https://reactrouter.com/en/main/router-components/browser-router#basename)。
+Set [basename](https://reactrouter.com/en/main/router-components/browser-router#basename).
 
-- 类型
+- Type
 
 ```tsx | pure
 class RouterManager {
@@ -350,7 +350,7 @@ class RouterManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -364,15 +364,15 @@ class MyPlugin extends Plugin {
 
 ### useRouter()
 
-获取当前路由的实例，等同于 `app.router`。
+Get the current router instance, equivalent to `app.router`.
 
-- 类型
+- Type
 
 ```tsx | pure
 const useRouter: () => RouterManager
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 import { useRouter } from '@tachybase/client';

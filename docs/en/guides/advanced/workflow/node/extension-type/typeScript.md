@@ -1,96 +1,96 @@
-# TypeScript 脚本
+# TypeScript Script
 
-TypeScript 脚本节点允许用户在工作流中执行一段自定义的服务端 TypeScript 脚本。脚本中可以使用流程上游的变量作为参数，并且可以将脚本的返回值提供给下游节点使用。
+The TypeScript script node allows users to execute a custom server-side TypeScript script in a workflow. Variables from upstream in the process can be used as parameters in the script, and the script's return value can be provided for downstream nodes to use.
 
-脚本会在 tachybase 应用的服务端开启一个工作线程执行，并支持 Node.js 的大部分特性，但与原生的执行环境仍有部分差异，详见 [特性列表](#特性列表)。
+The script will execute in a worker thread opened on the tachybase application's server and supports most features of Node.js, but there are still some differences from the native execution environment. See [Feature List](#feature-list) for details.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“TypeScript”节点：
-
-
-
-### 节点配置
+In the workflow configuration interface, click the plus ("+") button in the process to add a "TypeScript" node:
 
 
-#### 参数
 
-用于向脚本中传入流程上下文的变量或静态值，以供脚本中的代码逻辑使用。其中 `name` 为参数名，传入脚本后即作为变量名。`value` 为参数值，可以选择变量或输入常量。
-
-#### 脚本内容
-
-脚本内容可以看做一个函数，可以编写任意符合 Node.js 环境中支持的 TypeScript 代码，且可以使用 `return` 语句返回一个值作为节点的运行结果，以供后续节点作为变量使用。
-
-编写代码后可以通过编辑框下方的测试按钮，打开测试执行的对话框，用静态值填入参数进行模拟执行。执行后可以在对话框中看到返回值和输出（日志）的内容。
+### Node Configuration
 
 
-#### 超时设置
+#### Parameters
 
-单位以毫秒计算，当设置为 `0` 时表示不设置超时。
+Used to pass context variables or static values from the process into the script for use by the code logic in the script. `name` is the parameter name, which becomes a variable name after being passed into the script. `value` is the parameter value, which can select variables or input constants.
 
-#### 出错后继续流程
+#### Script Content
 
-勾选后，脚本出错或者超时出错时仍然会执行后续的节点。
+Script content can be seen as a function. You can write any TypeScript code supported in the Node.js environment, and can use the `return` statement to return a value as the node's running result for subsequent nodes to use as variables.
 
-:::info{title="提示"}
-脚本出错后将没有返回值，节点的结果会以错误信息填充。如后续节点中使用了脚本节点的结果变量，需要谨慎处理。
+After writing code, you can use the test button below the edit box to open the test execution dialog and simulate execution with static values filled in parameters. After execution, you can see the return value and output (log) content in the dialog.
+
+
+#### Timeout Setting
+
+Unit is in milliseconds. When set to `0`, it means no timeout is set.
+
+#### Continue Process After Error
+
+After checking, subsequent nodes will still execute when the script errors or times out.
+
+:::info{title="Note"}
+After a script error, there will be no return value, and the node's result will be filled with error information. If the script node's result variable is used in subsequent nodes, it needs to be handled carefully.
 :::
 
-## 特性列表
+## Feature List
 
-### Node.js 版本
+### Node.js Version
 
-与主应用运行的 Node.js 版本一致。
+Consistent with the Node.js version running in the main application.
 
-### 模块支持
+### Module Support
 
-在脚本中可以有限制的使用模块，与 CommonJS 一致，代码中使用 `require()` 指令引入模块。
+Modules can be used with restrictions in scripts. Consistent with CommonJS, use the `require()` instruction in code to import modules.
 
-支持 Node.js 原生模块，和 `node_modules` 中已安装的模块（含 tachybase 已使用的依赖包）。要提供给代码使用的模块需在应用环境变量 `WORKFLOW_SCRIPT_MODULES` 中声明，多个包名以半角逗号分隔，例如：
+Supports Node.js native modules and modules already installed in `node_modules` (including dependency packages used by tachybase). Modules to be provided for code use need to be declared in the application environment variable `WORKFLOW_SCRIPT_MODULES`, with multiple package names separated by semicolons, for example:
 
 ```ini
 WORKFLOW_SCRIPT_MODULES=crypto,timers,lodash,dayjs
 ```
 
-:::info{title="提示"}
-在环境变量 `WORKFLOW_SCRIPT_MODULES` 中未声明的模块，即使是 Node.js 原生的或 `node_modules` 中已安装的，也**不能**在脚本中使用。该策略可以用于在运维层管控用户可使用的模块列表，在一些场景下避免脚本权限过高。
+:::info{title="Note"}
+Modules not declared in the environment variable `WORKFLOW_SCRIPT_MODULES`, even if they are Node.js native or already installed in `node_modules`, **cannot** be used in scripts. This policy can be used to manage the list of modules users can use at the operations level, avoiding excessive script permissions in some scenarios.
 :::
 
-### 全局变量
+### Global Variables
 
-**不支持** `global`、`process`、`__dirname` 和 `__filename` 等全局变量。
+**Does not support** global variables such as `global`, `process`, `__dirname`, and `__filename`.
 
 ```js
 console.log(global); // will throw error: "global is not defined"
 ```
 
-### 传入参数
+### Passed Parameters
 
-节点中配置的参数会作为脚本中的全局变量，可以直接使用。传入脚本的参数仅支持基本类型，如 `boolean`、`number`、`string`、`number`、`object` 和数组。`Date` 对象传入后会被转换为基于 ISO 格式的字符串。其他复杂类型无法直接传递，如自定义类的实例等。
+Parameters configured in the node will be used as global variables in the script and can be used directly. Parameters passed into the script only support basic types, such as `boolean`, `number`, `string`, `number`, `object`, and arrays. `Date` objects will be converted to ISO format strings after being passed in. Other complex types cannot be passed directly, such as instances of custom classes.
 
-### 返回值
+### Return Value
 
-通过 `return` 语句可以返回基本类型的数据（同参数规则）回到节点作为结果。如代码中没有调用 `return` 语句，则节点执行没有返回值。
+Data of basic types (same as parameter rules) can be returned to the node as a result through the `return` statement. If the `return` statement is not called in the code, the node execution has no return value.
 
 ```js
 return 123;
 ```
 
-### 输出（日志）
+### Output (Logs)
 
-**支持**使用 `console` 输出日志。
+**Supports** using `console` to output logs.
 
 ```js
 console.log('hello world!');
 ```
 
-工作流执行时，脚本节点的输出也会记录到对应工作流的日志文件中。
+When the workflow executes, the output of the script node will also be recorded in the log file of the corresponding workflow.
 
-### 异步
+### Asynchronous
 
-**支持**使用 `async` 定义异步函数，以及 `await` 调用异步函数。**支持**使用 `Promise` 全局对象。
+**Supports** using `async` to define asynchronous functions and `await` to call asynchronous functions. **Supports** using the `Promise` global object.
 
 ```js
 async function test() {
@@ -101,9 +101,9 @@ const value = await test();
 return value;
 ```
 
-### 计时器
+### Timers
 
-如需使用 `setTimeout`、`setInterval` 或 `setImmediate` 等方法，需要通过 Node.js 的 `timers` 包引入。
+If you need to use methods such as `setTimeout`, `setInterval`, or `setImmediate`, you need to import them through Node.js's `timers` package.
 
 ```js
 const { setTimeout, setInterval, setImmediate, clearTimeout, clearInterval, clearImmediate } = require('timers');

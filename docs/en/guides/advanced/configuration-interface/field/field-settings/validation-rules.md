@@ -1,26 +1,26 @@
-# 设置验证规则
+# Set Validation Rules
 
-## 介绍
+## Introduction
 
-设置验证规则是为了确保用户输入的数据符合预期，除了预置的格式校验，支持用户自定义规则。
+Setting validation rules is to ensure user input data meets expectations. In addition to preset format validation, supports user-defined rules.
 
 
 ![20240411112215](/field/field-settings/validation-rules-1.png)
 
-预置了多种常用格式校验（如数值、身份证号码、邮箱、手机号等）
+Presets multiple common format validations (such as numeric values, ID numbers, email, phone numbers, etc.)
 
 ![20240411112413](/field/field-settings/validation-rules-2.png)
 
-### 长度/大小校验
+### Length/Size Validation
 
-校验数值最小值（目前仅支持常量）。
+Validate numeric minimum value (currently only supports constants).
 
 ![3](/field/field-settings/validation-rules-3.png)
 ![4](/field/field-settings/validation-rules-4.png)
 
-### 自定义正则校验
+### Custom Regex Validation
 
-示例：自定义正则校验电话号码为新加坡电话号码，以及配置错误信息。
+Example: Custom regex validation for phone number as Singapore phone number, and configure error message.
 
 ![20240417222427](/field/field-settings/validation-rules-5.png)
 

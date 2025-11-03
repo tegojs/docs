@@ -1,44 +1,44 @@
-# 更新数据
+# Update Data
 
-用于对某个数据表的满足条件的数据进行更新。
+Used to update data that meets conditions in a data table.
 
-数据表和字段赋值部分与新增节点相同，更新节点的区别主要是增加了筛选条件，而且需要选择更新模式。另外，更新节点的结果会返回更新成功数据的行数，只在执行历史里可查看，不可作为变量在后续节点使用。
+The data table and field assignment parts are the same as the create node. The main difference of the update node is the addition of filter conditions, and the update mode needs to be selected. Additionally, the update node's result will return the number of rows of successfully updated data, which can only be viewed in the execution history and cannot be used as a variable in subsequent nodes.
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“更新数据”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add an "Update Data" node:
 
-![更新数据_添加]
-<!-- TODO: 插入图片 -->
+![Update Data_Add]
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-![更新节点_节点配置]
-<!-- TODO: 插入图片 -->
+![Update Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-### 数据表
+### Data Table
 
-选择要更新数据的数据表。
+Select the data table to be updated.
 
-### 更新模式
+### Update Mode
 
-更新模式有“批量”和“逐条”的模式，批量模式下，不会再触发每条更新数据的数据表事件，而逐条更新的话会触发每条更新数据的数据表事件，但在大数据量下会有性能问题，需要谨慎使用。通常根据更新的目标数据和是否要触发其他工作流事件来选择，如果是根据主键更新单条数据的，建议使用逐条更新，如果是根据条件更新多条数据的，建议使用批量更新。
+Update mode can be "Batch" or "One by One". In batch mode, data table events for each updated record will not be triggered again, while updating one by one will trigger data table events for each updated record, but there will be performance issues with large data volumes, so use with caution. Usually choose based on the target data to be updated and whether to trigger other workflow events. If updating a single record based on primary key, it is recommended to use one-by-one update. If updating multiple records based on conditions, it is recommended to use batch update.
 
-### 筛选条件
+### Filter Conditions
 
-与普通的数据表查询时的筛选条件类似，可以使用流程的上下文变量。
+Similar to filter conditions when querying regular data tables, you can use context variables from the process.
 
-### 字段值
+### Field Values
 
-与新增节点的字段赋值类似，可以使用流程上下文的变量，也可以手动填写静态值。
+Similar to field assignment in create nodes, you can use variables from the process context or manually enter static values.
 
-注：工作流中更新节点更新的数据不会自动处理“最后修改人”数据，需要根据情况自行配置这个字段的值。
+Note: The "Last Updated By" data is not automatically processed for data updated by update nodes in workflows. You need to configure the value of this field according to the situation.
 
-## 示例
+## Example
 
-例如当新增“文章”时，需要自动更新“文章分类”表的“文章数量”字段，可以使用更新节点来实现：
+For example, when adding an "Article", you need to automatically update the "Article Count" field in the "Article Category" table. This can be implemented using an update node:
 
-![更新节点_示例_节点配置]
-<!-- TODO: 插入图片 -->
+![Update Node_Example_Node Configuration]
+<!-- TODO: Insert image -->
 
-当工作流触发后，会自动更新“文章分类”表的“文章数量”字段为当前文章数量 +1。
+After the workflow is triggered, it will automatically update the "Article Count" field in the "Article Category" table to the current article count +1.

@@ -1,20 +1,20 @@
-# 时间日期
+# Date Time
 
-### 概述
+### Overview
 
-日期字段支持自定义日期和时间格式，以满足不同需求。
+Date fields support customizing date and time formats to meet different needs.
 
-### 日期格式设置
+### Date Format Settings
 
-#### 数据表字段
+#### Data Table Fields
 
 ![](../../../../../../public/date-picker1.png)
 
-#### 字段设置
+#### Field Settings
 
 ![](../../../../../../public/date-picker2.png)
 
-除了预置的多种日期和时间格式外，还支持自定义格式，以满足不同的需求。
+In addition to multiple preset date and time formats, also supports custom formats to meet different needs.
 
 ![](../../../../../../public/date-picker3.png)
 ![](../../../../../../public/date-picker4.png)

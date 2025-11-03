@@ -1,29 +1,28 @@
-# 批量编辑表单字段
+# Bulk Edit Form Field
 
-### 概述
+### Overview
 
-批量编辑表单是专为批量编辑操作设计的表单卡片。
+Bulk edit form is a form block specifically designed for bulk edit operations.
 ![](/field/field-1.png)
 ![](/field/field-2.png)
 ![](/field/field-3.png)
-### 配置字段
+### Configure Fields
 
-仅支持配置本表字段，且字段更新逻辑分为三种：
+Only supports configuring current table fields, and field update logic is divided into three types:
 
-- 不更新：提交后字段保持原值；
-- 修改为：字段设置为必填；
-- 清空：提交后清空字段的值。
+- Do not update: Field maintains original value after submission;
+- Change to: Field is set as required;
+- Clear: Clear field value after submission.
 ![](/field/field-4.png)
 
 
-关系字段支持切换为不同的字段组件，灵活使用。
+Relationship fields support switching to different field components for flexible use.
 ![](/field/field-5.png)
 
-### 字段配置项
+### Field Configuration Items
 
-- [编辑字段标题](../field-settings/edit-title.md)
-- [显示标题](../field-settings/display-title.md)
-- [编辑字段描述](../field-settings/edit-description.md)
-- [编辑字段提示信息](../field-settings/edit-tooltip.md)
-- [设置验证规则](../field-settings/validation-rules.md)
-
+- [Edit Field Title](../field-settings/edit-title.md)
+- [Display Title](../field-settings/display-title.md)
+- [Edit Field Description](../field-settings/edit-description.md)
+- [Edit Field Tooltip](../field-settings/edit-tooltip.md)
+- [Set Validation Rules](../field-settings/validation-rules.md)

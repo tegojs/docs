@@ -1,154 +1,154 @@
-# 应用场景
+# Application Scenarios
 
-## 主流应用场景：
+## Main Application Scenarios:
 
-灵矶适用于多种不同类型企业的多样化场景企业应用开发、系统项目实施与数字化建设。
+Tachybase is suitable for diverse enterprise application development, system project implementation, and digital construction across various types of enterprises.
 
-## 👩‍💻 客户关系管理系统（CRM）
+## 👩‍💻 Customer Relationship Management System (CRM)
 
 ![](/guides/start/crm.png)
 
-**核心价值：**
+**Core Value:**
 
-驱动销售流程数字化转型，深度挖掘客户价值，实现客户生命周期价值最大化。
+Drive digital transformation of sales processes, deeply explore customer value, and maximize customer lifetime value.
 
-**核心功能：**
+**Core Functions:**
 
-- 客户信息全生命周期管理：涵盖客户获取、转化、留存、增值等全阶段信息管理，确保数据完整性与准确性。
-- 销售漏斗可视化分析：直观展示销售机会从潜在到成交的全过程，助力销售团队精准把握销售节奏。
-- 智能商机预测与提醒：基于大数据与 AI 算法，预测潜在商机，及时提醒销售团队跟进，提升成交率。
-- 自动化营销活动管理：支持营销活动的自动化策划、执行与效果评估，提升营销效率与 ROI。
+- Full lifecycle customer information management: Covers customer acquisition, conversion, retention, value-added, and all stages of information management, ensuring data integrity and accuracy.
+- Sales funnel visualization analysis: Intuitively displays the entire process from potential to closed sales opportunities, helping sales teams accurately grasp the sales rhythm.
+- Intelligent business opportunity prediction and reminders: Based on big data and AI algorithms, predict potential business opportunities and timely remind sales teams to follow up, improving closing rates.
+- Automated marketing activity management: Supports automated planning, execution, and effect evaluation of marketing activities, improving marketing efficiency and ROI.
 
-**典型应用：**
+**Typical Applications:**
 
-- 销售团队：实现客户分级管理，制定个性化营销策略，提升销售转化率。
-- 服务部门：建立标准化服务流程，提升客户服务质量与满意度。
-- 管理层：实时掌握销售业绩数据，进行销售预测与决策支持。
+- Sales teams: Achieve customer tiered management, develop personalized marketing strategies, and improve sales conversion rates.
+- Service departments: Establish standardized service processes, improve customer service quality and satisfaction.
+- Management: Real-time access to sales performance data, sales forecasting, and decision support.
 
-## 👩‍💼 企业资源计划系统（ERP）
+## 👩‍💼 Enterprise Resource Planning System (ERP)
 
 ![](/guides/start/erp.png)
 
-**核心价值：**
+**Core Value:**
 
-优化企业资源配置，实现业务流程自动化与智能化，显著提升运营效率。
+Optimize enterprise resource allocation, achieve business process automation and intelligence, significantly improving operational efficiency.
 
-**核心功能：**
+**Core Functions:**
 
-- 供应链全流程管理：从采购、生产、库存到销售，实现供应链各环节的无缝衔接与高效协同。
-- 财务业务一体化：集成财务与业务数据，实现财务核算与业务管理的实时同步，提升财务管理水平。
-- 智能库存预警：基于库存数据与销售预测，智能生成库存预警，避免库存积压与缺货风险。
-- 多维度数据分析：提供丰富的数据分析报表与可视化工具，助力管理层洞察业务趋势，做出科学决策。
+- Full supply chain process management: From procurement, production, inventory to sales, achieving seamless connection and efficient collaboration of all supply chain links.
+- Finance-business integration: Integrate financial and business data, achieve real-time synchronization of financial accounting and business management, improving financial management level.
+- Intelligent inventory warning: Based on inventory data and sales forecasts, intelligently generate inventory warnings, avoiding inventory backlog and stockout risks.
+- Multi-dimensional data analysis: Provides rich data analysis reports and visualization tools, helping management gain insight into business trends and make scientific decisions.
 
-**典型应用：**
+**Typical Applications:**
 
-- 制造业：实现生产计划与物料需求的精准联动，提升生产效率与成本控制能力。
-- 零售业：线上线下库存一体化管理，提升库存周转率与客户满意度。
-- 服务业：项目成本实时核算，助力服务企业精细化管理，提升盈利能力。
+- Manufacturing: Achieve precise linkage of production planning and material requirements, improving production efficiency and cost control capabilities.
+- Retail: Online and offline integrated inventory management, improving inventory turnover rate and customer satisfaction.
+- Service industry: Real-time project cost accounting, helping service enterprises with refined management and improving profitability.
 
-## 🙎‍♀️ 人力资源管理系统（HRM）
+## 🙎‍♀️ Human Resource Management System (HRM)
 
 ![](/guides/start/hrm.png)
 
 
-**核心价值：**
+**Core Value:**
 
-构建数字化、智能化的人才管理体系，提升人力资源管理效率与员工满意度。
+Build a digital and intelligent talent management system, improving human resource management efficiency and employee satisfaction.
 
-**核心功能：**
+**Core Functions:**
 
-- 全模块人力资源解决方案：涵盖招聘、培训、绩效、薪酬、福利等全模块，实现人力资源管理的全面数字化。
-- 智能化招聘管理：利用 AI 技术实现简历筛选、面试安排等流程的自动化，提升招聘效率与质量。
-- 薪酬福利自动化计算：根据企业政策与员工数据，自动计算薪酬与福利，确保准确性与合规性。
-- 员工自助服务平台：提供员工自助查询、业务办理等功能，提升员工体验与参与度。
+- Full-module human resource solutions: Covers recruitment, training, performance, compensation, benefits, and all modules, achieving comprehensive digitalization of human resource management.
+- Intelligent recruitment management: Use AI technology to automate resume screening, interview scheduling, and other processes, improving recruitment efficiency and quality.
+- Automated compensation and benefits calculation: Automatically calculate compensation and benefits based on enterprise policies and employee data, ensuring accuracy and compliance.
+- Employee self-service platform: Provides employee self-service inquiry, business processing, and other functions, improving employee experience and participation.
 
-**典型应用：**
+**Typical Applications:**
 
-- 人力资源部：实现人事全流程数字化管理，减轻工作负担，提升管理效率。
-- 各部门主管：便捷进行团队管理，包括员工信息查询、绩效评估等。
-- 全体员工：通过自助服务平台，实现个人信息查询、业务办理等便捷操作。
+- Human resources department: Achieve digital management of the entire HR process, reducing workload and improving management efficiency.
+- Department managers: Conveniently conduct team management, including employee information inquiry, performance evaluation, etc.
+- All employees: Through the self-service platform, achieve convenient operations such as personal information inquiry and business processing.
 
-## 👩‍🏫 在线教育平台
+## 👩‍🏫 Online Education Platform
 
 ![](/guides/start/online-education.png)
 
 
-**核心价值：**
+**Core Value:**
 
-打造智能化、个性化的教学管理体系，提升教学质量与学习效果。
+Create an intelligent and personalized teaching management system, improving teaching quality and learning effects.
 
-**核心功能：**
+**Core Functions:**
 
-- 课程体系数字化管理：实现课程资源的数字化存储、分类与共享，方便教师与学生使用。
-- 智能化学习路径规划：根据学生的学习进度与能力，智能推荐学习路径与资源，实现个性化学习。
-- 教学效果多维评估：通过作业、考试、互动等多维度数据，全面评估教学效果，助力教师调整教学策略。
-- 互动教学工具集成：集成在线讨论、小组协作等互动教学工具，提升教学参与度与趣味性。
+- Digitalized course system management: Achieve digital storage, classification, and sharing of course resources, facilitating teacher and student use.
+- Intelligent learning path planning: According to students' learning progress and abilities, intelligently recommend learning paths and resources, achieving personalized learning.
+- Multi-dimensional teaching effectiveness evaluation: Through multi-dimensional data such as assignments, exams, and interactions, comprehensively evaluate teaching effects, helping teachers adjust teaching strategies.
+- Integrated interactive teaching tools: Integrate interactive teaching tools such as online discussions and group collaboration, improving teaching participation and interest.
 
-**典型应用：**
+**Typical Applications:**
 
-- 教育机构：构建完整的在线教学体系，实现教学资源的优化配置与高效利用。
-- 企业大学：实现员工培训的数字化管理，提升员工技能与素质，助力企业人才发展。
+- Educational institutions: Build a complete online teaching system, achieving optimal allocation and efficient utilization of teaching resources.
+- Enterprise university: Achieve digital management of employee training, improving employee skills and quality, helping enterprise talent development.
 
-## 👥 智能协同办公平台
+## 👥 Intelligent Collaborative Office Platform
 
 ![](/guides/start/ai-office.png)
 
 
-**核心价值：**
+**Core Value:**
 
-提升组织协同效率，打破信息孤岛，实现全员高效协作。
+Improve organizational collaboration efficiency, break down information silos, and achieve efficient collaboration across the organization.
 
-**核心功能：**
+**Core Functions:**
 
-- 智能化任务管理：支持任务的智能分配、跟踪与提醒，确保任务按时完成。
-- 文档协同创作：提供在线文档编辑、共享与版本控制功能，支持多人同时协作，提升工作效率。
-- 会议全流程管理：从会议预约、通知、记录到跟进，实现会议管理的全流程数字化。
-- 知识沉淀与共享：建立企业知识库，实现知识的沉淀、共享与传承，提升组织智慧。
+- Intelligent task management: Supports intelligent task assignment, tracking, and reminders, ensuring tasks are completed on time.
+- Document collaborative creation: Provides online document editing, sharing, and version control functions, supporting simultaneous multi-person collaboration, improving work efficiency.
+- Full meeting process management: From meeting booking, notification, recording to follow-up, achieving full process digitalization of meeting management.
+- Knowledge precipitation and sharing: Establish enterprise knowledge base, achieve knowledge precipitation, sharing, and inheritance, improving organizational wisdom.
 
-**典型应用：**
+**Typical Applications:**
 
-- 项目团队：实现高效的任务协同与进度跟踪，确保项目按时交付。
-- 职能部门：优化业务流程，提升工作效率与服务质量。
-- 全员协作：打破部门壁垒，实现全员高效协作，提升组织整体竞争力。
+- Project teams: Achieve efficient task collaboration and progress tracking, ensuring projects are delivered on time.
+- Functional departments: Optimize business processes, improve work efficiency and service quality.
+- Organization-wide collaboration: Break down departmental barriers, achieve efficient organization-wide collaboration, improving overall organizational competitiveness.
 
-## 🏦 财务管理
+## 🏦 Financial Management
 
 ![](/guides/start/financial-manager.png)
 
-**核心价值：**
+**Core Value:**
 
-是打造数字化、智能化的财务管理体系，让财务管理更高效，资金利用更合理。
+Create a digital and intelligent financial management system, making financial management more efficient and fund utilization more reasonable.
 
-**核心功能：**
+**Core Functions:**
 
-- 全流程财务管理：包含预算、成本、资金、核算、税务等全流程，实现财务管理全面数字化。
-- 智能财务分析：用大数据和AI技术，自动分析财务数据、预测趋势、预警风险，辅助决策。
-- 费用报销自动化：按企业政策和员工数据，自动处理费用审核、报销支付，保证准确合规。
-- 财务自助平台：为员工和管理层提供自助查询、报表生成、业务申请等功能，提升财务服务体验。
+- Full-process financial management: Includes budgeting, costing, funds, accounting, taxation, and all processes, achieving comprehensive financial management digitalization.
+- Intelligent financial analysis: Use big data and AI technology to automatically analyze financial data, predict trends, warn of risks, and assist decision-making.
+- Automated expense reimbursement: According to enterprise policies and employee data, automatically process expense approval and reimbursement payment, ensuring accuracy and compliance.
+- Financial self-service platform: Provides employees and management with self-service inquiry, report generation, business application, and other functions, improving financial service experience.
 
-**典型应用：**
+**Typical Applications:**
 
-- 财务部：实现财务全流程数字化管理，减轻工作，提高效率。
-- 各部门负责人：方便管理部门费用，如监控预算执行、审批费用申请。
-- 全体员工：通过自助平台，轻松报销费用、查询薪资。
+- Finance department: Achieve full-process digital management of finance, reducing work and improving efficiency.
+- Department heads: Conveniently manage department expenses, such as monitoring budget execution and approving expense applications.
+- All employees: Through the self-service platform, easily reimburse expenses and inquire about salaries.
 
-## 📋项目管理
+## 📋 Project Management
 
 ![](/guides/start/project-manager.png)
 
-**核心价值：**
+**Core Value:**
 
-打造数字化、智能化的项目管理体系，让项目执行更高效，交付质量更有保障，顺利实现项目目标。
+Create a digital and intelligent project management system, making project execution more efficient, delivery quality more guaranteed, and smoothly achieving project goals.
 
-**核心功能：**
+**Core Functions:**
 
-- 全周期项目管理：从立项到交付，覆盖项目管理的各个阶段，实现全面数字化。
-- 智能进度管理：用大数据和算法，自动预测进度偏差、预警风险，给出优化办法，保证项目按计划走。
-- 资源调配自动化：按项目需求和资源情况，自动分配人力、物力、财力，提高资源利用率，不浪费。
-- 项目协作自助平台：给项目团队成员、管理层和相关方提供沟通、共享文档、反馈任务的功能，提升协作效率和信息透明度。
+- Full lifecycle project management: From initiation to delivery, covering all stages of project management, achieving comprehensive digitalization.
+- Intelligent progress management: Use big data and algorithms to automatically predict progress deviations, warn of risks, provide optimization methods, ensuring projects stay on schedule.
+- Automated resource allocation: According to project requirements and resource conditions, automatically allocate manpower, material resources, and financial resources, improving resource utilization without waste.
+- Project collaboration self-service platform: Provides project team members, management, and stakeholders with communication, document sharing, and task feedback functions, improving collaboration efficiency and information transparency.
 
-**典型应用：**
+**Typical Applications:**
 
-- 项目经理：实现项目全流程数字化管理，随时掌握项目情况，管好进度、质量和成本。
-- 各部门团队成员：能轻松获取任务信息，及时反馈进展，和其他成员高效配合，推进项目。
-- 企业管理层：通过系统数据和报告，全面了解项目状况，辅助战略决策。
+- Project managers: Achieve full-process digital management of projects, grasp project status at any time, manage progress, quality, and cost well.
+- Department team members: Can easily obtain task information, provide timely progress feedback, efficiently cooperate with other members, and advance projects.
+- Enterprise management: Through system data and reports, comprehensively understand project status, assist strategic decision-making.

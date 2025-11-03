@@ -1,15 +1,15 @@
-# 中国行政区
+# China Region
 
-::: info &#9432; 提示
-该功能由插件 plugin-field-china-region 提供。
+::: info &#9432; Note
+This feature is provided by the plugin-field-china-region plugin.
 :::
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/china_region1.png)
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

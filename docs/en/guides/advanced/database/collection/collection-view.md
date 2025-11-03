@@ -1,10 +1,10 @@
-# 数据库视图
+# Database View
 
-::: info &#9432; 提示
-该功能由插件 module-data-source 提供。
+::: info &#9432; Note
+This feature is provided by the module-data-source plugin.
 :::
 
-### 介绍
+### Introduction
 
-### 使用手册
+### User Manual
 ![](/datasource/datasource-24.png)

@@ -1,33 +1,25 @@
-# 应用事件
+# Application Events
 
-应用类型事件源将监听应用相关的行为操作，当应用进行启动或者关闭，刷新等，监听指定动作并进行指定的工作流触发，例如应用关闭前，应用启动后等场景。
+Application type event sources will monitor application-related behavior operations. When the application starts, closes, refreshes, etc., it listens for specified actions and triggers specified workflows, such as before application closure, after application startup, etc.
 
-## 基本使用
-
-
-应用事件源常用事件:
-
-beforeStop:应用关闭前
-
-afterStart:应用启动后
+## Basic Usage
 
 
-其中的配置项：
+Common application event source events:
 
-- 名称: 事件源名称。
-- 工作流: 需要触发执行的工作流。
-- 类型: 应用事件。
-- 选项: 
-    - 事件名称:填写相关事件
+beforeStop: Before application closure
+
+afterStart: After application startup
 
 
+Configuration items:
+
+- Name: Event source name.
+- Workflow: Workflow to be triggered for execution.
+- Type: Application event.
+- Options:
+    - Event Name: Fill in the relevant event
 
 
 
-
-
-
-可以根据业务的不同需要选择监听的时机
-
-
-
+You can choose when to listen according to different business needs

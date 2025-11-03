@@ -1,19 +1,19 @@
-# 数值格式化
+# Number Formatting
 
-## 介绍
+## Introduction
 
-数值格式化是指对阅读状态下的数值类型字段（包括公式字段）进行视觉上的美化和规范化处理，包括千分位分隔符、小数位数精度、单位换算、科学记数法等设置。通过配置数值格式化，可以满足不同地区和行业的数值表达习惯。
+Number formatting refers to visual beautification and standardization of numeric type fields (including formula fields) in read state, including thousand separators, decimal precision, unit conversion, scientific notation, etc. By configuring number formatting, you can meet the numeric expression habits of different regions and industries.
 
 ![20240417220017](/field/field-settings/number-format-1.png)
 
 ![20240417220039](/field/field-settings/number-format-2.png)
-## 使用说明
-支持简单的单位换算，千分位分隔符，前后缀，精确度，科学记数法。
+## Usage Instructions
+Supports simple unit conversion, thousand separators, prefix/suffix, precision, scientific notation.
 
-示例：对订单金额进行格式化，包括添加货币符号（人民币符号￥）、千分位分隔符（如逗号或点号）、小数精度等，使金额清晰易读。
+Example: Format order amount, including adding currency symbol (RMB symbol ￥), thousand separator (such as comma or period), decimal precision, etc., making the amount clear and easy to read.
 
 ![3](/field/field-settings/number-format-3.gif)
 
-使用科学记数法。
+Using scientific notation.
 
 ![4](/field/field-settings/number-format-4.png)

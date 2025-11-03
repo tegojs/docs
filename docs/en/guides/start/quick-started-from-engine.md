@@ -1,29 +1,29 @@
-# 快速开始（灵矶引擎）
+# Quick Start (Tachybase Engine)
 
-## 0.先决条件
- 请确保你已经：
+## 0. Prerequisites
+Make sure you have:
 
-- 安装了 Node.js 20.18.0 及以上版本
+- Installed Node.js version 20.18.0 or above
 
  ```bash
 $ node -v 
 v20.18.0
  ```
 
-## 1.安装项目
+## 1. Install the Project
 
 ```bash
-# 初始化环境
+# Initialize environment
 npx @tachybase/engine init my-app
 
-# 切换到对应目录
+# Change to the corresponding directory
 cd my-app
 
 ```
 
-## 2. 设置环境变量
+## 2. Set Environment Variables
 
-Tachybase 所需的环境变量储存在根目录 `.env` 文件里，根据实际情况修改环境变量，如果你不知道怎么改，[点此查看环境变量说明](/guides/advanced/env.md)，也可以保持默认。
+The environment variables required by Tachybase are stored in the `.env` file in the root directory. Modify the environment variables according to actual conditions. If you don't know how to modify them, [click here to view environment variable instructions](/guides/advanced/env.md), or you can keep the defaults.
 
 ```bash
 TZ=Asia/Shanghai
@@ -38,18 +38,18 @@ DB_PASSWORD=tachybase
 
 :::warning
 
-  - `TZ` 用于设置应用的时区，默认为操作系统时区；
-  - `APP_KEY` 是应用的密钥，用于生成用户 token 等（如果 APP_KEY 修改了，旧的 token 也会随之失效）。它可以是任意随机字符串。请修改为自己的秘钥，并确保不对外泄露；
-  - `DB_*` 为数据库相关，如果不是例子默认的数据库服务，请根据实际情况修改。
+  - `TZ` is used to set the application's timezone, defaults to the operating system timezone;
+  - `APP_KEY` is the application's secret key, used to generate user tokens, etc. (if APP_KEY is changed, old tokens will also become invalid). It can be any random string. Please change it to your own secret key and ensure it is not leaked;
+  - `DB_*` are database-related. If it's not the default database service in the example, please modify according to actual conditions.
 
 ::: 
 
-## 3. 启动灵矶
+## 3. Start Tachybase
 
 ```bash
 npx @tachybase/engine start --quickstart
 ```
 
-## 4. 访问灵矶
+## 4. Access Tachybase
 
-使用浏览器打开 [http://localhost:3000](http://localhost:3000) 初始化账号和密码是 `admin@tachybase.com` 和 `!Admin123.`。
+Open [http://localhost:3000](http://localhost:3000) in your browser. The initial account and password are `admin@tachybase.com` and `!Admin123.`.

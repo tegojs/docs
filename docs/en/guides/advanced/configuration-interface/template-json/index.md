@@ -1,12 +1,12 @@
-# JSON 模板
+# JSON Template
 
-## 介绍
+## Introduction
 
-在 JSON 模板中，变量是字符串格式的，因此需要像字符串一样用双引号包裹 {{xxxx}}。在变量解析时，变量的值会根据其实际内容转换为相应的类型。换句话说，虽然变量本身是字符串格式，但其解析后的值不一定是字符串类型。
+In JSON templates, variables are in string format, so they need to be wrapped in double quotes like strings {{xxxx}}. When parsing variables, the variable's value will be converted to the corresponding type based on its actual content. In other words, although the variable itself is in string format, its parsed value is not necessarily a string type.
 
-## 示例
+## Example
 
-JSON 模板为
+JSON template is
 
 ```json
 {
@@ -25,7 +25,7 @@ JSON 模板为
 }
 ```
 
-current 的变量为
+current variable is
 
 ```json
 {
@@ -38,7 +38,7 @@ current 的变量为
 }
 ```
 
-解析的结果为
+Parsed result is
 
 ```json
 {

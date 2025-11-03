@@ -1,3 +1,3 @@
-# 设置样式
+# Set Style
 
-<!-- TODO: tachybase 暂未实现这个功能 -->
+<!-- TODO: tachybase has not yet implemented this feature -->

@@ -1,3 +1,3 @@
-# 字段组件
+# Field Component
 
-<!-- TODO: tachybase 暂未实现这个功能 -->
+<!-- TODO: tachybase has not yet implemented this feature -->

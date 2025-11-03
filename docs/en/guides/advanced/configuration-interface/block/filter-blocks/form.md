@@ -1,41 +1,41 @@
-# 表单筛选卡片
+# Form Filter Block
 
-## 介绍
+## Introduction
 
-表单筛选卡片可以和数据卡片进行连接，连接之后就可以为数据卡片提供筛选能力。
+Form filter blocks can be connected with data blocks. After connection, they can provide filtering capabilities for data blocks.
 
-## 添加卡片
+## Add Block
 
 ![](/filters/form-add.png)
 
-## 卡片配置项
+## Block Configuration Items
 
 ![](/filters/form-setting.png)
 
-### 连接数据卡片
+### Connect Data Block
 
-示例：表单筛选卡片连接详情数据卡片实现联动。
+Example: Form filter block connected to details data block to achieve linkage.
 ![](/filters/form-link.png)
 
-## 配置字段
+## Configure Fields
 
-### 本表字段
+### Current Table Fields
 
 ![](/filters/form-search.png)
 
-### 关系表字段
+### Relationship Table Fields
 
-支持以关系表的字段为筛选条件
+Supports using relationship table fields as filter conditions
 ![](/filters/form-relate-search.png)
 
-### 给字段设置默认值
+### Set Default Values for Fields
 
-像普通的表单卡片一样，可以为普通字段和关系字段设置默认值。当字段存在默认值时，会在页面首次渲染时自动触发一次筛选操作，以使与其相连接的数据卡片展示相匹配的数据。
+Like regular form blocks, you can set default values for regular fields and relationship fields. When fields have default values, a filter operation will be automatically triggered on the first page render to display matching data in connected data blocks.
 
-## 配置操作
+## Configure Actions
 
 ![](/filters/form-action.png)
 
-### 重置按钮
+### Reset Button
 
 ![](/filters/form-reset.png)

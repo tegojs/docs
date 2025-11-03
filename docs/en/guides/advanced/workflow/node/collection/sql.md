@@ -1,60 +1,60 @@
-# SQL 操作
+# SQL Operation
 
-在一些特殊场景里，上面简单的数据表操作节点可能无法复杂的操作，则可以直接使用 SQL 节点，使数据库直接执行复杂的 SQL 语句进行数据操作。
+In some special scenarios, the simple data table operation nodes above may not be able to perform complex operations. In such cases, you can directly use the SQL node to have the database directly execute complex SQL statements for data operations.
 
-与在应用外部直接连接数据库进行 SQL 操作的区别是，在工作流内可以使用流程上下文的变量，作为 SQL 语句中的部分参数。
+The difference from directly connecting to the database outside the application for SQL operations is that within the workflow, you can use context variables from the process as part of the parameters in the SQL statement.
 
 ## FAQ
 
-### SQL 节点的结果如何使用？
+### How to use the result of SQL nodes?
 
-如果使用了 `SELECT` 语句，查询结果会以 Seqeulize 的 JSON 格式保存在节点中，可以通过 [JSON-query] 插件进行解析并使用。
+If a `SELECT` statement is used, the query result will be saved in the node in Sequelize's JSON format and can be parsed and used through the [JSON-query] plugin.
 
-### SQL 操作是否会触发数据表事件？
+### Will SQL operations trigger data table events?
 
-**不会**。SQL 操作是直接将 SQL 语句发送到数据库进行处理，相关的 `CREATE` / `UPDATE` / `DELETE` 操作都发生在数据库中，而数据表事件发生在 Node.js 的应用层（ORM 处理），所以不会触发数据表的事件。
+**No**. SQL operations directly send SQL statements to the database for processing. Related `CREATE` / `UPDATE` / `DELETE` operations all occur in the database, while data table events occur in the Node.js application layer (ORM processing), so they will not trigger data table events.
 
-## 安装
+## Installation
 
-内置插件，无需安装。
+Built-in plugin, no installation required.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“SQL 操作”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add an "SQL Operation" node:
 
-![SQL 操作_添加]
-<!-- TODO: 插入图片 -->
+![SQL Operation_Add]
+<!-- TODO: Insert image -->
 
-### 节点配置
+### Node Configuration
 
-![SQL节点_节点配置]
-<!-- TODO: 插入图片 -->
+![SQL Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-#### 数据源
+#### Data Source
 
-选择执行 SQL 的数据源。
+Select the data source for executing SQL.
 
-数据源必须是数据库类型的，例如主数据源、PostgreSQL 类型等基于 Sequelize 兼容的数据源。
+The data source must be of database type, such as main data source, PostgreSQL type, and other Sequelize-compatible data sources.
 
-#### SQL 内容
+#### SQL Content
 
-编辑 SQL 语句。目前仅支持一条 SQL 语句。
+Edit SQL statement. Currently only one SQL statement is supported.
 
-通过编辑框右上角的变量按钮插入需要的变量，会在执行前通过文本替换为对应变量的值，再使用替换后的文本作为最终的 SQL 语句，发送到数据库进行查询。
+Insert the required variables through the variable button in the upper right corner of the edit box. Before execution, they will be replaced with the corresponding variable values through text replacement, then the replaced text will be used as the final SQL statement and sent to the database for query.
 
-### 节点执行结果
+### Node Execution Result
 
-自 `v1.3.15-beta` 起，SQL 节点执行的结果为一个纯数据组成的数组，在此之前是 Sequelize 原生返回包含查询元信息的结构（详见：[`sequelize.query()`]）。
+Starting from `v1.3.15-beta`, the result of SQL node execution is an array composed of pure data. Before this, it was Sequelize's native return structure containing query meta-information (see: [`sequelize.query()`]).
 
-例如以下查询：
+For example, the following query:
 
 ```sql
 select count(id) from posts;
 ```
 
-在 `v1.3.15-beta` 之前的结果：
+Result before `v1.3.15-beta`:
 
 ```json
 [
@@ -67,7 +67,7 @@ select count(id) from posts;
 ]
 ```
 
-在 `v1.3.15-beta` 之后的结果：
+Result after `v1.3.15-beta`:
 
 ```json
 [

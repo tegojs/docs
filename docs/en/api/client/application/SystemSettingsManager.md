@@ -1,6 +1,6 @@
 # SystemSettingsManager
 
-用于管理插件配置页面，其底层对应着 [RouterManager](./RouterManager)。
+Used to manage plugin configuration pages, underlying it corresponds to [RouterManager](./RouterManager).
 
 ```tsx | pure
 interface PluginSettingOptionsType {
@@ -44,13 +44,13 @@ class SystemSettingsManager {
 }
 ```
 
-## 实例方法
+## Instance Methods
 
 ### systemSettingsManager.add()
 
-添加插件配置页。
+Add plugin configuration page.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -58,15 +58,15 @@ class SystemSettingsManager {
 }
 ```
 
-- 详细解释
+- Detailed Explanation
 
-第一个参数 `name`，是路由唯一标识，用于后续的删改查，并且 `name` 支持 `.` 用于分割层级，不过需要注意当使用 `.` 分层的时候，父级要使用 [Outlet](https://reactrouter.com/en/main/components/outlet)，让子元素能正常渲染。
+The first parameter `name` is the unique route identifier for subsequent CRUD operations, and `name` supports `.` for splitting levels. However, note that when using `.` for layering, the parent must use [Outlet](https://reactrouter.com/en/main/components/outlet) so that child elements can render normally.
 
-第二个参数中 `Component` 支持组件形式和字符串形式，如果是字符串组件，要先通过 [app.addComponents](./Application) 进行注册，具体参考 [RouterManager](./RouterManager)。
+The second parameter's `Component` supports both component form and string form. If it's a string component, it must be registered first through [app.addComponents](./Application), specifically refer to [RouterManager](./RouterManager).
 
-- 示例
+- Example
 
-单层级配置。
+Single-level configuration.
 
 ```tsx | pure
 const HelloSettingPage = () => {
@@ -84,17 +84,17 @@ class MyPlugin extends Plugin {
 }
 ```
 
-多层级配置。
+Multi-level configuration.
 
 ```tsx | pure
-// 多层级配置页
+// Multi-level configuration page
 
 class MyPlugin extends Plugin {
     async load() {
         this.app.systemSettingsManager.add('hello', {
           title: 'HelloWorld',
           icon: '',
-          // Component: Outlet, 默认为 react-router-dom 的 Outlet 组件，可自定义
+          // Component: Outlet, defaults to react-router-dom's Outlet component, can be customized
         })
 
         this.app.systemSettingsManager.add('hello.demo1', {
@@ -112,9 +112,9 @@ class MyPlugin extends Plugin {
 
 ### systemSettingsManager.get()
 
-获取配置信息。
+Get configuration information.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -122,13 +122,13 @@ class SystemSettingsManager {
 }
 ```
 
-- 详细解释
+- Detailed Explanation
 
-第一个是在添加时的 name 参数，第二个参数是是否在获取的时候进行权限过滤。
+The first is the name parameter when adding, the second parameter is whether to perform permission filtering when getting.
 
-- 示例
+- Example
 
-在组件中获取。
+Get in component.
 
 ```tsx | pure
 const Demo = () => {
@@ -137,7 +137,7 @@ const Demo = () => {
 }
 ```
 
-在插件中获取。
+Get in plugin.
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -152,9 +152,9 @@ class MyPlugin extends Plugin {
 
 ### systemSettingsManager.getList()
 
-获取插件配置页列表。
+Get plugin configuration page list.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -162,11 +162,11 @@ class SystemSettingsManager {
 }
 ```
 
-- 详细解释
+- Detailed Explanation
 
-`filterAuth` 默认值为 `true`，即进行权限过滤。
+`filterAuth` defaults to `true`, i.e., perform permission filtering.
 
-- 示例
+- Example
 
 ```tsx | pure
 const Demo = () => {
@@ -178,9 +178,9 @@ const Demo = () => {
 
 ### systemSettingsManager.has()
 
-判断是否存在，内部已进行权限过滤。
+Determine if exists, permission filtering is already performed internally.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -188,7 +188,7 @@ class SystemSettingsManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -200,7 +200,7 @@ class MyPlugin extends Plugin {
 
 ### systemSettingsManager.remove()
 
-移除配置。
+Remove configuration.
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -210,9 +210,9 @@ class SystemSettingsManager {
 
 ### systemSettingsManager.getRouteName()
 
-获取对应路由的名称。
+Get the name of the corresponding route.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -220,7 +220,7 @@ class SystemSettingsManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -232,9 +232,9 @@ class MyPlugin extends Plugin {
 
 ### systemSettingsManager.getRoutePath()
 
-获取插件配置对应的页面路径。
+Get the page path corresponding to the plugin configuration.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SystemSettingsManager {
@@ -242,7 +242,7 @@ class SystemSettingsManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 const Demo = () => {
@@ -258,7 +258,7 @@ const Demo = () => {
 
 ### systemSettingsManager.hasAuth()
 
-单独判断是否权限。
+Separately determine if has permission.
 
 ```tsx | pure
 class SystemSettingsManager {

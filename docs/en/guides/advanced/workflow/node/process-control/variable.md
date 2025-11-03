@@ -1,78 +1,78 @@
-# 自定义变量
+# Custom Variable
 
 <PluginInfo name="workflow-variable" link="/handbook/workflow-variable" commercial="true"></PluginInfo>
 
-可在流程中声明变量，或为已声明的变量赋值，通常用于在流程中保存一些临时数据。
+Variables can be declared in the process, or values can be assigned to already declared variables, typically used to save some temporary data in the process.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“变量”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Variable" node:
 
-![添加变量节点]
+![Add Variable Node]
 
-### 配置节点
+### Configure Node
 
-#### 模式
+#### Mode
 
-变量节点与程序中的变量类似，需要先声明，之后才能使用和被赋值。所以在创建变量节点时，需要选择变量的模式，有两种模式可供选择：
+Variable nodes are similar to variables in programs. They need to be declared first before they can be used and assigned values. So when creating a variable node, you need to select the variable's mode. There are two modes to choose from:
 
-![选择模式]
+![Select Mode]
 
-- 声明新变量：创建一个新变量。
-- 对已有变量赋值：对之前流程已声明的变量进行赋值，相当于修改变量的值。
+- Declare new variable: Create a new variable.
+- Assign to existing variable: Assign to a variable already declared in the previous process, equivalent to modifying the variable's value.
 
-当创建的节点是流程中的首个变量节点时，仅可以选择声明模式，因为此时还没有任何变量可供赋值。
+When the created node is the first variable node in the process, you can only select declare mode because there are no variables available for assignment yet.
 
-选择为已声明的变量赋值时，还需要选择目标变量，即声明变量的节点：
+When selecting to assign to an already declared variable, you also need to select the target variable, which is the node that declares the variable:
 
-![选择要赋值的变量]
+![Select Variable to Assign]
 
-#### 值
+#### Value
 
-变量的值可以是任意类型，可以是常量，如字符串、数字、逻辑值和日期等，也可以是流程中的其他变量。
+The variable's value can be of any type, can be constants such as strings, numbers, boolean values, dates, etc., or can be other variables in the process.
 
-在声明模式下，设置变量值相当于为变量赋初始值。
+In declare mode, setting the variable value is equivalent to assigning an initial value to the variable.
 
-![声明初始值]
+![Declare Initial Value]
 
-在赋值模式下，设置变量值相当于修改已声明的目标变量的值为一个新值，在后续使用中取值也将取得这个新值。
+In assignment mode, setting the variable value is equivalent to modifying the value of the already declared target variable to a new value. In subsequent use, this new value will be obtained.
 
-![为已声明变量赋值为触发器变量]
+![Assign Trigger Variable to Declared Variable]
 
-### 使用变量的值
+### Using Variable Values
 
-在变量节点的后续节点中，从“节点变量”分组中选择已声明的变量，即可使用该变量的值。例如在查询节点中，使用变量的值作为查询条件：
+In nodes subsequent to the variable node, select the declared variable from the "Node Variables" group to use that variable's value. For example, in a query node, use the variable's value as a query condition:
 
-![使用变量值作为查询过滤条件]
+![Use Variable Value as Query Filter Condition]
 
-### 示例
+### Example
 
-变量节点更有用的场景是在一些分支中，将某些新值与之前的值计算或合并（类似编程中的 `reduce`/`concat` 等），在分支结束后再使用。以下用循环分支和变量节点实现一个拼接收件人字符串的示例。
+A more useful scenario for variable nodes is in some branches, calculating or merging some new values with previous values (similar to `reduce`/`concat` in programming), and then using them after the branch ends. The following uses loop branches and variable nodes to implement an example of concatenating recipient strings.
 
-首先创建一个数据表触发的工作流，在“文章”数据更新时触发，并预加载相关的“作者”关系数据（用于获取收件人）：
+First, create a data table-triggered workflow that triggers when "Article" data is updated, and preload related "Author" relationship data (for obtaining recipients):
 
-![配置触发器]
+![Configure Trigger]
 
-然后创建一个变量节点，用于储存收件人字符串：
+Then create a variable node to store the recipient string:
 
-![收件人变量节点]
+![Recipient Variable Node]
 
-接下来创建一个循环分支节点，用于遍历文章的作者，将其收件人拼接到收件人变量中：
+Next, create a loop branch node to traverse the article's authors and concatenate their recipients to the recipient variable:
 
-![循环文章中的作者]
+![Loop Through Authors in Article]
 
-在循环分支中，先创建一个计算节点，用于将当前作者与已储存的作者字符串进行拼接：
+In the loop branch, first create a calculation node to concatenate the current author with the already stored author string:
 
-![拼接收件人字符串]
+![Concatenate Recipient String]
 
-在计算节点后再创建一个变量节点，选择赋值模式，赋值目标选择收件人变量节点，值选择计算节点的结果：
+After the calculation node, create another variable node, select assignment mode, select the recipient variable node as the assignment target, and select the calculation node's result as the value:
 
-![赋值拼接后的收件人字符串给收件人节点]
+![Assign Concatenated Recipient String to Recipient Node]
 
-这样在循环分支结束后，收件人变量中就储存了所有文章作者的收件人字符串。然后就可以在循环后使用 HTTP 请求节点调用邮件发送接口，将收件人变量的值作为收件人参数传递给接口：
+This way, after the loop branch ends, the recipient variable stores the recipient string of all article authors. Then you can use an HTTP request node after the loop to call the email sending interface, passing the recipient variable's value as the recipient parameter to the interface:
 
-![通过请求节点对收件人发送邮寄]
+![Send Email to Recipients Through Request Node]
 
-至此，一个简单的邮件群发功能就通过循环和变量节点实现了。
+So far, a simple mass email function has been implemented through loop and variable nodes.

@@ -1,38 +1,38 @@
-# 删除数据
+# Delete Data
 
-用于对某个数据表的满足条件的数据进行删除。
+Used to delete data that meets conditions in a data table.
 
-删除节点的基本使用与更新节点类似，只是删除节点不需要字段赋值，只需要选择数据表和筛选条件即可。删除节点的结果会返回删除成功数据的行数，只在执行历史里可查看，不可作为变量在后续节点使用。
+The basic use of the delete node is similar to the update node, except the delete node does not require field assignment, only selecting the data table and filter conditions. The delete node's result will return the number of rows of successfully deleted data, which can only be viewed in the execution history and cannot be used as a variable in subsequent nodes.
 
-:::info{title=注意}
-目前删除节点不支持逐条删除，均为批量删除，因此不会触发每条数据删除的其他事件。
+:::info{title=Note}
+Currently, the delete node does not support deleting one by one; all deletions are batch deletions, so other events for each data deletion will not be triggered.
 :::
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“删除数据”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Delete Data" node:
 
-![创建删除数据节点]
-<!-- TODO: 插入图片 -->
+![Create Delete Data Node]
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-![删除节点_节点配置]
-<!-- TODO: 插入图片 -->
+![Delete Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-### 数据表
+### Data Table
 
-选择要删除数据的数据表。
+Select the data table from which data will be deleted.
 
-### 筛选条件
+### Filter Conditions
 
-与普通的数据表查询时的筛选条件类似，可以使用流程的上下文变量。
+Similar to filter conditions when querying regular data tables, you can use context variables from the process.
 
-## 示例
+## Example
 
-例如定时清理已取消的无效历史订单数据，可以使用删除节点来实现：
+For example, to regularly clean up invalid historical order data that has been canceled, you can use a delete node:
 
-![删除节点_示例_节点配置]
-<!-- TODO: 插入图片 -->
+![Delete Node_Example_Node Configuration]
+<!-- TODO: Insert image -->
 
-工作流将定时触发，并执行删除所有已取消的无效历史订单数据。
+The workflow will be triggered periodically and execute deletion of all canceled invalid historical order data.

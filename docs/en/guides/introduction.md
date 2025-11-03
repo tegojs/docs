@@ -1,8 +1,8 @@
-# 快速上手
+# Quick Start
 
 ````
 
-## 默认配置
+## Default Configuration
 
 ```javascript
 {
@@ -42,14 +42,14 @@
 }
 ````
 
-## 导入和导出
+## Import and Export
 
-关于如何导出，请[查看](https://github.com/SheetJS/sheetjs/tree/master/demos/xspreadsheet#saving-data)
-如果需要自定义导出，可以使用 [SheetJs](https://github.com/SheetJS/sheetjs) 来完成导出，并且再次感谢
+For how to export, please [see](https://github.com/SheetJS/sheetjs/tree/master/demos/xspreadsheet#saving-data)
+If you need custom export functionality, you can use [SheetJs](https://github.com/SheetJS/sheetjs) to complete the export, and thanks again
 
-## 绑定事件
+## Event Binding
 
-简单的事件绑定
+Simple event binding
 
 ```js
 const s = new Spreadsheet('#x-spreadsheet-demo');
@@ -60,16 +60,16 @@ s.on('cells-selected', (cell, { sri, sci, eri, eci }) => {});
 s.on('cell-edited', (text, ri, ci) => {});
 ```
 
-## 快速设定单元格值
+## Quick Set Cell Value
 
-通过`instance.cellText(ri,ci,text)`来设定值，调用`reRender()`来刷新，你将会看到数据的变化
+Set value through `instance.cellText(ri,ci,text)`, call `reRender()` to refresh, you will see the data change
 
 ```js
 const s = new Spreadsheet('#x-spreadsheet-demo');
 s.cellText(5, 5, 'xxxx').cellText(6, 5, 'yyy').reRender();
 ```
 
-## 获取选定表格中单元的样式和值
+## Get Style and Value of Selected Cell
 
 ```javascript
 const s = new Spreadsheet('#x-spreadsheet-demo');

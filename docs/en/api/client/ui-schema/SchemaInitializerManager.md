@@ -1,68 +1,70 @@
 # SchemaInitializerManager
 
-## 实例方法
+## Instance Methods
 
 ### schemaInitializerManager.add()
 
-添加 SchemaInitializer 实例。
+Add SchemaInitializer instance.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
-    add<P1 = any, P2 = any>(...schemaInitializerList: SchemaInitializer<P1, P2>[]): void
+    add(...schemaInitializerList: SchemaInitializer[]): void
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
-const myInitializer = new SchemaInitializer({
-  name: 'MyInitializer',
-  title: 'Add block',
+const mySchemaInitializer = new SchemaInitializer({
+  name: 'MySchemaInitializer',
+  title: 'Add Block',
   items: [
     {
       name: 'demo',
       type: 'item',
-      title: 'Demo'
+      useComponentProps(){
+          title: 'Demo'
+      }
     }
   ],
 });
 
 class MyPlugin extends Plugin {
     async load() {
-        this.app.schemaInitializerManager.add(myInitializer);
+        this.app.schemaInitializerManager.add(mySchemaInitializer);
     }
 }
 ```
 
 ### schemaInitializerManager.get()
 
-获取一个 SchemaInitializer 实例。
+Get a SchemaInitializer instance.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
-    get<P1 = ButtonProps, P2 = {}>(name: string): SchemaInitializer<P1, P2> | undefined
+    get<T = any>(name: string): SchemaInitializer<T> | undefined
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
     async load() {
-       const myInitializer = this.app.schemaInitializerManager.get('MyInitializer');
+       const mySchemaInitializer = this.app.schemaInitializerManager.get('MySchemaInitializer');
     }
 }
 ```
 
 ### schemaInitializerManager.getAll()
 
-获取所有的 SchemaInitializer 实例。
+Get all SchemaInitializer instances.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
@@ -70,7 +72,7 @@ class SchemaInitializerManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
@@ -82,9 +84,9 @@ class MyPlugin extends Plugin {
 
 ### app.schemaInitializerManager.has()
 
-判断是否有存在某个 SchemaInitializer 实例。
+Determine if a certain SchemaInitializer instance exists.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
@@ -92,21 +94,21 @@ class SchemaInitializerManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
     async load() {
-        const hasMyInitializer = this.app.schemaInitializerManager.has('MyInitializer');
+        const hasMySchemaInitializer = this.app.schemaInitializerManager.has('MySchemaInitializer');
     }
 }
 ```
 
 ### schemaInitializerManager.remove()
 
-移除 SchemaInitializer 实例。
+Remove SchemaInitializer instance.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
@@ -114,21 +116,21 @@ class SchemaInitializerManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
     async load() {
-        this.app.schemaInitializerManager.remove('MyInitializer');
+        this.app.schemaInitializerManager.remove('MySchemaInitializer');
     }
 }
 ```
 
 ### schemaInitializerManager.addItem()
 
-添加 SchemaInitializer 实例的 Item 项，其和直接 schemaInitializer.add() 方法的区别是，可以确保在实例存在时才会添加。
+Add Item of SchemaInitializer instance. The difference from directly calling schemaInitializer.add() method is that it can ensure addition only when the instance exists.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
@@ -136,21 +138,21 @@ class SchemaInitializerManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
     async load() {
-        // 方式1：先获取，再添加子项，需要确保已注册
-        const myInitializer = this.app.schemaInitializerManager.get('MyInitializer');
-        if (myInitializer) {
-            myInitializer.add('b', { type: 'item', title: 'B' })
+        // Method 1: First get, then add child item, need to ensure already registered
+        const mySchemaInitializer = this.app.schemaInitializerManager.get('MySchemaInitializer');
+        if (mySchemaInitializer) {
+            mySchemaInitializer.add('b', { type: 'item', useComponentProps:{ title: 'B' } })
         }
 
-        // 方式2：通过 addItem，内部确保在 MyInitializer 注册时才会添加
-        this.app.schemaInitializerManager.addItem('MyInitializer', 'b', {
+        // Method 2: Through addItem, internally ensures addition only when mySchemaInitializer is registered
+        this.app.schemaInitializerManager.addItem('MySchemaInitializer', 'b', {
             type: 'item',
-            title: 'B'
+            useComponentProps:{ title: 'B' }
         })
     }
 }
@@ -158,9 +160,9 @@ class MyPlugin extends Plugin {
 
 ### schemaInitializerManager.removeItem()
 
-移除 实例的 Item 项，其和直接 schemaInitializer.remove() 方法的区别是，可以确保在实例存在时才会移除。
+Remove Item of instance. The difference from directly calling schemaInitializer.remove() method is that it can ensure removal only when the instance exists.
 
-- 类型
+- Type
 
 ```tsx | pure
 class SchemaInitializerManager {
@@ -168,19 +170,19 @@ class SchemaInitializerManager {
 }
 ```
 
-- 示例
+- Example
 
 ```tsx | pure
 class MyPlugin extends Plugin {
     async load() {
-        // 方式1：先获取，再删除子项，需要确保已注册
-        const myInitializer = this.app.schemaInitializerManager.get('MyInitializer');
-        if (myInitializer) {
-            myInitializer.remove('a')
+        // Method 1: First get, then delete child item, need to ensure already registered
+        const mySchemaInitializer = this.app.schemaInitializerManager.get('MySchemaInitializer');
+        if (mySchemaInitializer) {
+            mySchemaInitializer.remove('a')
         }
 
-        // 方式2：通过 addItem，内部确保在 MyInitializer 注册时才会移除
-        this.app.schemaInitializerManager.remove('MyInitializer', 'a')
+        // Method 2: Through addItem, internally ensures removal only when mySchemaInitializer is registered
+        this.app.schemaInitializerManager.remove('MySchemaInitializer', 'a')
     }
 }
 ```

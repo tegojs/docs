@@ -1,91 +1,91 @@
-# HTTP 请求
+# HTTP Request
 
 <PluginInfo name="workflow-request" link="/handbook/workflow-request"></PluginInfo>
 
-当需要与另一个 web 系统进行交互时，可以使用 HTTP 请求节点。该节点在执行时会根据配置向对应的地址发出一个 HTTP 请求，可以携带 JSON 或 `application/x-www-form-urlencoded` 格式的数据，完成与外部系统的数据交互。
+When you need to interact with another web system, you can use the HTTP request node. When this node executes, it will send an HTTP request to the corresponding address according to the configuration, can carry data in JSON or `application/x-www-form-urlencoded` format, and complete data interaction with external systems.
 
-如果对 Postman 这类请求发送工具比较熟悉，那么可以很快掌握 HTTP 请求节点的用法。与这些工具不同的是，HTTP 请求节点中各项参数均可使用当前流程中的上下文变量，可以与当前系统的业务处理有机结合起来。
+If you are familiar with request sending tools like Postman, you can quickly master the usage of HTTP request nodes. Different from these tools, various parameters in HTTP request nodes can use context variables from the current process and can be organically combined with the business processing of the current system.
 
-## 安装
+## Installation
 
-内置插件，无需安装。
+Built-in plugin, no installation required.
 
-## 使用手册
+## User Manual
 
-### 创建节点
+### Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“HTTP 请求”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add an "HTTP Request" node:
 
-![HTTP 请求_添加]
-<!-- TODO: 插入图片 -->
+![HTTP Request_Add]
+<!-- TODO: Insert image -->
 
-### 节点配置
+### Node Configuration
 
-![HTTP请求节点_节点配置]
-<!-- TODO: 插入图片 -->
+![HTTP Request Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-#### 请求方法
+#### Request Method
 
-可选的 HTTP 请求方法：`GET`、`POST`、`PUT`、`PATCH` 和 `DELETE`。
+Optional HTTP request methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`.
 
-#### 请求地址
+#### Request URL
 
-HTTP 服务的 URL，需要包含协议部分（`http://` 或 `https://`），推荐使用 `https://`。
+The URL of the HTTP service, needs to include the protocol part (`http://` or `https://`), `https://` is recommended.
 
-#### 请求数据格式
+#### Request Data Format
 
-即请求头中的 `Content-Type`，支持 `application/json` 和 `application/x-www-form-urlencoded` 两种格式。
+That is, `Content-Type` in the request header, supports two formats: `application/json` and `application/x-www-form-urlencoded`.
 
-#### 请求头配置
+#### Request Header Configuration
 
-请求 Header 部分的键值对，相关值可以使用流程上下文的变量。
+Key-value pairs in the request Header part. Related values can use context variables from the process.
 
-:::info{title=提示}
-对 `Content-Type` 请求头，已通过请求数据格式配置，无需填写，覆盖无效。
+:::info{title=Note}
+For the `Content-Type` request header, it is already configured through the request data format and does not need to be filled in. Overriding is invalid.
 :::
 
-#### 请求参数
+#### Request Parameters
 
-请求 query 部分的键值对，相关值可以使用流程上下文的变量。
+Key-value pairs in the request query part. Related values can use context variables from the process.
 
-#### 请求体
+#### Request Body
 
-请求的 Body 部分，目前仅支持标准的 JSON 格式，可以通过文本编辑框右上角的变量按钮插入流程上下文中的变量。
+The Body part of the request. Currently only supports standard JSON format. You can insert variables from the process context through the variable button in the upper right corner of the text edit box.
 
-:::info{title=提示}
-注：变量必须在 JSON 的字符串中使用，例如：`"a": "{{$context.data.a}}"`。
+:::info{title=Note}
+Note: Variables must be used in JSON strings, for example: `"a": "{{$context.data.a}}"`.
 :::
 
-#### 超时设置
+#### Timeout Setting
 
-当请求长时间未响应时，通过超时设置取消该请求的执行。请求超时后会以失败状态提前终止当前流程。
+When a request does not respond for a long time, cancel the execution of the request through timeout setting. After the request times out, the current process will terminate early with a failed status.
 
-#### 忽略失败
+#### Ignore Failure
 
-请求节点会以标准 HTTP 状态码的 `200`~`299` 之间（含）的状态认为是成功状态，其他的均认为是失败。如勾选了“忽略失败的请求并继续工作流”选项，则当请求失败后仍继续执行后续的其他流程节点。
+The request node will consider status codes between `200`~`299` (inclusive) of standard HTTP status codes as success status. All others are considered failures. If the "Ignore failed requests and continue workflow" option is checked, then the process will continue to execute other subsequent process nodes after the request fails.
 
-### 使用响应结果
+### Using Response Results
 
-HTTP 请求的响应结果可以通过 [JSON 解析] 节点进行解析，以便后续节点使用。
+HTTP request response results can be parsed through the [JSON Parse] node for use by subsequent nodes.
 
-自 `v1.0.0-alpha.16` 版本起，请求节点结果响应中的三个部分可以分别作为变量使用：
+Starting from version `v1.0.0-alpha.16`, three parts of the response result in the request node can be used separately as variables:
 
-* 响应状态码
-* 响应头
-* 响应数据
+* Response status code
+* Response headers
+* Response data
 
-![HTTP请求节点_响应结果使用]
-<!-- TODO: 插入图片 -->
+![HTTP Request Node_Response Result Usage]
+<!-- TODO: Insert image -->
 
-其中响应状态码通常是数字形式的标准的 HTTP 状态码，如 `200`、`403` 等（具体由服务提供方给出）。
+Among them, the response status code is usually a numeric standard HTTP status code, such as `200`, `403`, etc. (specifically provided by the service provider).
 
-响应头（Response headers）为 JSON 格式，包括 JSON 格式的响应数据，仍需要使用 JSON 节点节点解析后使用。
+Response headers are in JSON format, including JSON format response data, which still needs to be parsed using JSON node before use.
 
-### 示例
+### Example
 
-例如我们可以使用请求节点来对接云平台发送通知短信，以阿里云发送短信接口为例配置如下（相关参数需自行查阅文档适配）：
+For example, we can use request nodes to interface with cloud platforms to send notification SMS. Taking the Alibaba Cloud SMS sending interface as an example, the configuration is as follows (related parameters need to be adapted by referring to the documentation yourself):
 
-![HTTP请求节点_节点配置]
-<!-- TODO: 插入图片 -->
+![HTTP Request Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-工作流触发该节点执行时会以配置的内容调用阿里云的短信接口，请求成功的话将通过短信云服务发送一条短信。
+When the workflow triggers this node for execution, it will call Alibaba Cloud's SMS interface with the configured content. If the request is successful, an SMS will be sent through the SMS cloud service.

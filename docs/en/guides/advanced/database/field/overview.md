@@ -1,29 +1,29 @@
-# 概述
+# Overview
 
-## 数据表字段
+## Data Table Fields
 
-### 字段的接口(Interface)类型
+### Field Interface Types
 
-从接口(Interface)角度来看，灵矶将字段划分为以下几类:
+From the Interface perspective, Tachybase divides fields into the following categories:
 ![](../../../../../public/Interface_type.png)
 
-### 字段数据类型
-每个Field Interface都有一个默认的数据类型，例如，Interface类型为数字(Number)的字段，默认数据类型为double，但也可以是float、decimal等。目前支持的数据类型包括:
+### Field Data Types
+Each Field Interface has a default data type. For example, a field with Interface type Number has a default data type of double, but can also be float, decimal, etc. Currently supported data types include:
 
 ![](../../../../../public/data_type.png)
 
 
-### 字段类型映射
+### Field Type Mapping
 
-主数据库新增字段的流程为:
+The process for adding new fields to the main database is:
 
-1. 选择Interface类型
-2. 配置当前Interface可选数据类型
+1. Select Interface type
+2. Configure available data types for the current Interface
 
 ![](../../../../../public/database_field.png)
 
-为不数据源的字段映射流程为:
+The field mapping process for external data sources is:
 
-1. 自动根据外部数据库的字段类型映射到相应的数据类型（Field Type）和 UI 类型（Field Interface）。
-2. 可根据需求调整为更合适的数据类型和 Interface 类型。
-<!-- TODO: 插入图片 -->
+1. Automatically maps external database field types to corresponding data types (Field Type) and UI types (Field Interface).
+2. Can adjust to more suitable data types and Interface types as needed.
+<!-- TODO: Insert image -->

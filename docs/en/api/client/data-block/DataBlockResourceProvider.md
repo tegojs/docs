@@ -1,25 +1,25 @@
 # DataBlockResourceProvider
 
-根据 `DataBlockProvider` 中的 `collection`、`association`、`sourceId` 等属性，构建好 [resource](../application/Request) 对象，方便子组件对卡片数据的增删改查操作，其内置在 [DataBlockProvider](./DataBlockProvider) 中
+Based on properties like `collection`, `association`, `sourceId`, etc. in `DataBlockProvider`, constructs [resource](../application/Request) object to facilitate child components' CRUD operations on block data. It is built into [DataBlockProvider](./DataBlockProvider).
 
 
 ## useDataBlockResource
 
-用于获取当前数据块的 resource 对象。
+Used to get the resource object of the current data block.
 
-- 类型
+- Type
 
 ```ts | pure
 function useDataBlockResource(): IResource
 ```
 
-- 示例
+- Example
 
 ```ts | pure
 const  resource = useDataBlockResource();
 
 const onSubmit = async (values) => {
-  // 创建
+  // Create
   await resource.create({ values });
 }
 ```
@@ -28,7 +28,7 @@ const onSubmit = async (values) => {
 const  resource = useDataBlockResource();
 
 const onDelete = async () => {
-  // 删除
+  // Delete
   await resource.destroy();
 }
 ```

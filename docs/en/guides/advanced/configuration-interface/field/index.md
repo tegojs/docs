@@ -1,27 +1,27 @@
-# 字段
+# Fields
 
-在用户界面设计中，**字段组件**是数据的主要承载体。不同类型的数据通过不同的字段组件进行呈现和展示。需要注意，字段不能单独存在，必须依附于**卡片**内才能正常使用。
+In user interface design, **field components** are the main carriers of data. Different types of data are presented and displayed through different field components. It should be noted that fields cannot exist independently and must be attached to **blocks** to be used normally.
 
-### 卡片中的字段
+### Fields in Blocks
 
-字段通常不会单独使用，而是作为数据类型卡片中的子元素存在。每个数据类型卡片通常都会包含“配置字段”，而这些字段的列表则由当前的数据表提供。
+Fields are usually not used alone but exist as child elements in data type blocks. Each data type block usually contains "Configure Fields", and the list of these fields is provided by the current data table.
 ![](/fields-index1.png)
 
-### 字段设计器（工具栏）
-与卡片类似，字段组件的右上角同样配备了三个功能图标，分别是：
+### Field Designer (Toolbar)
+Similar to blocks, the upper right corner of field components is also equipped with three functional icons:
 
-- 拖拽布局
-- 快速添加字段
-- 字段参数配置
+- Drag and drop layout
+- Quick add field
+- Field parameter configuration
 
 ![](/fields-index2.png)
 
-### 字段布局
+### Field Layout
 
-可以通过拖拽的方式，灵活地自定义调整字段在卡片中的位置和排列。
+You can flexibly customize the position and arrangement of fields in blocks through drag and drop.
 
 ![](/interface/page-8.gif)
 
-<!-- 字段组件
-支持部分类型切换为其他组件。例如，`URL` 组件可以切换为 `Preview` 组件。
-如果需要扩展更多的组件，可以参考[扩展字段组件]()的相关内容。 -->
+<!-- Field Components
+Supports partial type switching to other components. For example, `URL` component can be switched to `Preview` component.
+If you need to extend more components, you can refer to the relevant content of [Extending Field Components](). -->

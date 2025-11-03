@@ -1,53 +1,53 @@
-# 下拉选择器
+# Dropdown Selector
 
-### 概述
+### Overview
 
-下拉选择器支持从目标表的现有数据中选择关联数据，或为目标表添加新数据后再进行关联。下拉选项支持模糊搜索，便于快速查找数据。
+Dropdown selector supports selecting associated data from existing data in the target table, or adding new data to the target table and then associating. Dropdown options support fuzzy search for quick data finding.
 ![](../../../../../../public/fieldSetting-select1.png)
 
-### 字段配置项
+### Field Configuration Items
 
-#### 快速创建
-先添加数据后选中该数据，适用于简单场景，如标签。
-示例：订单表有多对一关系字段「标签」。
+#### Quick Create
+Add data first, then select that data. Suitable for simple scenarios, such as tags.
+Example: Order table has many-to-one relationship field "Tags".
 
-##### 下拉菜单添加
-为目标表新建数据后，自动选中该数据并在表单提交后进行关联。适用于数据较简单的场景。
+##### Dropdown Menu Add
+After creating new data for the target table, automatically select that data and associate after form submission. Suitable for scenarios with relatively simple data.
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
 ![](../../../../../../public/fieldSetting-select2.png)
 
 
-##### 弹窗添加
-在弹窗中配置新建表单，适用于较复杂的场景，如商品录入。
-示例：订单表有多对多关系字段「商品」。
+##### Popup Add
+Configure create form in popup, suitable for more complex scenarios, such as product entry.
+Example: Order table has many-to-many relationship field "Products".
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
 ![](../../../../../../public/fieldSetting-select3.png)
 
 
-#### 设置数据范围
-控制下拉列表的数据范围。
-更多内容请参考 [设置数据范围](../field-settings/data-scope.md)。
+#### Set Data Scope
+Control the data scope of the dropdown list.
+For more content, refer to [Set Data Scope](../field-settings/data-scope.md).
 ![](../../../../../../public/fieldSetting-select4.png)
 
 
-#### 设置排序规则
-控制下拉选择器数据的排序。
-示例：按生产日期倒序排序。
+#### Set Sorting Rules
+Control sorting of dropdown selector data.
+Example: Sort by production date in descending order.
 ![](../../../../../../public/fieldSetting-select5.png)
 
-#### 允许添加/关联多条
-限制对多关系数据仅允许关联一条数据。
+#### Allow Add/Associate Multiple
+Restrict to-many relationship data to only allow associating one data record.
 
-#### 标题字段
-<!-- TODO: 插入视频 -->
+#### Title Field
+<!-- TODO: Insert video -->
 
-配置标题字段，以显示在下拉选择器中。
-更多内容请参考 [标题字段](../field-settings/title-field.md)。
+Configure title field to display in dropdown selector.
+For more content, refer to [Title Field](../field-settings/title-field.md).
 ![](../../../../../../public/fieldSetting-select6.png)
 
-[字段组件](../field-settings/field-component.md)
-支持切换为其他关系字段组件，如下拉选择、数据选择器等。
+[Field Component](../field-settings/field-component.md)
+Supports switching to other relationship field components, such as dropdown select, data picker, etc.

@@ -1,40 +1,40 @@
-# 数据选择器
+# Data Picker
 
-### 概述
+### Overview
 
-数据选择器以弹窗表格的形式展示，支持从目标表中选择现有数据进行关联，或为目标表添加数据后进行关联。
+Data picker is displayed in popup table form, supporting selecting existing data from the target table for association, or adding data to the target table and then associating.
 
 ![](../../../../../../public/fieldSetting-date-picker1.png)
 
 
-示例：产品表有多对多关系字段「零件」。
+Example: Product table has many-to-many relationship field "Parts".
 
-已选中的数据不会再显示在表格选择器中。在表格选择器中，用户还可以对关系目标表进行进一步管理，如新增、删除、导入导出等。
+Already selected data will not be displayed again in the table selector. In the table selector, users can further manage the relationship target table, such as add, delete, import/export, etc.
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
 
 ![](../../../../../../public/fieldSetting-date-picker2.png)
 
 
-### 字段配置项
+### Field Configuration Items
 
-#### 允许添加数据
-为目标表添加数据后，自动选中该数据。
+#### Allow Add Data
+After adding data to the target table, automatically select that data.
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
-#### 允许添加/关联多条
-限制对多关系数据仅允许关联一条数据。
+#### Allow Add/Associate Multiple
+Restrict to-many relationship data to only allow associating one data record.
 
-#### 标题字段
-配置标题字段，以显示在表格选择器中。
+#### Title Field
+Configure title field to display in table selector.
 
-<!-- TODO: 插入视频 -->
+<!-- TODO: Insert video -->
 
 ![](../../../../../../public/fieldSetting-date-picker3.png)
 
-更多内容请参考 [标题字段](../field-settings/title-field.md)。
+For more content, refer to [Title Field](../field-settings/title-field.md).
 
-- [弹窗尺寸](../../actions/action-settings/popup-size.md)
-- [字段组件](../field-settings/field-component.md)
+- [Popup Size](../../actions/action-settings/popup-size.md)
+- [Field Component](../field-settings/field-component.md)

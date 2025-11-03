@@ -1,37 +1,37 @@
-# 详情字段
+# Details Field
 
-### 概述
+### Overview
 
-详情卡片、列表卡片、网格卡片等字段的配置项基本相同，主要用于控制字段在阅读模式下的展示方式。
+The configuration items for fields in details blocks, list blocks, grid card blocks, etc. are basically the same, mainly used to control the display of fields in read mode.
 ![](../../../../../../public/detail-form-item1.png)
 
-### 字段配置项
+### Field Configuration Items
 
-#### 日期字段格式化
+#### Date Field Formatting
 
 ![](../../../../../../public/detail-form-item2.png)
-支持自定义日期字段的格式。
-更多内容请参考 [日期格式化](../specific/date-picker.md)。
+Supports customizing the format of date fields.
+For more content, refer to [Date Formatting](../specific/date-picker.md).
 
-#### 数值字段格式化
+#### Numeric Field Formatting
 
 ![](../../../../../../public/detail-form-item3.png)
 
-支持多种数值展示方式，包括单位换算、千分位分隔符、前后缀、精确度调整和科学记数法。
+Supports multiple numeric display methods, including unit conversion, thousand separators, prefix/suffix, precision adjustment, and scientific notation.
 
 ![](../../../../../../public/detail-form-item4.png)
 
-更多内容请参考 [数值格式化](../field-settings/number-format.md)。
+For more content, refer to [Number Formatting](../field-settings/number-format.md).
 
-- [编辑字段标题](../field-settings/edit-title.md)
-- [显示标题](../field-settings/display-title.md)
-- [编辑字段描述](../field-settings/edit-description.md)
-- [编辑字段提示信息](../field-settings/edit-tooltip.md)
-- [显示模式](../field-settings/pattern.md)
+- [Edit Field Title](../field-settings/edit-title.md)
+- [Display Title](../field-settings/display-title.md)
+- [Edit Field Description](../field-settings/edit-description.md)
+- [Edit Field Tooltip](../field-settings/edit-tooltip.md)
+- [Display Mode](../field-settings/pattern.md)
 
-<!-- 字段组件
-支持部分类型切换为其他组件。例如，`URL` 组件可以切换为 `Preview` 组件。
+<!-- Field Component
+Supports partial type switching to other components. For example, `URL` component can be switched to `Preview` component.
 
-如果需要扩展更多的组件，可以参考[扩展字段组件]()的相关内容。
-样式
-表单字段在阅读模式下可以设置样式。 -->
+If you need to extend more components, you can refer to the relevant content of [Extending Field Components]().
+Style
+Form fields in read mode can set styles. -->

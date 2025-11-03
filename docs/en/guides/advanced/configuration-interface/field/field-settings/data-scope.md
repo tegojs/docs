@@ -1,31 +1,31 @@
-# 设置数据范围
+# Set Data Scope
 
-## 介绍
+## Introduction
 
-关系字段的数据范围设置类似于卡片的数据范围设置，为关系数据设定默认的筛选条件。
+Data scope setting for relationship fields is similar to data scope setting for blocks, setting default filter conditions for relationship data.
 
-## 使用说明
+## Usage Instructions
 
 ![20240422153711](/field/field-settings/data-scope-1.png)
 
-### 静态值
+### Static Values
 
-示例：仅在售商品可以选择关联。
+Example: Only on-sale products can be selected for association.
 
 ![20240422155953](/field/field-settings/data-scope-2.png)
 
-### 变量值
+### Variable Values
 
-示例：仅商品生产日期早于上个月的商品可以选择关联。
+Example: Only products with production date earlier than last month can be selected for association.
 
 ![20240422163640](/field/field-settings/data-scope-3.png)
 
-更多关于变量内容参考 [变量](../../variable.md)
+For more about variables, refer to [Variables](../../variable.md)
 
-### 关系字段联动
+### Relationship Field Linkage
 
-关系字段之间通过设置数据范围实现联动。
+Relationship fields achieve linkage through setting data scope.
 
-示例：订单表中有多对多关系字段「商品」和多对一关系字段「客户」， 商品表有多对多关系字段 「客户」，在订单表单卡片中，商品的可选数据为当前表单中所选客户关联的商品。
+Example: The order table has many-to-many relationship field "Products" and many-to-one relationship field "Customer". The products table has many-to-many relationship field "Customers". In the order form block, the selectable data for products is products associated with the customer selected in the current form.
 
 ![20240422163640](/field/field-settings/data-scope-4.png)

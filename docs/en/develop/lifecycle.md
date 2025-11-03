@@ -1,6 +1,6 @@
-# 生命周期
+# Lifecycle
 
-应用生命周期包括以下步骤：
+The application lifecycle includes the following steps:
 
 ```mermaid
 flowchart LR
@@ -55,7 +55,7 @@ flowchart LR
         Z --> AA["afterDestroy"]
     end
 
-    %% 连接主流程
+    %% Connect main processes
     LoadProcess --> InstallProcess
     InstallProcess --> UpgradeProcess
     UpgradeProcess --> StartProcess
@@ -64,7 +64,7 @@ flowchart LR
     StopProcess --> DestroyProcess
 ```
 
-插件的生命周期包括以下步骤:
+The plugin lifecycle includes the following steps:
 
 ```mermaid
 flowchart LR
@@ -166,11 +166,11 @@ flowchart LR
 ```
 
 
-upgrade 生命周期包括以下步骤：
+The upgrade lifecycle includes the following steps:
 
 ```mermaid
 flowchart LR
-    %% 主流程
+    %% Main process
     subgraph Start
     direction TB
         A["tachybase upgrade"] --> B{running?}
@@ -180,7 +180,7 @@ flowchart LR
         D --> E["db.sync (core)"]
     end
 
-    %% 第一列：PresetPlugins
+    %% First column: PresetPlugins
     subgraph PresetPlugins [Preset Plugins]
         G["pm.initPresetPlugins"] --> H["run preset plugins migrations (beforeLoad)"]
         H --> I["pm.load (load preset plugins)"]
@@ -188,7 +188,7 @@ flowchart LR
         J --> K["run preset plugins migrations (afterSync)"]
     end
 
-    %% 第二列：OtherPlugins
+    %% Second column: OtherPlugins
     subgraph OtherPlugins [Other Plugins]
         L["pm.upgrade (upgrade preset plugins)"] --> M["pm.initOtherPlugins"]
         M --> N["run other plugins migrations (beforeLoad)"]
@@ -198,7 +198,7 @@ flowchart LR
         Q --> R["pm.upgrade (upgrade other plugins)"]
     end
 
-    %% 版本更新流程
+    %% Version update process
     subgraph End
         T["version.update()"] --> U{running?}
         U -- Yes --> V["app.restart"]

@@ -1,11 +1,11 @@
-# 下拉菜单（多选）
+# Dropdown (Multiple Select)
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/multiple_select1.png)
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

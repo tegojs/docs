@@ -1,15 +1,15 @@
-# row 类
+# Row Class
 
-主要为行,列操作设置相关，设置高度，隐藏行列等，这个类被挂载到 data 实例下了，所以在全局的调用属性方法为：
+Mainly for row and column operation settings, set height, hide rows and columns, etc. This class is mounted under the data instance, so the global calling property method is:
 
-::: tip 新版本
-为每个单独的工作表都建立了单独的 data 对象，所以应该现在 instance.datas 中找到对应的 data 对象，在进行操作
+::: tip New Version
+A separate data object is created for each individual worksheet, so you should now find the corresponding data object in instance.datas and then operate
 :::
 
 ```js
-// instance 你创建的实例，公有方法可以直接调用，私有方法不可以
+// instance is the instance you created, public methods can be called directly, private methods cannot
 
-// 你当前表的名字
+// Your current sheet name
 const target_sheet_name = `sheet2`;
 
 const target_data = instance.datas.find((it) => it.name === target_sheet_name);
@@ -17,242 +17,242 @@ const target_data = instance.datas.find((it) => it.name === target_sheet_name);
 target_data.rows.publicFn(args);
 ```
 
-## 实例化
+## Instantiation
 
-需要传入 高度 height，和总行数len, 为对象形式 `{ len, height }`
+Need to pass in height and total number of rows len, in object form `{ len, height }`
 
-## 实例属性
+## Instance Properties
 
-### \_(下划线)
+### \_(underscore)
 
-为数据存放位置
+Data storage location
 
 ### len
 
-总行数
+Total number of rows
 
 ### height
 
-默认行高
+Default row height
 
-## 公有方法
+## Public Methods
 
 ### copyPaste(srcCellRange, dstCellRange, what, autofill = false, cb = () => {})
 
-**功能** 复制粘贴
+**Function** Copy paste
 
-`@param srcCellRange` 输入复制区域
+`@param srcCellRange` Input copy area
 
-`@param dstCellRange` 输出粘贴区域
+`@param dstCellRange` Output paste area
 
 `@param what` type: all | format | text
 
-`@param autofill` 自动填充
+`@param autofill` Autofill
 
 `@param cb` callback
 
 ### cutPaste(srcCellRange, dstCellRange)
 
-**功能** 剪切粘贴
+**Function** Cut paste
 
-`@param srcCellRange` 输入剪切区域
+`@param srcCellRange` Input cut area
 
-`@param dstCellRange` 输出粘贴区域
+`@param dstCellRange` Output paste area
 
 ### delete(sri, eri)
 
-**功能** 删除行
+**Function** Delete row
 
-`@param sri` 开始行坐标
+`@param sri` Start row coordinate
 
-`@param eri` 结束行坐标
+`@param eri` End row coordinate
 
 ### deleteCell(ri, ci, what = 'all')
 
-**功能** 清除单个单元格
+**Function** Clear single cell
 
-`@param ri` 行坐标
+`@param ri` Row coordinate
 
-`@param ri` 行坐标
+`@param ci` Column coordinate
 
-`@param what` type: all | text | format | merge 删除类型
+`@param what` type: all | text | format | merge Delete type
 
 ### deleteCells(cellRange, what = 'all')
 
-**功能** 清除区域单元格
+**Function** Clear area cells
 
-`@param cellRange` 单元格选区
+`@param cellRange` Cell selection
 
-`@param what` type: all | text | format | merge 删除类型
+`@param what` type: all | text | format | merge Delete type
 
 ### deleteColumn(sci, eci)
 
-**功能** 删除列
+**Function** Delete column
 
-`@param sri` 开始行坐标
+`@param sci` Start column coordinate
 
-`@param eri` 结束行坐标
+`@param eci` End column coordinate
 
 ### each(cb)
 
-**功能** 针对于 row 做的增强版 each 函数
+**Function** Enhanced each function for row
 
-`@param cb` 回调函数，接受两个参数 ri, row
+`@param cb` Callback function, accepts two parameters ri, row
 
 ### eachCells(ri, cb)
 
-**功能** 针对于单元格做的增强版 each 函数
+**Function** Enhanced each function for cells
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param cb` 回调函数，接受两个参数 ci, cell
+`@param cb` Callback function, accepts two parameters ci, cell
 
 ### get(ri)
 
-**功能** 获取某行数据
+**Function** Get certain row data
 
-`@param ri` 行 index
+`@param ri` Row index
 
 ### getCell(ri, ci)
 
-**功能** 获取单元格数据
+**Function** Get cell data
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param ci` 列 index
+`@param ci` Column index
 
 ### getCellMerge(ri, ci)
 
-**功能** 获取单元格合并信息
+**Function** Get cell merge information
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param ci` 列 index
+`@param ci` Column index
 
 ### getCellOrNew(ri, ci)
 
-**功能** 获取单元格，未找到，返回默认值
+**Function** Get cell, if not found, return default value
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param ci` 列 index
+`@param ci` Column index
 
 ### getData()
 
-**功能** 获取所有行列数据
+**Function** Get all row and column data
 
 ### getHeight(ri)
 
-**功能** 获取高度
+**Function** Get height
 
-`@param ri` number 行index
+`@param ri` number Row index
 
 ### getOrNew(ri)
 
-**功能** 获取某行，如果为找到，返回默认配置
+**Function** Get certain row, if not found, return default configuration
 
 ### insert(sri, n = 1)
 
-**功能** 插入行
+**Function** Insert row
 
-`@param sri` 插入起始位置行坐标
+`@param sri` Insert start position row coordinate
 
-`@param n` 数量
+`@param n` Quantity
 
 ### insertColumn(sci, n = 1)
 
-**功能** 插入列
+**Function** Insert column
 
-`@param sci` 插入起始位置 列坐标
+`@param sci` Insert start position column coordinate
 
-`@param n` 数量
+`@param n` Quantity
 
 ### isHide(ri)
 
-**功能** 检测是否是隐藏，返回Boolean
+**Function** Check if hidden, returns Boolean
 
-`@param ri` 数量
+`@param ri` Row index
 
 ### maxCell()
 
-**功能** 返回最右下角单元格坐标
+**Function** Return bottom right cell coordinates
 
 ### paste(src, dstCellRange)
 
-**功能** 复制功能
+**Function** Copy function
 
-`@param src` 输入复制的选区范围
+`@param src` Input copy selection range
 
-`@param dstCellRange` 输出的复制选区范围
+`@param dstCellRange` Output copy selection range
 
 ### setCell(ri, ci, cell, what = 'all')
 
-**功能** 设置单元格数据，对象形式
+**Function** Set cell data, object form
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param ci` 列 index
+`@param ci` Column index
 
-`@param cell` cell 对象
+`@param cell` Cell object
 
-`@param what` what: all | text | format， 设置类型
+`@param what` what: all | text | format, Set type
 
 ### setCellText(ri, ci, text)
 
-**功能** 设置单元格文本，值形式
+**Function** Set cell text, value form
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param ci` 列 index
+`@param ci` Column index
 
 `@param text` string/number
 
 ### setData(d)
 
-**功能** 设置所有单元格数据
+**Function** Set all cell data
 
-`@param d` 传入的 data 数据
+`@param d` Incoming data
 
 ### setHeight(ri, v)
 
-**功能** 设置行的高度
+**Function** Set row height
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param v` 高度,value
+`@param v` Height, value
 
 ### setHide(ri, v)
 
-**功能** 设置隐藏行
+**Function** Set hide row
 
-`@param ri` 行 index
+`@param ri` Row index
 
 `@param v` value
 
 ### setStyle(ri, style)
 
-**功能** 设置行样式
+**Function** Set row style
 
-`@param ri` 行 index
+`@param ri` Row index
 
-`@param style` 样式对象
+`@param style` Style object
 
 ### sumHeight(min, max, exceptSet)
 
-**功能** 获取两个行之间的间距/高度
+**Function** Get spacing/height between two rows
 
-`@param min` 行开始index
+`@param min` Row start index
 
-`@param max` 行结束index
+`@param max` Row end index
 
-`@param exceptSet` 排除计算区域
+`@param exceptSet` Exclude calculation area
 
 ### totalHeight()
 
-**功能** 获取所有行高度的总和
+**Function** Get sum of all row heights
 
 ### unhide(idx)
 
-**功能** 取消隐藏行
+**Function** Unhide row
 
-`@param idx` 行index
+`@param idx` Row index

@@ -1,29 +1,28 @@
-# 文件数据表
+# File Data Table
 
-::: info &#9432; 提示
-该功能由插件 module-file 提供。
+::: info &#9432; Note
+This feature is provided by the module-file plugin.
 :::
 
-### 介绍
-文件是记录在特定结构的数据表中，这种数据表被称为**文件表**，用于存储文件的元数据，例如文件名、路径和大小等信息，并可以通过文件管理器进行管理。
+### Introduction
+Files are recorded in data tables with a specific structure, which are called **file tables**, used to store file metadata such as file name, path, and size, and can be managed through a file manager.
 
-### 使用手册
-创建文件表
+### User Manual
+Create file table
 
 ![](/datasource/datasource-7.png)
 
 
 
-文件表预置字段
+Preset fields in file table
 
 ![](/datasource/datasource-8.png)
 
 
-在卡片中使用
+Use in blocks
 
 ![](/datasource/datasource-9.png)
 
-关系字段
+Relationship fields
 
 ![](/datasource/datasource-10.png)
-

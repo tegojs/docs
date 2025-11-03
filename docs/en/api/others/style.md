@@ -1,4 +1,4 @@
-# 样式对照表
+# Style Reference Table
 
 ```javascript
 const style = [
@@ -21,10 +21,10 @@ const style = [
 ];
 ```
 
-## border - 边框样式
+## border - Border Style
 
-> border 边框样式数据['边框样式', '边框颜色']
-> thick, thin, medium 对应的边框样式为：solid
+> border Border style data ['border style', 'border color']
+> thick, thin, medium corresponding border styles are: solid
 
 bottom
 
@@ -48,7 +48,7 @@ top
 | ['dotted', '#000'] | border-top: dotted 1px #000 |
 | ['double', '#000'] | border-top: double 1px #000 |
 
-top
+right
 
 | right              | cssStyle                      |
 | ------------------ | ----------------------------- |
@@ -70,22 +70,22 @@ left
 | ['dotted', '#000'] | border-left: dotted 1px #000 |
 | ['double', '#000'] | border-left: double 1px #000 |
 
-## color - 字体颜色
+## color - Font Color
 
 | color  | cssStyle    |
 | ------ | ----------- |
 | '#HEX' | color: #HEX |
 
-## bgColor - 背景颜色
+## bgColor - Background Color
 
 | bgcolor | cssStyle              |
 | ------- | --------------------- |
 | '#HEX'  | backgroundColor: #HEX |
 
-## font - 字体样式
+## font - Font Style
 
-> italic 字体斜体效果, italic 为 true 值为：italic
-> \${} 表示取值
+> italic Font italic effect, italic is true value is: italic
+> \${} means get value
 
 | font   | cssStyle              |
 | ------ | --------------------- |
@@ -94,23 +94,23 @@ left
 | bold   | font-weight: bold     |
 | name   | font-family: \${name} |
 
-## underline - 文本下划线
+## underline - Text Underline
 
-> underline 文本下划线样式, underline 为 true 值为：underline
+> underline Text underline style, underline is true value is: underline
 
 | underline | cssStyle                   |
 | --------- | -------------------------- |
 | true      | text-decoration: underline |
 
-## strike - 文本中划线
+## strike - Text Strikethrough
 
-> strike 文本中划线样式, strike 为 true line-through
+> strike Text strikethrough style, strike is true line-through
 
 | strike | cssStyle                      |
 | ------ | ----------------------------- |
 | true   | text-decoration: line-through |
 
-## valign - 文本纵向对齐显示方式
+## valign - Text Vertical Alignment Display Method
 
 | valign | cssStyle               |
 | ------ | ---------------------- |
@@ -118,7 +118,7 @@ left
 | middle | vertical-align: middle |
 | top    | vertical-align: top    |
 
-## align - 文本横向对齐显示方式
+## align - Text Horizontal Alignment Display Method
 
 | align  | cssStyle           |
 | ------ | ------------------ |

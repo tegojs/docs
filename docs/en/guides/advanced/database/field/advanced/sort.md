@@ -1,125 +1,124 @@
-# 排序字段
+# Sort Field
 
-### 介绍
+### Introduction
 
-**排序字段**用于对数据表中的记录进行排序，并支持先进行分组，再进行排序（如 sort1）。
-
-::: warning &#9888; WARNING
-由于排序字段属于同一张表的字段，因此在分组排序的情况下，不能将同一条记录同时分配到多个组中。
-:::
-
-### 界面配置
-
-在创建排序字段时，系统会对排序值进行初始化：
-
-- 如果未启用分组排序，排序值将根据主键字段和创建日期字段进行初始化。
-- 如果启用了分组排序，系统会先对数据进行分组，然后根据主键字段和创建日期字段来初始化排序值。
+The **Sort Field** is used to sort records in a data table and supports grouping first, then sorting (like sort1).
 
 ::: warning &#9888; WARNING
-事务一致性说明:
+Since the sort field belongs to the same table, in grouped sorting, the same record cannot be assigned to multiple groups simultaneously.
+:::
 
-- 在创建字段时，如果排序值初始化失败，则该排序字段将不会被创建。
-- 当某个记录在指定范围内从位置 A 移动到位置 B 时，A 到 B 区间内的所有记录的排序值都会被更新。如果其中某一条记录的排序值更新失败，则整个移动操作将会失败，相关记录的排序值也不会被更新。
+### Interface Configuration
+
+When creating a sort field, the system will initialize the sort values:
+
+- If grouping is not enabled, sort values will be initialized based on the primary key field and creation date field.
+- If grouping is enabled, the system will first group the data, then initialize sort values based on the primary key field and creation date field.
+
+::: warning &#9888; WARNING
+Transaction consistency notes:
+
+- When creating a field, if sort value initialization fails, the sort field will not be created.
+- When a record moves from position A to position B within a specified range, the sort values of all records in the A to B interval will be updated. If the sort value update of any record fails, the entire move operation will fail, and the sort values of related records will not be updated.
 
 :::
 
-#### 创建sort_1字段
-<!-- TODO: 插入图片 -->
+#### Create sort_1 field
+<!-- TODO: Insert image -->
 
-sort字段无分组
+sort field without grouping
 
 ![](../../../../../../public/sort1.png)
 
-各记录的排序字段会根据主键字段和创建日期字段进行初始化：
+The sort field for each record will be initialized based on the primary key field and creation date field:
 
-<!-- TODO: 插入图片 -->
+<!-- TODO: Insert image -->
 
-#### 创建一个根据Class ID分组的sort_2字段
+#### Create a sort_2 field grouped by Class ID
 
-<!-- TODO: 插入图片 -->
+<!-- TODO: Insert image -->
 
-此时会对数据表中的全部记录先分组(按Class ID分组), 在对排序字段(sort_2)排序:
+At this time, all records in the data table will be grouped first (by Class ID), then sorted by sort field (sort_2):
 
-<!-- TODO: 插入图片 -->
+<!-- TODO: Insert image -->
 
-#### 拖拽排序
+#### Drag and Drop Sorting
 
-排序字段主要用于对各卡片记录进行拖拽排序，目前支持的拖拽排序卡片包括表格和看板。
-
-::: warning &#9888; WARNING
-
-1. 同一排序字段在多个卡片中混用可能会影响现有的排序规则。
-2. 表格拖拽排序时，不能选择带有分组规则的排序字段。
-3. 例外：在一对多关系的表格卡片中，外键字段可以作为分组字段。
-4. 目前，只有看板卡片支持分组排序的拖拽操作。
-
-:::
-
-##### 表格行的拖拽排序
-
-表格卡片
-
-<!-- TODO: 插入图片 -->
-
-关系表格卡片
-
-<!-- TODO: 插入视频 -->
+The sort field is mainly used for drag and drop sorting of block records. Currently supported drag and drop sorting blocks include tables and kanban.
 
 ::: warning &#9888; WARNING
 
-一对多关系卡片的排序规则
-
-- 如果选择的是未分组的排序字段，那么所有记录都有可能参与排序。
-- 如果基于外键进行分组排序，排序规则仅会影响当前分组内的数据。
-
-虽然最终排序结果一致，但参与排序的记录数可能不同。
+1. Using the same sort field in multiple blocks may affect existing sorting rules.
+2. When dragging and dropping in tables, you cannot select a sort field with grouping rules.
+3. Exception: In one-to-many relationship table blocks, the foreign key field can be used as a grouping field.
+4. Currently, only kanban blocks support drag and drop operations for grouped sorting.
 
 :::
 
-##### 看板卡片的拖拽排序
+##### Drag and Drop Sorting of Table Rows
 
-<!-- TODO: 插入图片 -->
+Table block
 
-#### 排序规则说明
+<!-- TODO: Insert image -->
 
-未分组（或同组）元素之间的移动
-假设有一组数据：
+Relationship table block
+
+<!-- TODO: Insert video -->
+
+::: warning &#9888; WARNING
+
+Sorting rules for one-to-many relationship blocks
+
+- If the selected sort field is ungrouped, all records may participate in sorting.
+- If grouping is based on foreign key, the sorting rule will only affect data within the current group.
+
+Although the final sorting result is the same, the number of records participating in sorting may be different.
+
+:::
+
+##### Kanban Block Drag and Drop Sorting
+
+<!-- TODO: Insert image -->
+
+#### Sorting Rules Explanation
+
+Movement between ungrouped (or same group) elements
+Suppose there is a dataset:
 
 `[1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
-当元素 7 向前移动到 4 的位置时，只有 4, 5, 6, 7 的序号会发生变化。7 占用了 4 的位置，4、5、6 各自向后移动一个位置。
+When element 7 moves forward to position 4, only the sequence numbers of 4, 5, 6, 7 will change. 7 takes position 4, and 4, 5, 6 each move back one position.
 
 `[1, 2, 3, 7, 4, 5, 6, 8, 9]`
 
-然后，继续将 8 向后移动到 6 的位置，8 占用了 6 的位置，5 和 6 各自向前移动一个位置。
+Then, continue moving 8 backward to position 6. 8 takes position 6, and 5 and 6 each move forward one position.
 
 `[1, 2, 3, 7, 4, 5, 8, 6, 9]`
 
-不同分组之间的元素移动
-在分组排序时，如果一条记录移动到其他组，它所在的组也会发生变化。例如，以下示例：
+Movement of elements between different groups
+In grouped sorting, if a record moves to another group, its group will also change. For example:
 
 ```
-组 A: [1, 2, 3, 4]
-组 B: [5, 6, 7, 8]
+Group A: [1, 2, 3, 4]
+Group B: [5, 6, 7, 8]
 ```
 
-当 3 移动到 6 的位置时（假设默认放在后面），3 所在的组会从 A 变为 B：
+When 3 moves to position 6 (assuming it defaults to the end), 3's group changes from A to B:
 
 ```
-组 A: [1, 2, 4]
-组 B: [5, 6, 3, 7, 8]
+Group A: [1, 2, 4]
+Group B: [5, 6, 3, 7, 8]
 ```
 
-排序变更与界面显示的数据
-例如，假设有一组数据：
+Sort changes and displayed interface data
+For example, suppose there is a dataset:
 
 `[1, 2, 3, 4, 5, 6, 7, 8, 9]`
 
-但界面只显示了：
+But the interface only displays:
 
 `[2, 6, 9]`
 
-当 2 移动到 9 的位置时，尽管中间的数据（3, 4, 5, 6, 7, 8）的位置发生变化，界面依然显示：
+When 2 moves to position 9, although the positions of the intermediate data (3, 4, 5, 6, 7, 8) change, the interface still displays:
 
 `[6, 9, 2]`
-

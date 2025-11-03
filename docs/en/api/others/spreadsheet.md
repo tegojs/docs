@@ -1,136 +1,136 @@
 # Spreadsheet
 
-主要入口类，涉及表格初始化，data 初始化相关
+Main entry class, involving table initialization and data initialization
 
-调用方法为：
+Calling method:
 
 ```js
-// instance 你创建的实例，公有方法可以直接调用，私有方法不可以
+// instance is the instance you created, public methods can be called directly, private methods cannot
 instance.publicFn(args);
 ```
 
-## 主要实例
+## Main Instance
 
-统一暴露在 `window` 下
+Uniformly exposed under `window`
 
 ```javascript
-// 你可以在 window 上访问
+// You can access on window
 const spreadsheet = (el, options = {}) => new Spreadsheet(el, options);
 if (window) {
   window.x_spreadsheet = spreadsheet;
   window.x_spreadsheet.locale = (lang, message) => locale(lang, message);
 }
-// 你可以这样创建
+// You can create like this
 const xs = x_spreadsheet(id, config);
 ```
 
-也可以将库作为你开发的目录
+You can also use the library as your development directory
 
 ```js
-// index.js 这是默认导出的
+// index.js This is the default export
 export default Spreadsheet;
 export { spreadsheet };
 // you local main page
-// 你可以直接导入本地库引入
+// You can directly import the local library
 import Spreadsheet from '[path]';
 ```
 
-## 公有方法
+## Public Methods
 
 ### addSheet(name, active)
 
-**功能** 添加多表
+**Function** Add multiple sheets
 
-`@param name` string 名称
+`@param name` string Name
 
-`@param active` boolean 默认为 true
+`@param active` boolean Default is true
 
 ### cell(ri, ci, sheetIndex)
 
-**功能** 获得单元格内容
+**Function** Get cell content
 
-`@param ri` number 行坐标
+`@param ri` number Row coordinate
 
-`@param ci` number 列坐标
+`@param ci` number Column coordinate
 
-`@param sheetIndex` number 默认值为：0，当前表格index
+`@param sheetIndex` number Default value: 0, current table index
 
 ### cellStyle(ri, ci, sheetIndex)
 
-**功能** 获得单元格样式属性
+**Function** Get cell style properties
 
-`@param ri` number 行坐标
+`@param ri` number Row coordinate
 
-`@param ci` number 列坐标
+`@param ci` number Column coordinate
 
-`@param sheetIndex` number 默认值为：0，当前表格index
+`@param sheetIndex` number Default value: 0, current table index
 
 ### cellText(ri, ci, text, sheetIndex)
 
-**功能** 设置选定表格中的单元格的值
+**Function** Set the value of a cell in the selected table
 
-`@param ri` number 行坐标
+`@param ri` number Row coordinate
 
-`@param ci` number 列坐标
+`@param ci` number Column coordinate
 
 `@param text` string
 
-`@param sheetIndex` number 默认值为：0，当前表格index
+`@param sheetIndex` number Default value: 0, current table index
 
 ### reRender()
 
-**功能** 重新刷新整个表格
+**Function** Re-refresh the entire table
 
 ### deleteSheet()
 
-**功能** 删除当前表
+**Function** Delete current sheet
 
-### loadData(data) 加载数据
+### loadData(data) Load data
 
-`@param {data}` json 数据格式
+`@param {data}` json Data format
 
-**如何获取数据格式:** 请使用 `getData()` 方法
+**How to get data format:** Please use the `getData()` method
 
 ```js
 import Spreadsheet from 'x-data-spreadsheet';
 
 const xs = new Spreadsheet('#x-spreadsheet-demo');
 
-// data 是 json 格式
-// 加载数据
+// data is json format
+// Load data
 xs.loadData(data);
 ```
 
-### getData() 获取数据
+### getData() Get data
 
-获取数据
+Get data
 
 ```js
-// 获取数据 d
+// Get data d
 const d = xs.getData();
 ```
 
-### change(callback) 变更事件
+### change(callback) Change event
 
-页面操作或者数据发生变化
+Page operation or data change
 
 ```js
-// 如
+// Like
 xs.change(function (data) {
-  // 默认会返回整个数据 json
+  // Will return the entire data json by default
 });
 ```
 
-### locale(lang, message) 本地化
+### locale(lang, message) Localization
 
 ```js
-// 加载语言包, 需要cdn 引入汉化文件或者从本地导入
+// Load language pack, need to introduce localization file via cdn or import from local
 xs.locale('zh-cn');
 ```
 
-### on(eventName, callback) 绑定事件
+### on(eventName, callback) Bind event
 
-监听事件
+Listen to events
 
 ```js
 xs.on('cell-selected', function (cell, ri, ci) {

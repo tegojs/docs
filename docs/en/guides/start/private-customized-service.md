@@ -1,41 +1,41 @@
-# 私有定制服务
+# Private Customized Services
 
 ## ✨✨
 
-灵矶低代码平台凭借其卓越的技术实力与灵活的服务模式，为企业及开发者量身打造了一套全面且深入的私有定制化服务体系。平台深刻理解不同行业、不同规模企业在数字化转型过程中的独特需求与挑战，因此，它不仅仅是一个提供基础低代码开发功能的工具，更是一个能够深度融入企业业务流程、实现个性化定制的解决方案提供者。
+The Tachybase low-code platform, with its excellent technical capabilities and flexible service model, has created a comprehensive and in-depth private customization service system for enterprises and developers. The platform deeply understands the unique needs and challenges of different industries and different-sized enterprises in the digital transformation process. Therefore, it is not just a tool that provides basic low-code development functions, but a solution provider that can deeply integrate into enterprise business processes and achieve personalized customization.
 
-## ⚙️案例一：传感器软件定制项目
+## ⚙️Case Study 1: Sensor Software Customization Project
 
-### 介绍
-本项目聚焦于传感器校准系统的软件定制开发，旨在构建一个高效、稳定且功能全面的系统，实现传感器与软件之间的无缝交互，满足用户在传感器测量、数据处理及报告生成等多方面的需求。
+### Introduction
+This project focuses on software custom development for sensor calibration systems, aiming to build an efficient, stable, and comprehensive system that achieves seamless interaction between sensors and software, meeting users' needs in sensor measurement, data processing, report generation, and other aspects.
 
-### 系统架构
-本系统采用分层的架构设计，涵盖用户界面（前端）、设备通信模块（服务端）、物理设备、MySQL数据库以及操作系统等关键组件。
-用户界面提供友好的操作入口，方便用户与系统进行交互；
-设备通信模块负责与物理设备进行数据传输和指令交互；
-MySQL数据库用于存储传感器测量数据、登录日志、异常日志等重要信息；
-操作系统则为整个系统的运行提供基础环境。
+### System Architecture
+This system adopts a layered architecture design, covering key components such as user interface (frontend), device communication module (server), physical devices, MySQL database, and operating system.
+The user interface provides a user-friendly operation entry, facilitating user interaction with the system;
+The device communication module is responsible for data transmission and command interaction with physical devices;
+The MySQL database stores important information such as sensor measurement data, login logs, and exception logs;
+The operating system provides the basic environment for the entire system to run.
 
-### 功能实现
+### Feature Implementation
 
 ![](/guides/start/feature-implementation.png)
 
-1. 用户认证：根据用户权限返回相应的权限级别，确保只有授权用户能够访问系统功能，保障系统的安全性。
-2. 设备通信：前端发起测量请求后，服务端指令设备执行并获取原始数据，经解析存储后，将实时结果推送至前端进行可视化。
-3. 异常处理：通信异常触发服务端分析、记录与前端告警，提示用户处理以维护系统稳定。
-4. 数据导出：用户发起报告请求后，服务端查询数据并生成报告文件（或返回数据），提供下载链接供用户获取报告。
-5. 系统交互：系统检测息屏事件并记录日志；用户主动退出时，前端发送指令，服务端安全释放资源并保证数据完整。
+1. User Authentication: Returns corresponding permission levels based on user permissions, ensuring only authorized users can access system functions and safeguarding system security.
+2. Device Communication: After the frontend initiates a measurement request, the server instructs the device to execute and obtain raw data, which is then parsed and stored, with real-time results pushed to the frontend for visualization.
+3. Exception Handling: Communication exceptions trigger server analysis, recording, and frontend alerts, prompting users to handle issues to maintain system stability.
+4. Data Export: After a user initiates a report request, the server queries data and generates a report file (or returns data), providing a download link for users to obtain the report.
+5. System Interaction: The system detects screen-off events and records logs; when users actively exit, the frontend sends instructions, and the server safely releases resources and ensures data integrity.
 
-### 项目优势
+### Project Advantages
 
 ![](/guides/start/project-advantages.png)
 
-1. 高度定制化：根据用户的实际需求和使用场景，对软件的功能、界面和交互流程进行定制开发，确保系统能够完美适配用户的业务流程。
-2. 高效的数据处理能力：能够快速准确地解析和转换传感器原始数据，实时推送数据并生成可视化图表，帮助用户及时掌握测量情况。同时，支持历史数据查询和报告生成，方便用户进行数据分析和决策。
-3. 强大的异常处理机制：系统具备完善的异常检测和处理功能，能够及时发现并处理通信故障等问题，同时记录异常日志，为系统的维护和优化提供有力支持。
-4. 安全可靠：通过用户认证和权限管理，确保只有授权用户能够访问系统，保障数据的安全性。在系统退出时执行安全退出操作，防止数据丢失和系统异常。
+1. High Customization: Custom development of software functions, interfaces, and interaction processes based on users' actual needs and usage scenarios, ensuring the system perfectly adapts to users' business processes.
+2. Efficient Data Processing Capability: Can quickly and accurately parse and convert sensor raw data, push data in real-time and generate visualization charts, helping users timely grasp measurement situations. Also supports historical data query and report generation, facilitating user data analysis and decision-making.
+3. Strong Exception Handling Mechanism: The system has comprehensive exception detection and handling functions, can timely discover and handle communication failures and other issues, while recording exception logs to provide strong support for system maintenance and optimization.
+4. Safe and Reliable: Through user authentication and permission management, ensures only authorized users can access the system, safeguarding data security. Performs safe exit operations when the system exits, preventing data loss and system abnormalities.
 
-### 界面展示
+### Interface Display
 
 ![](/guides/start/project-sensors1.png)
 
@@ -43,41 +43,41 @@ MySQL数据库用于存储传感器测量数据、登录日志、异常日志等
 
 ![](/guides/start/project-sensors3.png)
 
-## 🚛案例二：ERP系统定制
+## 🚛Case Study 2: ERP System Customization
 
-### 介绍
+### Introduction
 
-本项目旨在构建一套高度集成化的企业资源规划（ERP）系统，满足用户独特需求，通过统一平台整合企业核心运营流程。系统涵盖五大核心业务模块：
-1. 仓库管理：实现物料入库、出库、调拨、盘点全流程数字化，支持多仓库协同与实时库存可视化；
-2. 财务管理：覆盖总账、应收应付、成本核算及财务报表生成，确保财务数据链贯通；
-3. 项目管理：支持项目全生命周期管理，包括预算控制、进度跟踪与资源分配；
-4. 库存分析：提供动态库存预警、周转率统计及智能补货建议，驱动精细化库存决策；
-5. 资金管理：强化现金流监控、资金计划与融资管理，提升企业资金利用效率。
+This project aims to build a highly integrated Enterprise Resource Planning (ERP) system to meet users' unique needs through a unified platform that integrates core enterprise operational processes. The system covers five core business modules:
+1. Warehouse Management: Achieves full-process digitalization of material inbound, outbound, transfer, and inventory, supporting multi-warehouse collaboration and real-time inventory visualization;
+2. Financial Management: Covers general ledger, accounts receivable/payable, cost accounting, and financial report generation, ensuring financial data chain integration;
+3. Project Management: Supports full project lifecycle management, including budget control, progress tracking, and resource allocation;
+4. Inventory Analysis: Provides dynamic inventory warnings, turnover rate statistics, and intelligent replenishment suggestions, driving refined inventory decision-making;
+5. Fund Management: Strengthens cash flow monitoring, fund planning, and financing management, improving enterprise fund utilization efficiency.
 
-系统核心特性：
+System Core Features:
 
-✅ 全流程电子审批：自定义审批流覆盖采购、报销、合同等业务场景，加速运营效率；
+✅ Full-process Electronic Approval: Custom approval flows cover business scenarios such as procurement, reimbursement, and contracts, accelerating operational efficiency;
 
-✅ 多维度权限控制：基于角色与数据层级的细粒度权限管理，保障业务数据安全；
+✅ Multi-dimensional Permission Control: Fine-grained permission management based on roles and data levels, safeguarding business data security;
 
-✅ 跨模块数据联动：打破业务孤岛，实现财务、库存、项目数据的自动同步与交叉分析。
+✅ Cross-module Data Linkage: Breaks down business silos, achieving automatic synchronization and cross-analysis of financial, inventory, and project data.
 
-### 功能模块
+### Functional Modules
 
 ![](/guides/start/functional-modules.png)
 
-### 方案优势
+### Solution Advantages
 
 ![](/guides/start/solution-advantages.png)
 
-- 模块化设计：支持分阶段部署
-- 自定义审批流：报销/采购/合同等流程时效提升50%，规避越权操作
-- 全流程集成化：打破仓库、财务、项目、资金等模块数据孤岛，实现业务-财务数据自动联动
-- 降本：库存优化+流程自动化，直接降低运营成本
-- 增效：跨部门协作效率提升40%，决策响应速度加快
-- 战略支撑：实时数据驱动资源精准配置，助力业务扩张
+- Modular Design: Supports phased deployment
+- Custom Approval Flows: Reimbursement/procurement/contract and other process timeliness improved by 50%, avoiding unauthorized operations
+- Full-process Integration: Breaks down data silos across warehouse, finance, project, fund, and other modules, achieving automatic business-finance data linkage
+- Cost Reduction: Inventory optimization + process automation, directly reducing operational costs
+- Efficiency Increase: Cross-departmental collaboration efficiency improved by 40%, decision response speed accelerated
+- Strategic Support: Real-time data drives precise resource allocation, assisting business expansion
 
-### 界面展示
+### Interface Display
 
 ![](/guides/start/chuangxing1.png)
 

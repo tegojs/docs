@@ -1,126 +1,126 @@
-# 审批节点
+# Approval Node
 
-在审批工作流中，需要使用专用的“审批”节点为审批人配置用于处理（通过、拒绝或退回）发起的审批的操作逻辑，“审批”节点也仅可在审批流程中使用。
+In approval workflows, the specialized "Approval" node needs to be used to configure operation logic for approvers to handle (approve, reject, or return) initiated approvals. The "Approval" node can only be used in approval processes.
 
-:::info{title=提示}
-与普通的“人工处理”节点的区别：普通的“人工处理”节点针对的场景更加泛化，可以用于更多类型的工作流的人工输入数据、人工决策流程是否继续等场景。“审批节点”是特化的专用于审批流程的处理节点，不能在其他工作流中使用。
+:::info{title=Note}
+Difference from regular "Manual Processing" nodes: Regular "Manual Processing" nodes are more generalized and can be used for more types of workflows such as manual data input, manual decision on whether the process continues, etc. The "Approval Node" is specialized for approval process handling and cannot be used in other workflows.
 :::
 
-## 创建节点
+## Create Node
 
-点击流程中的加号（“+”）按钮，添加“审批”节点，再选择其中一种通过模式，创建审批节点：
+Click the plus ("+") button in the process to add an "Approval" node, then select one of the approval modes to create an approval node:
 
-![审批节点_创建]
-<!-- TODO: 插入图片 -->
+![Approval Node_Create]
+<!-- TODO: Insert image -->
 
-## 通过模式
+## Approval Mode
 
-通过模式有两种：
+There are two approval modes:
 
-1.  直通模式：通常用于较为简单的流程，审批节点通过与否只决定流程是否结束，未通过的情况下直接退出流程。
+1.  Direct mode: Usually used for relatively simple processes. Whether the approval node passes or not only determines whether the process ends. If not passed, it directly exits the process.
 
-    ![审批节点_通过模式_直通模式]
-<!-- TODO: 插入图片 -->
+    ![Approval Node_Approval Mode_Direct Mode]
+<!-- TODO: Insert image -->
 
-2.  分支模式：通常用于更复杂的数据逻辑，审批节点产生任何结果后，可在其结果分支内继续执行其他节点。
+2.  Branch mode: Usually used for more complex data logic. After the approval node produces any result, other nodes can continue to execute in its result branch.
 
-    ![审批节点_通过模式_分支模式]
-<!-- TODO: 插入图片 -->
+    ![Approval Node_Approval Mode_Branch Mode]
+<!-- TODO: Insert image -->
 
-    其中如果节点配置了“退回”操作，才会产生“退回”分支，且退回分支执行完以后会强制退出当前流程。
+    If the node is configured with a "Return" operation, a "Return" branch will be generated, and after the return branch executes, it will forcibly exit the current process.
 
-    该节点被“通过”后，除执行通过分支，也会继续执行后续流程。“拒绝”操作后默认也可以继续执行后续流程，也可以在节点中配置执行分支后结束流程。
+    After this node is "Approved", in addition to executing the approval branch, it will also continue to execute subsequent processes. After the "Reject" operation, it can also continue to execute subsequent processes by default, or it can be configured in the node to end the process after executing the branch.
 
-:::info{title=提示}
-通过模式在节点创建后不可修改。
+:::info{title=Note}
+The approval mode cannot be modified after the node is created.
 :::
 
-## 审批人
+## Approver
 
-审批人是负责该节点审批行为的用户集合，可以是一个或多个用户，选择的来源可以是从用户列表选择的静态值，也可以是由变量指定的动态值。
+Approvers are the user collection responsible for approval behavior of this node. Can be one or more users. The selection source can be static values selected from the user list or dynamic values specified by variables.
 
-![审批节点_审批人]
-<!-- TODO: 插入图片 -->
+![Approval Node_Approver]
+<!-- TODO: Insert image -->
 
-选择变量时，仅可选择上下文和节点结果中用户数据的主键或外键。如果选择的变量在执行中是数组（对多关系），那么数组中的每个用户都会合并到整个审批人集合中。
+When selecting variables, you can only select primary keys or foreign keys of user data in the context and node results. If the selected variable is an array during execution (one-to-many relationship), then each user in the array will be merged into the entire approver collection.
 
-## 协商模式
+## Negotiation Mode
 
-如果审批人在最终执行时只有一个（包含多个变量去重后的情况），那么无论选择何种协商模式，都只由该用户执行审批操作，结果也仅由该用户决定。
+If there is only one approver in the final execution (including the case after deduplication of multiple variables), then regardless of which negotiation mode is selected, approval operations will only be performed by that user, and the result will only be determined by that user.
 
-当审批人集合中有多个用户时，选择不同协商模式代表不同的处理方式：
+When there are multiple users in the approver collection, selecting different negotiation modes represents different processing methods:
 
-1. 或签：只需其中一人通过即代表节点通过，所有人都拒绝才代表节点拒绝。
-2. 会签：需要所有人通过才代表节点通过，只需其中一人拒绝即代表节点拒绝。
-3. 投票：需要超过设定比例的人数通过才代表节点通过，否则代表节点拒绝。
+1. OR: Only one person needs to approve for the node to be approved. The node is rejected only if all people reject.
+2. AND: All people need to approve for the node to be approved. If any one person rejects, the node is rejected.
+3. Vote: More than the set percentage of people need to approve for the node to be approved, otherwise the node is rejected.
 
-针对退回操作，在任何模式下，如果审批人集合中有用户处理为退回，那么节点会直接退出流程。
+For return operations, in any mode, if a user in the approver collection processes as return, the node will directly exit the process.
 
-## 处理顺序
+## Processing Order
 
-同样的，在审批人集合中有多个用户时，选择不同的处理顺序代表不同的处理方式：
+Similarly, when there are multiple users in the approver collection, selecting different processing orders represents different processing methods:
 
-1. 并行：所有审批人可以以任意顺序处理，先后处理无关。
-2. 顺序：审批人按照审批人集合中的顺序依次处理，审批人中的上一个提交后，下一个才能处理。
+1. Parallel: All approvers can process in any order, the order of processing is irrelevant.
+2. Sequential: Approvers process in the order of the approver collection. After the previous approver in the approver list submits, the next one can process.
 
-无论是否设置为“顺序”处理，根据实际处理的先后顺序产生的结果也遵循上述“协商模式”中的规则，达到对应条件后该节点即完成执行。
+Regardless of whether it is set to "Sequential" processing, the results generated according to the actual processing order also follow the rules in the above "Negotiation Mode". After meeting the corresponding conditions, the node completes execution.
 
-## 拒绝分支结束后退出工作流
+## Exit Workflow After Rejection Branch Ends
 
-“通过模式”设置为“分支模式”时，可以选择在拒绝分支结束后退出工作流。勾选以后，拒绝分支的末尾会显示一个“✗”，表示该分支结束后不再继续后续节点：
+When "Approval Mode" is set to "Branch Mode", you can choose to exit the workflow after the rejection branch ends. After checking, an "✗" will be displayed at the end of the rejection branch, indicating that subsequent nodes will not continue after this branch ends:
 
-![审批节点_拒绝后退出]
-<!-- TODO: 插入图片 -->
+![Approval Node_Exit After Rejection]
+<!-- TODO: Insert image -->
 
-## 审批人界面配置
+## Approver Interface Configuration
 
-审批人界面配置用于提供审批人对审批工作流执行到该节点时的操作界面，点击配置按钮打开弹窗：
+Approver interface configuration is used to provide approvers with the operation interface when the approval workflow executes to this node. Click the configuration button to open the popup:
 
-![审批节点_界面配置_弹窗]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Popup]
+<!-- TODO: Insert image -->
 
-在配置弹窗中可以添加提交审批的详情、操作栏和自定义提示文字等卡片：
+In the configuration popup, you can add cards such as approval details, action bar, and custom prompt text:
 
-![审批节点_界面配置_添加卡片]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Add Block]
+<!-- TODO: Insert image -->
 
-### 详情卡片
+### Details Block
 
-其中审批内容详情卡片即发起人提交的数据卡片，与普通的数据卡片类似，可以任意添加数据表的字段组件，并且可以任意排列，以组织审批人需要查看的内容：
+Among them, the approval content details block is the data block submitted by the initiator. Similar to regular data blocks, you can add field components of any data table and arrange them in any way to organize the content that approvers need to view:
 
-![审批节点_界面配置_详情卡片]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Details Block]
+<!-- TODO: Insert image -->
 
-### 表单卡片
+### Form Block
 
-操作表单卡片中可以添加该节点支持的操作按钮，包括“通过”、“否决”、“退回”、“转签”和“加签”：
+In the operation form block, you can add operation buttons supported by this node, including "Approve", "Reject", "Return", "Reassign", and "Add Approval":
 
-![审批节点_界面配置_操作表单卡片]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Operation Form Block]
+<!-- TODO: Insert image -->
 
-另外，操作表单中也可以添加可由审批人修改的字段。这些字段在审批人处理审批时会显示在操作表单中，审批人可以修改这些字段的值，提交后会同时更新用于审批的数据，以及审批流程中对应数据的快照。
+Additionally, fields that can be modified by approvers can also be added to the operation form. These fields will be displayed in the operation form when the approver processes the approval. Approvers can modify the values of these fields. After submission, both the data used for approval and the snapshot of corresponding data in the approval process will be updated simultaneously.
 
-![审批节点_界面配置_操作表单_修改审批内容字段]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Operation Form_Modify Approval Content Fields]
+<!-- TODO: Insert image -->
 
-### “通过”、“否决”和“退回”
+### "Approve", "Reject" and "Return"
 
-审批操作按钮中，“通过”、“否决”和“退回”是决定性操作，提交后则对应审批人在该节点的处理完成，提交时需要填写的额外字段可以在操作按钮的“处理配置”弹窗中添加，如“评论”等。
+Among approval operation buttons, "Approve", "Reject", and "Return" are decisive operations. After submission, the approver's processing at this node is completed. Additional fields that need to be filled when submitting can be added in the "Processing Configuration" popup of the operation button, such as "Comment", etc.
 
-![审批节点_界面配置_操作表单_处理配置]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Operation Form_Processing Configuration]
+<!-- TODO: Insert image -->
 
-### “转签”和“加签”
+### "Reassign" and "Add Approval"
 
-“转签”和“加签”是非决定性操作，用于动态调整审批流程中的审批人，“转签”是将当前用户的审批任务交给另一个用户代为处理，“加签”是在当前审批人之前或之后增加一个审批人，由新增的审批人一同继续审批。
+"Reassign" and "Add Approval" are non-decisive operations used to dynamically adjust approvers in the approval process. "Reassign" is to transfer the current user's approval task to another user for processing on their behalf. "Add Approval" is to add an approver before or after the current approver, with the newly added approver continuing to approve together.
 
-启用“转签”或“加签”操作按钮后，需要在按钮的配置菜单中选择“指派人员范围”，对可指派新审批人的范围进行设置：
+After enabling the "Reassign" or "Add Approval" operation button, you need to select "Assignable Person Range" in the button's configuration menu to set the range of new approvers that can be assigned:
 
-![审批节点_界面配置_操作表单_指派人员范围]
-<!-- TODO: 插入图片 -->
+![Approval Node_Interface Configuration_Operation Form_Assignable Person Range]
+<!-- TODO: Insert image -->
 
-与节点原始的审批人配置一样，指派人员范围也可以是直接选择的审批人，或者基于用户表的查询条件，最终会合并成一个集合，且不包含已经在审批人集合中的用户。
+Like the node's original approver configuration, the assignable person range can also be directly selected approvers or based on query conditions of the user table. They will eventually be merged into a collection and will not include users already in the approver collection.
 
-:::warning{title=重要}
-如果开启或关闭了某个操作按钮，或者修改了指派人员范围，需要在关闭操作界面配置的弹窗后保存该节点的配置，否则该操作按钮的变动不会生效。
+:::warning{title=Important}
+If an operation button is enabled or disabled, or if the assignable person range is modified, you need to save the node's configuration after closing the operation interface configuration popup, otherwise the changes to the operation button will not take effect.
 :::

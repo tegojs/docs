@@ -1,6 +1,6 @@
-# 删除卡片
+# Delete Block
 
 
-## 介绍
+## Introduction
 
-删除区块将区块从当前页面中移除是不可逆操作。
+Deleting a block removes it from the current page and is an irreversible operation.

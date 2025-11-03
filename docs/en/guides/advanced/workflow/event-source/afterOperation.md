@@ -1,17 +1,17 @@
-# 资源操作后事件
+# Post-Resource Operation Events
 
-资源操作后事件即监听指定数据表的增删改等对数据进行操作后所进行监听，并指定的工作流，例如表单新增后，表单修改后等场景
+Post-resource operation events monitor specified data tables after operations such as adding, deleting, and modifying data are performed, and trigger specified workflows, such as after form addition, after form modification, etc.
 
-## 创建事件源
+## Create Event Source
 
-其中的配置项：
+Configuration items:
 
-- 名称: 事件源名称。
-- 工作流: 需要触发执行的工作流。
-- 类型: 资源操作后事件。
-- 选项: 
-    - 资源名称:需要监听的资源.
-    - 动作名称:需要监听的指定操作
+- Name: Event source name.
+- Workflow: Workflow to be triggered for execution.
+- Type: Post-resource operation event.
+- Options:
+    - Resource Name: Resource to be monitored.
+    - Action Name: Specified operation to monitor
 
 
-在触发后则可以在流程中直接使用这些关联数据。
+After triggering, these associated data can be used directly in the process.

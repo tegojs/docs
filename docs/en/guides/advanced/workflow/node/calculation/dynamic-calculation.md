@@ -1,26 +1,26 @@
-# 动态表达式计算节点
+# Dynamic Expression Calculation Node
 
-## 创建节点
+## Create Node
 
-创建一个动态表达式计算节点：
+Create a dynamic expression calculation node:
 
-<!-- ![创建动态表达式计算节点] -->
-<!-- TODO: 插入图片 -->
+<!-- ![Create Dynamic Expression Calculation Node] -->
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-### 动态表达式
+### Dynamic Expression
 
-与普通运算节点的表达式选项不同，动态表达式需要根据已经查询出来的数据进行选择，而不是直接录入表达式。选择之前从触发器中预加载的商品优惠规则数据：
+Different from the expression option of ordinary calculation nodes, dynamic expressions need to be selected based on data that has already been queried, rather than directly entering expressions. Select the product discount rule data preloaded from the trigger:
 
-<!-- ![选择动态表达式数据] -->
-<!-- TODO: 插入图片 -->
+<!-- ![Select Dynamic Expression Data] -->
+<!-- TODO: Insert image -->
 
-### 变量数据源
+### Variable Data Source
 
-同时还需要选择表达式中变量所需要使用的数据表数据行对象，可以从流程的上下文中选择已经提前加载（或查询）出来的结果对象。该对象需要是表达式数据中所关联的数据表的数据行对象，这里选择商品数据：
+You also need to select the data table data row object that variables in the expression need to use, which can be selected from the process context as results that have been loaded (or queried) in advance. This object needs to be a data row object of the data table associated in the expression data. Here, select product data:
 
-<!-- ![选择变量数据源] -->
-<!-- TODO: 插入图片 -->
+<!-- ![Select Variable Data Source] -->
+<!-- TODO: Insert image -->
 
-保存节点配置即完成所有配置流程。
+Save the node configuration to complete all configuration processes.

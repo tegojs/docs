@@ -1,53 +1,53 @@
-# 自定义请求
+# Custom Request
 
-> ℹ️ **提示**  
-> 由插件 `plugin-action-custom-request` 提供
+> ℹ️ **Note**  
+> Provided by the `plugin-action-custom-request` plugin
 
-## 介绍
+## Introduction
 
-## 安装
+## Installation
 
-内置插件，无需单独安装
+Built-in plugin, no separate installation required
 
-## 使用说明
+## Usage Instructions
 
 ![20240426120014](/actions/custom-request-1.png)
 
-### 配置权限
+### Configure Permissions
 
-当勾选了允许配置界面时，可以配置自定义请求。
+When "Allow configuration interface" is checked, custom requests can be configured.
 
 ![20240426114957](/actions/custom-request-2.png)
 
-customRequests 表是系统级的，通过 acl.registerSnippet 配置权限。
+The customRequests table is system-level, with permissions configured through acl.registerSnippet.
 
 ```typescript
 this.app.acl.registerSnippet({
-  name: 'ui.customRequests', // ui.* 对应的允许配置界面权限
+  name: 'ui.customRequests', // ui.* corresponds to allow configuration interface permissions
   actions: ['customRequests:*'],
 });
 ```
-### 变量
+### Variables
 
-支持在 URL 和请求体中配置变量。
+Supports configuring variables in URL and request body.
 
-- 当前记录
-- 当前用户
-- 当前时间
-- API token（v1.3.22-beta 及以上版本支持）
+- Current record
+- Current user
+- Current time
+- API token (supported in v1.3.22-beta and above)
 
 ![20240426120953](/actions/custom-request-3.png)
 
 ![20240426121051](/actions/custom-request-4.png)
 
-## 操作配置项
+## Operation Configuration Items
 
-### 请求设置
+### Request Settings
 
 ![20240426120131](/actions/custom-request-5.png)
 
-### 权限控制
+### Permission Control
 
-每个自定义请求操作支持自定义角色权限，默认拥有权限。
+Each custom request operation supports custom role permissions, with permissions by default.
 
 ![20240426120451](/actions/custom-request-6.png)

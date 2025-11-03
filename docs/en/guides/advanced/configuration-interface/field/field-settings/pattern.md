@@ -1,10 +1,10 @@
-# 显示模式
+# Display Mode
 
-### 概述
+### Overview
 
-字段组件与卡片不同，具有三种显示模式（仅适用于表单中的字段）。切换不同的显示模式时，将对应不同的字段配置选项。
+Field components differ from blocks, having three display modes (only applicable to fields in forms). When switching different display modes, different field configuration options will correspond.
 
-- 可编辑
-- 只读（不可编辑）
-- 只读（阅读模式）
+- Editable
+- Read-only (Not Editable)
+- Read-only (Read Mode)
 ![](../../../../../../public/pattern1.png)

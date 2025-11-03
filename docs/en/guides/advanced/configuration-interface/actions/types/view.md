@@ -1,18 +1,18 @@
 
-# 查看
+# View
 
-## 介绍
+## Introduction
 
-查看操作属于行按钮，有当前记录作为上下文，以弹窗形式呈现，用户可以在弹窗中自定义配置卡片。
+The view operation is a row button with the current record as context, presented in modal form. Users can customize blocks in the modal.
 
 ![20240412115458](/actions/view-1.png)
 
 
-### 操作配置项
+### Operation Configuration Items
 
 ![20240413104839](/actions/view-2.png)
 
-- [编辑按钮](/guides/advanced/configuration-interface/actions/action-settings/edit-button)
-- [联动规则](/guides/advanced/configuration-interface/actions/action-settings/linkage-rule)
-- [打开模式](/guides/advanced/configuration-interface/actions/action-settings/open-mode)
-- [弹窗尺寸](/guides/advanced/configuration-interface/actions/action-settings/popup-size)
+- [Edit Button](/guides/advanced/configuration-interface/actions/action-settings/edit-button)
+- [Linkage Rules](/guides/advanced/configuration-interface/actions/action-settings/linkage-rule)
+- [Open Mode](/guides/advanced/configuration-interface/actions/action-settings/open-mode)
+- [Popup Size](/guides/advanced/configuration-interface/actions/action-settings/popup-size)

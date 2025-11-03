@@ -1,18 +1,18 @@
-# 自定义资源操作
+# Custom Resource Operations
 
 
-自定义资源即监听即对资源可以自定义接口名称，通过其他地方的自定义请求调用即可，更方便用户可对定制业务进行监听并处理。
+Custom resources can have custom interface names for monitoring resources, which can be invoked through custom requests from elsewhere, making it more convenient for users to monitor and process customized business.
 
-## 创建事件源
+## Create Event Source
 
-其中的配置项：
+Configuration items:
 
-- 名称: 事件源名称。
-- 工作流: 需要触发执行的工作流。
-- 类型: 自定义资源操作。
-- 选项: 
-    - 资源名称:需要监听的资源.
-    - 动作名称:需要请求到的指定名称
+- Name: Event source name.
+- Workflow: Workflow to be triggered for execution.
+- Type: Custom resource operation.
+- Options:
+    - Resource Name: Resource to be monitored.
+    - Action Name: Specified name to be requested
 
 
-在触发后则可以在流程中直接使用这些关联数据。
+After triggering, these associated data can be used directly in the process.

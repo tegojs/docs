@@ -1,49 +1,48 @@
-# 页面
+# Page
 
-页面可以作为卡片的容器，它们就像一块画布，可以在其中自由放置各种卡片
+Pages can serve as containers for blocks. They are like a canvas where you can freely place various blocks.
 
-## 页面结构
+## Page Structure
 
-通过 菜单 创建页面后，可以看到一个空页面由以下两部分组成：
+After creating a page through the Menu, you can see an empty page consists of the following two parts:
 
-1. 页眉
-   1. 页面标题
-   2. 标签页
-2. 区块容器
+1. Page Header
+   1. Page Title
+   2. Tabs
+2. Block Container
 ![](/interface/page-1.png)
 
-## 页面设置
+## Page Settings
 
-将鼠标悬浮到页面右上方的配置项图标，可以看到页面配置项：
+Hover the mouse over the configuration icon in the upper right corner of the page to see page configuration items:
 ![](/interface/page-2.png)
 
-可配置的项目包括：
+Configurable items include:
 
-- 启用页眉：用于控制是否显示页眉；
-- 显示页面标题：是否在页眉中显示页面标题；
-- 编辑页面标题：默认的页面标题为菜单项标题，可以自定义；
-- 启用标签页：默认关闭，启用后可以添加多个标签页。
+- Enable Header: Used to control whether to display the page header;
+- Show Page Title: Whether to display the page title in the header;
+- Edit Page Title: The default page title is the menu item title, which can be customized;
+- Enable Tabs: Off by default. When enabled, multiple tabs can be added.
 
-### 启用页眉
+### Enable Header
 
-通常情况下，我们需要启用页眉区域，用于显示页面标题、标签页。也有些情况不希望启用它，比如，当我们建立一个 Dashbodrd 页面，一级菜单就可以很好的体现该页面内容，此时我们可以关闭页眉，只显示页面内的卡片
+Usually, we need to enable the header area to display the page title and tabs. There are also situations where we don't want to enable it. For example, when we create a Dashboard page, the first-level menu can already well represent the page content. At this time, we can turn off the header and only display blocks within the page.
 ![](/interface/page-3.png)
 
-### 启用标题
+### Enable Title
 
-默认的页面标题为菜单项名称，通过点击“编辑页面标题”，可对其进行修改。同页眉一样，有些时候我们不需要显示页面标题，只需要显示标签页，此时就可以关闭标题。
+The default page title is the menu item name. By clicking "Edit Page Title", you can modify it. Like the header, sometimes we don't need to display the page title, only the tabs. In this case, you can turn off the title.
 ![](/interface/page-4.png)
 
-### 启用标签页
+### Enable Tabs
 
-当一个页面里的内容过多，或者适合分为几个独立部分来组织的时候，我们可以启用标签页（tab），每个标签页都是独立的卡片容器。如下图，我们为订单页面添加了 3 个标签页，分别用来显示全部订单、已完成的订单、已退款的订单。将鼠标移到标签页标题上，右上角可以看到排序和配置项按钮
+When there is too much content on a page, or when it's suitable to organize it into several independent parts, we can enable tabs. Each tab is an independent block container. As shown below, we added 3 tabs to the order page, used to display all orders, completed orders, and refunded orders respectively. Move the mouse to the tab title, and you can see the sort and configuration buttons in the upper right corner.
 ![](/interface/page-5.png)
 
-## 添加卡片
-点击“新增卡片”即可在页面内添加无限数量的卡片（查看 卡片 的介绍）。
+## Add Blocks
+Click "Add Block" to add an unlimited number of blocks to the page (see the introduction to Blocks).
 ![](/interface/page-6.png)
 
 
-在新增多个卡片后，可通过卡片右上角的移动按钮，对卡片任意拖拽排版，调整布局，实现最合适的效果。
+After adding multiple blocks, you can use the move button in the upper right corner of the block to drag and drop the layout of blocks freely, adjust the layout, and achieve the most suitable effect.
 ![](/interface/page-7.png)
-

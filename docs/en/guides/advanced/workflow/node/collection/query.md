@@ -1,44 +1,44 @@
-# 查询数据
+# Query Data
 
-用于对某个数据表的满足条件的数据进行查询并获取数据记录。
+Used to query data that meets conditions in a data table and retrieve data records.
 
-可以配置查询单条数据或多条数据，查询结果可以作为变量在后续节点使用。当查询多条数据时，查询结果为一个数组。当查询结果为空时，可以选择是否继续执行后续节点。
+You can configure to query a single record or multiple records. Query results can be used as variables in subsequent nodes. When querying multiple records, the query result is an array. When the query result is empty, you can choose whether to continue executing subsequent nodes.
 
-## 创建节点
+## Create Node
 
-在工作流配置界面中，点击流程中的加号（“+”）按钮，添加“查询数据”节点：
+In the workflow configuration interface, click the plus ("+") button in the process to add a "Query Data" node:
 
-![查询数据_添加]
-<!-- TODO: 插入图片 -->
+![Query Data_Add]
+<!-- TODO: Insert image -->
 
-## 节点配置
+## Node Configuration
 
-![查询节点_节点配置]
-<!-- TODO: 插入图片 -->
+![Query Node_Node Configuration]
+<!-- TODO: Insert image -->
 
-### 数据表
+### Data Table
 
-选择要查询数据的数据表。
+Select the data table to be queried.
 
-### 结果类型
+### Result Type
 
-结果类型分为“单数据”和“多行数据”两种：
+Result type is divided into "Single Data" and "Multiple Rows of Data":
 
-- 单条数据：结果是一个对象，仅为首条匹配的记录，或空值。
-- 多条数据：结果会是一个数组，包含匹配条件的记录，没有匹配记录则为空数组。可以通过循环节点逐个处理。
+- Single data: Result is an object, only the first matching record, or null.
+- Multiple data: Result will be an array containing records matching the conditions. If no records match, it will be an empty array. Can be processed one by one through a loop node.
 
-### 筛选条件
+### Filter Conditions
 
-与普通的数据表查询时的筛选条件类似，可以使用流程的上下文变量。
+Similar to filter conditions when querying regular data tables, you can use context variables from the process.
 
-### 排序
+### Sorting
 
-查询一条或多条数据时均可通过排序规则来控制需要的结果。例如查询最新的一条数据，可以通过“创建时间”字段降序排序。
+When querying one or multiple records, you can control the desired results through sorting rules. For example, to query the latest record, you can sort by the "Created Date" field in descending order.
 
-### 分页
+### Pagination
 
-当结果集可能会很大时，可以使用分页来控制查询结果的数量。例如查询最新的 10 条数据，可以通过“创建时间”字段降序排序，然后设置分页为 1 页 10 条数据。
+When the result set may be very large, you can use pagination to control the quantity of query results. For example, to query the latest 10 records, you can sort by the "Created Date" field in descending order, then set pagination to 1 page with 10 records.
 
-### 结果为空的处理
+### Handling Empty Results
 
-在单条结果模式下，没有符合条件的数据的话查询结果会是 `null`，多条结果的模式下是空数组（`[]`）。可以根据需要是否勾选“查询结果为空是，退出流程”，勾选后，如果查询结果为空，则不会执行后续节点，以失败的状态提前退出。
+In single result mode, if there is no data meeting the conditions, the query result will be `null`. In multiple results mode, it will be an empty array (`[]`). You can choose whether to check "Exit process when query result is empty" as needed. When checked, if the query result is empty, subsequent nodes will not be executed and will exit early with a failed status.

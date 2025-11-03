@@ -1,25 +1,26 @@
-# 理念
+# Philosophy
 
-这里将介绍灵矶设计理念及核心技术点，它在技术上和其它低代码平台有什么不同。
+This section introduces the design philosophy and core technical points of Tachybase, and how it differs technically from other low-code platforms.
 
-## 设计理念
-灵矶最初用户是公司内部开发者，因此它最重要的设计理念是「开发者优先」。
+## Design Philosophy
+Tachybase's initial users were internal developers at the company, so its most important design philosophy is "developer-first".
 
-我们认为面向非开发者的零代码平台使用场景有限，只能做简单的办公应用，大部分时候还不如在线 Excel 简单方便，因此灵矶不是零代码平台，它面向的是有一定开发经验的用户。
+We believe that zero-code platforms for non-developers have limited use cases and can only create simple office applications, which are often not as simple and convenient as online Excel. Therefore, Tachybase is not a zero-code platform; it is aimed at users with some development experience.
 
-灵矶的目标不是取代开发者，而是辅助开发者更高效地完成工作。
+Tachybase's goal is not to replace developers, but to assist developers in completing their work more efficiently.
 
-因为重视开发者，灵矶比起其它低代码平台有三个显著特点：
+Because of its focus on developers, Tachybase has three distinctive features compared to other low-code platforms:
 
-1. 灵活性高，我们重视灵活性和功能可扩展，让开发人员可以最大程度发挥，而不是为了易用性处处设限，这点在后续的前端和后端设计中都有体现。
-2. 开放和透明，低代码平台最大的风险是技术锁定和黑盒，作为开发者我们自己也不喜欢封闭的低代码平台，因此灵矶重视开放性，前端方面渲染器开源了，后端方面也选择了开发人员最熟悉的传统数据库技术，没有中间层，对开发者是透明的，并且灵矶后端不依赖任何云厂商，可以部署到任意环境。
-3. 架构上松耦合，比起大而全的集成系统，我们选择了松耦合的架构，这样能让开发者有更多选择，可以选择只用前端、只用可视化编辑器、只用后端，可以很好和现有开发结合。
-接下来将介绍灵矶中前后端及编辑器的核心设计。
+1. High flexibility - We prioritize flexibility and functional extensibility, allowing developers to maximize their potential, rather than limiting everywhere for the sake of ease of use. This is reflected in both frontend and backend design.
+2. Open and transparent - The biggest risk of low-code platforms is vendor lock-in and black boxes. As developers ourselves, we don't like closed low-code platforms either. Therefore, Tachybase emphasizes openness. The frontend renderer is open-source, and the backend also uses traditional database technology that developers are most familiar with, without any middleware layer, completely transparent to developers. Moreover, Tachybase's backend doesn't depend on any cloud vendor and can be deployed to any environment.
+3. Loosely coupled architecture - Rather than a large integrated system, we chose a loosely coupled architecture, allowing developers more choices. You can choose to use only the frontend, only the visual editor, or only the backend, and it can integrate well with existing development.
 
-## 前端
-灵矶前端使用了流行的开源项目 formily，它的 star 数量有 11.5k，并且一直在持续更新，目前大量互联网及金融公司使用，包括但不限于：美团、滴滴、阅文集团、贝壳、光大银行等知名企业。
+Next, we'll introduce the core designs of Tachybase's frontend, backend, and editor.
 
-formily 渲染器的核心是将 JSON 配置渲染成可交互的页面，比如下面一段简单的配置：
+## Frontend
+Tachybase's frontend uses the popular open-source project Formily, which has 11.5k stars and is continuously updated. It is currently used by a large number of internet and financial companies, including but not limited to: Meituan, Didi, Yuewen Group, Beike, China Everbright Bank, and other well-known enterprises.
+
+The core of the Formily renderer is to render JSON configuration into interactive pages. For example, the following simple configuration:
 
 ```json
 {
@@ -83,73 +84,77 @@ formily 渲染器的核心是将 JSON 配置渲染成可交互的页面，比如
 }
 ```
 
-使用 formily 渲染之后就成了一个表单：
+After rendering with Formily, it becomes a form:
 
 ![formily1.png](/formily1.png)
 
-可以看到 formily 配置非常简洁，没有多余的内容，即便从来没学过也能看懂。
+As you can see, the Formily configuration is very concise with no unnecessary content, and is easy to understand even for those who have never studied it.
 
-formily 可以支持多种场景使用，你可以用它来制作：
+Formily can support multiple scenarios. You can use it to create:
 
-带导航的多页面应用。
-单个页面。
-已有页面（任意前端框架）的某个小区域，比如只用 formily 做表单。
-formily 的核心技术点有：
+Multi-page applications with navigation.
+Single pages.
+Small areas of existing pages (any frontend framework), such as using Formily only for forms.
 
-支持无限层级嵌套，可以做出复杂的前端界面。
-除了界面，还包括数据获取、表单验证、数据联动、显隐切换、交互的低代码配置。
-大量内置组件（120+），开箱即用。
-扩展容易，使用标准 React 组件扩展
+Formily's core technical points:
 
-## 后端数据模型
-灵矶后端的数据模型是基于传统数据库，这和业界低代码平台的常见做法不一样，业界常见有两种做法：
+Supports unlimited nesting levels, enabling complex frontend interfaces.
+In addition to interfaces, includes low-code configuration for data fetching, form validation, data linkage, show/hide toggling, and interactions.
+Large number of built-in components (120+), ready to use out of the box.
+Easy to extend using standard React components
 
-- 基于非关系型数据库，最常用的是 mongo，大量零代码平台都是基于它开发的。
-- 基于已创建好的宽表，比如预先创建 500 列，然后分配这些列给不同字段。
+## Backend Data Model
+Tachybase's backend data model is based on traditional databases, which differs from common practices in the industry. There are two common approaches in the industry:
 
-但这两种做法都有明显缺点：
+- Based on NoSQL databases, with MongoDB being the most commonly used, with many zero-code platforms built on it.
+- Based on pre-created wide tables, such as creating 500 columns in advance and then allocating these columns to different fields.
 
-- 数据是孤岛，因为数据类型特殊，因此只能存储在平台中，难以打通现有应用数据，只能通过 api 的方式交换数据，这也意味着这些低代码平台都只适合做全新应用，无法用于现有核心系统的开发，无法直连现有系统的数据库。
-- 开发人员不熟悉，mongo 在国内依然小众，无 schema 既是优点也是缺点，没有 schema 容易导致新老数据结构不一致而引起问题，目前未听说有大公司在核心系统中使用 mongo，并且它的查询语法也远不如 SQL 普及。
-- 有大量限制，基于已创建的宽表使得无法使用所有 SQL 语句，通常只支持查询，无法用 select *、无法创建 view 视图等，数据库各种高级功能几乎都没法用。
-- 性能难以预估，而且因为要经过中间层转换，性能将有损，对开发者来说是个黑盒，出现性能问题将不好排查。
+But both approaches have obvious drawbacks:
 
-灵矶的数据模型采用了更传统的做法，它的原理是动态数据库 ORM 映射，可以理解为动态创建了 Entity 类，然后通过这些类去操作数据库。
+- Data becomes siloed - Because of the special data type, it can only be stored in the platform and is difficult to integrate with existing application data. Data can only be exchanged via APIs, meaning these low-code platforms are only suitable for completely new applications and cannot be used for developing existing core systems or directly connecting to existing system databases.
+- Developers are unfamiliar - MongoDB is still niche in China. Schema-less design is both an advantage and a disadvantage. Without schema, it's easy for new and old data structures to become inconsistent, causing problems. We haven't heard of any large companies using MongoDB in core systems, and its query syntax is far less popular than SQL.
+- Many limitations - Using pre-created wide tables means you cannot use all SQL statements, usually only supporting queries, cannot use select *, cannot create views, etc. Almost all advanced database features cannot be used.
+- Performance is hard to predict - Also, because of the middleware conversion layer, there will be performance loss. For developers, it's a black box, and performance issues will be difficult to troubleshoot.
 
-这意味着在灵矶中：
-- 数据模型就是数据库表，其中的字段就是表中的字段，对字段的修改是自动生成数据库的表结构变更操作，这和传统开发是一样的，开发人员都熟悉。
-- 可以直连已有数据库，数据不再是孤岛，灵矶可以和传统开发混搭，可以用在现有成熟系统中，而不是只能做新应用。
-- 即可以像操作对象那样便捷操作数据，也能使用任意 SQL 语句来实现复杂功能，实现和普通开发一样的灵活度。
-- 性能和稳定性可预期，因为没有中间层转换，性能上限取决于数据库本身。 多环境独立 灵矶应用后端支持多环境，每个环境完全独立：
-- 所有页面信息、导航、API 中心等在发布后就变成只读了，每个环境都是独立的。
-- 数据模型将使用不同的库，数据不会相互影响。
-- 发布之后所有前端静态文件都会保存当时的历史版本，即便平台做了不兼容升级也不会导致应用页面出问题。
+Tachybase's data model uses a more traditional approach. Its principle is dynamic database ORM mapping, which can be understood as dynamically creating Entity classes and then using these classes to operate the database.
 
-## 业务编排
-业务编排是一种可视化后端逻辑的能力，不少低代码产品使用的方式是基于图及连线的方式来编辑，比如下面是某个开源编排的截图：
+This means in Tachybase:
+- Data models are database tables, fields in them are fields in tables, and modifications to fields automatically generate database table structure alteration operations, just like traditional development, which developers are familiar with.
+- Can directly connect to existing databases, data is no longer siloed, Tachybase can be mixed with traditional development and can be used in existing mature systems, not just for new applications.
+- Can operate data conveniently like objects, and can also use any SQL statements to implement complex functions, achieving the same flexibility as regular development.
+- Performance and stability are predictable, because there's no middleware conversion layer, the performance ceiling depends on the database itself.
+
+## Multi-Environment Independence
+Tachybase application backend supports multiple environments, each environment is completely independent:
+- All page information, navigation, API center, etc. become read-only after publishing, each environment is independent.
+- Data models will use different databases, data will not affect each other.
+- After publishing, all frontend static files will save historical versions at that time, even if the platform undergoes incompatible upgrades, it won't cause application page issues.
+
+## Business Orchestration
+Business orchestration is the ability to visualize backend logic. Many low-code products use graph and connection-based editing, such as the screenshot below from an open-source orchestration tool:
 
 ![idea1](/idea1.png)
 
-使用图连接的方式虽然看起来漂亮，但实际使用体验不好，尤其是业务复杂的时候，连线会很乱，比如下面是一个复杂点的例子，可以发现这时已经很难看出执行逻辑了：
+While using graph connections looks nice, the actual user experience is poor, especially when the business is complex, the connections become messy. For example, below is a slightly more complex example, where it's already very difficult to understand the execution logic:
 
 ![idea2](/idea2.png)
 
-因此灵矶选择了开发人员更为熟悉的树形结构来进行业务编排：
+Therefore, Tachybase chose a tree structure more familiar to developers for business orchestration:
 
 ![idea3](/idea3.png)
 
-使用这种方式有如下优点：
+Using this approach has the following advantages:
 
-1. 开发人员容易理解和看懂，它和写代码的思路是一样的，从上往下执行。
-2. 同时灵矶支持生成伪代码的能力，方便开发者检查。【TODO】
-3. 可以构建深层结构，并且能将它折叠起来方便一层层阅读，比起连线更简洁易懂。
+1. Easier for developers to understand and comprehend, it's the same thinking process as writing code, executing from top to bottom.
+2. Tachybase also supports generating pseudo-code, making it convenient for developers to review. [TODO]
+3. Can build deep structures and collapse them for layer-by-layer reading, more concise and easy to understand than connections.
 
-## 灵矶在公司内部
+## Tachybase Within the Company
 
-灵矶在公司内部主要用户中后台前端开发，在公司的各个核心业务部门都有使用，包括运营、产品、技术、人工智能、大数据等，甚至被应用于多个重点项目中。例如，两年前的某大型活动，其实时调度控制界面就是基于灵矶开发的。
+Tachybase is primarily used for frontend development of middle and back-office systems within the company. It's used across all core business departments, including operations, product, technology, artificial intelligence, and big data, and has even been applied to multiple key projects. For example, two years ago during a major event, its real-time scheduling control interface was developed based on Tachybase.
 
-灵矶在公司内部的大规模普及并不是因为强制使用，而是各业务团队自主选择的，体现出了灵矶作为前端开发平台的高认可度。
+The widespread adoption of Tachybase within the company is not due to mandatory use, but rather the autonomous choice of various business teams, demonstrating Tachybase's high recognition as a frontend development platform.
 
-公司内部较大的业务线基于灵矶制作了上千个页面，最复杂的页面包含超过 1 万行配置。
+The larger business lines within the company have created thousands of pages based on Tachybase, with the most complex pages containing over 10,000 lines of configuration.
 
-由于公司自身的大规模使用，灵矶的可靠性和长期维护都有充分保障。
+Due to the company's own large-scale use, Tachybase's reliability and long-term maintenance are fully guaranteed.

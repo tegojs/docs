@@ -1,149 +1,149 @@
-# 简介
+# Introduction
 
-## 灵矶(tachybase)是什么？
+## What is Tachybase?
 
-**灵矶(Tachybase)** 是一款专注于**高扩展性**和**便捷性**的低代码开发平台，旨在帮助企业快速构建所需的定制化工具和应用。Tachybase 作为一个可插拔的应用程序框架，提供了一种灵活的方式，使企业能够在短时间内开发和部署符合业务需求的解决方案。企业可以通过该平台快速创建复杂的应用程序逻辑，同时确保系统的高稳定性与跨环境适配性，从而最大化提升开发效率并降低技术门槛。
+**Tachybase** is a low-code development platform focused on **high extensibility** and **convenience**, designed to help enterprises quickly build customized tools and applications. As a pluggable application framework, Tachybase provides a flexible approach that enables enterprises to develop and deploy solutions that meet business needs in a short time. Enterprises can use this platform to quickly create complex application logic while ensuring high system stability and cross-environment adaptability, thereby maximizing development efficiency and lowering technical barriers.
 
-## 1. 产品定位
+## 1. Product Positioning
 
-灵矶是基于先进的模块化架构，如同乐高积木般为企业提供高度灵活的数字化系统搭建方案，企业可借助平台丰富的功能模块，迅速构建契合自身业务逻辑的数字化系统，实现高效、低成本的数字化转型。
+Tachybase is based on advanced modular architecture, providing enterprises with highly flexible digital system building solutions like LEGO blocks. Enterprises can leverage the platform's rich functional modules to quickly build digital systems that align with their business logic, achieving efficient and low-cost digital transformation.
 
 ![](/guides/start/product-position.png)
 
-**敏捷化构建**
+**Agile Construction**
 
-依托灵矶零代码/低代码能力，企业可深度定制与业务场景强耦合的核心业务系统，通过可视化建模实现业务流程数字化重构，构建具备高扩展性、强适配性的业务中枢，支撑企业战略级业务高效运作。
+Relying on Tachybase's zero-code/low-code capabilities, enterprises can deeply customize core business systems that are tightly coupled with business scenarios. Through visual modeling, business processes can be digitally reconstructed to build a business hub with high extensibility and strong adaptability, supporting efficient operation of enterprise strategic-level businesses.
 
-**柔性化覆盖**
+**Flexible Coverage**
 
-基于灵矶快速应用搭建能力，企业可针对零散、多变的非核心业务场景，快速生成标准化管理应用，形成对核心系统的有效补充。通过模块化组合与轻量化部署，实现非核心业务需求的敏捷响应，构建全域业务管理闭环，显著提升组织协同效率与市场应变能力。
+Based on Tachybase's rapid application building capabilities, enterprises can quickly generate standardized management applications for scattered and variable non-core business scenarios, forming an effective supplement to core systems. Through modular combination and lightweight deployment, agile response to non-core business needs is achieved, building a closed loop of full-domain business management, significantly improving organizational collaboration efficiency and market responsiveness.
 
-### 1.1 应用场景
+### 1.1 Application Scenarios
 
-灵矶适用于多种不同类型企业的多样化场景企业应用开发、系统项目实施与数字化建设。
+Tachybase is suitable for diverse enterprise application development, system project implementation, and digital construction across various types of enterprises.
 
-**📍 信息采集、标注与审核**
+**📍 Information Collection, Annotation & Review**
 
-灵矶可快速构建各类表单类型应用，实现对用户、业务数据的采集、加工处理和汇总分析。可应用于用户反馈、市场调研、信息征集、线索收集、信息登记、数据标注等场景。
+Tachybase can quickly build various form-type applications to collect, process, and aggregate analysis of user and business data. It can be applied to scenarios such as user feedback, market research, information collection, lead generation, information registration, and data annotation.
 
 ![](/guides/start/info-collection.png)
 
-**📍 办公应用搭建与完善**
+**📍 Office Application Building & Enhancement**
 
-可基于 BPM、数据模型等能力，根据实际企业办公场景诉求，搭建各类适合自身需求的办公应用，并支持与已有系统打通，可开发行政审批系统、客户管理、项目管理、HR 管理系统等应用。
+Based on BPM, data modeling, and other capabilities, various office applications can be built according to actual enterprise office scenario needs, and can be integrated with existing systems. Applications such as administrative approval systems, customer management, project management, and HR management systems can be developed.
 
 ![](/guides/start/office-build.png)
 
-**📍企业 ERP 系统建设、迁移与扩展**
+**📍 Enterprise ERP System Construction, Migration & Extension**
 
-可按需快速构建库管、生产、调度、客服等各业务系统，并接驳打通已有系统，形成架构统一、灵活升级的一体化 ERP 平台，支持库存管理、生产管理、销售管理、财务管理、客服管理等系统开发。
+Warehouse management, production, scheduling, customer service, and other business systems can be quickly built on demand, and integrated with existing systems to form a unified architecture, flexible upgrade integrated ERP platform, supporting the development of inventory management, production management, sales management, financial management, customer service management, and other systems.
 ![](/guides/start/company-erp.png)
 
-**📍IT 智能化改造**
+**📍 IT Intelligent Transformation**
 
-灵矶融合有更多的 AI 集成特性，可帮助企业快速搭建或改造具备智能化能力的工业应用，实现业务升级，满足工业质检、智慧巡检、生产管理、产能分析等场景的需求。
+Tachybase integrates more AI integration features, which can help enterprises quickly build or transform industrial applications with intelligent capabilities, achieve business upgrades, and meet the needs of industrial quality inspection, intelligent inspection, production management, capacity analysis, and other scenarios.
 
 ![](/guides/start/ai-transform.png)
 
-**📍客户项目定制实施**
+**📍 Customer Project Customization & Implementation**
 
-灵矶可根据业务需求快速实现定制化开发，需求变更成本低，更可免除运维烦恼，实现高效交付，完成行业综合解决方案 (如政务、教育、物联网、工业、能源等)快速实施交付。
+Tachybase can quickly implement customized development according to business needs, with low cost for requirement changes, and can eliminate operation and maintenance worries, achieve efficient delivery, and complete rapid implementation and delivery of industry comprehensive solutions (such as government, education, IoT, industry, energy, etc.).
 
 ![](/guides/start/custom-configuration.png)
 
-**📍SaaS 软件研发**
+**📍 SaaS Software Development**
 
-灵矶基于 AI、数据集成、可视化和云服务能力，可快速研发输出具备 AI 特性的企业 SaaS 应用，实现智能化开发企业 SaaS 应用生产与交付中台。
+Based on AI, data integration, visualization, and cloud service capabilities, Tachybase can quickly develop and output enterprise SaaS applications with AI features, achieving intelligent development of enterprise SaaS application production and delivery center.
 
 ![](/guides/start/saas-program.png)
 
 
-**📍数字化中台建设**
+**📍 Digital Middle Platform Construction**
 
-灵矶可与智能云数据中台、AI 中台和微服务产品深度融合，联合构建企业数字化中台，帮助企业轻松实现应用开发/管理中台、信息化管理中心。
+Tachybase can deeply integrate with intelligent cloud data middle platform, AI middle platform, and microservice products to jointly build enterprise digital middle platforms, helping enterprises easily realize application development/management middle platform and information management center.
 
 ![](/guides/start/digital-middle-platform.png)
 
 
-**📍产品管理后台配套建设**
+**📍 Product Management Backend Supporting Construction**
 
-灵活的数据对接特性，可小时级构建复杂产品服务管理中心，满足产品服务运营管理与快速交付。可用于开发业务管理后台、运营平台、审核平台、CMS 等。
+With flexible data integration features, complex product service management centers can be built at the hour level, meeting product service operation management and rapid delivery. It can be used to develop business management backends, operation platforms, review platforms, CMS, etc.
 
 ![](/guides/start/management-backend.png)
 
 
-## 2. 核心功能
+## 2. Core Functions
 
-灵矶具备表单、流程引擎、仪表盘等核心功能模块，能够为企业级用户提供全面、高效且稳定的业务支持与数据呈现服务。
+Tachybase has core functional modules such as forms, workflow engines, and dashboards, which can provide comprehensive, efficient, and stable business support and data presentation services for enterprise users.
 
 ![](/guides/start/core-functions.png)
 
 
-### 2.1 表单
+### 2.1 Forms
 
-在表单设计模块中，系统配备了丰富多样的字段及属性选项。用户仅需通过简便的字段拖拽操作，或者导入预先准备好的 Excel 表格，就能依据自身特定的业务需求，迅速构建出符合要求的表单，进而灵活高效地完成数据的采集、填报以及存档工作。
+In the form design module, the system is equipped with a rich variety of fields and attribute options. Users only need to drag and drop fields or import pre-prepared Excel tables to quickly build forms that meet their specific business needs, thereby flexibly and efficiently completing data collection, filling, and archiving work.
 
 ![](/guides/start/create-form.png)
 
 
-### 2.2 流程
+### 2.2 Workflows
 
-系统配备了直观的可视化流程设计功能，用户能够依据自身业务规则，通过自定义方式对流程节点及其连线进行灵活设置。借助这一特性，可迅速构建起适配各类业务场景的流程模型，从而高效实现报销申请、请假申请、付款申请等多样化业务流程的线上自动化流转与审批，大幅提升业务处理效率与规范性。
+The system is equipped with intuitive visual workflow design functionality. Users can flexibly set workflow nodes and their connections through customization according to their business rules. With this feature, workflow models suitable for various business scenarios can be quickly built, thereby efficiently achieving online automated circulation and approval of diverse business processes such as reimbursement applications, leave applications, payment applications, etc., greatly improving business processing efficiency and standardization.
 
 ![](/guides/start/workflows.png)
 
-### 2.3 仪表盘
+### 2.3 Dashboards
 
-在仪表盘模块内，系统集成了丰富多样的图表类型与实用组件。借助这些工具，用户能够对所收集的数据展开多维度、深层次的分析，并以实时动态的方式进行直观展示。此功能为企业的决策管理层提供了全面且精准的数据支持，有力辅助其做出科学、合理的决策。
+In the dashboard module, the system integrates a rich variety of chart types and practical components. With these tools, users can conduct multi-dimensional, in-depth analysis of collected data and display it in real-time dynamic manner. This function provides comprehensive and accurate data support for enterprise decision-making management, strongly assisting them in making scientific and reasonable decisions.
 
 ![](/guides/start/dashboard.png)
 
-## 3. 如何工作
+## 3. How It Works
 
-灵矶采用三层架构设计，为企业提供了极高的灵活性与可扩展性。每一层都承担不同的功能，确保平台能够适应各种复杂的业务需求，并支持快速的定制化开发和部署：
+Tachybase adopts a three-tier architecture design, providing enterprises with extremely high flexibility and extensibility. Each layer undertakes different functions, ensuring that the platform can adapt to various complex business needs and support rapid customized development and deployment:
 
-**📍 核心层：筑牢根基，稳定扩展双保障**
+**📍 Core Layer: Solid Foundation, Dual Guarantee of Stability and Extension**
 
-核心层提供了统一的插件机制和接口，保证平台的稳定性与高可扩展性。企业可以在核心层进行自定义开发，确保其应用能够与平台的其他部分高效、无缝地集成。核心层的设计使得开发人员无需关注底层架构的复杂性，可以专注于业务需求的实现。
+The core layer provides a unified plugin mechanism and interfaces, ensuring platform stability and high extensibility. Enterprises can conduct custom development at the core layer, ensuring that their applications can integrate efficiently and seamlessly with other parts of the platform. The design of the core layer allows developers to focus on business requirement implementation without concerning themselves with the complexity of the underlying architecture.
 
-**📍 功能层：模块汇聚，敏捷构建业务应用**
+**📍 Function Layer: Module Aggregation, Agile Business Application Construction**
 
-功能层为开发人员提供了丰富的现成功能模块，帮助企业高效实现应用功能的快速构建。企业可以根据业务需求灵活配置、定制模块，快速开发适用于不同场景的业务应用。无论是构建企业资源管理、客户关系管理，还是自动化流程管理，功能层都能提供必要的支持。
+The function layer provides developers with rich ready-made functional modules, helping enterprises efficiently realize rapid construction of application functions. Enterprises can flexibly configure and customize modules according to business needs, quickly developing business applications suitable for different scenarios. Whether building enterprise resource management, customer relationship management, or automated process management, the function layer can provide necessary support.
 
-**📍 扩展层：创新驱动，深度满足个性需求**
+**📍 Extension Layer: Innovation-Driven, Deep Satisfaction of Personalized Needs**
 
-扩展层提供了灵活的扩展选项，支持企业在不同环境下对系统进行个性化的功能扩展。使得Tachybase能够在应用运行的整个生命周期中提供高度的定制能力。从数据模型中的字段类型到表格结构，甚至到第三方服务的集成，Tachybase都允许企业根据具体需求进行调整和扩展。
+The extension layer provides flexible extension options, supporting enterprises to personalize system functional extensions in different environments. This enables Tachybase to provide a high degree of customization capability throughout the entire application lifecycle. From field types in data models to table structures, and even integration of third-party services, Tachybase allows enterprises to adjust and extend according to specific needs.
 
-## 4. 技术亮点
+## 4. Technical Highlights
 
-💫 高度可扩展性：企业可以根据需求调整数据结构、业务逻辑，甚至接入外部服务。
+💫 High Extensibility: Enterprises can adjust data structures, business logic, and even integrate external services according to their needs.
 
-💫 快速开发与部署：低代码特性使得开发过程大大缩短，提高了开发效率。
+💫 Rapid Development & Deployment: Low-code features greatly shorten the development process, improving development efficiency.
 
-💫 跨环境适配性：Tachybase支持在多个环境（如开发、测试、生产）下稳定运行，确保高可用性。
+💫 Cross-Environment Adaptability: Tachybase supports stable operation in multiple environments (such as development, testing, production), ensuring high availability.
 
-## 5. 了解更多
+## 5. Learn More
 
-如需了解更多关于 Tachybase 的信息，请访问[官方网站](https://tachybase.com/lists/98.html)。
+For more information about Tachybase, please visit the [official website](https://tachybase.com/lists/98.html).
 
-## 常见问题
+## FAQ
 
-### Tachybase支持哪些数据库？
+### What databases does Tachybase support?
 
-Tachybase支持多种主流数据库，如MySQL、PostgreSQL等。
+Tachybase supports multiple mainstream databases, such as MySQL, PostgreSQL, etc.
 
-详情可见[数据库](/guides/advanced/env.html#db_dialect)。
+For details, see [Database](/guides/advanced/env.html#db_dialect).
 
-### 可以自定义哪些功能？
+### What features can be customized?
 
-Tachybase的功能层和扩展层都可以进行深度定制，支持灵活的字段、表格结构和第三方集成。
+Both the function layer and extension layer of Tachybase can be deeply customized, supporting flexible fields, table structures, and third-party integration.
 
-详情可见[插件详情](/guides/advanced/cloud-component/server.html)。
+For details, see [Plugin Details](/guides/advanced/cloud-component/server.html).
 
-### 联系我们
+### Contact Us
 
-电话: 021-57617570
+Phone: 021-57617570
 
-微信: 183 6611 6016
+WeChat: 183 6611 6016
 
-邮箱： hello@daoyoucloud.com
+Email: hello@daoyoucloud.com

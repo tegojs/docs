@@ -1,7 +1,7 @@
-# 弹窗尺寸
+# Popup Size
 
-## 介绍
+## Introduction
 
-弹窗尺寸有大、中、小三，默认为中等，可根据弹窗内容调整合适的弹窗尺寸。
+Popup sizes include large, medium, and small. Default is medium. Appropriate popup size can be adjusted according to popup content.
 
 ![popup-size](/actions/actions-popup-size.png)

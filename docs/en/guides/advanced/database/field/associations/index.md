@@ -1,20 +1,20 @@
-# 关系字段
+# Relationship Fields
 
-### 介绍
+### Introduction
 
 
-在**灵矶**中，关系字段并非直接存储数据，而是用于在不同表之间建立连接。它类似于关系数据库中的表之间的关系。常见的关系类型包括：
+In **Tachybase**, relationship fields do not directly store data, but are used to establish connections between different tables. It is similar to relationships between tables in relational databases. Common relationship types include:
 
-[一对一（One-to-one）](./o2o.md)：
-在这种关系中，一个表中的每条记录只能与另一个表中的一条记录关联。通常，这种关系用于把实体的不同部分分开存储，以减少冗余并保证数据一致性。例如，每个用户只能有一个唯一的身份证号码。
+[One-to-one](./o2o.md):
+In this relationship, each record in one table can only be associated with one record in another table. Typically, this relationship is used to separate different parts of an entity for storage to reduce redundancy and ensure data consistency. For example, each user can only have one unique ID number.
 
-[一对多（One-to-many）](./o2m.md)：
-在这种关系中，一个表中的一条记录可以关联到另一个表中的多条记录。比如，一个公司可以有多个部门，而每个部门只有一个公司作为其上级。在这种情况下，一个公司与多个部门之间建立了一对多的关系。
+[One-to-many](./o2m.md):
+In this relationship, one record in one table can be associated with multiple records in another table. For instance, a company can have multiple departments, while each department has only one company as its superior. In this case, a one-to-many relationship is established between a company and multiple departments.
 
-[多对一（Many-to-one）](./m2o.md)：
-在这种关系中，多个记录在一个表中可以关联到另一个表中的单条记录。例如，多个学生可以归属于同一个班级。在这种情况下，多个学生与一个班级之间存在多对一的关系。
+[Many-to-one](./m2o.md):
+In this relationship, multiple records in one table can be associated with a single record in another table. For example, multiple students can belong to the same class. In this case, there is a many-to-one relationship between multiple students and one class.
 
-[多对多（Many-to-many）](./m2m.md)：
-在这种关系中，两个表中的多个记录可以相互关联。为了实现多对多关系，通常需要一个中间表来存储两表之间的关联。例如，电影和演员之间的关系，多个演员可以出演多部电影，而每部电影也可以有多个演员参与演出。在这个例子中，电影表和演员表之间是多对多的关系。为了管理这种关系，我们可以创建一个演员出演电影的中间表，记录每个演员和电影的对应关系。
+[Many-to-many](./m2m.md):
+In this relationship, multiple records in two tables can be mutually associated. To implement a many-to-many relationship, an intermediate table is typically needed to store the associations between the two tables. For example, the relationship between movies and actors - multiple actors can star in multiple movies, and each movie can have multiple actors. In this example, there is a many-to-many relationship between the movie table and the actor table. To manage this relationship, we can create an intermediate table for actors starring in movies, recording the corresponding relationship between each actor and movie.
 
-这些关系类型在数据库建模和设计中非常重要，它们帮助建立和组织表之间的复杂连接，准确地反映现实世界中的各种实体关系。
+These relationship types are very important in database modeling and design. They help establish and organize complex connections between tables, accurately reflecting various entity relationships in the real world.

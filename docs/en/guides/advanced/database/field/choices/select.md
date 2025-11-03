@@ -1,11 +1,11 @@
-# 下拉菜单（单选）
+# Dropdown (Single Select)
 
-### 介绍
+### Introduction
 
-### 字段配置
+### Field Configuration
 
 ![](../../../../../../public/select1.png)
 
-### 界面配置
+### Interface Configuration
 
-待补充
+To be added

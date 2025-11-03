@@ -1,54 +1,54 @@
-# 弹窗
+# Modal
 
-## 介绍
+## Introduction
 
-弹窗是页面上的一个小窗口，用于在当前页面中显示一些扩展的内容，可以以抽屉或对话框的形态呈现，例如某个订单详情或商品详情，也可以用于编辑数据。弹窗操作在 Tachybase 界面配置中扮演着非常重要的角色。很多卡片都会提供各种弹窗操作，可以用于添加、查看、编辑数据等。同时也可以自定义各种弹窗操作来适应各种场景和需求。
+A modal is a small window on a page used to display some extended content on the current page. It can be presented in the form of a drawer or dialog, such as order details or product details, and can also be used to edit data. Modal operations play a very important role in Tachybase interface configuration. Many blocks provide various modal operations that can be used to add, view, edit data, etc. At the same time, various modal operations can also be customized to adapt to various scenarios and needs.
 
-## 类型和尺寸
+## Type and Size
 
-弹窗有抽屉和对话框两种类型，在打开弹窗的操作上配置弹窗的类型和尺寸。
+Modals have two types: drawer and dialog. Configure the modal's type and size in the operation that opens the modal.
 
-### 抽屉
+### Drawer
 
 ![](/interface/interface-current.png)
 
-### 对话框
+### Dialog
 
 ![](/interface/interface-modal.png)
 
-## 使用场景
+## Usage Scenarios
 
-### 卡片的弹窗操作
+### Block Modal Operations
 
 ![](/interface/interface-current.png)
 
-## 添加卡片
+## Add Blocks
 
-弹窗中的添加卡片，目前可以用于添加以下类型卡片。
+Adding blocks in modals can currently be used to add the following types of blocks.
 ![](/interface/interface-add.png)
-弹窗中的数据分为了三个维度：
+Data in modals is divided into three dimensions:
 
-当前记录：用于展示当前记录；
-关系记录：用于展示与当前记录有关的关系数据；
-其他记录：用于展示其他表的数据；
+Current Record: Used to display the current record;
+Related Records: Used to display relationship data related to the current record;
+Other Records: Used to display data from other tables;
 
-### 当前记录
+### Current Record
 
 ![](/interface/interface-current.png)
 
-### 关系记录
+### Related Records
 
 ![](/interface/interface-relate.png)
 
-## 使用变量
+## Using Variables
 
-- 行操作的弹窗：每个弹窗都会有个「当前弹窗记录」变量，表示当前行记录。
-- 关系字段的弹窗：每个弹窗都会有个「当前弹窗记录」变量，表示当前点击的关系记录。
+- Row operation modals: Each modal will have a "Current Modal Record" variable, representing the current row record.
+- Relationship field modals: Each modal will have a "Current Modal Record" variable, representing the currently clicked relationship record.
 
-弹窗里的卡片都可以使用「当前弹窗记录」这个变量，相关使用场景有：
+Blocks in modals can all use the "Current Modal Record" variable. Related usage scenarios include:
 
-- 配置卡片的数据范围
-- 配置关系字段的数据范围
-- 配置字段的默认值（新增数据的表单）
-- 配置操作的联动规则
-- 表单提交操作的字段赋值配置
+- Configure block data scope
+- Configure relationship field data scope
+- Configure field default values (forms for adding data)
+- Configure operation linkage rules
+- Field assignment configuration for form submit operations

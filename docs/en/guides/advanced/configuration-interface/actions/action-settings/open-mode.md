@@ -1,23 +1,22 @@
-# 打开模式
+# Open Mode
 
-## 介绍
+## Introduction
 
-弹窗打开方式有抽屉,对话框,上弹框和页面，默认是抽屉。抽屉适合大量信息和复杂操作，对话框适合简单内容或快速操作。点击蒙层可关闭弹窗。
+Popup opening methods include drawer, dialog, bottom sheet, and page, with drawer as default. Drawer is suitable for large amounts of information and complex operations, dialog is suitable for simple content or quick operations. Clicking the overlay can close the popup.
 
 ![openMode](/actions/popup-mode.png)
 
-- 抽屉
+- Drawer
 
 ![drawer](/actions/popup-mode-drawer.png)
 
-- 对话框
+- Dialog
 
 ![dialog](/actions/popup-mode-dialog.png)
 
-- 上弹框
+- Bottom Sheet
 
 ![sheet](/actions/popup-mode-sheet.png)
 
-<!-- 页面功能尚未完善 -->
-- 页面
-
+<!-- Page function not yet perfected -->
+- Page

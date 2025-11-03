@@ -1,131 +1,131 @@
-# data_proxy 数据驱动核心类
+# data_proxy Data-Driven Core Class
 
-数据核心类，里边代理了很多功能
+Data core class, which proxies many functions
 
 ```js
-// instance 你创建的实例，公有方法可以直接调用，私有方法不可以
+// instance is the instance you created, public methods can be called directly, private methods cannot
 instance.data.publicFn(args);
-// 或者
+// or
 instance.sheet.data.publicFn(args);
 ```
 
-## 私有方法
+## Private Methods
 
 ### Method: `canPaste`
 
-粘贴前调用，用以判断是否可以粘贴
+Called before paste to determine if paste is possible
 
-`@param {Object}` src 由 cellRange 包装的对象，源单元格
+`@param {Object}` src Object wrapped by cellRange, source cell
 
-`@param {Object}` dst 由 cellRange 包装的对象，目标单元格
+`@param {Object}` dst Object wrapped by cellRange, target cell
 
-`@param {Function}` error 错误回调 当目标单元格包含 merge 时调用
+`@param {Function}` error Error callback, called when target cell contains merge
 
-`@returns {boolean}` 是否可以粘贴
+`@returns {boolean}` Whether paste is possible
 
 ```js
 function canPaste(src, dst, error = () => {}) {
-  // 正常返回 Boolean 类型
-  // 若目标单元格包含 merge 时则调用 error() 并返回 false
+  // Normally returns Boolean type
+  // If target cell contains merge, call error() and return false
 })
 ```
 
 ### Method: `copyPaste`
 
-粘贴复制的单元格时使用，用以将源单元格复制到目标单元格
+Used when pasting copied cells, to copy source cell to target cell
 
-`@param {Object}` srcCellRange 由 cellRange 包装的对象，源单元格
+`@param {Object}` srcCellRange Object wrapped by cellRange, source cell
 
-`@param {Object}` dstCellRange 由 cellRange 包装的对象，目标单元格
+`@param {Object}` dstCellRange Object wrapped by cellRange, target cell
 
-`@param {String}` what 复制条件 all 全部 | format 仅格式
+`@param {String}` what Copy condition all (all) | format (format only)
 
-`@param {Boolean}` autofill 是否自动填充，默认 false
+`@param {Boolean}` autofill Whether to autofill, default false
 
 ```js
 function copyPaste(srcCellRange, dstCellRange, what, autofill = false) {
-  // 根据 what 条件
-  // 调用 rows.copyPaste 进行复制单元格
+  // According to what condition
+  // Call rows.copyPaste to copy cells
 })
 ```
 
 ### Method: `cutPaste`
 
-粘贴剪切的单元格时使用，用以将源单元格复制到目标单元格
+Used when pasting cut cells, to copy source cell to target cell
 
-`@param {Object}` srcCellRange 由 cellRange 包装的对象，源单元格
+`@param {Object}` srcCellRange Object wrapped by cellRange, source cell
 
-`@param {Object}` dstCellRange 由 cellRange 包装的对象，目标单元格
+`@param {Object}` dstCellRange Object wrapped by cellRange, target cell
 
-`@param {String}` what 复制条件 all 全部 | format 仅格式
+`@param {String}` what Copy condition all (all) | format (format only)
 
-`@param {Boolean}` autofill 是否自动填充，默认 false
+`@param {Boolean}` autofill Whether to autofill, default false
 
 ```js
 function cutPaste(srcCellRange, dstCellRange) {
-  // 调用 rows.cutPaste 进行粘贴剪切的单元格
+  // Call rows.cutPaste to paste cut cells
 })
 ```
 
 ### Method:`setStyleBorder`
 
-设置指定的单元格边框
+Set border of specified cell
 
-`@param {Number}` ri 行下标
+`@param {Number}` ri Row index
 
-`@param {Number}` ci 列下标
+`@param {Number}` ci Column index
 
-`@param {Object}` bss 边框样式
+`@param {Object}` bss Border style
 
 ```js
 function setStyleBorder(ri, ci, bss) {
-  // 将 bss 样式通过 this.addStyle 方法添加到样式数据中，并将返回的样式下标设置到 cell.style 单元格数据中
+  // Add bss style to style data through this.addStyle method, and set the returned style index to cell.style cell data
 })
 ```
 
 ### Method:`setStyleBorders`
 
-根据当前选区（this.selector）批量设置多个单元格的边框
+Batch set borders for multiple cells based on current selection (this.selector)
 
-`@param {String}` mode all 全部 | inside 内边框 | outside 外边框 | horizontal 水平边框 | vertical 竖边框 | none 无边框
+`@param {String}` mode all (all) | inside (inner border) | outside (outer border) | horizontal (horizontal border) | vertical (vertical border) | none (no border)
 
-`@param {String}` style 边框样式
+`@param {String}` style Border style
 
-`@param {String}` color 边框样式
+`@param {String}` color Border color
 
 ```js
 function setStyleBorders({ mode, style, color }) {
-  // 根据 mode 设置边框
+  // Set border according to mode
 })
 ```
 
 ### Method:`getCellRowByY`
 
-根据 Y 坐标获取所在行的下标
+Get row index based on Y coordinate
 
-`@param {Number}` y Y坐标
+`@param {Number}` y Y coordinate
 
-`@param {Number}` scrollOffsety 滚动条 Offset Y
+`@param {Number}` scrollOffsety Scrollbar Offset Y
 
-`@returns {Object}` 带有 ri 行下标的对象
+`@returns {Object}` Object with ri row index
 
 ```js
 function getCellRowByY(y, scrollOffsety) {
-  // 根据 Y 坐标返回 { ri, top, height }
+  // Return { ri, top, height } based on Y coordinate
 })
 ```
 
 ### Method: `getCellRowByX`
 
-获得单元格的通过 X 的坐标
+Get cell by X coordinate
 
-根据 X 坐标获取所在行的下标
+Get row index based on X coordinate
 
-`@param {Number}` x X坐标
+`@param {Number}` x X coordinate
 
-`@param {Number}` scrollOffsety 滚动条 Offset X
+`@param {Number}` scrollOffsety Scrollbar Offset X
 
-返回格式
+Return format
 
 ```ts
 interface ICellRetun {
@@ -135,143 +135,143 @@ interface ICellRetun {
 }
 ```
 
-## DataProxy 类
+## DataProxy Class
 
 ### Method: `addValidation(mode, ref, validator)`
 
-添加验证
+Add validation
 
-@param mode 编辑模式
+@param mode Edit mode
 
-@param ref 参考范围
+@param ref Reference range
 
-@param validator 验证器
+@param validator Validator
 
 ### Method: `removeValidation()`
 
-移除验证范围
+Remove validation range
 
 ### Method: `getSelectedValidator()`
 
-获得选中范围类的过滤或验证器
+Get filter or validator of selected range class
 
 ### Method: `getSelectedValidation()`
 
-获得选中范围类的过滤或验证器具体信息
+Get specific information of filter or validator of selected range class
 
 ### Method: `canUndo()`
 
-是否可以不做，撤销操作
+Whether can undo, undo operation
 
 ### Method: `canRedo()`
 
-是否可以重做
+Whether can redo
 
 ### Method: `undo()`
 
-撤销一步
+Undo one step
 
 ### Method: `redo()`
 
-重做一步
+Redo one step
 
 ### Method: `copy()`
 
-复制当前的选区
+Copy current selection
 
 ### Method: `copyToSystemClipboard()`
 
-复制到系统剪切板
+Copy to system clipboard
 
 ### Method: `cut()`
 
-集成剪切事件
+Integrated cut event
 
 ### Method: `paste(what, error)`
 
-粘贴事件
+Paste event
 
-@param what: all(所有) | text(文字) | format(格式)
+@param what: all (all) | text (text) | format (format)
 
 @param error: Function
 
 ### Method: `pasteFromText(txt)`
 
-粘贴文字
+Paste text
 
 @param txt: string
 
 ### Method: `autofill(cellRange, what, error)`
 
-自动填充
+Autofill
 
 @param cellRange: CellRange
 
-@param what: all(所有) | text(文字) | format(格式)
+@param what: all (all) | text (text) | format (format)
 
 @param error: Function
 
 ### Method: `clearClipboard()`
 
-清除剪切板数据
+Clear clipboard data
 
 ### Method: `calSelectedRangeByEnd(ri, ci)`
 
-计算选区范围，通过结束坐标
+Calculate selection range by end coordinate
 
-@param ri 行索引
+@param ri Row index
 
-@param ci 列索引
+@param ci Column index
 
 ### Method: `calSelectedRangeByStart(ri, ci)`
 
-计算选区范围，通过开始坐标
+Calculate selection range by start coordinate
 
-@param ri 行索引
+@param ri Row index
 
-@param ci 列索引
+@param ci Column index
 
 ### Method: `setSelectedCellAttr(property, value)`
 
-设置选中单元格属性
+Set selected cell attributes
 
-@param property: string 属性
+@param property: string Property
 
-@param value: string | number | unknow
+@param value: string | number | unknown
 
 ### Method: `setSelectedCellText(text, state = 'input)`
 
-设置选中单元格文字
+Set selected cell text
 
-@param text: string 文字
+@param text: string Text
 
-@param state: string 当前输入状态
+@param state: string Current input state
 
 ### Method: `getSelectedCell()`
 
-获得当前选中单元格
+Get current selected cell
 
 ### Method: `xyInSelectedRect()`
 
-判断当前鼠标点击坐标是否在选中范围内
+Determine if current mouse click coordinates are in selected range
 
 ### Method: `getSelectedRect()`
 
-获得选中的矩形区域
+Get selected rectangular area
 
 ### Method: `getClipboardRect()`
 
-获得当前剪切板选中区域
+Get current clipboard selected area
 
 ### Method: `getRect(cellRange)`
 
-获得设定选中范围区域
+Get set selected range area
 
 @param cellRange: CellRange
 
 ### Method: `getCellRectByXY(x, y)`
 
-获得当前选中区域，通过鼠标的 x 和 y 坐标
+Get current selected area by mouse x and y coordinates
 
 @param x: number
 
@@ -279,199 +279,199 @@ interface ICellRetun {
 
 ### Method: `isSignleSelected()`
 
-判断是否是单个选中
+Determine if single selection
 
 ### Method: `canUnmerge()`
 
-能否不合并
+Can unmerge
 
 ### Method: `merge()`
 
-合并
+Merge
 
 ### Method: `unmerge()`
 
-不做合并，撤销合并
+Don't merge, undo merge
 
 ### Method: `canAutofilter()`
 
-能自动过滤
+Can auto filter
 
 ### Method: `autofilter()`
 
-过滤
+Filter
 
 ### Method: `setAutoFilter(ci, order, operator, value)`
 
-设置过滤器
+Set filter
 
-@param ci 列索引
+@param ci Column index
 
-@param order 排序方式
+@param order Sort method
 
-@param operator 操作
+@param operator Operation
 
-@param value 值
+@param value Value
 
 ### Method: `resetAutoFilter()`
 
-重置自动过滤
+Reset auto filter
 
 ### Method: `deleteCell(what = 'all')`
 
-删除单元格
+Delete cell
 
-@param what: string all(所有) | fomat(格式)
+@param what: string all (all) | format (format)
 
 ### Method: `insert(type, n = 1)`
 
-插入行或者列
+Insert row or column
 
-@param type: string 可能的值 row | column
+@param type: string Possible values row | column
 
 @param n: number > 0
 
 ### Method: `delete(type)`
 
-删除选中行或者列
+Delete selected row or column
 
-@param type: string 可能的值 row | column
+@param type: string Possible values row | column
 
 ### Method: `scrollx(x, cb)`
 
-滚动 x 距离触发 cb
+Scroll x distance to trigger cb
 
-@param x: number 距离
+@param x: number Distance
 
-@param cb: Function 触发的回调函数
+@param cb: Function Triggered callback function
 
 ### Method: `scrolly(y, cb)`
 
-滚动 y 距离触发 cb
+Scroll y distance to trigger cb
 
-@param y: number 距离
+@param y: number Distance
 
-@param cb: Function 触发的回调函数
+@param cb: Function Triggered callback function
 
 ### Method: `cellRect(ri, ci)`
 
-返回当前单元格的具体坐标信息
+Return specific coordinate information of current cell
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `getCell(ri, ci)`
 
-获得当前单元格，通过索引
+Get current cell by index
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `getCellTextOrDefault(ri, ci)`
 
-获得当前单元格文字或者默认值
+Get current cell text or default value
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `getCellStyle(ri, ci)`
 
-获得当前单元格样式
+Get current cell style
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `getCellStyleOrDefault(ri, ci)`
 
-获得当前单元格样式或者默认值
+Get current cell style or default value
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `getSelectedCellStyle()`
 
-获得当前选中单元格样式
+Get current selected cell style
 
 ### Method: `setCellText(ri, ci, text, state)`
 
-设定指定单元格值，并更新输入状态
+Set specified cell value and update input state
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
-@param text: string 文字
+@param text: string Text
 
 @param state: string input | finished
 
 ### Method: `freezeIsActive()`
 
-冻结是否可以激活
+Whether freeze can be activated
 
 ### Method: `setFreeze(ri, ci)`
 
-设置冻结栏
+Set freeze bar
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param ci: number 列索引
+@param ci: number Column index
 
 ### Method: `freezeTotalWidth()`
 
-获得冻结栏的总计宽度
+Get total width of freeze bar
 
 ### Method: `freezeTotalHeight()`
 
-获得冻结栏总计高度
+Get total height of freeze bar
 
 ### Method: `setRowHeight(ri, height)`
 
-设置某一行高度
+Set height of a certain row
 
-@param ri: number 行索引
+@param ri: number Row index
 
-@param height: number 行高度
+@param height: number Row height
 
 ### Method: `setColWidth(ci, width)`
 
-设置某一列宽度
+Set width of a certain column
 
-@param ci: number 列索引
+@param ci: number Column index
 
-@param width: number 列宽度
+@param width: number Column width
 
 ### Method: `viewHeight()`
 
-获得可视区域高度
+Get visible area height
 
 ### Method: `viewWidth()`
 
-获得可视区域宽度
+Get visible area width
 
 ### Method: `freezeViewRange()`
 
-获得冻结范围
+Get freeze range
 
 ### Method: `contentRange()`
 
-获得文本区域显示范围
+Get text area display range
 
 ### Method: `exceptRowTotalHeight(sri, eri)`
 
-获得忽略行后的总计高度
+Get total height after excluding rows
 
 ### Method: `viewRange()`
 
-获得可视区显示范围
+Get visible area display range
 
 ### Method: `eachMergesInView(viewRange, cb)`
 
-每个合并发生的时候触发的回调
+Callback triggered when each merge occurs
 
 @param viewRange: ViewRange
 
@@ -479,11 +479,11 @@ interface ICellRetun {
 
 ### Method: `hideRowsOrCols()`
 
-隐藏选中列或者行
+Hide selected columns or rows
 
 ### Method: `unhideRowsOrCols(type, index)`
 
-取消隐藏行或者列
+Unhide rows or columns
 
 @param type: row | col
 
@@ -491,46 +491,46 @@ interface ICellRetun {
 
 ### Method: `rowEach(min, max, cb)`
 
-行遍历，可以指定范围
+Row traversal, can specify range
 
-@param min: number 最小行
+@param min: number Minimum row
 
-@param max: number 最大行
+@param max: number Maximum row
 
 @param cb: Function
 
 ### Method: `colEach(min, max, cb)`
 
-列遍历，可以指定范围
+Column traversal, can specify range
 
-@param min: number 最小列
+@param min: number Minimum column
 
-@param max: number 最大列
+@param max: number Maximum column
 
 @param cb: Function
 
 ### Method: `defaultStyle()`
 
-获得默认样式
+Get default style
 
 ### Method: `addStyle(nstyle)`
 
-设置多个样式
+Set multiple styles
 
 @param nstyle object
 
 ### Method: `changeData(cb)`
 
-设置数据变化时的回调函数
+Set callback function when data changes
 
 @param cb: Function
 
 ### Method: `setData(d)`
 
-设置表格数据，d 如果不知道可以通过 getData() 方法先获取一份默认的看看
+Set table data, if you don't know d, you can get a default one first through the getData() method
 
 @param d: object
 
 ### Method: `getData()`
 
-获得当前表格的数据
+Get current table data

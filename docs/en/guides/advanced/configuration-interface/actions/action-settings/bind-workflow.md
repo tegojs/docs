@@ -1,40 +1,40 @@
-# 绑定工作流
+# Bind Workflow
 
-## 介绍
+## Introduction
 
-在部分操作按钮上，可以配置绑定工作流，用于将该提交操作与工作流关联，实现数据的自动化处理。
+On some operation buttons, you can configure binding workflows to associate the submit operation with workflows, implementing automated data processing.
 
 ![20240413095247](/actions/bind-workflow-1.png)
 
 ![20240413095309](/actions/bind-workflow-2.png)
 
-## 支持的操作和工作流类型
+## Supported Operations and Workflow Types
 
-目前支持绑定的操作按钮和工作流类型如下：
+Currently supported operation buttons and workflow types that can be bound are as follows:
 
-| 操作按钮 \ 工作流类型 | 操作前事件 | 操作后事件 | 审批事件 | 自定义操作事件 |
+| Operation Button \ Workflow Type | Pre-operation Event | Post-operation Event | Approval Event | Custom Operation Event |
 | --- | --- | --- | --- | --- |
-| 表单的“提交”、“保存”按钮 | ✅ | ✅ | ✅ | ❌ |
-| 数据行（表格、列表等）中的“更新数据”按钮 | ✅ | ✅ | ✅ | ❌ |
-| 数据行（表格、列表等）中的“删除”按钮 | ✅ | ❌ | ❌ | ❌ |
-| “触发工作流”按钮 | ❌ | ❌ | ❌ | ✅ |
+| Form "Submit", "Save" buttons | ✅ | ✅ | ✅ | ❌ |
+| "Update Data" button in data rows (table, list, etc.) | ✅ | ✅ | ✅ | ❌ |
+| "Delete" button in data rows (table, list, etc.) | ✅ | ❌ | ❌ | ❌ |
+| "Trigger Workflow" button | ❌ | ❌ | ❌ | ✅ |
 
-## 同时绑定多个工作流
+## Bind Multiple Workflows Simultaneously
 
-一个操作按钮可以绑定多个工作流，当绑定多个工作流时，工作流的执行顺序遵循以下规则：
+One operation button can bind multiple workflows. When multiple workflows are bound, the execution order of workflows follows these rules:
 
-1. 同一触发类型的工作流中同步的工作流先执行，异步的工作流后执行。
-2. 同一触发类型的工作流按配置顺序执行。
-3. 不同触发类型的工作流之间：
-    1. 操作前事件一定先于操作后和审批事件执行
-    2. 操作后和审批事件没有特定顺序，业务不应该依赖于配置顺序。
+1. Among workflows of the same trigger type, synchronous workflows execute first, asynchronous workflows execute later.
+2. Workflows of the same trigger type execute in configuration order.
+3. Between workflows of different trigger types:
+    1. Pre-operation events must execute before post-operation and approval events
+    2. Post-operation and approval events have no specific order, business should not rely on configuration order.
 
-## 更多
+## More
 
-不同工作流事件类型参考相关插件的详细介绍：
+For different workflow event types, refer to detailed introductions of related plugins:
 
-<!-- TODO: 本文档链接 -->
-* [操作后事件]
-* [操作前事件]
-* [审批事件]
-* [自定义操作事件]
+<!-- TODO: Link this document -->
+* [Post-operation Events]
+* [Pre-operation Events]
+* [Approval Events]
+* [Custom Operation Events]

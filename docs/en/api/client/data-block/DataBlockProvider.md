@@ -1,14 +1,14 @@
 # DataBlockProvider
 
-## 卡片类型
+## Block Types
 
-卡片分为简单卡片和包含各种数据的卡片。
+Blocks are divided into simple blocks and blocks containing various data.
 
-### 简单卡片
+### Simple Blocks
 
-简单卡片例如 Markdown 卡片。
+Simple blocks such as Markdown blocks.
 
-它只有文本内容，没有其他更多复杂数据，且文本内容是存储在 `schema` 中的，没有存储在数据库中。
+It only has text content, no other more complex data, and the text content is stored in `schema`, not in the database.
 
 ```json {5}| pure
 {
@@ -20,22 +20,22 @@
 }
 ```
 
-### 数据卡片
+### Data Blocks
 
-数据卡片是指卡片的数据存储在服务端的数据表中，例如 Table 组件。
+Data blocks refer to blocks whose data is stored in server-side data tables, such as the Table component.
 
-Table 中的字段信息及列表数据，都是存储在数据库中的。
+Field information and list data in Table are all stored in the database.
 
 
-## DataBlockProvider 介绍
+## DataBlockProvider Introduction
 
-为了方便对数据卡片的数据进行管理，我们提供了 `DataBlockProvider` 组件，其内部封装了：
+To facilitate data management for data blocks, we provide the `DataBlockProvider` component, which internally encapsulates:
 
-- `DataBlockProvider`：封装了下面的所有组件，并提供了卡片属性
-  - [CollectionProvider](../data-source/CollectionProvider) / [AssociationProvider](../data-source/AssociationProvider): 根据 `DataBlockProvider` 提供的上下文信息，查询对应数据表数据及关系字段信息并传递
-  - [BlockResourceProvider](./DataBlockResourceProvider): 根据 `DataBlockProvider` 提供的上下文信息，构建卡片 [Resource](../application/Request) API，用于卡片数据的增删改查
-  - [BlockRequestProvider](./DataBlockRequestProvider): 根据 `DataBlockProvider` 提供的上下文信息，自动调用 `BlockResourceProvider` 提供的 `resource.get()` 或 `resource.list()` 发起请求，得到卡片数据，并传递
-    - [CollectionRecordProvider](../data-source/RecordProvider): 对于 `resource.get()` 场景，会自动嵌套 `CollectionRecordProvider` 并将 `resource.get()` 请求结果传递下去，`resource.list()` 场景则需要自行使用 `CollectionRecordProvider` 提供数据记录
+- `DataBlockProvider`: Encapsulates all the components below and provides block properties
+  - [CollectionProvider](../data-source/CollectionProvider) / [AssociationProvider](../data-source/AssociationProvider): Queries corresponding data table data and relationship field information based on context information provided by `DataBlockProvider` and passes them on
+  - [BlockResourceProvider](./DataBlockResourceProvider): Constructs block [Resource](../application/Request) API based on context information provided by `DataBlockProvider` for CRUD operations on block data
+  - [BlockRequestProvider](./DataBlockRequestProvider): Automatically calls `resource.get()` or `resource.list()` provided by `BlockResourceProvider` based on context information provided by `DataBlockProvider` to initiate requests, get block data, and pass it on
+    - [CollectionRecordProvider](../data-source/RecordProvider): For `resource.get()` scenarios, will automatically nest `CollectionRecordProvider` and pass the `resource.get()` request result down. For `resource.list()` scenarios, you need to use `CollectionRecordProvider` yourself to provide data records
 
 ```tsx | pure
 const DataBlockProvider = (props) => {
@@ -55,11 +55,11 @@ const DataBlockProvider = (props) => {
 }
 ```
 
-上述组件封装到 `DataBlockProvider` 的内部，只需要使用 `DataBlockProvider` 即可自行得到上述数据。
+The above components are encapsulated inside `DataBlockProvider`. You only need to use `DataBlockProvider` to automatically get the above data.
 
-### 使用方式
+### Usage
 
-其主要使用在卡片的 schema 的 x-decorator 中，例如：
+It is mainly used in the x-decorator of block schema, for example:
 
 ```js {5}| pure
 {
@@ -79,20 +79,20 @@ const DataBlockProvider = (props) => {
 }
 ```
 
-### 完整示例
+### Complete Example
 
 <code src="./demos/data-block-provider/complete-demo.tsx"></code>
 
-## 属性
+## Properties
 
-### 静态属性和动态属性
+### Static Properties and Dynamic Properties
 
-- schema 中的 `x-decorator-props` 称为静态属性，它是一个普通对象，记录卡片的配置信息
-- schema 中的 `x-use-decorator-props` 中的属性称为动态属性，它是一个 React hook，可用于获取例如 URL 上的 ID，或者父级的 context 数据
+- `x-decorator-props` in schema is called static properties, it is a regular object that records block configuration information
+- Properties in `x-use-decorator-props` in schema are called dynamic properties, it is a React hook that can be used to get for example ID on URL, or parent context data
 
-当两者都存在时，会进行深度合并，作为 `DataBlockProvider` 的属性。
+When both exist, they will be deeply merged as properties of `DataBlockProvider`.
 
-### 属性详解
+### Property Details
 
 ```ts | pure
 interface AllDataBlockProps {
@@ -108,15 +108,15 @@ interface AllDataBlockProps {
 }
 ```
 
-- collection（`x-decorator-props`）：卡片的 collection 表名，用于获取卡片的字段信息和卡片数据
-- association（`x-decorator-props`）：卡片的关系字段名，用于获取卡片的关系字段信息和关系字段数据
-- dataSource(`x-decorator-props`): 数据源
-- action（`x-decorator-props`）：卡片的请求类型，`list` 或 `get`
-- params（`x-decorator-props` 和 `x-use-decorator-props`）：卡片的请求参数，同时存在于
-- filterByTk（`x-use-decorator-props`）：相当于 `params.filterByTk`，可理解为 `id`，用于获取单条数据
-- sourceId（`x-use-decorator-props`）：卡片的 sourceId，配合 `association` 使用，用于获取卡片的关系字段数据
-- record（`x-use-decorator-props`）：当提供 `record` 时，会使用 `record` 作为卡片的数据，不发起请求
-- parentRecord（`x-use-decorator-props`）：当提供 `parentRecord` 时，会使用 `parentRecord` 作为关系字段的表数据，不发起请求
+- collection (`x-decorator-props`): Block's collection table name, used to get block's field information and block data
+- association (`x-decorator-props`): Block's relationship field name, used to get block's relationship field information and relationship field data
+- dataSource (`x-decorator-props`): Data source
+- action (`x-decorator-props`): Block's request type, `list` or `get`
+- params (`x-decorator-props` and `x-use-decorator-props`): Block's request parameters, exists in both
+- filterByTk (`x-use-decorator-props`): Equivalent to `params.filterByTk`, can be understood as `id`, used to get single data
+- sourceId (`x-use-decorator-props`): Block's sourceId, used with `association` to get block's relationship field data
+- record (`x-use-decorator-props`): When `record` is provided, will use `record` as block's data, no request will be initiated
+- parentRecord (`x-use-decorator-props`): When `parentRecord` is provided, will use `parentRecord` as relationship field's table data, no request will be initiated
 
 ```tsx | pure
 const DataBlockProvider = (props) => {
@@ -136,34 +136,34 @@ const DataBlockProvider = (props) => {
 }
 ```
 
-### 属性组合和场景
+### Property Combinations and Scenarios
 
-这些属性根据不同的场景，共有 8 中情况：
+These properties have 8 combinations according to different scenarios:
 
 - collection
-  - 创建：`collection`
-  - 获取单条数据：`collection` + `action: get` + `params`
-  - 获取列表数据：`collection` + `action: list` + `params`
-  - 使用 `record` 作为数据：`collection` + `record`
+  - Create: `collection`
+  - Get single data: `collection` + `action: get` + `params`
+  - Get list data: `collection` + `action: list` + `params`
+  - Use `record` as data: `collection` + `record`
 
-对于 *获取单条数据* 和 *获取列表数据*  `params` 非必须。
+For *Get single data* and *Get list data*, `params` is not required.
 
 - association
-  - 创建：`association` + `sourceId`
-  - 获取单条数据：`association` + `sourceId` + `action: get` + `params` + `parentRecord`
-  - 获取列表数据：`association` + `sourceId` + `action: list` + `params` + `parentRecord`
-  - 使用 `record` 作为数据：`association` + `sourceId` + `record` + `parentRecord`
+  - Create: `association` + `sourceId`
+  - Get single data: `association` + `sourceId` + `action: get` + `params` + `parentRecord`
+  - Get list data: `association` + `sourceId` + `action: list` + `params` + `parentRecord`
+  - Use `record` as data: `association` + `sourceId` + `record` + `parentRecord`
 
 
-对于 *获取单条数据* 和 *获取列表数据*  `params` 和 `parentRecord` 非必须，当没有 `parentRecord` 会根据 `association` 查询到对应的 `collection`，然后再根据 `collection` 查询到对应的 `parentRecord`。
+For *Get single data* and *Get list data*, `params` and `parentRecord` are not required. When there is no `parentRecord`, the corresponding `collection` will be queried based on `association`, then the corresponding `parentRecord` will be queried based on `collection`.
 
-### 属性获取和修改
+### Property Get and Modify
 
 #### useDataBlock()
 
-可用于获取和修改 `DataBlockProvider` 的属性。
+Can be used to get and modify properties of `DataBlockProvider`.
 
-- 类型
+- Type
 
 ```tsx | pure
 interface Result<T extends {} = {}> {
@@ -173,20 +173,20 @@ interface Result<T extends {} = {}> {
 const useDataBlock: <T extends {}>() => Result<T>
 ```
 
-- 详解
+- Details
 
-`props` 就对应着上面的 `AllDataBlockProps`。
-`dn` 是 `Designable` 对象，可用于修改 `DataBlockProvider` 的 UI schema，详细见 [Designable](../ui-schema/Designable)。
+`props` corresponds to the `AllDataBlockProps` above.
+`dn` is the `Designable` object, can be used to modify the UI schema of `DataBlockProvider`, see [Designable](../ui-schema/Designable) for details.
 
-- 示例
+- Example
 
 ```tsx | pure
 const { props, dn } = useDataBlock<{ tableProps: { bordered?: boolean } }>();
 
-// 获取
+// Get
 const checked = props.tableProps.bordered;
 
-// 修改
+// Modify
 dn.deepMerge({
   'x-decorator-props': {
     tableProps: {
@@ -198,7 +198,7 @@ dn.deepMerge({
 
 #### useDataBlockProps()
 
-相当于 `useDataBlock().props`。
+Equivalent to `useDataBlock().props`.
 
 ```tsx | pure
 const props = useDataBlockProps<{ tableProps: { bordered?: boolean } }>();
@@ -206,13 +206,12 @@ const props = useDataBlockProps<{ tableProps: { bordered?: boolean } }>();
 const checked = props.tableProps.bordered;
 ```
 
-## 示例
+## Example
 
 ### association
 
-association 与 collection 类似，只是需要提供 `sourceId`，我们以 `Table list` 为例。
+association is similar to collection, just needs to provide `sourceId`. We take `Table list` as an example.
 
 #### Table list & parentRecord
 
-如果不提供 `sourceId`，则需要提供 `parentRecord`，我们以 `Table list` 为例。
-
+If `sourceId` is not provided, then `parentRecord` needs to be provided. We take `Table list` as an example.

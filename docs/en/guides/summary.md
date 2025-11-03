@@ -1,25 +1,25 @@
-# 基础功能
+# Basic Features
 
-> 已经支持下列功能
+> The following features are currently supported
 
-- 撤销重做
-- 添加行列
-- 删除行列
-- 隐藏行列
-- 动态调整行列功能
-- 冻结行列
-- 添加边框/颜色/边框线条样式
-- 合并单元格
-- 复制
-- 粘贴
-- 打印
-- 公式
-- 筛选
-- 自动填充
-- 多表支持
-- 字体样式
-- 自定义字体/大小/颜色
-- 填充前景色/背景色
-- 格式校验
-- 对齐方式
-- 文字换行
+- Undo/Redo
+- Add rows/columns
+- Delete rows/columns
+- Hide rows/columns
+- Dynamic row/column resizing
+- Freeze rows/columns
+- Add borders/colors/border line styles
+- Merge cells
+- Copy
+- Paste
+- Print
+- Formulas
+- Filter
+- Auto-fill
+- Multiple sheet support
+- Font styles
+- Custom font/size/color
+- Fill foreground/background color
+- Format validation
+- Text alignment
+- Text wrapping

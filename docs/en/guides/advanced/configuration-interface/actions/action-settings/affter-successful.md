@@ -1,13 +1,13 @@
-# 提交成功后
+# After Successful
 
-## 介绍
+## Introduction
 
-提交成功后的配置，允许用户定制操作完成后的响应行为。用户可以自定义成功提示信息，选择自动或手动关闭提示消息，并根据需求选择停留在当前页、返回上一层弹窗或页面，或跳转到指定路由。
+After successful configuration allows users to customize response behavior after operation completion. Users can customize success prompt messages, choose automatic or manual closure of prompt messages, and choose to stay on the current page, return to the previous modal or page, or jump to a specified route according to needs.
 
 ![1](/actions/after-success-1.png)
 
 ![2](/actions/after-success-2.png)
 
-- 停留在当前弹窗或页面： 操作成功后不会关闭弹窗或跳转路由
-- 返回上一层弹窗或页面（默认）：操作成功后关闭当前弹窗
-- 跳转：操作成功后跳转到指定路由
+- Stay on current modal or page: Will not close the modal or jump routes after operation success
+- Return to previous modal or page (default): Close current modal after operation success
+- Jump: Jump to specified route after operation success

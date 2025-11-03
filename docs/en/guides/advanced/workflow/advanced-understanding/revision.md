@@ -1,21 +1,21 @@
-# 版本管理
+# Version Management
 
-在已配置的工作流触发至少一次以后，如希望修改工作流的配置或其中的节点，需要通过创建新版本后再修改，这样同时也保证了当回顾已触发过的工作流历史执行记录时不受未来修改的影响。
+After a configured workflow has been triggered at least once, if you want to modify the workflow's configuration or its nodes, you need to create a new version before making modifications. This also ensures that when reviewing previously triggered workflow history execution records, they are not affected by future modifications.
 
-在工作流的配置页面，可以在右上角的版本菜单查看已有的工作流版本：
+On the workflow configuration page, you can view existing workflow versions in the version menu in the upper right corner:
 ![](/workflow/workflow-18.png)
 
 
-在其右侧的更多操作（“…”）菜单中，可以选择基于当前查看的版本复制到新版本：
+In the more operations ("…") menu to its right, you can choose to copy the currently viewed version to a new version:
 ![](/workflow/workflow-19.png)
 
 
-复制到新版本之后，点击“启用”/“停用”开关，将对应版本切换到启用状态后，新的工作流版本将会生效。
+After copying to a new version, click the "Enable"/"Disable" switch to switch the corresponding version to the enabled state, and the new workflow version will take effect.
 
-如需重新选择旧版本，从版本菜单中切换后，再次点击“启用”/“停用”开关切换至启用状态后，当前查看的版本将生效，后续触发将执行对应版本的流程。
+If you need to reselect an old version, switch from the version menu, then click the "Enable"/"Disable" switch again to switch to the enabled state. The currently viewed version will take effect, and subsequent triggers will execute the corresponding version's process.
 
-当需要停用工作流时，点击“启用”/“停用”开关切换至停用状态后，该工作流将不再会被触发。
+When you need to disable the workflow, click the "Enable"/"Disable" switch to switch to the disabled state, and the workflow will no longer be triggered.
 
-:::info{title=提示}
-与工作流管理列表中的“复制”工作流不同，“复制到新版本”的工作流仍会归集在同一组工作流中，只是可以通过版本区分。但复制工作流则会被视为一个全新的工作流，与之前工作流的版本无关，且执行次数也会归零。
+:::info{title=Note}
+Different from "Copying" a workflow in the workflow management list, workflows that are "Copied to a new version" will still be grouped under the same workflow, just distinguishable by version. But copying a workflow will be treated as a completely new workflow, unrelated to the previous workflow's versions, and the execution count will also reset to zero.
 :::
