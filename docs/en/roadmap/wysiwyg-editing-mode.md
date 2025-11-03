@@ -1,8 +1,8 @@
-# WYSIWYG Editing Mode Enhancement
+# Unified Toolbar
 
 ## Overview
 
-This is a significant user experience improvement initiative aimed at transforming Tachybase's editing mode from traditional editor to a modern WYSIWYG (What You See Is What You Get) editing mode similar to collaborative tools like Lark/Feishu.
+This is a significant user experience improvement initiative aimed at upgrading Tachybase's editing mode to a modern WYSIWYG (What You See Is What You Get) editing mode similar to collaborative tools like Lark/Feishu, providing a consistent operation entry point and better interaction experience through a unified toolbar.
 
 ## Current Pain Points
 
@@ -54,39 +54,20 @@ The UI team has established complete visual specifications with a modern design 
 - **Responsive Layout**: Automatically adjusts toolbar display based on block width
 
 **Advantages:**
-- All editing operations centralized in one place, reducing learning costs
-- Toolbar positioned outside the block, not interfering with content display
-- Dynamically displays relevant functions based on block type
-- Professional visual design enhances overall quality
+- **Unified Operation Entry**: All editing operations (including drag, configuration, debugging, etc.) centralized in the toolbar, providing a consistent interaction experience
+- **Non-blocking UI Display**: Toolbar positioned outside the block, not interfering with original content display
+- **Context-Aware**: Dynamically displays relevant functions based on block type
+- **Professional Visual Design**: Enhances overall quality and usability
 
-#### 2. Drag-and-Drop Layout Capability
+#### 2. Integrated Drag Capability in Toolbar
 
-Provide intuitive drag-and-drop operations, allowing users to:
+The existing drag functionality is now unified into the toolbar, operated through toolbar buttons:
 
-- **Drag to Move**: Directly drag blocks to adjust position
-- **Drag to Resize**: Adjust block size by dragging edges
-- **Drag to Create**: Drag from component library to create new blocks
+- **Drag to Move**: Click the drag icon in the toolbar to activate drag mode for adjusting block position
+- **Drag to Resize**: Use the resize button in the toolbar for precise control of block size
 - **Visual Feedback**: Provide clear drag preview and drop zone indicators
 
-**Interaction Example:**
-
-```
-Before dragging:
-┌──────┐ ┌──────┐
-│Block A│ │Block B│
-└──────┘ └──────┘
-
-During drag (showing dashed preview):
-┌ ─ ─ ─┐ ┌──────┐
-│Preview│ │Block B│
-└ ─ ─ ─┘ └──────┘
-         👆Dragging
-
-After dragging:
-┌──────┐ ┌──────┐
-│Block B│ │Block A│
-└──────┘ └──────┘
-```
+This design integrates drag capabilities into the unified toolbar, making all editing operations have a consistent entry point, reducing user cognitive load.
 
 #### 3. Non-Intrusive Editing
 
@@ -140,7 +121,7 @@ The image below shows the actual form editing interface, where you can see:
 - Each field has a compact toolbar on the right showing the most commonly used action icons
 - The interface is clean and clear, with editing tools not interfering with content display
 
-![Form Editing Interface Example](/public/wysiwyg-form-editing-example.png)
+![Form Editing Interface Example](/wysiwyg-form-editing-example.png)
 
 This design ensures complete editing functionality while maximizing the simplicity of the original interface.
 
@@ -172,6 +153,58 @@ Reference modern editors like Lark, Notion for interaction:
    - Maintain backward compatibility
    - Provide migration tools to assist upgrades
 
+### Interface Design Requirements
+
+The interface design for the unified toolbar will focus on three core objectives, with specific interface definitions to be determined during the implementation phase:
+
+#### 1. Define New Unified Interface
+
+**Objective:** Provide developers with a simple and easy-to-use new interface to reduce integration costs.
+
+**Requirements:**
+- Provide a unified toolbar item registration mechanism
+- Support flexible toolbar configuration and extension
+- Provide clear API design, including registration, configuration, and control functions
+- Support common features like visibility control, disabled state, and priority sorting
+- Provide context-aware capabilities to dynamically display relevant functions based on block type
+
+#### 2. Maintain Backward Compatibility
+
+**Objective:** Ensure zero migration cost for existing logic, smooth transition to the new unified toolbar.
+
+**Requirements:**
+- **No Code Modification Required**: Existing code using `SchemaToolbar`, `SchemaInitializer`, `SchemaSettings` requires no modifications
+- **Automatic Adaptation Mechanism**: System automatically recognizes and adapts original configurations to the new toolbar
+- **Complete Feature Preservation**: All original features are fully preserved in the new toolbar without losing any capabilities
+- **Progressive Upgrade Path**: Developers can choose the right time to gradually migrate to the new interface, no mandatory requirements
+- **Dual-mode Coexistence**: During the transition period, new and old interfaces can be used simultaneously without interference
+
+#### 3. Optimize Cloud Component Integration Experience
+
+**Objective:** Simplify the cloud component integration process and provide better development experience.
+
+**Requirements:**
+- **Zero-config Integration**: Cloud components can automatically appear in the toolbar through simple configuration
+- **Hot Reload Support**: Toolbar automatically refreshes after cloud component updates without restarting the application
+- **Unified Management Mechanism**: Cloud component toolbar items use the same management mechanism as local components
+- **Version Compatibility Handling**: Automatically handles interface differences between different cloud component versions
+- **One-click Registration**: Provide convenient registration methods to reduce configuration code
+
+#### 4. Developer Tool Support
+
+To help developers better use the new interface, supporting development tools will be provided:
+
+**Migration Tools:**
+- Automatically analyze existing code and identify old interface usage
+- Generate migration suggestions and new interface code
+- Provide detailed migration guides and best practices
+- Preserve original code as comments for comparison and rollback
+
+**Documentation and Examples:**
+- Provide complete API documentation
+- Provide rich usage examples and best practices
+- Provide migration guides from old to new interfaces
+
 ### Interaction Optimization
 
 1. **Performance Optimization**
@@ -188,14 +221,17 @@ Reference modern editors like Lark, Notion for interaction:
 
 ### User Experience Improvement
 
-- **Reduced Learning Curve**: Unified operation entry point, aligned with modern editor usage habits
-- **Improved Editing Efficiency**: Drag operations reduce clicks, quickly complete page layout
-- **Better Visual Experience**: Non-intrusive design lets users focus on content itself
+- **More Consistent Operation Entry**: All editing functions unified in the toolbar, providing a consistent interaction experience
+- **Better Interaction Experience**: Aligned with modern editor usage habits, intuitive and easy to use
+- **Non-blocking Original UI Display**: Non-intrusive design lets users focus on content itself, editing tools do not interfere with interface presentation
 
 ### Developer Friendly
 
-- **Unified API**: Simplify plugin development, reduce extension difficulty
+- **Simplified Concept Understanding**: No need to understand multiple scattered concepts like Toolbar, Initializer, Settings, only need to understand the unified toolbar
+- **Unified API**: Provides simple and easy-to-use new interface, simplifies plugin development, reduces extension difficulty
+- **Zero Migration Cost**: Existing logic requires no modification, automatically adapts to new toolbar, fully backward compatible
 - **Better Maintainability**: Modular functionality, easy for future iterations
+- **Cloud Component Friendly**: Optimized cloud component integration experience, zero-config integration, supports hot reload
 - **Standardized Interfaces**: Promote ecosystem development, encourage community contributions
 
 ### Product Competitiveness

@@ -2,5 +2,4 @@
 
 | No. | Feature | Description | Documentation |
 | --- | --- | --- | --- |
-| 1 | WYSIWYG Editing Mode | Upgrade traditional editor to modern editing experience like Lark, providing unified toolbar, drag-and-drop layout, and non-intrusive editing features | [View Details](./wysiwyg-editing-mode.md) |
-| 2 | Example Feature | Example Description | [Example Link](https://tachybase.org/plugins/plugin-list.html) |
+| 1 | Unified Toolbar | Provides more consistent operation entry and better interaction experience through unified toolbar, non-blocking original UI display, simplifying developers' understanding of multiple concepts | [View Details](./wysiwyg-editing-mode.md) |
