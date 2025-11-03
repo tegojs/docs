@@ -7,11 +7,11 @@
   {
     "type": "dir",
     "name": "server",
-    "label": "服务端"
+    "label": "Server"
   },
   {
     "type": "dir",
     "name": "client",
-    "label": "客户端"
+    "label": "Client"
   }
 ]

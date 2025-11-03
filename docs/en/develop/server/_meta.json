@@ -2,7 +2,7 @@
   {
     "type": "dir",
     "name": "collections",
-    "label": "数据表"
+    "label": "Collections"
   },
   "middleware",
   "command",
