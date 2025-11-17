@@ -4,6 +4,11 @@ on:
   pull_request:
     types: [opened, synchronize, labeled, unlabeled]
 
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
@@ -56,13 +61,29 @@ jobs:
         with:
           script: |
             try {
-              await github.rest.pulls.merge({
+              const result = await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: context.issue.number,
                 merge_method: 'squash'
               });
               console.log('✅ PR has been auto-merged');
+              
+              // Wait a moment for GitHub to process the merge
+              await new Promise(resolve => setTimeout(resolve, 3000));
+              
+              // Trigger deployment workflow
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: 'deploy.yml',
+                  ref: 'main'
+                });
+                console.log('✅ Deployment workflow triggered');
+              } catch (dispatchError) {
+                console.log('⚠️ Could not trigger deployment workflow (may already be triggered):', dispatchError.message);
+              }
             } catch (error) {
               console.error('❌ Merge failed:', error.message);
               core.setFailed(error.message);
