@@ -30,5 +30,3 @@
 [未发布]: https://github.com/tegojs/tego-standard/compare/v1.5.0...HEAD
 
 
-# 更新日志
-
