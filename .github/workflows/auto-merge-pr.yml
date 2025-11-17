@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event.pull_request.draft == false && 
-      startsWith(github.event.pull_request.head.ref, 'sync/plugins-list-')
+      startsWith(github.event.pull_request.head.ref, 'chore/sync-')
     
     steps:
       - name: Check required labels
