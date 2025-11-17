@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   auto-merge:
@@ -54,12 +55,13 @@ jobs:
             echo "  - sync: $has_sync"
           fi
 
-      - name: Auto merge PR
+      - name: Auto merge PR and trigger deployment
         if: steps.check-labels.outputs.should_merge == 'true'
         uses: actions/github-script@v7
         with:
           script: |
             try {
+              // Merge the PR
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -67,7 +69,23 @@ jobs:
                 merge_method: 'squash'
               });
               console.log('✅ PR has been auto-merged');
-              console.log('📦 Deployment will be triggered automatically by push event to main branch');
+              
+              // Wait a moment for GitHub to process the merge
+              await new Promise(resolve => setTimeout(resolve, 3000));
+              
+              // Actively trigger deployment workflow via workflow_dispatch
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: 'deploy.yml',
+                  ref: 'main'
+                });
+                console.log('✅ Deployment workflow triggered via workflow_dispatch');
+              } catch (dispatchError) {
+                console.log('⚠️ Could not trigger deployment workflow:', dispatchError.message);
+                // Don't fail the workflow if dispatch fails, as it might already be running
+              }
             } catch (error) {
               console.error('❌ Merge failed:', error.message);
               core.setFailed(error.message);
