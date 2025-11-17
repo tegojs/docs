@@ -30,6 +30,11 @@
     "activeMatch": "^/roadmap/"
   },
   {
+    "text": "Changelog",
+    "link": "/changelog/changelog",
+    "activeMatch": "^/changelog/"
+  },
+  {
     "text": "Contribution",
     "link": "/contribution/introduction",
     "activeMatch": "^/contribution/"
