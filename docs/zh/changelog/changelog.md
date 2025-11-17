@@ -10,10 +10,4 @@
 
 - **core**: 允许令牌中的空用户状态 (#267)
 
-
 [未发布]: https://github.com/tegojs/tego-standard/compare/v1.5.0...HEAD
-
-
-
-
-
