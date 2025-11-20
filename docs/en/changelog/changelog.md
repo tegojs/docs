@@ -2,19 +2,19 @@
 
 ### ✨ Added
 
-- adjust event source code for resource operation after event & perf(workflow): adjust workflow code for executed time (#285) (@bai.zixv)
-- add backup progress and download progress & chore: cursor rules update & chore: update github workflow (#280) (@bai.zixv)
-- approval summary support array type data & feat: change the column display of workflow and approval list pages (#239) (@bai.zixv)
-- add cursor hooks for auto formatting and translation sync (#282) (@bai.zixv)
+- adjust event source code for resource operation after event & perf(workflow): adjust workflow code for executed time ([#285](https://github.com/tegojs/tego-standard/pull/285)) (@bai.zixv)
+- add backup progress and download progress & chore: cursor rules update & chore: update github workflow ([#280](https://github.com/tegojs/tego-standard/pull/280)) (@bai.zixv)
+- approval summary support array type data & feat: change the column display of workflow and approval list pages ([#239](https://github.com/tegojs/tego-standard/pull/239)) (@bai.zixv)
+- add cursor hooks for auto formatting and translation sync ([#282](https://github.com/tegojs/tego-standard/pull/282)) (@bai.zixv)
 
 ### 🐛 Fixed
 
-- **workflow**: fix sync approval workflow (#284) (@bai.zixv)
-- **backup**: fix timeout check for backup progress (#283) (@bai.zixv)
-- **workflow-approval**: test logic & fix(workflow): useAction string reference & fix(workflow): duplicate workflow category default value & fix(data-source): collection table column width & chore(cursor): update lint check rules (#279) (@bai.zixv)
-- approval cc details (#269) (@dududuna)
-- export the current table function and add filtering criteria (#271) (@dududuna)
-- approval add return and update approval navigation path (#265) (@dududuna)
+- **workflow**: fix sync approval workflow ([#284](https://github.com/tegojs/tego-standard/pull/284)) (@bai.zixv)
+- **backup**: fix timeout check for backup progress ([#283](https://github.com/tegojs/tego-standard/pull/283)) (@bai.zixv)
+- **workflow-approval**: test logic & fix(workflow): useAction string reference & fix(workflow): duplicate workflow category default value & fix(data-source): collection table column width & chore(cursor): update lint check rules ([#279](https://github.com/tegojs/tego-standard/pull/279)) (@bai.zixv)
+- approval cc details ([#269](https://github.com/tegojs/tego-standard/pull/269)) (@dududuna)
+- export the current table function and add filtering criteria ([#271](https://github.com/tegojs/tego-standard/pull/271)) (@dududuna)
+- approval add return and update approval navigation path ([#265](https://github.com/tegojs/tego-standard/pull/265)) (@dududuna)
 
 
 ## [Unreleased]
