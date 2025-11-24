@@ -11,6 +11,8 @@
     "merge-md": "node scripts/merge-md/index.js"
   },
   "dependencies": {
+    "@docsearch/css": "^4.0.0",
+    "@docsearch/js": "^4.0.0",
     "@formulajs/formulajs": "4.4.9",
     "@rspress/theme-default": "^2.0.0-beta.20",
     "@tachybase/client": "^0.23.41",

@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@docsearch/css':
+        specifier: ^4.0.0
+        version: 4.3.2
+      '@docsearch/js':
+        specifier: ^4.0.0
+        version: 4.3.2
       '@formulajs/formulajs':
         specifier: 4.4.9
         version: 4.4.9
@@ -511,6 +517,12 @@ packages:
     resolution: {integrity: sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg==}
     peerDependencies:
       react: '>=16.8.0'
+
+  '@docsearch/css@4.3.2':
+    resolution: {integrity: sha512-K3Yhay9MgkBjJJ0WEL5MxnACModX9xuNt3UlQQkDEDZJZ0+aeWKtOkxHNndMRkMBnHdYvQjxkm6mdlneOtU1IQ==}
+
+  '@docsearch/js@4.3.2':
+    resolution: {integrity: sha512-xdfpPXMgKRY9EW7U1vtY7gLKbLZFa9ed+t0Dacquq8zXBqAlH9HlUf0h4Mhxm0xatsVeMaIR2wr/u6g0GsZyQw==}
 
   '@emnapi/core@1.4.4':
     resolution: {integrity: sha512-A9CnAbC6ARNMKcIcrQwq6HeHCjpcBZ5wSx4U01WXCqEKlrzB9F9315WDNHkrs2xbx7YjjSxbUYxuN6EQzpcY2g==}
@@ -5838,6 +5850,12 @@ snapshots:
     dependencies:
       react: 18.3.1
       tslib: 2.8.1
+
+  '@docsearch/css@4.3.2': {}
+
+  '@docsearch/js@4.3.2':
+    dependencies:
+      htm: 3.1.1
 
   '@emnapi/core@1.4.4':
     dependencies:

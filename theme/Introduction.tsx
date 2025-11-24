@@ -1,28 +1,28 @@
-import { useDark, usePageData } from '@rspress/core/runtime'
-import { Link } from '@rspress/theme-default'
-import { Button } from 'antd'
+import { useDark, usePageData } from '@rspress/core/runtime';
+import { Link } from '@rspress/theme-default';
+import { Button } from 'antd';
 
 export const Introduction = () => {
-  const { page } = usePageData()
-  const isDark = useDark()
-  const isEnglish = page.lang === 'en'
+  const { page } = usePageData();
+  const isDark = useDark();
+  const isEnglish = page.lang === 'en';
   const content = isEnglish
     ? {
-      title: 'Technical Architecture',
-      buttonIntro: 'Introduction',
-      buttonQuickStart: 'Quick Start',
-      heading1: 'Tachybase',
-      heading2: 'Create your next app',
-      description: 'Quickly build new apps based on Typescript + Node.js',
-    }
+        title: 'Technical Architecture',
+        buttonIntro: 'Introduction',
+        buttonQuickStart: 'Quick Start',
+        heading1: 'Tachybase',
+        heading2: 'Create your next app',
+        description: 'Quickly build new apps based on Typescript + Node.js',
+      }
     : {
-      title: '技术架构',
-      buttonIntro: '介绍',
-      buttonQuickStart: '快速开始',
-      heading1: '灵矶空间',
-      heading2: '创造你的下一个应用',
-      description: '基于 Typescript+Node.js 快速构建新的应用',
-    }
+        title: '技术架构',
+        buttonIntro: '介绍',
+        buttonQuickStart: '快速开始',
+        heading1: '灵矶空间',
+        heading2: '创造你的下一个应用',
+        description: '基于 Typescript+Node.js 快速构建新的应用',
+      };
 
   return (
     <div
@@ -39,8 +39,9 @@ export const Introduction = () => {
                 {content.heading1}
               </p>
               <p
-                className={`font-semibold text-[clamp(1rem,2.5vw,2.5rem)] ${isDark ? 'text-white/90' : 'text-[#2F2F2F]'
-                  }`}
+                className={`font-semibold text-[clamp(1rem,2.5vw,2.5rem)] ${
+                  isDark ? 'text-white/90' : 'text-[#2F2F2F]'
+                }`}
               >
                 {content.heading2}
               </p>
@@ -50,10 +51,23 @@ export const Introduction = () => {
             </div>
 
             <div className="flex flex-wrap mt-8 gap-10 relative z-10  justify-center md:justify-start">
-              <Button type="primary" shape="round" size="middle" className="px-[30px]">
-                <Link href="/guides/start/introduction">{content.buttonIntro}</Link>
+              <Button
+                type="primary"
+                shape="round"
+                size="middle"
+                className="px-[30px]"
+              >
+                <Link href="/guides/start/introduction">
+                  {content.buttonIntro}
+                </Link>
               </Button>
-              <Button type="primary" shape="round" size="middle" ghost className="px-[30px]">
+              <Button
+                type="primary"
+                shape="round"
+                size="middle"
+                ghost
+                className="px-[30px]"
+              >
                 <Link href="/guides/start/quick-started-from-engine">
                   {content.buttonQuickStart}
                 </Link>
@@ -74,8 +88,11 @@ export const Introduction = () => {
         preserveAspectRatio="none"
         className="absolute bottom-0 left-0 w-full h-[40%] block pointer-events-none z-0"
       >
-        <path d="M0,0 Q50,30 100,0 L100,40 L0,40 Z" fill={isDark ? '#1C1D38' : 'white'} />
+        <path
+          d="M0,0 Q50,30 100,0 L100,40 L0,40 Z"
+          fill={isDark ? '#1C1D38' : 'white'}
+        />
       </svg>
     </div>
-  )
-}
+  );
+};

@@ -14,10 +14,7 @@
       "additionalProperties": {
         "type": "array",
         "items": {
-          "anyOf": [
-            { "type": "string" },
-            { "$ref": "#/definitions/plugin" }
-          ]
+          "anyOf": [{ "type": "string" }, { "$ref": "#/definitions/plugin" }]
         }
       }
     }

@@ -1,12 +1,12 @@
+import { usePageData } from '@rspress/core/runtime';
+import { Editor, Runner } from '@rspress/plugin-playground/web';
+import getImport from '_rspress_playground_imports';
 import React, {
   type HTMLAttributes,
   type ReactNode,
   useCallback,
   useState,
 } from 'react';
-import { usePageData } from '@rspress/core/runtime';
-import getImport from '_rspress_playground_imports';
-import { Runner, Editor } from '@rspress/plugin-playground/web';
 
 // inject by builder in cli/index.ts
 declare global {

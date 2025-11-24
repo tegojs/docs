@@ -1,5 +1,290 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   --rp-c-brand: #3b82f6;
+}
+
+/* Algolia DocSearch 样式 - 完全匹配原生搜索按钮 */
+#docsearch,
+.algolia-search-container {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* 隐藏原有的 Rspress 搜索按钮 */
+.rspress-nav-search-button,
+.navSearchButton_df1fb {
+  display: none !important;
+}
+
+/* DocSearch 按钮 - 完全匹配原生样式 */
+.DocSearch-Button {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font-weight: inherit;
+  height: auto;
+  padding: 0;
+  transition: opacity 0.3s ease; /* 匹配 rp-transition-opacity rp-duration-300 */
+  width: auto;
+  box-shadow: none;
+  gap: 0;
+}
+
+.DocSearch-Button:hover {
+  opacity: 0.6; /* 匹配 hover:rp-opacity-60 */
+}
+
+.DocSearch-Button-Container {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  gap: 0;
+}
+
+/* 搜索图标 - 匹配原生 18x18 SVG */
+.DocSearch-Search-Icon {
+  color: var(--rp-c-gray);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* 搜索文本 - 匹配 searchWord_af2c1 */
+.DocSearch-Button-Placeholder {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+/* 快捷键显示 - 匹配原生样式 */
+.DocSearch-Button-Keys {
+  align-items: center;
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 1;
+}
+
+.DocSearch-Button-Key {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  display: flex;
+  font-size: inherit;
+  font-weight: inherit;
+  height: auto;
+  justify-content: center;
+  width: auto;
+  min-width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+/* DocSearch Modal 样式 - 匹配 Rspress 主题 */
+.DocSearch-Modal {
+  background: var(--rp-c-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--rp-c-divider, #e5e5e5);
+}
+
+.DocSearch-SearchBar {
+  border-bottom: 1px solid var(--rp-c-divider, #e5e5e5);
+  padding: 1rem;
+}
+
+/* 搜索表单布局 - 增加元素间距 */
+.DocSearch-Form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 增加整体间距 */
+}
+
+/* 搜索图标标签 - 增加与输入框的间距 */
+.DocSearch-MagnifierLabel {
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.DocSearch-Input {
+  background: var(--rp-c-bg-soft, #f5f5f5);
+  border: 1px solid var(--rp-c-divider, #e5e5e5);
+  border-radius: 8px;
+  color: var(--rp-c-text-1, #333);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  transition: all 0.2s ease;
+  margin-right: 0.5rem; /* 增加与右侧按钮的间距 */
+}
+
+/* 操作按钮区域 - 增加按钮间距 */
+.DocSearch-Actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 增加按钮之间的间距 */
+  flex-shrink: 0;
+}
+
+/* 分隔线样式 */
+.DocSearch-Divider {
+  width: 1px;
+  height: 1.5rem;
+  background: var(--rp-c-divider, #e5e5e5);
+  margin: 0 0.25rem;
+}
+
+/* 清除按钮 */
+.DocSearch-Clear {
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+}
+
+/* 关闭按钮 */
+.DocSearch-Close {
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+}
+
+.DocSearch-Input:focus {
+  border-color: var(--rp-c-brand, #3b82f6);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
+  background: var(--rp-c-bg, #fff);
+}
+
+.DocSearch-Hit {
+  border-bottom: 1px solid var(--rp-c-divider, #e5e5e5);
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.DocSearch-Hit:hover {
+  background: var(--rp-c-bg-soft, #f5f5f5);
+}
+
+.DocSearch-Hit-source {
+  color: var(--rp-c-brand, #3b82f6);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.DocSearch-Hit-title {
+  color: var(--rp-c-text-1, #333);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.DocSearch-Hit-path {
+  color: var(--rp-c-text-3, #999);
+  font-size: 0.75rem;
+}
+
+.DocSearch-Hit-icon {
+  color: var(--rp-c-text-3, #999);
+}
+
+/* 深色模式支持 - 保持原生样式 */
+.dark .DocSearch-Button {
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+
+.dark .DocSearch-Button:hover {
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.dark .DocSearch-Modal {
+  background: var(--rp-c-bg, #1a1a1a);
+  border-color: var(--rp-c-divider, #333);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.dark .DocSearch-Input {
+  background: var(--rp-c-bg-soft, #222);
+  border-color: var(--rp-c-divider, #333);
+  color: var(--rp-c-text-1, #fff);
+}
+
+.dark .DocSearch-Input:focus {
+  background: var(--rp-c-bg, #1a1a1a);
+}
+
+.dark .DocSearch-Hit {
+  border-color: var(--rp-c-divider, #333);
+}
+
+.dark .DocSearch-Hit:hover {
+  background: var(--rp-c-bg-soft, #222);
+}
+
+.dark .DocSearch-Hit-title {
+  color: var(--rp-c-text-1, #fff);
+}
+
+.dark .DocSearch-Button-Key {
+  background: var(--rp-c-bg, #1a1a1a);
+  border-color: var(--rp-c-divider, #333);
+  color: var(--rp-c-text-2, #aaa);
+}
+
+/* 导航栏布局 */
+.navContainer_d18b1 > .container_e4235 {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+  width: 100%;
+}
+
+.navBarTitle_c5f07 {
+  flex: 0 0 auto;
+}
+
+/* 右侧导航区域 - 确保菜单和搜索框都可见 */
+.rightNav_a2fea {
+  flex: 0 0 auto;
+  display: flex !important;
+  align-items: center;
+  gap: 0;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  #docsearch {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .DocSearch-Button {
+    width: 100%;
+    min-width: 150px;
+  }
+
+  .DocSearch-Button-Placeholder {
+    font-size: 0.75rem;
+  }
+
+  .DocSearch-Button-Keys {
+    display: none; /* 移动端隐藏快捷键 */
+  }
 }

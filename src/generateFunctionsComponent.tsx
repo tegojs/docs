@@ -1,7 +1,8 @@
-// generateFunctionsComponent.tsx
-import React, { useState } from 'react';
-import { useLang } from 'rspress/runtime';
 import { Card, Col, Input, Row, Table, Typography } from 'antd';
+// generateFunctionsComponent.tsx
+import type React from 'react';
+import { useState } from 'react';
+import { useLang } from 'rspress/runtime';
 
 const { Title, Text } = Typography;
 

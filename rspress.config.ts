@@ -1,12 +1,14 @@
 import * as path from 'node:path'
-import { defineConfig } from 'rspress/config'
 import { pluginPreview } from '@rspress/plugin-preview'
 import mermaid from 'rspress-plugin-mermaid'
+import { defineConfig } from 'rspress/config'
+import { algoliaConfig } from './config/algolia.config'
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   plugins: [
-    mermaid(),
+    // biome-ignore lint/suspicious/noExplicitAny: mermaid 插件使用旧版本的 @rspress/shared，需要类型断言
+    mermaid() as any,
     pluginPreview({
       iframeOptions: {
         devPort: 7777,
@@ -20,10 +22,7 @@ export default defineConfig({
     light: '/tachybase-light-blue.png',
     dark: '/tachybase-dark-white.png',
   },
-  favicon: {
-    light: '/tachybase-icon-light.png',
-    dark: '/tachybase-icon-dark.png',
-  },
+  // favicon 已在 builderConfig.html.tags 中配置
   themeConfig: {
     lastUpdated: true,
     socialLinks: [
@@ -33,7 +32,7 @@ export default defineConfig({
         content: 'https://github.com/tachybase/tachybase',
       },
     ],
-    search: true,
+    search: false, // 使用自定义 Algolia DocSearch 组件
     locales: [
       {
         lang: 'en',
@@ -94,6 +93,21 @@ export default defineConfig({
           attrs: {
             src: 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
             async: true,
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'preconnect',
+            href: `https://${algoliaConfig.appId}-dsn.algolia.net`,
+            crossorigin: '',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'algolia-site-verification',
+            content: '769FF418727F3522',
           },
         },
       ],

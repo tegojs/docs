@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
 import * as math from 'mathjs'; // 只挂载 mathjs
+import type React from 'react';
+import { useEffect, useMemo } from 'react';
 import generateFunctionsComponent from './generateFunctionsComponent';
 
 const functionsData = [

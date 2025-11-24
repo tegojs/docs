@@ -3,7 +3,7 @@ import {
   SchemaComponentProvider,
   useDesignable,
 } from '@tachybase/client';
-import React from 'react';
+import type React from 'react';
 
 const Hello = () => <h1>Hello, world!</h1>;
 
