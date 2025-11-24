@@ -1,10 +1,11 @@
-export const bussinessLink = 'https://tachybase.com'
+export const bussinessLink = 'https://tachybase.com';
 
-export const WECHAT = '18366116016'
-export const EMAIL = 'hello@daoyoucloud.com'
-export const PHONE = '021-57617570'
+export const WECHAT = '18366116016';
+export const EMAIL = 'hello@daoyoucloud.com';
+export const PHONE = '021-57617570';
 
-export const USER_MANUAL_URL_FEISHU = 'https://fwi6d8nomva.feishu.cn/wiki/space/7423955220489175042'
+export const USER_MANUAL_URL_FEISHU =
+  'https://fwi6d8nomva.feishu.cn/wiki/space/7423955220489175042';
 
 export const chineseContent = {
   title: '企业级服务',
@@ -22,7 +23,7 @@ export const chineseContent = {
     desc: '7×24小时技术支持，确保您的业务稳定运行',
   },
   buttonText: '了解企业级服务 →',
-}
+};
 
 export const englishContent = {
   title: 'Enterprise Services',
@@ -40,4 +41,4 @@ export const englishContent = {
     desc: '24/7 technical support to ensure your business runs stably',
   },
   buttonText: 'Learn About Enterprise Services →',
-}
+};

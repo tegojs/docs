@@ -1,10 +1,10 @@
-import { useDark, usePageData } from '@rspress/core/runtime'
-import { EMAIL, PHONE, USER_MANUAL_URL_FEISHU, WECHAT } from './constants'
+import { useDark, usePageData } from '@rspress/core/runtime';
+import { EMAIL, PHONE, USER_MANUAL_URL_FEISHU, WECHAT } from './constants';
 
 export const HomePageFooter = () => {
-  const { page } = usePageData()
-  const isEnglish = page.lang === 'en'
-  const isDark = useDark()
+  const { page } = usePageData();
+  const isEnglish = page.lang === 'en';
+  const isDark = useDark();
   const content = isEnglish
     ? {
         about: 'About Tachybase',
@@ -27,9 +27,9 @@ export const HomePageFooter = () => {
         wechat: '微信',
         group: '微信交流群',
         official: '关注公众号',
-      }
+      };
 
-  const linkStyle = isDark ? '!text-[#FFFFFFDB]' : '!text-gray-700'
+  const linkStyle = isDark ? '!text-[#FFFFFFDB]' : '!text-gray-700';
 
   return (
     <footer
@@ -39,7 +39,10 @@ export const HomePageFooter = () => {
         <div className="min-w-[150px] mb-5">
           <ul className="flex flex-col gap-5 list-none p-0 m-0">
             <li>
-              <a href="https://tachybase.com/" className={`${linkStyle} no-underline font-medium`}>
+              <a
+                href="https://tachybase.com/"
+                className={`${linkStyle} no-underline font-medium`}
+              >
                 {content.about}
               </a>
             </li>
@@ -52,14 +55,19 @@ export const HomePageFooter = () => {
               </a>
             </li>
             <li>
-              <a href={USER_MANUAL_URL_FEISHU} className={`${linkStyle} no-underline font-medium`}>
+              <a
+                href={USER_MANUAL_URL_FEISHU}
+                className={`${linkStyle} no-underline font-medium`}
+              >
                 {content.manual}
               </a>
             </li>
           </ul>
         </div>
         <div className="min-w-[200px]">
-          <h4 className={`mb-3 text-base font-medium ${linkStyle}`}>{content.contact}</h4>
+          <h4 className={`mb-3 text-base font-medium ${linkStyle}`}>
+            {content.contact}
+          </h4>
           <p className={`my-1 ${linkStyle}`}>
             {content.phone}：{PHONE}
           </p>
@@ -72,8 +80,14 @@ export const HomePageFooter = () => {
 
           <div className="flex flex-2 mt-3 gap-3">
             <div className="flex flex-col items-center">
-              <img src="/homepage/chatGroup.png" alt="WechatGroup" className="w-20 h-20 mb-2" />
-              <p className={`text-sm text-center ${linkStyle}`}>{content.group}</p>
+              <img
+                src="/homepage/chatGroup.png"
+                alt="WechatGroup"
+                className="w-20 h-20 mb-2"
+              />
+              <p className={`text-sm text-center ${linkStyle}`}>
+                {content.group}
+              </p>
             </div>
             <div className="flex flex-col items-center">
               <img
@@ -81,11 +95,13 @@ export const HomePageFooter = () => {
                 alt="officialAccount"
                 className="w-20 h-20 mb-2"
               />
-              <p className={`text-sm text-center ${linkStyle}`}>{content.official}</p>
+              <p className={`text-sm text-center ${linkStyle}`}>
+                {content.official}
+              </p>
             </div>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};

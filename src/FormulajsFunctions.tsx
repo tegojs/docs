@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
 import * as formulajs from '@formulajs/formulajs';
+import type React from 'react';
+import { useEffect } from 'react';
 import generateFunctionsComponent from './generateFunctionsComponent';
 
 const functionsData = [
