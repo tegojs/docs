@@ -104,10 +104,17 @@ export default defineConfig({
           },
         },
         {
+          tag: 'link',
+          attrs: {
+            rel: 'dns-prefetch',
+            href: `https://${algoliaConfig.appId}-dsn.algolia.net`,
+          },
+        },
+        {
           tag: 'meta',
           attrs: {
             name: 'algolia-site-verification',
-            content: '769FF418727F3522',
+            content: 'D198F62CCC517EC9',
           },
         },
       ],
