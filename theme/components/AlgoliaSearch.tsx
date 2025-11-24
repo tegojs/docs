@@ -1,12 +1,12 @@
-import docsearch from '@docsearch/js';
-import { usePageData } from '@rspress/core/runtime';
-import { useEffect, useRef } from 'react';
-import '@docsearch/css';
-import { algoliaConfig } from '../../config/algolia.config';
+import docsearch from '@docsearch/js'
+import { usePageData } from '@rspress/core/runtime'
+import { useEffect, useRef } from 'react'
+import '@docsearch/css'
+import { algoliaConfig } from '../../config/algolia.config'
 
 interface AlgoliaSearchProps {
-  containerId?: string;
-  assistantId?: string;
+  containerId?: string
+  assistantId?: string
 }
 
 // 翻译配置 - 完整的 DocSearch v4 翻译选项
@@ -143,6 +143,14 @@ export function AlgoliaSearch({ containerId = 'docsearch', assistantId }: Algoli
           searchContainer.innerHTML = ''
         }
 
+        // 调试信息：输出配置（隐藏敏感信息）
+        console.log('Algolia DocSearch 配置:', {
+          appId: algoliaConfig.appId,
+          indexName: algoliaConfig.indexName,
+          apiKey: `${algoliaConfig.apiKey.slice(0, 4)}...${algoliaConfig.apiKey.slice(-4)}`,
+          hasAssistantId: !!finalAssistantId,
+        })
+
         const searchConfig: Parameters<typeof docsearch>[0] = {
           container: `#${containerId}`,
           appId: algoliaConfig.appId,
@@ -156,9 +164,18 @@ export function AlgoliaSearch({ containerId = 'docsearch', assistantId }: Algoli
         try {
           docsearch(searchConfig)
           initializedRef.current = true
+          console.log('Algolia DocSearch 初始化成功')
           return true
         } catch (error) {
           console.error('Failed to initialize Algolia DocSearch:', error)
+          // 输出详细的错误信息
+          if (error instanceof Error) {
+            console.error('错误详情:', {
+              message: error.message,
+              name: error.name,
+              stack: error.stack,
+            })
+          }
           return false
         }
       }
