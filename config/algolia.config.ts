@@ -59,7 +59,7 @@ export const algoliaConfig: AlgoliaConfig = {
   // 1. 检查 assistantId 是否正确
   // 2. 确认域名已在 Algolia Dashboard 中添加到白名单
   // 3. 确认 LLM API Key 已正确配置
-  assistantId: 'uveOHn7M7pwm',
+  assistantId: 'Wky70IkEk8wa',
 }
 
 // 验证必需的配置项
