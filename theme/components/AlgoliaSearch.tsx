@@ -10,10 +10,16 @@ interface AlgoliaSearchProps {
 }
 
 // 翻译配置 - 完整的 DocSearch v4 翻译选项
-const getTranslations = (isEnglish: boolean) => ({
+const getTranslations = (isEnglish: boolean, hasAI: boolean) => ({
   button: {
-    buttonText: isEnglish ? 'Search' : '搜索',
-    buttonAriaLabel: isEnglish ? 'Search' : '搜索',
+    buttonText: hasAI ? (isEnglish ? 'AI / Search' : 'AI / 搜索') : isEnglish ? 'Search' : '搜索',
+    buttonAriaLabel: hasAI
+      ? isEnglish
+        ? 'Search or ask AI'
+        : '搜索或使用 AI 提问'
+      : isEnglish
+      ? 'Search'
+      : '搜索',
   },
   modal: {
     searchBox: {
@@ -67,7 +73,12 @@ const getTranslations = (isEnglish: boolean) => ({
 })
 
 // 获取搜索框占位符文本
-const getPlaceholder = (isEnglish: boolean) => (isEnglish ? 'Search docs...' : '输入关键词搜索...')
+const getPlaceholder = (isEnglish: boolean, hasAI: boolean) => {
+  if (hasAI) {
+    return isEnglish ? 'Ask AI or search docs  ...' : '使用 AI 提问或输入关键词搜索...'
+  }
+  return isEnglish ? 'Search docs...' : '输入关键词搜索...'
+}
 
 export function AlgoliaSearch({ containerId = 'docsearch', assistantId }: AlgoliaSearchProps) {
   const finalAssistantId = assistantId || algoliaConfig.assistantId
@@ -151,14 +162,15 @@ export function AlgoliaSearch({ containerId = 'docsearch', assistantId }: Algoli
           hasAssistantId: !!finalAssistantId,
         })
 
+        const hasAI = useAI && !!finalAssistantId
         const searchConfig: Parameters<typeof docsearch>[0] = {
           container: `#${containerId}`,
           appId: algoliaConfig.appId,
           indexName: algoliaConfig.indexName,
           apiKey: algoliaConfig.apiKey,
-          placeholder: getPlaceholder(isEnglish),
-          ...(useAI && finalAssistantId && { askAi: finalAssistantId }),
-          translations: getTranslations(isEnglish),
+          placeholder: getPlaceholder(isEnglish, hasAI),
+          ...(hasAI && { askAi: finalAssistantId }),
+          translations: getTranslations(isEnglish, hasAI),
         }
 
         try {
