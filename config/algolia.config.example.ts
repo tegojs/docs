@@ -45,4 +45,4 @@ export const algoliaConfig: AlgoliaConfig = {
   // 3. 确认 LLM API Key（OpenAI/Anthropic）已正确配置
   // 4. 如果暂时不需要 AI 功能，设置为 undefined
   assistantId: undefined, // 或 'YOUR_ASSISTANT_ID'
-}
+};

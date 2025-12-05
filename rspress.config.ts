@@ -1,8 +1,8 @@
-import * as path from 'node:path'
-import { pluginPreview } from '@rspress/plugin-preview'
-import mermaid from 'rspress-plugin-mermaid'
-import { defineConfig } from 'rspress/config'
-import { algoliaConfig } from './config/algolia.config'
+import * as path from 'node:path';
+import { pluginPreview } from '@rspress/plugin-preview';
+import mermaid from 'rspress-plugin-mermaid';
+import { defineConfig } from 'rspress/config';
+import { algoliaConfig } from './config/algolia.config';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
@@ -120,4 +120,4 @@ export default defineConfig({
       ],
     },
   },
-})
+});
