@@ -208,7 +208,7 @@ Database logging switch, default value `off`, options include:
 - `off` Off
 
 ```bash
-DB_LOGGING=on
+DB_LOGGING=true
 ```
 
 ### LOGGER_TRANSPORT
