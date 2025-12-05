@@ -208,7 +208,7 @@ DB_TABLE_PREFIX=tachybase_
 - `off` 关闭
 
 ```bash
-DB_LOGGING=on
+DB_LOGGING=true
 ```
 
 ### LOGGER_TRANSPORT
