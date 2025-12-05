@@ -40,10 +40,10 @@
  */
 
 export interface AlgoliaConfig {
-  appId: string
-  indexName: string
-  apiKey: string
-  assistantId?: string
+  appId: string;
+  indexName: string;
+  apiKey: string;
+  assistantId?: string;
 }
 
 // 直接使用配置值（浏览器端安全）
@@ -60,9 +60,11 @@ export const algoliaConfig: AlgoliaConfig = {
   // 2. 确认域名已在 Algolia Dashboard 中添加到白名单
   // 3. 确认 LLM API Key 已正确配置
   assistantId: 'Wky70IkEk8wa',
-}
+};
 
 // 验证必需的配置项
 if (!algoliaConfig.appId || !algoliaConfig.indexName || !algoliaConfig.apiKey) {
-  console.warn('Algolia DocSearch 配置不完整，请检查 config/algolia.config.ts 或环境变量')
+  console.warn(
+    'Algolia DocSearch 配置不完整，请检查 config/algolia.config.ts 或环境变量',
+  );
 }
