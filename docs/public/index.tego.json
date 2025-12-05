@@ -302,6 +302,11 @@
       "required": false
     },
     {
+      "name": "@tachybase/plugin-field-bank-card-number",
+      "source": "npm",
+      "required": false
+    },
+    {
       "name": "@tachybase/plugin-field-china-region",
       "source": "npm",
       "required": false
@@ -347,6 +352,11 @@
       "required": false
     },
     {
+      "name": "@tachybase/plugin-icon-pickerv2",
+      "source": "npm",
+      "required": false
+    },
+    {
       "name": "@tachybase/plugin-log-viewer",
       "source": "npm",
       "required": false
@@ -373,6 +383,11 @@
     },
     {
       "name": "@tachybase/plugin-otp",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-pagespy",
       "source": "npm",
       "required": false
     },
