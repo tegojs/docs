@@ -281,7 +281,7 @@ function generateEnglishMarkdown(pluginData) {
   const sortedData = [...pluginData].sort((a, b) => a.name.localeCompare(b.name));
   
   let markdown = '# Plugin List\n\n';
-  markdown += ' | No. | Package Name | Plugin Name | Description |\n';
+  markdown += '| No. | Package Name | Plugin Name | Description |\n';
   markdown += '| --- | --- | --- | --- |\n';
   
   sortedData.forEach((plugin, index) => {
