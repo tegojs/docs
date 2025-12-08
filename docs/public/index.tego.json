@@ -197,6 +197,11 @@
       "required": false
     },
     {
+      "name": "@tachybase/plugin-auth-lark",
+      "source": "npm",
+      "required": false
+    },
+    {
       "name": "@tachybase/plugin-auth-main-app",
       "source": "npm",
       "required": false
@@ -208,11 +213,6 @@
     },
     {
       "name": "@tachybase/plugin-auth-pages",
-      "source": "npm",
-      "required": false
-    },
-    {
-      "name": "@tachybase/plugin-auth-lark",
       "source": "npm",
       "required": false
     },
@@ -278,6 +278,16 @@
     },
     {
       "name": "@tachybase/plugin-data-source-common",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-database-clean",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-demos-game-runesweeper",
       "source": "npm",
       "required": false
     },
@@ -382,6 +392,11 @@
       "required": false
     },
     {
+      "name": "@tachybase/plugin-online-user",
+      "source": "npm",
+      "required": false
+    },
+    {
       "name": "@tachybase/plugin-otp",
       "source": "npm",
       "required": false
@@ -397,27 +412,12 @@
       "required": false
     },
     {
-      "name": "@tachybase/plugin-demos-game-runesweeper",
-      "source": "npm",
-      "required": false
-    },
-    {
-      "name": "@tachybase/plugin-online-user",
-      "source": "npm",
-      "required": false
-    },
-    {
       "name": "@tachybase/plugin-print-template",
       "source": "npm",
       "required": false
     },
     {
       "name": "@tachybase/plugin-simple-cms",
-      "source": "npm",
-      "required": false
-    },
-    {
-      "name": "@tachybase/plugin-wechat-official-account",
       "source": "npm",
       "required": false
     },
@@ -438,6 +438,11 @@
     },
     {
       "name": "@tachybase/plugin-user-manual-feishu",
+      "source": "npm",
+      "required": false
+    },
+    {
+      "name": "@tachybase/plugin-wechat-official-account",
       "source": "npm",
       "required": false
     },
@@ -498,10 +503,10 @@
       "@tachybase/plugin-audit-logs",
       "@tachybase/plugin-auth-cas",
       "@tachybase/plugin-auth-dingtalk",
+      "@tachybase/plugin-auth-lark",
       "@tachybase/plugin-auth-main-app",
       "@tachybase/plugin-auth-oidc",
       "@tachybase/plugin-auth-pages",
-      "@tachybase/plugin-auth-lark",
       "@tachybase/plugin-auth-saml",
       "@tachybase/plugin-auth-sms",
       "@tachybase/plugin-auth-wechat",
@@ -515,10 +520,13 @@
       "@tachybase/plugin-block-presentation",
       "@tachybase/plugin-block-step-form",
       "@tachybase/plugin-data-source-common",
+      "@tachybase/plugin-database-clean",
+      "@tachybase/plugin-demos-game-runesweeper",
       "@tachybase/plugin-department",
       "@tachybase/plugin-devkit",
       "@tachybase/plugin-devtools",
       "@tachybase/plugin-evaluator-mathjs",
+      "@tachybase/plugin-field-bank-card-number",
       "@tachybase/plugin-field-china-region",
       "@tachybase/plugin-field-encryption",
       "@tachybase/plugin-field-formula",
@@ -528,22 +536,23 @@
       "@tachybase/plugin-form-design",
       "@tachybase/plugin-full-text-search",
       "@tachybase/plugin-i18n-editor",
+      "@tachybase/plugin-icon-pickerv2",
       "@tachybase/plugin-log-viewer",
       "@tachybase/plugin-manual-notification",
       "@tachybase/plugin-mock-collections",
       "@tachybase/plugin-multi-app-share-collection",
       "@tachybase/plugin-ocr-convert",
-      "@tachybase/plugin-otp",
-      "@tachybase/plugin-password-policy",
-      "@tachybase/plugin-demos-game-runesweeper",
       "@tachybase/plugin-online-user",
+      "@tachybase/plugin-otp",
+      "@tachybase/plugin-pagespy",
+      "@tachybase/plugin-password-policy",
       "@tachybase/plugin-print-template",
       "@tachybase/plugin-simple-cms",
-      "@tachybase/plugin-wechat-official-account",
       "@tachybase/plugin-sub-accounts",
       "@tachybase/plugin-text-copy",
       "@tachybase/plugin-theme-editor",
       "@tachybase/plugin-user-manual-feishu",
+      "@tachybase/plugin-wechat-official-account",
       "@tachybase/plugin-workflow-analysis",
       "@tachybase/plugin-workflow-approval",
       "@tachybase/plugin-workflow-test"

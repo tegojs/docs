@@ -18,6 +18,7 @@ const colors = {
 let PACKAGES_DIR = path.resolve(__dirname, '../../tego-standard/packages');
 const EN_PLUGIN_LIST_PATH = path.resolve(__dirname, '../docs/en/plugins/plugin-list.md');
 const ZH_PLUGIN_LIST_PATH = path.resolve(__dirname, '../docs/zh/plugins/plugin-list.md');
+const TEGO_JSON_PATH = path.resolve(__dirname, '../docs/public/index.tego.json');
 
 // 需要排除的插件列表(不在文档中显示的插件)
 const EXCLUDE_PLUGINS = [
@@ -172,7 +173,7 @@ function processPluginName(folderName) {
   return processedName;
 }
 
-// 读取插件信息
+// 读取插件信息(用于生成 Markdown 文档,会排除部分插件)
 function readPluginInfo(folderName) {
   const packageJsonPath = path.join(PACKAGES_DIR, folderName, 'package.json');
   
@@ -186,9 +187,9 @@ function readPluginInfo(folderName) {
     const processedName = processPluginName(folderName);
     const fullName = `@tachybase/${processedName}`;
     
-    // 检查是否在排除列表中
+    // 检查是否在排除列表中(仅用于 Markdown 文档)
     if (EXCLUDE_PLUGINS.includes(fullName)) {
-      log(`Excluding plugin: ${fullName}`, 'info');
+      log(`Excluding plugin from docs: ${fullName}`, 'info');
       return null;
     }
     
@@ -226,24 +227,38 @@ function readPluginInfo(folderName) {
   }
 }
 
+// 获取插件包名(用于生成 JSON,不排除任何插件)
+function getPluginPackageName(folderName) {
+  const processedName = processPluginName(folderName);
+  return `@tachybase/${processedName}`;
+}
+
 // 构建插件数据数组
 function buildPluginData(pluginFolders) {
   log('Building plugin data...');
   
   const pluginData = [];
+  const allPluginsForJson = [];
   
   for (const folder of pluginFolders) {
+    // 用于 Markdown 文档(会排除部分插件)
     const info = readPluginInfo(folder);
     if (info) {
       pluginData.push(info);
     }
+    
+    // 用于 JSON 配置(包含所有插件)
+    const packageName = getPluginPackageName(folder);
+    allPluginsForJson.push(packageName);
   }
   
   // 按插件名称排序
   pluginData.sort((a, b) => a.name.localeCompare(b.name));
+  allPluginsForJson.sort();
   
-  log(`Built data for ${pluginData.length} plugins`, 'success');
-  return pluginData;
+  log(`Built data for ${pluginData.length} plugins (for docs)`, 'success');
+  log(`Total ${allPluginsForJson.length} plugins (for JSON)`, 'info');
+  return { pluginData, allPluginsForJson };
 }
 
 // 生成英文 Markdown 表格
@@ -302,6 +317,62 @@ function writeMarkdownFile(filePath, content) {
   }
 }
 
+// 生成 index.tego.json 内容
+function generateTegoJson(allPluginsForJson, allFolders) {
+  log('Generating index.tego.json...');
+  
+  // 读取所有 module- 开头的文件夹
+  const modules = allFolders
+    .filter(folder => folder.startsWith('module-'))
+    .map(folder => `@tachybase/${folder}`)
+    .sort();
+  
+  // 生成插件列表
+  const plugins = [];
+  
+  // 添加所有 modules (required: true)
+  for (const moduleName of modules) {
+    plugins.push({
+      name: moduleName,
+      source: 'npm',
+      required: true
+    });
+  }
+  
+  // 添加所有插件 (required: false) - 包含所有插件,不排除
+  for (const pluginName of allPluginsForJson) {
+    plugins.push({
+      name: pluginName,
+      source: 'npm',
+      required: false
+    });
+  }
+  
+  // 生成 collections.standard 数组 (包含所有 modules 和 plugins)
+  const standardCollection = [...modules, ...allPluginsForJson].sort();
+  
+  const tegoJson = {
+    $schema: './index.tego.schema.json',
+    plugins: plugins,
+    collections: {
+      standard: standardCollection
+    }
+  };
+  
+  return tegoJson;
+}
+
+// 写入 JSON 文件
+function writeTegoJson(filePath, data) {
+  try {
+    const content = JSON.stringify(data, null, 2);
+    fs.writeFileSync(filePath, content + '\n', 'utf-8');
+    log(`Successfully wrote to ${filePath}`, 'success');
+  } catch (error) {
+    log(`Error writing to ${filePath}: ${error.message}`, 'error');
+  }
+}
+
 // 主函数
 async function main() {
   log('=== Starting plugin list update ===', 'info');
@@ -313,7 +384,7 @@ async function main() {
   const pluginFolders = preprocessPluginList(allFolders);
   
   // 3. 构建插件数据
-  const pluginData = buildPluginData(pluginFolders);
+  const { pluginData, allPluginsForJson } = buildPluginData(pluginFolders);
   
   if (pluginData.length === 0) {
     log('No plugin data found!', 'error');
@@ -328,8 +399,14 @@ async function main() {
   const zhMarkdown = generateChineseMarkdown(pluginData);
   writeMarkdownFile(ZH_PLUGIN_LIST_PATH, zhMarkdown);
   
+  // 6. 生成并写入 index.tego.json
+  const tegoJson = generateTegoJson(allPluginsForJson, allFolders);
+  writeTegoJson(TEGO_JSON_PATH, tegoJson);
+  
   log('=== Plugin list update completed ===', 'success');
-  log(`Total plugins processed: ${pluginData.length}`, 'info');
+  log(`Plugins in docs: ${pluginData.length}`, 'info');
+  log(`Plugins in JSON: ${allPluginsForJson.length}`, 'info');
+  log(`Total modules: ${allFolders.filter(f => f.startsWith('module-')).length}`, 'info');
 }
 
 // 运行主函数
