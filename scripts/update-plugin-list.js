@@ -151,23 +151,35 @@ function preprocessPluginList(folders) {
 }
 
 // 处理插件包名
-function processPluginName(folderName) {
+function processPluginName(folderName, silent = false) {
   let processedName = folderName;
+  let renameType = null;
   
   // 特殊处理: plugin-prototype-game-runesweeper -> plugin-demos-game-runesweeper
   if (folderName === 'plugin-prototype-game-runesweeper') {
     processedName = 'plugin-demos-game-runesweeper';
-    log(`Special rename: ${folderName} -> ${processedName}`, 'warn');
+    renameType = 'special';
   }
   // 将 plugin-auth-prototype- 开头的改为 plugin-auth-
   else if (folderName.startsWith('plugin-auth-prototype-')) {
     processedName = folderName.replace('plugin-auth-prototype-', 'plugin-auth-');
-    log(`Auth prototype rename: ${folderName} -> ${processedName}`, 'warn');
+    renameType = 'auth-prototype';
   }
   // 将 plugin-prototype- 开头的改为 plugin-
   else if (folderName.startsWith('plugin-prototype-')) {
     processedName = folderName.replace('plugin-prototype-', 'plugin-');
-    log(`Prototype rename: ${folderName} -> ${processedName}`, 'warn');
+    renameType = 'prototype';
+  }
+  
+  // 仅在非静默模式下输出日志
+  if (!silent && renameType) {
+    if (renameType === 'special') {
+      log(`Special rename: ${folderName} -> ${processedName}`, 'warn');
+    } else if (renameType === 'auth-prototype') {
+      log(`Auth prototype rename: ${folderName} -> ${processedName}`, 'warn');
+    } else if (renameType === 'prototype') {
+      log(`Prototype rename: ${folderName} -> ${processedName}`, 'warn');
+    }
   }
   
   return processedName;
@@ -229,7 +241,7 @@ function readPluginInfo(folderName) {
 
 // 获取插件包名(用于生成 JSON,不排除任何插件)
 function getPluginPackageName(folderName) {
-  const processedName = processPluginName(folderName);
+  const processedName = processPluginName(folderName, true); // 静默模式,不输出日志
   return `@tachybase/${processedName}`;
 }
 
