@@ -47,26 +47,26 @@
 | 43 | `@tachybase/plugin-field-markdown-vditor` | 数据表字段：Markdown(Vditor) | 用于存储 Markdown，并使用 Vditor 编辑器渲染，支持常见 Markdown 语法，如列表，代码，引用等，并支持上传图片，录音等。同时可以做到即时渲染，所见即所得。 |
 | 44 | `@tachybase/plugin-field-sequence` | 数据表字段：自动编码 | 根据配置的规则自动生成编码，支持日期、数字、文本的组合。 |
 | 45 | `@tachybase/plugin-field-snapshot` | 数据表字段：关系快照 | 在添加数据时，为它的关系数据创建快照，并保存在当前的数据中。关系数据更新时，快照不会更新。 |
-| 46 | `@tachybase/plugin-form-design` | Form Design | 所见即所得的表单设计插件 |
+| 46 | `@tachybase/plugin-form-design` | 表单设计 | 所见即所得的表单设计插件 |
 | 47 | `@tachybase/plugin-full-text-search` | 全文搜索 | 提供全字段搜索能力 |
 | 48 | `@tachybase/plugin-i18n-editor` | 本地化 | 支持管理应用程序的本地化资源。 |
 | 49 | `@tachybase/plugin-icon-pickerv2` | 图标选择器 V2 | 一个灵活的图标选择插件，为 Tachybase 提供简单集成和可定制的图标选择功能。 |
 | 50 | `@tachybase/plugin-log-viewer` | 日志 | 服务端日志，主要包括接口请求日志和系统运行日志，并支持打包和下载日志文件。 |
 | 51 | `@tachybase/plugin-manual-notification` | 广播通知 | 用于给所有在线人员发送通知，包括系统更新，重要事件 |
-| 52 | `@tachybase/plugin-mock-collections` | mock-collections | mock-collections |
+| 52 | `@tachybase/plugin-mock-collections` | 模拟集合 | 模拟集合插件 |
 | 53 | `@tachybase/plugin-multi-app-share-collection` | 多应用数据共享 | 多应用数据共享 |
 | 54 | `@tachybase/plugin-ocr-convert` | OCR 转换 | OCR 转换插件 |
 | 55 | `@tachybase/plugin-online-user` | 在线用户管理（建设中） | 在线用户管理（建设中） |
 | 56 | `@tachybase/plugin-otp` | 验证码 | 验证码配置。 |
 | 57 | `@tachybase/plugin-pagespy` | 页面监控 | PageSpy 插件, 方便前端测试和记录 |
 | 58 | `@tachybase/plugin-password-policy` | 密码策略 | 密码策略, 包含密码强度、密码尝试次数限制、密码锁定时间、ip黑白名单等 |
-| 59 | `@tachybase/plugin-print-template` | @tachybase/plugin-print-template |  |
+| 59 | `@tachybase/plugin-print-template` | 打印模板 | 打印模板插件 |
 | 60 | `@tachybase/plugin-simple-cms` | 内容管理 | 内容管理 |
 | 61 | `@tachybase/plugin-sub-accounts` | 子账户和合成角色 | 生成合成角色,每个用户可以生成自己的子账户(未完成) |
 | 62 | `@tachybase/plugin-text-copy` | 文本复制 | 为文本字段添加复制按钮 |
 | 63 | `@tachybase/plugin-theme-editor` | 主题编辑器 | 自定义 UI 的颜色、尺寸等，并将结果保存为主题，可在多个主题间切换。 |
 | 64 | `@tachybase/plugin-user-manual-feishu` | 飞书使用手册 | 飞书使用手册 |
-| 65 | `@tachybase/plugin-wechat-official-account` | @tachybase/plugin-wechat-official-account |  |
+| 65 | `@tachybase/plugin-wechat-official-account` | 微信公众号 | 微信公众号插件 |
 | 66 | `@tachybase/plugin-workflow-analysis` | 工作流分析工具 | 工作流分析工具：用于时间消耗和错误分析 |
 | 67 | `@tachybase/plugin-workflow-approval` | 审批 | 审批系统是一个强大的BPM工具，为业务流程自动化提供基础支持，同时具备高度灵活性和可扩展性，确保审批流程的效率和合规性，助力企业释放创新潜力。 |
 | 68 | `@tachybase/plugin-workflow-test` | 工作流：测试工具包 | 工作流测试工具包 |
