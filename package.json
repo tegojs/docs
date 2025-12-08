@@ -8,7 +8,8 @@
     "dev": "rspress dev",
     "format": "biome format --write",
     "preview": "rspress preview",
-    "merge-md": "node scripts/merge-md/index.js"
+    "merge-md": "node scripts/merge-md/index.js",
+    "plugin:update": "node scripts/update-plugin-list.js"
   },
   "dependencies": {
     "@docsearch/css": "^4.0.0",
