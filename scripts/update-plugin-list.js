@@ -278,7 +278,7 @@ function generateEnglishMarkdown(pluginData) {
     const displayName = plugin.displayName;
     const description = plugin.description;
     
-    markdown += `| ${no} | ${name} | ${displayName} | ${description} |\n`;
+    markdown += `| ${no} | \`${name}\` | ${displayName} | ${description} |\n`;
   });
   
   return markdown;
