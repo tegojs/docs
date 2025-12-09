@@ -46,7 +46,7 @@ const Layout = () => {
             &nbsp;{isEnglish ? 'times' : '次'}.
           </span>
           &nbsp;&nbsp;&nbsp;
-          {isEnglish ? 'Powered by Tego Team' : '由零几团队提供技术支持'}
+          {isEnglish ? 'Powered by Tego Team' : '由灵矶团队提供技术支持'}
         </div>
       }
     />
