@@ -27,6 +27,12 @@
 
 - **database-clean**: 依赖([#344](https://github.com/tegojs/tego-standard/pull/344)) (@TomyJan)
 
+## [1.6.6] - 2026-01-08
+
+### 🐛 修复
+
+- **database-clean**: 依赖([#344](https://github.com/tegojs/tego-standard/pull/344)) (@TomyJan)
+
 ## [1.6.5] - 2026-01-08
 
 ### ✨ 新增

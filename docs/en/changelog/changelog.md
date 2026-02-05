@@ -27,6 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **database-clean**: dependence ([#344](https://github.com/tegojs/tego-standard/pull/344)) (@TomyJan)
 
+## [1.6.6] - 2026-01-08
+
+### 🐛 Fixed
+
+- **database-clean**: dependence ([#344](https://github.com/tegojs/tego-standard/pull/344)) (@TomyJan)
+
 ## [1.6.5] - 2026-01-08
 
 ### ✨ Added
